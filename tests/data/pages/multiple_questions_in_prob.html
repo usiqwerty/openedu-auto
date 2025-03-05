@@ -1,0 +1,962 @@
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<!--[if lte IE 9]><html class="ie ie9 lte9" lang="ru"><![endif]-->
+<!--[if !IE]><!--><html lang="ru"><!--<![endif]-->
+<head dir="ltr">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="origin-trial" content="ArNBN7d1AkvMhJTGWXlJ8td/AN4lOokzOnqKRNkTnLqaqx0HpfYvmx8JePPs/emKh6O5fckx14LeZIGJ1AQYjgAAAABzeyJvcmlnaW4iOiJodHRwOi8vbG9jYWxob3N0OjE4MDAwIiwiZmVhdHVyZSI6IkRpc2FibGVEaWZmZXJlbnRPcmlnaW5TdWJmcmFtZURpYWxvZ1N1cHByZXNzaW9uIiwiZXhwaXJ5IjoxNjM5NTI2Mzk5fQ==">
+
+
+
+
+  <title>
+
+ Содержание курса PHYLOS | Открытое образование
+</title>
+
+
+  
+
+  <script type="text/javascript" src="https://cdn2.openedu.ru/static/js/i18n/ru/djangojs.673a32bb50b9.js"></script>
+  <script type="text/javascript" src="https://cdn2.openedu.ru/static/js/ie11_find_array.bd1c6dc7a133.js"></script>
+  
+  <link rel="icon" type="image/x-icon" href="https://cdn2.openedu.ru/static/edx-theme/images/favicon.bd3d272022e9.ico"/>
+
+
+
+  
+  
+
+    <link href="https://cdn2.openedu.ru/static/edx-theme/css/lms-style-vendor.68e48093f5dd.css" rel="stylesheet" type="text/css" />
+
+
+
+    
+  
+
+    <link href="https://cdn2.openedu.ru/static/edx-theme/css/lms-main-v1.4fcbf1c0bdb5.css" rel="stylesheet" type="text/css" />
+
+
+
+
+    
+    
+<script type="text/javascript" src="https://cdn2.openedu.ru/static/js/lms-main_vendor.3c3c9a2604d6.js" charset="utf-8"></script>
+
+
+    
+    
+<script type="text/javascript" src="https://cdn2.openedu.ru/static/js/lms-application.5ba2aca48790.js" charset="utf-8"></script>
+
+
+
+  
+    
+    
+    <script type="text/javascript" src="https://cdn2.openedu.ru/static/bundles/commons.18ca13fd3a36eedcddd3.6ddbb79b7234.js" ></script>
+
+
+
+  <script>
+    window.baseUrl = "https://cdn2.openedu.ru/static/";
+    (function (require) {
+      require.config({
+          baseUrl: window.baseUrl
+      });
+    }).call(this, require || RequireJS.require);
+  </script>
+  <script type="text/javascript" src="https://cdn2.openedu.ru/static/lms/js/require-config.38226099c6ad.js"></script>
+  
+    <script type="text/javascript">
+        (function (require) {
+          require.config({
+              paths: {
+                'course_bookmarks/js/views/bookmark_button': 'course_bookmarks/js/views/bookmark_button.d4cfaf3361fa',
+'js/views/message_banner': 'js/views/message_banner.141974fd4f5d',
+'moment': 'common/js/vendor/moment-with-locales.e3cc27d412a1',
+'moment-timezone': 'common/js/vendor/moment-timezone-with-data.60142e6c4416',
+'js/courseware/course_info_events': 'js/courseware/course_info_events.2fc35b57627f',
+'js/courseware/accordion_events': 'js/courseware/accordion_events.6064c7809de5',
+'js/dateutil_factory': 'js/dateutil_factory.a28baef97506',
+'js/courseware/link_clicked_events': 'js/courseware/link_clicked_events',
+'js/courseware/toggle_element_visibility': 'js/courseware/toggle_element_visibility.474ff5ba9de3',
+'js/student_account/logistration_factory': 'js/student_account/logistration_factory.5e55252d0ace',
+'js/courseware/courseware_factory': 'js/courseware/courseware_factory.1504fc10caef',
+'js/groups/views/cohorts_dashboard_factory': 'js/groups/views/cohorts_dashboard_factory.abc7c817c498',
+'js/groups/discussions_management/discussions_dashboard_factory': 'js/discussions_management/views/discussions_dashboard_factory.2e10d9097343',
+'draggabilly': 'js/vendor/draggabilly.26caba6f7187',
+'hls': 'common/js/vendor/hls.5e0c7e1b3bfd'
+            }
+          });
+        }).call(this, require || RequireJS.require);
+    </script>
+  
+
+  
+
+  
+
+    <link href="https://cdn2.openedu.ru/static/edx-theme/css/lms-style-course-vendor.cc467ea1c47d.css" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+
+    <link href="https://cdn2.openedu.ru/static/edx-theme/css/lms-course.d3e35273eae9.css" rel="stylesheet" type="text/css" />
+
+
+
+
+<script type="text/javascript" src="https://cdn2.openedu.ru/static/js/jquery.autocomplete.964a0bfb4fd2.js" async></script>
+<script type="text/javascript" src="https://cdn2.openedu.ru/static/js/src/tooltip_manager.b8fa94d4cefc.js" async></script>
+
+<link href="https://cdn2.openedu.ru/static/css/vendor/jquery.autocomplete.css" rel="preload" type="text/css">
+  
+
+  <base target="_parent">
+
+<script type="text/javascript">
+  var $$course_id = "course\u002Dv1:spbstu+PHYLOS+spring_2024_4";
+</script>
+
+
+  
+
+  
+
+
+  
+
+
+<script type="application/json" id="user-metadata">
+    null
+</script>
+
+  
+
+  
+
+
+  
+
+
+<!-- dummy Segment -->
+<script type="text/javascript">
+  var analytics = {
+    track: function() { return; },
+    trackLink: function() { return; },
+    pageview: function() { return; },
+    page: function() { return; }
+  };
+</script>
+<!-- end dummy Segment -->
+
+
+  <meta name="path_prefix" content="">
+  
+
+  <meta name="openedx-release-line" content="maple" />
+
+
+
+
+
+</head>
+
+<body class="ltr view-in-course view-courseware courseware  lang_ru">
+
+
+
+<div id="page-prompt"></div>
+    
+    <a class="nav-skip sr-only sr-only-focusable" href="#main">Перейти к основному содержимому</a>
+
+
+    
+
+
+
+
+
+
+
+
+
+
+    <div class="marketing-hero"></div>
+
+    <div class="content-wrapper main-container" id="content" dir="ltr">
+      
+
+
+
+
+
+
+
+
+<script type="text/template" id="image-modal-tpl">
+    <div class="wrapper-modal wrapper-modal-image">
+  <section class="image-link">
+    <%= smallHTML%> <% // xss-lint: disable=underscore-not-escaped %>
+    <a href="#" class="modal-ui-icon action-fullscreen" role="button">
+      <span class="label">
+        <span class="icon fa fa-arrows-alt fa-large" aria-hidden="true"></span> <%- gettext("Fullscreen") %>
+      </span>
+    </a>
+  </section>
+
+  <section class="image-modal">
+    <section class="image-content">
+      <div class="image-wrapper">
+        <img alt="<%- largeALT %>, <%- gettext('Large') %>" src="<%- largeSRC %>" />
+      </div>
+
+      <a href="#" class="modal-ui-icon action-close" role="button">
+        <span class="label">
+          <span class="icon fa fa-remove fa-large" aria-hidden="true"></span> <%- gettext("Close") %>
+        </span>
+      </a>
+
+      <ul class="image-controls">
+        <li class="image-control">
+          <a href="#" class="modal-ui-icon action-zoom-in" role="button">
+            <span class="label">
+              <span class="icon fa fa fa-search-plus fa-large" aria-hidden="true"></span> <%- gettext("Zoom In") %>
+            </span>
+          </a>
+        </li>
+
+        <li class="image-control">
+          <a href="#" class="modal-ui-icon action-zoom-out is-disabled" aria-disabled="true" role="button">
+            <span class="label">
+              <span class="icon fa fa fa-search-minus fa-large" aria-hidden="true"></span> <%- gettext("Zoom Out") %>
+            </span>
+          </a>
+        </li>
+      </ul>
+    </section>
+  </section>
+</div>
+
+</script>
+
+
+
+
+
+
+
+<div class="course-wrapper chromeless">
+  <section class="course-content" id="course-content"      data-enable-completion-on-view-service="false"     style="display: block; width: auto; margin: 0;"
+  >
+      <main id="main" aria-label="Content">
+        
+<div class="xblock xblock-student_view xblock-student_view-vertical" data-course-id="course-v1:spbstu+PHYLOS+spring_2024_4" data-init="VerticalStudentView" data-runtime-class="LmsRuntime" data-runtime-version="1" data-block-type="vertical" data-usage-id="block-v1:spbstu+PHYLOS+spring_2024_4+type@vertical+block@339323acbef2401caa352bcf502187c2" data-request-token="c9de11b0f9be11efb75d4aeebe46cb6d" data-graded="True" data-has-score="False">
+  
+
+
+
+
+
+    <h4 class="hd-8 de-emphasized">Этот элемент курса проверен 
+        как <td>'Тест к практическому занятию'</td><br>
+        вес:&nbsp;1.0
+    </h4>
+
+
+<div class="vert-mod">
+    <div class="vert vert-0" data-id="block-v1:spbstu+PHYLOS+spring_2024_4+type@problem+block@9b947547a9e64f54b959dd61cafed7bd">
+        
+<div class="xblock xblock-student_view xblock-student_view-problem xmodule_display xmodule_ProblemBlock" data-course-id="course-v1:spbstu+PHYLOS+spring_2024_4" data-init="XBlockToXModuleShim" data-runtime-class="LmsRuntime" data-runtime-version="1" data-block-type="problem" data-usage-id="block-v1:spbstu+PHYLOS+spring_2024_4+type@problem+block@9b947547a9e64f54b959dd61cafed7bd" data-request-token="c9de11b0f9be11efb75d4aeebe46cb6d" data-graded="True" data-has-score="True">
+  <script type="json/xblock-args" class="xblock-json-init-args">
+    {"xmodule-type": "Problem"}
+  </script>
+  <div id="problem_9b947547a9e64f54b959dd61cafed7bd" class="problems-wrapper" role="group"
+     aria-labelledby="9b947547a9e64f54b959dd61cafed7bd-problem-title"
+     data-problem-id="block-v1:spbstu+PHYLOS+spring_2024_4+type@problem+block@9b947547a9e64f54b959dd61cafed7bd" data-url="/courses/course-v1:spbstu+PHYLOS+spring_2024_4/xblock/block-v1:spbstu+PHYLOS+spring_2024_4+type@problem+block@9b947547a9e64f54b959dd61cafed7bd/handler/xmodule_handler"
+     data-problem-score="5.0"
+     data-problem-total-possible="5.0"
+     data-attempts-used="1"
+     data-content="
+
+
+
+&lt;h3 class=&#34;hd hd-3 problem-header&#34; id=&#34;9b947547a9e64f54b959dd61cafed7bd-problem-title&#34; aria-describedby=&#34;block-v1:spbstu+PHYLOS+spring_2024_4+type@problem+block@9b947547a9e64f54b959dd61cafed7bd-problem-progress&#34; tabindex=&#34;-1&#34;&gt;
+  Тест к практическому занятию по теме 2
+&lt;/h3&gt;
+
+&lt;div class=&#34;problem-progress&#34; id=&#34;block-v1:spbstu+PHYLOS+spring_2024_4+type@problem+block@9b947547a9e64f54b959dd61cafed7bd-problem-progress&#34;&gt;&lt;/div&gt;
+
+&lt;div class=&#34;problem&#34;&gt;
+  &lt;div&gt;
+&lt;p&gt;Тест к практическому занятию по философии древнего мира&lt;/p&gt;
+  &lt;p&gt;&lt;strong&gt;Задание 1. &lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;wrapper-problem-response&#34; tabindex=&#34;-1&#34; aria-label=&#34;Вопрос 1&#34; role=&#34;group&#34;&gt;&lt;div class=&#34;choicegroup capa_inputtype&#34; id=&#34;inputtype_9b947547a9e64f54b959dd61cafed7bd_2_1&#34;&gt;
+    &lt;fieldset aria-describedby=&#34;status_9b947547a9e64f54b959dd61cafed7bd_2_1&#34;&gt;
+        &lt;legend id=&#34;9b947547a9e64f54b959dd61cafed7bd_2_1-legend&#34; class=&#34;response-fieldset-legend field-group-hd&#34;&gt;1.Отметьте школу, в которой сократовская диалектика из орудия отыскания объективной истины превратилась в эристику — искусство спора.&lt;/legend&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;radio&#34; name=&#34;input_9b947547a9e64f54b959dd61cafed7bd_2_1&#34; id=&#34;input_9b947547a9e64f54b959dd61cafed7bd_2_1_choice_0&#34; class=&#34;field-input input-radio&#34; value=&#34;choice_0&#34;/&gt;&lt;label id=&#34;9b947547a9e64f54b959dd61cafed7bd_2_1-choice_0-label&#34; for=&#34;input_9b947547a9e64f54b959dd61cafed7bd_2_1_choice_0&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_9b947547a9e64f54b959dd61cafed7bd_2_1&#34;&gt; стоиков
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;radio&#34; name=&#34;input_9b947547a9e64f54b959dd61cafed7bd_2_1&#34; id=&#34;input_9b947547a9e64f54b959dd61cafed7bd_2_1_choice_1&#34; class=&#34;field-input input-radio&#34; value=&#34;choice_1&#34;/&gt;&lt;label id=&#34;9b947547a9e64f54b959dd61cafed7bd_2_1-choice_1-label&#34; for=&#34;input_9b947547a9e64f54b959dd61cafed7bd_2_1_choice_1&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_9b947547a9e64f54b959dd61cafed7bd_2_1&#34;&gt; эпикурейцев
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;radio&#34; name=&#34;input_9b947547a9e64f54b959dd61cafed7bd_2_1&#34; id=&#34;input_9b947547a9e64f54b959dd61cafed7bd_2_1_choice_2&#34; class=&#34;field-input input-radio&#34; value=&#34;choice_2&#34;/&gt;&lt;label id=&#34;9b947547a9e64f54b959dd61cafed7bd_2_1-choice_2-label&#34; for=&#34;input_9b947547a9e64f54b959dd61cafed7bd_2_1_choice_2&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_9b947547a9e64f54b959dd61cafed7bd_2_1&#34;&gt; киников
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;radio&#34; name=&#34;input_9b947547a9e64f54b959dd61cafed7bd_2_1&#34; id=&#34;input_9b947547a9e64f54b959dd61cafed7bd_2_1_choice_3&#34; class=&#34;field-input input-radio submitted&#34; value=&#34;choice_3&#34; checked=&#34;true&#34;/&gt;&lt;label id=&#34;9b947547a9e64f54b959dd61cafed7bd_2_1-choice_3-label&#34; for=&#34;input_9b947547a9e64f54b959dd61cafed7bd_2_1_choice_3&#34; class=&#34;response-label field-label label-inline choicegroup_correct&#34; aria-describedby=&#34;status_9b947547a9e64f54b959dd61cafed7bd_2_1&#34;&gt; мегарики
+            &lt;/label&gt;
+          &lt;/div&gt;
+        &lt;span id=&#34;answer_9b947547a9e64f54b959dd61cafed7bd_2_1&#34;/&gt;
+    &lt;/fieldset&gt;
+    &lt;div class=&#34;indicator-container&#34;&gt;
+          
+
+&lt;span class=&#34;status correct&#34; id=&#34;status_9b947547a9e64f54b959dd61cafed7bd_2_1&#34; data-tooltip=&#34;Это правильный ответ.&#34;&gt;
+  &lt;span class=&#34;sr&#34;&gt;верно&lt;/span&gt;&lt;span class=&#34;status-icon&#34; aria-hidden=&#34;true&#34;/&gt;
+&lt;/span&gt;
+
+    &lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&#34;wrapper-problem-response&#34; tabindex=&#34;-1&#34; aria-label=&#34;Вопрос 2&#34; role=&#34;group&#34;&gt;&lt;div class=&#34;choicegroup capa_inputtype&#34; id=&#34;inputtype_9b947547a9e64f54b959dd61cafed7bd_3_1&#34;&gt;
+    &lt;fieldset aria-describedby=&#34;status_9b947547a9e64f54b959dd61cafed7bd_3_1&#34;&gt;
+        &lt;legend id=&#34;9b947547a9e64f54b959dd61cafed7bd_3_1-legend&#34; class=&#34;response-fieldset-legend field-group-hd&#34;&gt;2. Цель проповедуемого ими образа жизни — автаркия — “самодостаточность”. Так полагали представители школы&lt;/legend&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;radio&#34; name=&#34;input_9b947547a9e64f54b959dd61cafed7bd_3_1&#34; id=&#34;input_9b947547a9e64f54b959dd61cafed7bd_3_1_choice_0&#34; class=&#34;field-input input-radio&#34; value=&#34;choice_0&#34;/&gt;&lt;label id=&#34;9b947547a9e64f54b959dd61cafed7bd_3_1-choice_0-label&#34; for=&#34;input_9b947547a9e64f54b959dd61cafed7bd_3_1_choice_0&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_9b947547a9e64f54b959dd61cafed7bd_3_1&#34;&gt; стоиков
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;radio&#34; name=&#34;input_9b947547a9e64f54b959dd61cafed7bd_3_1&#34; id=&#34;input_9b947547a9e64f54b959dd61cafed7bd_3_1_choice_1&#34; class=&#34;field-input input-radio&#34; value=&#34;choice_1&#34;/&gt;&lt;label id=&#34;9b947547a9e64f54b959dd61cafed7bd_3_1-choice_1-label&#34; for=&#34;input_9b947547a9e64f54b959dd61cafed7bd_3_1_choice_1&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_9b947547a9e64f54b959dd61cafed7bd_3_1&#34;&gt; эпикурейцев
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;radio&#34; name=&#34;input_9b947547a9e64f54b959dd61cafed7bd_3_1&#34; id=&#34;input_9b947547a9e64f54b959dd61cafed7bd_3_1_choice_2&#34; class=&#34;field-input input-radio submitted&#34; value=&#34;choice_2&#34; checked=&#34;true&#34;/&gt;&lt;label id=&#34;9b947547a9e64f54b959dd61cafed7bd_3_1-choice_2-label&#34; for=&#34;input_9b947547a9e64f54b959dd61cafed7bd_3_1_choice_2&#34; class=&#34;response-label field-label label-inline choicegroup_correct&#34; aria-describedby=&#34;status_9b947547a9e64f54b959dd61cafed7bd_3_1&#34;&gt; киников
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;radio&#34; name=&#34;input_9b947547a9e64f54b959dd61cafed7bd_3_1&#34; id=&#34;input_9b947547a9e64f54b959dd61cafed7bd_3_1_choice_3&#34; class=&#34;field-input input-radio&#34; value=&#34;choice_3&#34;/&gt;&lt;label id=&#34;9b947547a9e64f54b959dd61cafed7bd_3_1-choice_3-label&#34; for=&#34;input_9b947547a9e64f54b959dd61cafed7bd_3_1_choice_3&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_9b947547a9e64f54b959dd61cafed7bd_3_1&#34;&gt; керинаиков
+            &lt;/label&gt;
+          &lt;/div&gt;
+        &lt;span id=&#34;answer_9b947547a9e64f54b959dd61cafed7bd_3_1&#34;/&gt;
+    &lt;/fieldset&gt;
+    &lt;div class=&#34;indicator-container&#34;&gt;
+          
+
+&lt;span class=&#34;status correct&#34; id=&#34;status_9b947547a9e64f54b959dd61cafed7bd_3_1&#34; data-tooltip=&#34;Это правильный ответ.&#34;&gt;
+  &lt;span class=&#34;sr&#34;&gt;верно&lt;/span&gt;&lt;span class=&#34;status-icon&#34; aria-hidden=&#34;true&#34;/&gt;
+&lt;/span&gt;
+
+    &lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&#34;wrapper-problem-response&#34; tabindex=&#34;-1&#34; aria-label=&#34;Вопрос 3&#34; role=&#34;group&#34;&gt;&lt;div class=&#34;choicegroup capa_inputtype&#34; id=&#34;inputtype_9b947547a9e64f54b959dd61cafed7bd_4_1&#34;&gt;
+    &lt;fieldset aria-describedby=&#34;status_9b947547a9e64f54b959dd61cafed7bd_4_1&#34;&gt;
+        &lt;legend id=&#34;9b947547a9e64f54b959dd61cafed7bd_4_1-legend&#34; class=&#34;response-fieldset-legend field-group-hd&#34;&gt;3. Счастье – это отсутствие страха и страдания. Так полагали представители школы&lt;/legend&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;radio&#34; name=&#34;input_9b947547a9e64f54b959dd61cafed7bd_4_1&#34; id=&#34;input_9b947547a9e64f54b959dd61cafed7bd_4_1_choice_0&#34; class=&#34;field-input input-radio&#34; value=&#34;choice_0&#34;/&gt;&lt;label id=&#34;9b947547a9e64f54b959dd61cafed7bd_4_1-choice_0-label&#34; for=&#34;input_9b947547a9e64f54b959dd61cafed7bd_4_1_choice_0&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_9b947547a9e64f54b959dd61cafed7bd_4_1&#34;&gt; стоиков
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;radio&#34; name=&#34;input_9b947547a9e64f54b959dd61cafed7bd_4_1&#34; id=&#34;input_9b947547a9e64f54b959dd61cafed7bd_4_1_choice_1&#34; class=&#34;field-input input-radio submitted&#34; value=&#34;choice_1&#34; checked=&#34;true&#34;/&gt;&lt;label id=&#34;9b947547a9e64f54b959dd61cafed7bd_4_1-choice_1-label&#34; for=&#34;input_9b947547a9e64f54b959dd61cafed7bd_4_1_choice_1&#34; class=&#34;response-label field-label label-inline choicegroup_correct&#34; aria-describedby=&#34;status_9b947547a9e64f54b959dd61cafed7bd_4_1&#34;&gt; эпикурейцев
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;radio&#34; name=&#34;input_9b947547a9e64f54b959dd61cafed7bd_4_1&#34; id=&#34;input_9b947547a9e64f54b959dd61cafed7bd_4_1_choice_2&#34; class=&#34;field-input input-radio&#34; value=&#34;choice_2&#34;/&gt;&lt;label id=&#34;9b947547a9e64f54b959dd61cafed7bd_4_1-choice_2-label&#34; for=&#34;input_9b947547a9e64f54b959dd61cafed7bd_4_1_choice_2&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_9b947547a9e64f54b959dd61cafed7bd_4_1&#34;&gt; киников
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;radio&#34; name=&#34;input_9b947547a9e64f54b959dd61cafed7bd_4_1&#34; id=&#34;input_9b947547a9e64f54b959dd61cafed7bd_4_1_choice_3&#34; class=&#34;field-input input-radio&#34; value=&#34;choice_3&#34;/&gt;&lt;label id=&#34;9b947547a9e64f54b959dd61cafed7bd_4_1-choice_3-label&#34; for=&#34;input_9b947547a9e64f54b959dd61cafed7bd_4_1_choice_3&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_9b947547a9e64f54b959dd61cafed7bd_4_1&#34;&gt; неоплатоников
+            &lt;/label&gt;
+          &lt;/div&gt;
+        &lt;span id=&#34;answer_9b947547a9e64f54b959dd61cafed7bd_4_1&#34;/&gt;
+    &lt;/fieldset&gt;
+    &lt;div class=&#34;indicator-container&#34;&gt;
+          
+
+&lt;span class=&#34;status correct&#34; id=&#34;status_9b947547a9e64f54b959dd61cafed7bd_4_1&#34; data-tooltip=&#34;Это правильный ответ.&#34;&gt;
+  &lt;span class=&#34;sr&#34;&gt;верно&lt;/span&gt;&lt;span class=&#34;status-icon&#34; aria-hidden=&#34;true&#34;/&gt;
+&lt;/span&gt;
+
+    &lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&#34;wrapper-problem-response&#34; tabindex=&#34;-1&#34; aria-label=&#34;Вопрос 4&#34; role=&#34;group&#34;&gt;&lt;div class=&#34;choicegroup capa_inputtype&#34; id=&#34;inputtype_9b947547a9e64f54b959dd61cafed7bd_5_1&#34;&gt;
+    &lt;fieldset aria-describedby=&#34;status_9b947547a9e64f54b959dd61cafed7bd_5_1&#34;&gt;
+        &lt;legend id=&#34;9b947547a9e64f54b959dd61cafed7bd_5_1-legend&#34; class=&#34;response-fieldset-legend field-group-hd&#34;&gt;4. Цель проповедуемого ими образа жизни —“атараксия” — бесстрастие. Так полагали представители&lt;/legend&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;radio&#34; name=&#34;input_9b947547a9e64f54b959dd61cafed7bd_5_1&#34; id=&#34;input_9b947547a9e64f54b959dd61cafed7bd_5_1_choice_0&#34; class=&#34;field-input input-radio submitted&#34; value=&#34;choice_0&#34; checked=&#34;true&#34;/&gt;&lt;label id=&#34;9b947547a9e64f54b959dd61cafed7bd_5_1-choice_0-label&#34; for=&#34;input_9b947547a9e64f54b959dd61cafed7bd_5_1_choice_0&#34; class=&#34;response-label field-label label-inline choicegroup_correct&#34; aria-describedby=&#34;status_9b947547a9e64f54b959dd61cafed7bd_5_1&#34;&gt; стоической школы
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;radio&#34; name=&#34;input_9b947547a9e64f54b959dd61cafed7bd_5_1&#34; id=&#34;input_9b947547a9e64f54b959dd61cafed7bd_5_1_choice_1&#34; class=&#34;field-input input-radio&#34; value=&#34;choice_1&#34;/&gt;&lt;label id=&#34;9b947547a9e64f54b959dd61cafed7bd_5_1-choice_1-label&#34; for=&#34;input_9b947547a9e64f54b959dd61cafed7bd_5_1_choice_1&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_9b947547a9e64f54b959dd61cafed7bd_5_1&#34;&gt; эпикурейский
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;radio&#34; name=&#34;input_9b947547a9e64f54b959dd61cafed7bd_5_1&#34; id=&#34;input_9b947547a9e64f54b959dd61cafed7bd_5_1_choice_2&#34; class=&#34;field-input input-radio&#34; value=&#34;choice_2&#34;/&gt;&lt;label id=&#34;9b947547a9e64f54b959dd61cafed7bd_5_1-choice_2-label&#34; for=&#34;input_9b947547a9e64f54b959dd61cafed7bd_5_1_choice_2&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_9b947547a9e64f54b959dd61cafed7bd_5_1&#34;&gt; кинический
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;radio&#34; name=&#34;input_9b947547a9e64f54b959dd61cafed7bd_5_1&#34; id=&#34;input_9b947547a9e64f54b959dd61cafed7bd_5_1_choice_3&#34; class=&#34;field-input input-radio&#34; value=&#34;choice_3&#34;/&gt;&lt;label id=&#34;9b947547a9e64f54b959dd61cafed7bd_5_1-choice_3-label&#34; for=&#34;input_9b947547a9e64f54b959dd61cafed7bd_5_1_choice_3&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_9b947547a9e64f54b959dd61cafed7bd_5_1&#34;&gt; керинаиков
+            &lt;/label&gt;
+          &lt;/div&gt;
+        &lt;span id=&#34;answer_9b947547a9e64f54b959dd61cafed7bd_5_1&#34;/&gt;
+    &lt;/fieldset&gt;
+    &lt;div class=&#34;indicator-container&#34;&gt;
+          
+
+&lt;span class=&#34;status correct&#34; id=&#34;status_9b947547a9e64f54b959dd61cafed7bd_5_1&#34; data-tooltip=&#34;Это правильный ответ.&#34;&gt;
+  &lt;span class=&#34;sr&#34;&gt;верно&lt;/span&gt;&lt;span class=&#34;status-icon&#34; aria-hidden=&#34;true&#34;/&gt;
+&lt;/span&gt;
+
+    &lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&#34;wrapper-problem-response&#34; tabindex=&#34;-1&#34; aria-label=&#34;Вопрос 5&#34; role=&#34;group&#34;&gt;&lt;div class=&#34;choicegroup capa_inputtype&#34; id=&#34;inputtype_9b947547a9e64f54b959dd61cafed7bd_6_1&#34;&gt;
+    &lt;fieldset aria-describedby=&#34;status_9b947547a9e64f54b959dd61cafed7bd_6_1&#34;&gt;
+        &lt;legend id=&#34;9b947547a9e64f54b959dd61cafed7bd_6_1-legend&#34; class=&#34;response-fieldset-legend field-group-hd&#34;&gt;5. Не плакать, не смеяться, а понимать – это идеал&lt;/legend&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;radio&#34; name=&#34;input_9b947547a9e64f54b959dd61cafed7bd_6_1&#34; id=&#34;input_9b947547a9e64f54b959dd61cafed7bd_6_1_choice_0&#34; class=&#34;field-input input-radio submitted&#34; value=&#34;choice_0&#34; checked=&#34;true&#34;/&gt;&lt;label id=&#34;9b947547a9e64f54b959dd61cafed7bd_6_1-choice_0-label&#34; for=&#34;input_9b947547a9e64f54b959dd61cafed7bd_6_1_choice_0&#34; class=&#34;response-label field-label label-inline choicegroup_correct&#34; aria-describedby=&#34;status_9b947547a9e64f54b959dd61cafed7bd_6_1&#34;&gt; стоический
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;radio&#34; name=&#34;input_9b947547a9e64f54b959dd61cafed7bd_6_1&#34; id=&#34;input_9b947547a9e64f54b959dd61cafed7bd_6_1_choice_1&#34; class=&#34;field-input input-radio&#34; value=&#34;choice_1&#34;/&gt;&lt;label id=&#34;9b947547a9e64f54b959dd61cafed7bd_6_1-choice_1-label&#34; for=&#34;input_9b947547a9e64f54b959dd61cafed7bd_6_1_choice_1&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_9b947547a9e64f54b959dd61cafed7bd_6_1&#34;&gt; эпикурейский
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;radio&#34; name=&#34;input_9b947547a9e64f54b959dd61cafed7bd_6_1&#34; id=&#34;input_9b947547a9e64f54b959dd61cafed7bd_6_1_choice_2&#34; class=&#34;field-input input-radio&#34; value=&#34;choice_2&#34;/&gt;&lt;label id=&#34;9b947547a9e64f54b959dd61cafed7bd_6_1-choice_2-label&#34; for=&#34;input_9b947547a9e64f54b959dd61cafed7bd_6_1_choice_2&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_9b947547a9e64f54b959dd61cafed7bd_6_1&#34;&gt; кинический
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;radio&#34; name=&#34;input_9b947547a9e64f54b959dd61cafed7bd_6_1&#34; id=&#34;input_9b947547a9e64f54b959dd61cafed7bd_6_1_choice_3&#34; class=&#34;field-input input-radio&#34; value=&#34;choice_3&#34;/&gt;&lt;label id=&#34;9b947547a9e64f54b959dd61cafed7bd_6_1-choice_3-label&#34; for=&#34;input_9b947547a9e64f54b959dd61cafed7bd_6_1_choice_3&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_9b947547a9e64f54b959dd61cafed7bd_6_1&#34;&gt; керинаиков
+            &lt;/label&gt;
+          &lt;/div&gt;
+        &lt;span id=&#34;answer_9b947547a9e64f54b959dd61cafed7bd_6_1&#34;/&gt;
+    &lt;/fieldset&gt;
+    &lt;div class=&#34;indicator-container&#34;&gt;
+          
+
+&lt;span class=&#34;status correct&#34; id=&#34;status_9b947547a9e64f54b959dd61cafed7bd_6_1&#34; data-tooltip=&#34;Это правильный ответ.&#34;&gt;
+  &lt;span class=&#34;sr&#34;&gt;верно&lt;/span&gt;&lt;span class=&#34;status-icon&#34; aria-hidden=&#34;true&#34;/&gt;
+&lt;/span&gt;
+
+    &lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+  &lt;div class=&#34;action&#34;&gt;
+    &lt;input type=&#34;hidden&#34; name=&#34;problem_id&#34; value=&#34;Тест к практическому занятию по теме 2&#34; /&gt;
+
+    &lt;div class=&#34;problem-action-buttons-wrapper&#34;&gt;
+    &lt;/div&gt;
+    &lt;div class=&#34;submit-attempt-container&#34;&gt;
+      &lt;button type=&#34;button&#34; class=&#34;submit btn-brand&#34; data-submitting=&#34;Отправка&#34; data-value=&#34;Отправить&#34; data-should-enable-submit-button=&#34;False&#34; aria-describedby=&#34;submission_feedback_9b947547a9e64f54b959dd61cafed7bd&#34; disabled&gt;
+          &lt;span class=&#34;submit-label&#34;&gt;Отправить&lt;/span&gt;
+      &lt;/button&gt;
+
+      &lt;div class=&#34;submission-feedback &#34; id=&#34;submission_feedback_9b947547a9e64f54b959dd61cafed7bd&#34;&gt;
+          Вы использовали 1 из 2 попыток
+        &lt;span class=&#34;sr&#34;&gt;В некоторых задачах доступны следующие действия: сохранение, сброс, показ подсказки или ответа. Соответствующие кнопки расположены рядом с кнопкой «Отправить».&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+    
+
+
+&lt;div class=&#34;notification warning notification-gentle-alert
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-exclamation-circle&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;9b947547a9e64f54b959dd61cafed7bd-problem-title&#34;&gt;
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Просмотреть&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+    
+
+
+&lt;div class=&#34;notification warning notification-save
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-save&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;9b947547a9e64f54b959dd61cafed7bd-problem-title&#34;&gt;None
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Просмотреть&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+    
+    
+
+
+&lt;div class=&#34;notification general notification-show-answer
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-info-circle&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;9b947547a9e64f54b959dd61cafed7bd-problem-title&#34;&gt;Ответы в задаче отмечены
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Просмотреть&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;script&gt;
+    function emit_event(message) {
+        parent.postMessage(message, &#39;*&#39;);
+    }
+&lt;/script&gt;
+"
+     data-graded="True">
+    <p class="loading-spinner">
+        <i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
+        <span class="sr">Loading&hellip;</span>
+    </p>
+</div>
+
+</div>
+
+    </div>
+    <div class="vert vert-1" data-id="block-v1:spbstu+PHYLOS+spring_2024_4+type@problem+block@b2ff117416f34ac4aeab77f7dbc6df3e">
+        
+<div class="xblock xblock-student_view xblock-student_view-problem xmodule_display xmodule_ProblemBlock" data-course-id="course-v1:spbstu+PHYLOS+spring_2024_4" data-init="XBlockToXModuleShim" data-runtime-class="LmsRuntime" data-runtime-version="1" data-block-type="problem" data-usage-id="block-v1:spbstu+PHYLOS+spring_2024_4+type@problem+block@b2ff117416f34ac4aeab77f7dbc6df3e" data-request-token="c9de11b0f9be11efb75d4aeebe46cb6d" data-graded="True" data-has-score="True">
+  <script type="json/xblock-args" class="xblock-json-init-args">
+    {"xmodule-type": "Problem"}
+  </script>
+  <div id="problem_b2ff117416f34ac4aeab77f7dbc6df3e" class="problems-wrapper" role="group"
+     aria-labelledby="b2ff117416f34ac4aeab77f7dbc6df3e-problem-title"
+     data-problem-id="block-v1:spbstu+PHYLOS+spring_2024_4+type@problem+block@b2ff117416f34ac4aeab77f7dbc6df3e" data-url="/courses/course-v1:spbstu+PHYLOS+spring_2024_4/xblock/block-v1:spbstu+PHYLOS+spring_2024_4+type@problem+block@b2ff117416f34ac4aeab77f7dbc6df3e/handler/xmodule_handler"
+     data-problem-score="2.0"
+     data-problem-total-possible="2.0"
+     data-attempts-used="1"
+     data-content="
+
+
+
+&lt;h3 class=&#34;hd hd-3 problem-header&#34; id=&#34;b2ff117416f34ac4aeab77f7dbc6df3e-problem-title&#34; aria-describedby=&#34;block-v1:spbstu+PHYLOS+spring_2024_4+type@problem+block@b2ff117416f34ac4aeab77f7dbc6df3e-problem-progress&#34; tabindex=&#34;-1&#34;&gt;
+  Вопрос с множественным выбором
+&lt;/h3&gt;
+
+&lt;div class=&#34;problem-progress&#34; id=&#34;block-v1:spbstu+PHYLOS+spring_2024_4+type@problem+block@b2ff117416f34ac4aeab77f7dbc6df3e-problem-progress&#34;&gt;&lt;/div&gt;
+
+&lt;div class=&#34;problem&#34;&gt;
+  &lt;div&gt;
+&lt;strong&gt;Задание 2. &lt;/strong&gt;
+
+&lt;div class=&#34;wrapper-problem-response&#34; tabindex=&#34;-1&#34; aria-label=&#34;Вопрос 1&#34; role=&#34;group&#34;&gt;&lt;div class=&#34;choicegroup capa_inputtype&#34; id=&#34;inputtype_b2ff117416f34ac4aeab77f7dbc6df3e_2_1&#34;&gt;
+    &lt;fieldset aria-describedby=&#34;status_b2ff117416f34ac4aeab77f7dbc6df3e_2_1&#34;&gt;
+        &lt;legend id=&#34;b2ff117416f34ac4aeab77f7dbc6df3e_2_1-legend&#34; class=&#34;response-fieldset-legend field-group-hd&#34;&gt;6. Предпочитали отрицательную теологию, согласно которой ни один атрибут, понятный нашему уму, нельзя приписать Богу, ибо он бесконечно далек, совершенен и велик.&lt;/legend&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;radio&#34; name=&#34;input_b2ff117416f34ac4aeab77f7dbc6df3e_2_1&#34; id=&#34;input_b2ff117416f34ac4aeab77f7dbc6df3e_2_1_choice_0&#34; class=&#34;field-input input-radio&#34; value=&#34;choice_0&#34;/&gt;&lt;label id=&#34;b2ff117416f34ac4aeab77f7dbc6df3e_2_1-choice_0-label&#34; for=&#34;input_b2ff117416f34ac4aeab77f7dbc6df3e_2_1_choice_0&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_b2ff117416f34ac4aeab77f7dbc6df3e_2_1&#34;&gt; стоики
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;radio&#34; name=&#34;input_b2ff117416f34ac4aeab77f7dbc6df3e_2_1&#34; id=&#34;input_b2ff117416f34ac4aeab77f7dbc6df3e_2_1_choice_1&#34; class=&#34;field-input input-radio&#34; value=&#34;choice_1&#34;/&gt;&lt;label id=&#34;b2ff117416f34ac4aeab77f7dbc6df3e_2_1-choice_1-label&#34; for=&#34;input_b2ff117416f34ac4aeab77f7dbc6df3e_2_1_choice_1&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_b2ff117416f34ac4aeab77f7dbc6df3e_2_1&#34;&gt; эпикурейцы
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;radio&#34; name=&#34;input_b2ff117416f34ac4aeab77f7dbc6df3e_2_1&#34; id=&#34;input_b2ff117416f34ac4aeab77f7dbc6df3e_2_1_choice_2&#34; class=&#34;field-input input-radio&#34; value=&#34;choice_2&#34;/&gt;&lt;label id=&#34;b2ff117416f34ac4aeab77f7dbc6df3e_2_1-choice_2-label&#34; for=&#34;input_b2ff117416f34ac4aeab77f7dbc6df3e_2_1_choice_2&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_b2ff117416f34ac4aeab77f7dbc6df3e_2_1&#34;&gt; киники
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;radio&#34; name=&#34;input_b2ff117416f34ac4aeab77f7dbc6df3e_2_1&#34; id=&#34;input_b2ff117416f34ac4aeab77f7dbc6df3e_2_1_choice_3&#34; class=&#34;field-input input-radio submitted&#34; value=&#34;choice_3&#34; checked=&#34;true&#34;/&gt;&lt;label id=&#34;b2ff117416f34ac4aeab77f7dbc6df3e_2_1-choice_3-label&#34; for=&#34;input_b2ff117416f34ac4aeab77f7dbc6df3e_2_1_choice_3&#34; class=&#34;response-label field-label label-inline choicegroup_correct&#34; aria-describedby=&#34;status_b2ff117416f34ac4aeab77f7dbc6df3e_2_1&#34;&gt; неоплатоники
+            &lt;/label&gt;
+          &lt;/div&gt;
+        &lt;span id=&#34;answer_b2ff117416f34ac4aeab77f7dbc6df3e_2_1&#34;/&gt;
+    &lt;/fieldset&gt;
+    &lt;div class=&#34;indicator-container&#34;&gt;
+          
+
+&lt;span class=&#34;status correct&#34; id=&#34;status_b2ff117416f34ac4aeab77f7dbc6df3e_2_1&#34; data-tooltip=&#34;Это правильный ответ.&#34;&gt;
+  &lt;span class=&#34;sr&#34;&gt;верно&lt;/span&gt;&lt;span class=&#34;status-icon&#34; aria-hidden=&#34;true&#34;/&gt;
+&lt;/span&gt;
+
+    &lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&#34;wrapper-problem-response&#34; tabindex=&#34;-1&#34; aria-label=&#34;Вопрос 2&#34; role=&#34;group&#34;&gt;&lt;div class=&#34;choicegroup capa_inputtype&#34; id=&#34;inputtype_b2ff117416f34ac4aeab77f7dbc6df3e_3_1&#34;&gt;
+    &lt;fieldset aria-describedby=&#34;status_b2ff117416f34ac4aeab77f7dbc6df3e_3_1&#34;&gt;
+        &lt;legend id=&#34;b2ff117416f34ac4aeab77f7dbc6df3e_3_1-legend&#34; class=&#34;response-fieldset-legend field-group-hd&#34;&gt;7. Видел цель философии во спасении души&lt;/legend&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;radio&#34; name=&#34;input_b2ff117416f34ac4aeab77f7dbc6df3e_3_1&#34; id=&#34;input_b2ff117416f34ac4aeab77f7dbc6df3e_3_1_choice_0&#34; class=&#34;field-input input-radio&#34; value=&#34;choice_0&#34;/&gt;&lt;label id=&#34;b2ff117416f34ac4aeab77f7dbc6df3e_3_1-choice_0-label&#34; for=&#34;input_b2ff117416f34ac4aeab77f7dbc6df3e_3_1_choice_0&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_b2ff117416f34ac4aeab77f7dbc6df3e_3_1&#34;&gt; Сократ
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;radio&#34; name=&#34;input_b2ff117416f34ac4aeab77f7dbc6df3e_3_1&#34; id=&#34;input_b2ff117416f34ac4aeab77f7dbc6df3e_3_1_choice_1&#34; class=&#34;field-input input-radio&#34; value=&#34;choice_1&#34;/&gt;&lt;label id=&#34;b2ff117416f34ac4aeab77f7dbc6df3e_3_1-choice_1-label&#34; for=&#34;input_b2ff117416f34ac4aeab77f7dbc6df3e_3_1_choice_1&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_b2ff117416f34ac4aeab77f7dbc6df3e_3_1&#34;&gt; Платон
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;radio&#34; name=&#34;input_b2ff117416f34ac4aeab77f7dbc6df3e_3_1&#34; id=&#34;input_b2ff117416f34ac4aeab77f7dbc6df3e_3_1_choice_2&#34; class=&#34;field-input input-radio submitted&#34; value=&#34;choice_2&#34; checked=&#34;true&#34;/&gt;&lt;label id=&#34;b2ff117416f34ac4aeab77f7dbc6df3e_3_1-choice_2-label&#34; for=&#34;input_b2ff117416f34ac4aeab77f7dbc6df3e_3_1_choice_2&#34; class=&#34;response-label field-label label-inline choicegroup_correct&#34; aria-describedby=&#34;status_b2ff117416f34ac4aeab77f7dbc6df3e_3_1&#34;&gt; Порфирий
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;radio&#34; name=&#34;input_b2ff117416f34ac4aeab77f7dbc6df3e_3_1&#34; id=&#34;input_b2ff117416f34ac4aeab77f7dbc6df3e_3_1_choice_3&#34; class=&#34;field-input input-radio&#34; value=&#34;choice_3&#34;/&gt;&lt;label id=&#34;b2ff117416f34ac4aeab77f7dbc6df3e_3_1-choice_3-label&#34; for=&#34;input_b2ff117416f34ac4aeab77f7dbc6df3e_3_1_choice_3&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_b2ff117416f34ac4aeab77f7dbc6df3e_3_1&#34;&gt; Филон
+            &lt;/label&gt;
+          &lt;/div&gt;
+        &lt;span id=&#34;answer_b2ff117416f34ac4aeab77f7dbc6df3e_3_1&#34;/&gt;
+    &lt;/fieldset&gt;
+    &lt;div class=&#34;indicator-container&#34;&gt;
+          
+
+&lt;span class=&#34;status correct&#34; id=&#34;status_b2ff117416f34ac4aeab77f7dbc6df3e_3_1&#34; data-tooltip=&#34;Это правильный ответ.&#34;&gt;
+  &lt;span class=&#34;sr&#34;&gt;верно&lt;/span&gt;&lt;span class=&#34;status-icon&#34; aria-hidden=&#34;true&#34;/&gt;
+&lt;/span&gt;
+
+    &lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;
+
+
+&lt;/div&gt;
+  &lt;div class=&#34;action&#34;&gt;
+    &lt;input type=&#34;hidden&#34; name=&#34;problem_id&#34; value=&#34;Вопрос с множественным выбором&#34; /&gt;
+
+    &lt;div class=&#34;problem-action-buttons-wrapper&#34;&gt;
+    &lt;/div&gt;
+    &lt;div class=&#34;submit-attempt-container&#34;&gt;
+      &lt;button type=&#34;button&#34; class=&#34;submit btn-brand&#34; data-submitting=&#34;Отправка&#34; data-value=&#34;Отправить&#34; data-should-enable-submit-button=&#34;False&#34; aria-describedby=&#34;submission_feedback_b2ff117416f34ac4aeab77f7dbc6df3e&#34; disabled&gt;
+          &lt;span class=&#34;submit-label&#34;&gt;Отправить&lt;/span&gt;
+      &lt;/button&gt;
+
+      &lt;div class=&#34;submission-feedback &#34; id=&#34;submission_feedback_b2ff117416f34ac4aeab77f7dbc6df3e&#34;&gt;
+          Вы использовали 1 из 1 попытки
+        &lt;span class=&#34;sr&#34;&gt;В некоторых задачах доступны следующие действия: сохранение, сброс, показ подсказки или ответа. Соответствующие кнопки расположены рядом с кнопкой «Отправить».&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+    
+
+
+&lt;div class=&#34;notification warning notification-gentle-alert
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-exclamation-circle&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;b2ff117416f34ac4aeab77f7dbc6df3e-problem-title&#34;&gt;
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Просмотреть&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+    
+
+
+&lt;div class=&#34;notification warning notification-save
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-save&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;b2ff117416f34ac4aeab77f7dbc6df3e-problem-title&#34;&gt;None
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Просмотреть&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+    
+    
+
+
+&lt;div class=&#34;notification general notification-show-answer
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-info-circle&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;b2ff117416f34ac4aeab77f7dbc6df3e-problem-title&#34;&gt;Ответы в задаче отмечены
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Просмотреть&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;script&gt;
+    function emit_event(message) {
+        parent.postMessage(message, &#39;*&#39;);
+    }
+&lt;/script&gt;
+"
+     data-graded="True">
+    <p class="loading-spinner">
+        <i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
+        <span class="sr">Loading&hellip;</span>
+    </p>
+</div>
+
+</div>
+
+    </div>
+</div>
+
+
+  
+  <script type="text/javascript">
+    (function (require) {
+        require(['https://cdn2.openedu.ru/static/js/dateutil_factory.a28baef97506.js?raw'], function () {
+          require(['js/dateutil_factory'], function (DateUtilFactory) {
+            
+    DateUtilFactory.transform('.localized-datetime');
+
+          });
+        });
+    }).call(this, require || RequireJS.require);
+  </script>
+
+
+<script>
+    function emit_event(message) {
+        parent.postMessage(message, '*');
+    }
+</script>
+
+</div>
+
+      </main>
+  </section>
+</div>
+
+<script type="text/javascript">
+  (function() {
+    // If this view is rendered in an iframe within the learning microfrontend app
+    // it will report the height of its contents to the parent window when the
+    // document loads, window resizes, or DOM mutates.
+    if (window !== window.parent) {
+      document.body.className += ' view-in-mfe';
+      var lastHeight = window.offsetHeight;
+      var lastWidth = window.offsetWidth;
+      var contentElement = document.getElementById('content');
+
+      function dispatchResizeMessage(event) {
+        // Note: event is actually an Array of MutationRecord objects
+        // when fired from the MutationObserver
+        var eventType = event.type || 'mutate';
+        var newHeight = contentElement.offsetHeight;
+        var newWidth = contentElement.offsetWidth;
+        if (eventType !== 'load' && newWidth === lastWidth && newHeight === lastHeight) {
+            // Monitor when any anchor tag is clicked, it is checked to make sure
+            // it is referencing an element's id or name (not an external website). If
+            // the href attribute is an id or name, the location of the selected focus
+            // element is sent through its offset attribute. The offset will
+            // allow the page to scroll to the location of the focus element so
+            // that it is at the top of the page. Unique ids and names are
+            // required for proper scrolling.
+            $('a').on("click", function(event){
+              if ($(this).attr('href')[0] === "#") {
+                var targetId = $(this).attr('href');
+                var targetName = $(this).attr('href').slice(1);
+                // Checks if the target uses an id or name to focus and gets offset.
+                var targetOffset = $(targetId).offset() || $(document.getElementsByName(targetName)[0]).offset();
+                if (targetOffset) {
+                  event.preventDefault();
+                  window.parent.postMessage({"offset": targetOffset.top}, document.referrer);
+                }
+              }
+            })
+          return;
+        }
+        // Monitor for messages and checks if the message contains an id. If
+        // there is an id, then the location of the selected focus element
+        // is sent through its offset attribute. The offset will allow the
+        // page to scroll to the location of the focus element so that it is
+        // at the top of the page. Unique ids and names are required for
+        // proper scrolling.
+        window.addEventListener('message', function (event) {
+          if (event.data.hashName) {
+            var targetId = event.data.hashName;
+            var targetName = event.data.hashName.slice(1);
+            // Checks if the target uses an id or name to focus and gets offset.
+            var targetOffset = $(targetId).offset() || $(document.getElementsByName(targetName)[0]).offset();
+            window.parent.postMessage({ 'offset': targetOffset.top }, document.referrer);
+          }
+        })
+
+        window.parent.postMessage({
+            type: 'plugin.resize',
+            payload: {
+              width: newWidth,
+              height: newHeight,
+            }
+          }, document.referrer
+        );
+
+        lastHeight = newHeight;
+        lastWidth = newWidth;
+
+        // Within the learning microfrontend the iframe resizes to match the
+        // height of this document and it should never scroll. It does scroll
+        // ocassionally when javascript is used to focus elements on the page
+        // before the parent iframe has been resized to match the content
+        // height. This window.scrollTo is an attempt to keep the content at the
+        // top of the page. See TNL-7094
+        window.scrollTo(0, 0);
+      }
+
+      // Create an observer instance linked to the callback function
+      const observer = new MutationObserver(dispatchResizeMessage);
+
+      // Start observing the target node for configured mutations
+      observer.observe(document.body, { attributes: true, childList: true, subtree: true });
+
+      window.addEventListener('load', dispatchResizeMessage);
+      const resizeObserver = new ResizeObserver(dispatchResizeMessage);
+      resizeObserver.observe(document.body);
+    }
+  }());
+</script>
+
+      
+    </div>
+
+
+
+  
+  
+  <script type="text/javascript" src="https://cdn2.openedu.ru/static/common/js/vendor/jquery.scrollTo.525edcc52fe8.js" async></script>
+  <script type="text/javascript" src="https://cdn2.openedu.ru/static/js/vendor/flot/jquery.flot.d3d45ff0c6a8.js" async></script>
+
+  
+    
+<script type="text/javascript" src="https://cdn2.openedu.ru/static/js/lms-courseware.9517dcd2081d.js" charset="utf-8"></script>
+
+
+
+    
+
+
+
+
+<script type="text/javascript">
+    // Fast Preview was introduced in 2.5. However, it
+    // causes undesirable flashing/font size changes when
+    // MathJax is used for interactive preview (equation editor).
+    // Setting processSectionDelay to 0 (see below) fully eliminates
+    // fast preview, but to reduce confusion, we are also setting
+    // the option as displayed in the context menu to false.
+    // When upgrading to 2.6, check if this variable name changed.
+    window.MathJax = {
+      menuSettings: {CHTMLpreview: false}
+    };
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    messageStyle: "none",
+    tex2jax: {
+      inlineMath: [
+        ["\\(","\\)"],
+        ['[mathjaxinline]','[/mathjaxinline]']
+      ],
+      displayMath: [
+        ["\\[","\\]"],
+        ['[mathjax]','[/mathjax]']
+      ]
+    }
+  });
+</script>
+<script type="text/x-mathjax-config">
+
+  // In order to eliminate all flashing during interactive
+  // preview, it is necessary to set processSectionDelay to 0
+  // (remove delay between input and output phases). This
+  // effectively disables fast preview, regardless of
+  // the fast preview setting as shown in the context menu.
+  MathJax.Hub.processSectionDelay = 0;
+
+  MathJax.Hub.signal.Interest(function(message) {
+    if(message[0] === "End Math") {
+        set_mathjax_display_div_settings();
+    }
+  });
+  function set_mathjax_display_div_settings() {
+    $('.MathJax_Display').each(function( index ) {
+      this.setAttribute('tabindex', '0');
+      this.setAttribute('aria-live', 'off');
+      this.removeAttribute('role');
+      this.removeAttribute('aria-readonly');
+    });
+  }
+</script>
+
+<script type="text/javascript">
+    // Activating Mathjax accessibility files
+    window.MathJax = {
+        menuSettings: {
+            collapsible: true,
+            autocollapse: false,
+            explorer: true
+        }
+    };
+</script>
+
+<!-- This must appear after all mathjax-config blocks, so it is after the imports from the other templates.
+     It can't be run through static.url because MathJax uses crazy url introspection to do lazy loading of
+     MathJax extension libraries -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_SVG"></script>
+
+
+<script src='https://cdn2.openedu.ru/static/bundles/ProblemBlockPreview.3c293987029be310b69a.40765775f6c6.js' type='application/javascript'></script>
+<script src='https://cdn2.openedu.ru/static/bundles/XModuleShim.b0a0bcfa4bfc116299b0.0021dbb8621f.js' type='application/javascript'></script>
+<script src='https://cdn2.openedu.ru/static/bundles/VerticalStudentView.218999454019487e3bbe.50411955078b.js' type='application/javascript'></script>
+
+
+
+  
+
+
+
+  <script type="text/javascript" src="https://cdn2.openedu.ru/static/js/vendor/noreferrer.aa62a3e70ffa.js" charset="utf-8"></script>
+  <script type="text/javascript" src="https://cdn2.openedu.ru/static/js/utils/navigation.08930e16ab3d.js" charset="utf-8"></script>
+  <script type="text/javascript" src="https://cdn2.openedu.ru/static/js/header/header.309a1243e175.js"></script>
+  
+  <script type="text/javascript" src="https://cdn2.openedu.ru/static/js/src/jquery_extend_patch.54dddef28d15.js"></script>
+  <div id="lean_overlay"></div>
+
+</body>
+</html>
+
+

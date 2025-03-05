@@ -1,0 +1,14 @@
+[
+  {
+    "id":"block-v1:spbstu+PHYLOS+spring_2024_4+type@vertical+block@1da90cd717d64f528c06f955f38bdcb7",
+    "title": "Практическое занятие 2",
+    "complete": true,
+    "type": "other"
+  },
+  {
+    "id":"block-v1:spbstu+PHYLOS+spring_2024_4+type@vertical+block@339323acbef2401caa352bcf502187c2",
+    "title": "Тест к практическому занятию 2",
+    "complete": true,
+    "type": "problem"
+  }
+]

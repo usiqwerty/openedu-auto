@@ -1,0 +1,53 @@
+{
+  "items": [
+    {
+      "content": "",
+      "page_title": "Практическое занятие 2",
+      "type": "other",
+      "id": "block-v1:spbstu+PHYLOS+spring_2024_4+type@vertical+block@1da90cd717d64f528c06f955f38bdcb7",
+      "bookmarked": false,
+      "path": "Тема 2. Философия древнего мира > Практическое занятие 2. Философия древнего мира > Практическое занятие 2",
+      "graded": true,
+      "contains_content_type_gated_content": false,
+      "href": "",
+      "complete": true
+    },
+    {
+      "content": "",
+      "page_title": "Тест к практическому занятию 2",
+      "type": "problem",
+      "id": "block-v1:spbstu+PHYLOS+spring_2024_4+type@vertical+block@339323acbef2401caa352bcf502187c2",
+      "bookmarked": false,
+      "path": "Тема 2. Философия древнего мира > Практическое занятие 2. Философия древнего мира > Тест к практическому занятию 2",
+      "graded": true,
+      "contains_content_type_gated_content": false,
+      "href": "",
+      "complete": true
+    }
+  ],
+  "element_id": "db110fe478f0461e85e7ecba2f02293f",
+  "item_id": "block-v1:spbstu+PHYLOS+spring_2024_4+type@sequential+block@db110fe478f0461e85e7ecba2f02293f",
+  "is_time_limited": false,
+  "is_proctored": false,
+  "position": 2,
+  "tag": "sequential",
+  "next_url": null,
+  "prev_url": null,
+  "banner_text": null,
+  "save_position": true,
+  "show_completion": true,
+  "gated_content": {
+    "prereq_id": null,
+    "prereq_url": null,
+    "prereq_section_name": null,
+    "gated": false,
+    "gated_section_name": "Практическое занятие 2. Философия древнего мира"
+  },
+  "sequence_name": "Практическое занятие 2. Философия древнего мира",
+  "exclude_units": true,
+  "gated_sequence_paywall": null,
+  "is_gated_milestone_passed": true,
+  "display_name": "Практическое занятие 2. Философия древнего мира",
+  "format": "Тест к практическому занятию",
+  "is_hidden_after_due": false
+}
