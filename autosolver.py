@@ -44,7 +44,7 @@ class OpenEduAutoSolver:
                f"+block@{seq}")
 
         with CacheContext():
-            api = OpenEdu(course_id)
+            api = OpenEdu(course_id, self.describer)
             api.parse_and_save_sequential_block(url)
 
             for blkid, block in api.iterate_incomplete_blocks():
@@ -60,7 +60,7 @@ class OpenEduAutoSolver:
             time.sleep(5)
             api.publish_completion(blkid)
         elif block.type == "problem":
-            for problem in api.get_problems(blkid, self.describer):
+            for problem in api.get_problems(blkid):
                 answers = {}
                 for question in problem:
                     # print(question.query())

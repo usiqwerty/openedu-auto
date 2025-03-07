@@ -7,6 +7,7 @@ import logging
 
 from cached_requests import get
 from config import get_cookies, blocks_fn, get_headers, config
+from images.image_describer import ImageDescriber
 from openedu.api import OpenEduAPI
 from openedu.oed_parser import OpenEduParser, VerticalBlock
 from openedu.questions.question import Question
@@ -16,8 +17,9 @@ class OpenEdu(OpenEduAPI, OpenEduParser):
     course_id: str
     blocks: dict[str, VerticalBlock]
 
-    def __init__(self, course_id: str):
+    def __init__(self, course_id: str, describer: ImageDescriber):
         super().__init__(course_id)
+        self.describer = describer
         if self.csrf is None:
             self.get_csrf()
 
