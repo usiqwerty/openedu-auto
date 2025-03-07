@@ -72,5 +72,5 @@ class LLMSolver(AbstractSolver, ABC):
 
     def solve_freematch(self, question: FreeMatchQuestion):
         res = self.get_answer(question.query()).split('\n')
-        res = filter(lambda x: x, res)
+        res = list(filter(lambda x: x, res))
         return compose_freematch(res, question)

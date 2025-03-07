@@ -70,6 +70,8 @@ def compose_freematch(flat_answers: list[str], question: FreeMatchQuestion):
         for col in range(col_num):
             row_key = question.field_columns[col][row_]
             ans_id = lookup_option_id_in_columns(flat_answers[i + col], question.option_columns)
-            answer[row_key] = ans_id
+            if ans_id is None:
+                raise ValueError(f"Could not find id for answer ({flat_answers[i + col]}): {flat_answers} {question}")
+            answer[row_key] = [ans_id]
 
     return question.id, str({'answer': answer})
