@@ -54,14 +54,9 @@ class LLMSolver(AbstractSolver, ABC):
         with open(self.cache_path, 'w', encoding='utf-8') as f:
             json.dump(data, f)
 
-    def solve(self, question: Question):
-        if isinstance(question, ChoiceQuestion):
-            return self.solve_choice(question)
-        elif isinstance(question, MatchQuestion):
-            return self.solve_match(question)
-
     def solve_choice(self, question: ChoiceQuestion):
         raw = self.get_answer(question.query()).split('\n')
+        raw = list(filter(lambda x: x, raw))
         res: list[str] | str
         if len(raw) == 1:
             res = raw[0]

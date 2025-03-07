@@ -1,11 +1,10 @@
-from abc import abstractmethod
+from abc import abstractmethod, ABC
 
 from openedu.questions.choice import ChoiceQuestion
 from openedu.questions.match import MatchQuestion
 
 
-class AbstractSolver:
-    @abstractmethod
+class AbstractSolver(ABC):
     def solve(self, question: ChoiceQuestion | MatchQuestion) -> tuple[str, str | list[str]]:
         """
 
@@ -14,4 +13,15 @@ class AbstractSolver:
         :param ids: input tags IDs
         :return:
         """
+        if isinstance(question, ChoiceQuestion):
+            return self.solve_choice(question)
+        elif isinstance(question, MatchQuestion):
+            return self.solve_match(question)
+
+    @abstractmethod
+    def solve_choice(self, question: ChoiceQuestion):
+        pass
+
+    @abstractmethod
+    def solve_match(self, question: MatchQuestion):
         pass
