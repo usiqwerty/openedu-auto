@@ -5,21 +5,17 @@ import logging
 
 import config
 from openedu.oed_parser import VerticalBlock
+from openedu.local_api_storage import LocalApiStorage
 
 
 class OpenEduAPI:
-    blocks: dict[str, VerticalBlock]
+    api_storage: LocalApiStorage
 
     def __init__(self, course_id):
         self.csrf = config.config.get('csrf')
-        self.blocks = {}
         self.course_id = course_id
         self.session = Session()
-        try:
-            with open(config.blocks_fn, encoding='utf-8') as f:
-                self.blocks = {k: VerticalBlock(**json.loads(v)) for k, v in json.load(f).items()}
-        except FileNotFoundError:
-            pass
+        self.api_storage = LocalApiStorage()
 
     def publish_completion(self, block_id: str):
         url = ("https://courses.openedu.ru/courses/"
@@ -27,7 +23,7 @@ class OpenEduAPI:
                f"{block_id}"
                "/handler/publish_completion")
 
-        if 1 or not self.blocks[block_id]['complete']:
+        if not self.api_storage.is_block_complete(block_id):
             logging.debug(f"[COMPLETE] {url}")
             mhdrs = config.get_headers(
                 csrf=self.csrf,
@@ -37,9 +33,7 @@ class OpenEduAPI:
                 logging.debug("[POST] publish completion")
                 r = self.session.post(url, headers=mhdrs, cookies=config.get_cookies(self.csrf), json={"completion": 1})
                 logging.debug(r)
-        if config.config.get('restrict-actions'):
-            if self.blocks.get(block_id):
-                self.blocks[block_id].complete = True
+        self.api_storage.mark_block_as_completed(block_id)
 
     def problem_check(self, blk: str, answers: dict[str, str]):
         logging.info(f"Checking answer: {answers}")
@@ -55,15 +49,12 @@ class OpenEduAPI:
             print(f"[POST] {answers}")
             r = self.session.post(url, headers=hdrs, cookies=config.get_cookies(self.csrf), data=answers)
             logging.debug(f"Response status: {r.status_code}")
-            if blk in self.blocks:
-                self.blocks[blk]['complete'] = True
-            else:
-                logging.warning("block that we are checking is not saved, this should not have happened")
+            self.api_storage.mark_block_as_completed(blk)
             current = r.json()['current_score']
             maxscore = r.json()['total_possible']
             return current, maxscore
         else:
-            logging.debug(f"fake POST {answers}")
+            logging.debug(f"False answer check {answers}")
             return 0, 0
 
     def next_page(self):
