@@ -1,0 +1,5 @@
+pytest~=8.3.4
+beautifulsoup4~=4.12.3
+requests~=2.31.0
+openai~=1.64.0
+pydantic~=2.10.6
