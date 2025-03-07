@@ -2,20 +2,6 @@ import config
 from openedu.api import OpenEduAPI
 
 
-class FakeSession:
-    history: list
-
-    def __init__(self):
-        self.history = []
-
-    def get(self, url, *, headers=None, cookies=None):
-        print("fake get")
-        self.history.append({"method": 'get', "url": url, "headers": headers, "cookies": cookies})
-
-    def post(self, url, *, headers=None, cookies=None, json=None, data=None):
-        print("fake post")
-        self.history.append(
-            {"method": 'post', "url": url, "headers": headers, "cookies": cookies, "json": json, "data": data})
 
 
 def test_publish_completion():
