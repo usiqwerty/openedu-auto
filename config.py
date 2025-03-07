@@ -33,3 +33,4 @@ config_fn = os.path.join("userdata", "config.json")
 with open(config_fn, encoding='utf-8') as f:
     config = json.load(f)
 blocks_fn = os.path.join("userdata", "blocks.json")
+userdata_dir = "userdata"
