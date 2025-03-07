@@ -5,6 +5,7 @@ from sqlalchemy.testing.plugin.plugin_base import config
 
 from images.dummy_describer import DummyDescriber
 from images.image_describer import ImageDescriber
+from images.openrouter.qwen_describer import QwenImageDescriber
 
 
 def get_headers(*, csrf=None, referer=None, origin=None):
@@ -25,7 +26,7 @@ def get_cookies(csrf):
         "csrftoken": csrf,
         "edx-jwt-cookie-header-payload": config["edx-jwt-cookie-header-payload"],
         "edx-jwt-cookie-signature": config["edx-jwt-cookie-signature"],
-        "edx-user-info": config["edx-user-info"],
+        "edx-user-info": str(config["edx-user-info"]),
         "edxloggedin": "true",
         "openedx-language-preference": "ru",
         "sessionid": config["sessionid"]
@@ -33,7 +34,8 @@ def get_cookies(csrf):
 
 
 def get_describer() -> ImageDescriber:
-    return DummyDescriber()
+    # return DummyDescriber()
+    return QwenImageDescriber()
 
 
 config_fn = os.path.join("userdata", "config.json")
