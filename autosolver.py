@@ -55,10 +55,10 @@ class OpenEduAutoSolver:
         logging.debug(f"Block '{block.title}' (complete={block.complete}) of type '{block.type}'")
         if block.type == 'other':
             return
-            print(blkid, block)
-            api.tick_page(blkid)
-            time.sleep(5)
-            api.publish_completion(blkid)
+            # print(blkid, block)
+            # api.tick_page(blkid)
+            # time.sleep(5)
+            # api.publish_completion(blkid)
         elif block.type == "problem":
             for problem in api.get_problems(blkid):
                 answers = {}

@@ -64,45 +64,48 @@ class OpenEduAPI:
             logging.debug(f"False answer check {answers}")
             return 0, 0
 
-    def next_page(self):
-        curtab = 2
-        tabcount = 4
+    # def next_page(self):
+    #     curtab = 2
+    #     tabcount = 4
+    #
+    #     blk = f"block-v1:{self.course_id}+type@vertical+block@e6894837138c4d6d93012b8deb45643d"
+    #     seq_blk = f"block-v1:{self.course_id}+type@sequential+block@6396cae92b0442419cbf0491de7626a2"
+    #
+    #     page = f"https://apps.openedu.ru/learning/course/course-v1:{self.course_id}/{seq_blk}/{blk}"
+    #     event = {"current_tab": curtab,
+    #              "id": blk,
+    #              "tab_count": tabcount,
+    #              "widget_placement": "top",
+    #              "target_tab": curtab + 1}
+    #     dt = {
+    #         "event_type": "edx.ui.lms.sequence.tab_selected",
+    #         "event": str(event),
+    #         "page": page
+    #     }
+    #     url = "https://courses.openedu.ru/event"
+    #     if not config.config.get('restrict-actions'):
+    #         logging.debug("[POST] next page event")
+    #         hdrs = config.get_headers()
+    #         return self.session.post(url, headers=hdrs, cookies=config.get_cookies(self.csrf), data=dt)
+    #     else:
+    #         logging.debug("fake [POST] next page event")
 
-        blk = f"block-v1:{self.course_id}+type@vertical+block@e6894837138c4d6d93012b8deb45643d"
-        seq_blk = f"block-v1:{self.course_id}+type@sequential+block@6396cae92b0442419cbf0491de7626a2"
-
-        page = f"https://apps.openedu.ru/learning/course/course-v1:{self.course_id}/{seq_blk}/{blk}"
-        event = {"current_tab": curtab,
-                 "id": blk,
-                 "tab_count": tabcount,
-                 "widget_placement": "top",
-                 "target_tab": curtab + 1}
-        dt = {
-            "event_type": "edx.ui.lms.sequence.tab_selected",
-            "event": str(event),
-            "page": page
-        }
-        url = "https://courses.openedu.ru/event"
-        if not config.config.get('restrict-actions'):
-            logging.debug("[POST] next page event")
-            hdrs = config.get_headers()
-            return self.session.post(url, headers=hdrs, cookies=config.get_cookies(self.csrf), data=dt)
-        else:
-            logging.debug("fake [POST] next page event")
-
-    def tick_page(self, blk: str):
-        logging.debug("Sending page close event")
-        url = (f"https://courses.openedu.ru/event?"
-               f"event_type=page_close"
-               f"&event="
-               f"&page"f"=https://courses.openedu.ru/xblock/{blk}?"
-               f"show_title=0"
-               f"&show_bookmark_button=0"
-               f"&recheck_access=1"
-               f"&view=student_view")
-        if not config.config.get('restrict-actions'):
-            logging.debug("[GET] tick page")
-            hrds = config.get_headers()
-            self.session.get(url, headers=hrds, cookies=config.get_cookies(self.csrf))
-        else:
-            logging.debug("fake [GET] tick page")
+    # def tick_page(self, blk: str):
+    #     logging.debug("Sending page close event")
+    #     urllib.parse.urlencode({
+    #         "event_type":"page_close",
+    #         "event":"",
+    #         "page":f"https://courses.openedu.ru/xblock/{blk}?",
+    #         f"show_title=0"
+    #         f"&show_bookmark_button=0"
+    #         f"&recheck_access=1"
+    #         f"&view=student_view"
+    #     })
+    #     url = (f"https://courses.openedu.ru/event?"
+    #         )
+    #     if not config.config.get('restrict-actions'):
+    #         logging.debug("[GET] tick page")
+    #         hrds = config.get_headers()
+    #         self.session.get(url, headers=hrds, cookies=config.get_cookies(self.csrf))
+    #     else:
+    #         logging.debug("fake [GET] tick page")

@@ -1,8 +1,6 @@
 import json
 import os
 
-from sqlalchemy.testing.plugin.plugin_base import config
-
 
 def get_headers(*, csrf=None, referer=None, origin=None):
     hrds = {
@@ -29,8 +27,9 @@ def get_cookies(csrf):
     }
 
 
-config_fn = os.path.join("userdata", "config.json")
+userdata_dir = "userdata"
+config_fn = os.path.join(userdata_dir, "config.json")
+blocks_fn = os.path.join(userdata_dir, "blocks.json")
+
 with open(config_fn, encoding='utf-8') as f:
     config = json.load(f)
-blocks_fn = os.path.join("userdata", "blocks.json")
-userdata_dir = "userdata"
