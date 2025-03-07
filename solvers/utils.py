@@ -1,5 +1,7 @@
 import re
 
+from openedu.questions.freematch import FreeMatchQuestion
+
 
 def extract_choice_from_id(choid_id: str):
     r = re.search(r"(input_[\w\d]+_\d+_\d+)_(choice_\d+)", choid_id)
@@ -50,3 +52,24 @@ def singular_answer(answer: str, ids: list[str], options: list[str]) -> tuple[st
         raise KeyError(f"'{answer}' is not in options {options}")
         quest_id = ids[0]
         return quest_id, answer
+
+
+def lookup_option_id_in_columns(answer, option_columns: list[list[tuple[str, str]]]):
+    for col in option_columns:
+        for option, opt_id in col:
+            if option == answer:
+                return opt_id
+
+
+def compose_freematch(flat_answers: list[str], question: FreeMatchQuestion):
+    col_num = 2
+    answer = {}
+
+    for i in range(0, len(flat_answers), col_num):
+        row_ = i // col_num
+        for col in range(col_num):
+            row_key = question.field_columns[col][row_]
+            ans_id = lookup_option_id_in_columns(flat_answers[i + col], question.option_columns)
+            answer[row_key] = ans_id
+
+    return question.id, str({'answer': answer})

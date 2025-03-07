@@ -4,11 +4,12 @@ from abc import abstractmethod, ABC
 
 import logging
 
+from openedu.questions.freematch import FreeMatchQuestion
 from openedu.questions.question import Question
 from openedu.questions.choice import ChoiceQuestion
 from openedu.questions.match import MatchQuestion
 from solvers.abstract_solver import AbstractSolver
-from solvers.utils import compose_answer, compose_match
+from solvers.utils import compose_answer, compose_match, compose_freematch
 
 
 class LLMSolver(AbstractSolver, ABC):
@@ -56,7 +57,7 @@ class LLMSolver(AbstractSolver, ABC):
 
     def solve_choice(self, question: ChoiceQuestion):
         raw = self.get_answer(question.query()).split('\n')
-        raw = list(filter(lambda x: x, raw))
+        raw = filter(lambda x: x, raw)
         res: list[str] | str
         if len(raw) == 1:
             res = raw[0]
@@ -68,3 +69,8 @@ class LLMSolver(AbstractSolver, ABC):
         res = self.get_answer(question.query()).split('\n')
 
         return compose_match(res, question.fields, question.options, question.id)
+
+    def solve_freematch(self, question: FreeMatchQuestion):
+        res = self.get_answer(question.query()).split('\n')
+        res = filter(lambda x: x, res)
+        return compose_freematch(res, question)

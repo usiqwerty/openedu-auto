@@ -39,7 +39,7 @@ class OpenEdu(OpenEduAPI, OpenEduParser):
 
     def iterate_incomplete_blocks(self):
         for blk_id, block in self.blocks.items():
-            if not block.complete or 1:
+            if not block.complete:
                 yield blk_id, block
 
     def get_problems(self, blk: str) -> list[list[Question]]:
