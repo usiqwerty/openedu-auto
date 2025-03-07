@@ -4,12 +4,13 @@ import os
 import pytest
 from bs4 import BeautifulSoup
 
-from openedu.oed_parser import OpenEduParser, VerticalBlock, parse_problem
+from images.dummy_describer import DummyDescriber
+from openedu.oed_parser import OpenEduParser, VerticalBlock
 
 
 @pytest.mark.parametrize('inp', ['sequential'])
 def test_parse_sequential_block(inp):
-    parser = OpenEduParser()
+    parser = OpenEduParser(None)
     with open(os.path.join('tests', 'data', 'blocks', inp + ".json"), encoding='utf-8') as f:
         seq = json.load(f)
     with open(os.path.join('tests', 'data', 'blocks', inp + ".exp.json"), encoding='utf-8') as f:
@@ -36,7 +37,7 @@ def test_parse_vertical_block_html(testname: str):
     with open(filename_result, encoding='utf-8') as f:
         expected = json.load(f)
 
-    parser = OpenEduParser()
+    parser = OpenEduParser(DummyDescriber())
     problems_got = parser.parse_vertical_block_html(html)
     assert [[json.loads(q.json())for q in prob] for prob in problems_got] == expected
 
@@ -50,4 +51,6 @@ def test_parse_problem(testname):
 
     with open(filename_result, encoding='utf-8') as f:
         expected = json.load(f)
-    assert [json.loads(x.json()) for x in parse_problem(BeautifulSoup(html, "html.parser"))] == expected
+
+    parser = OpenEduParser(DummyDescriber())
+    assert [json.loads(x.json()) for x in parser.parse_problem(BeautifulSoup(html, "html.parser"))] == expected

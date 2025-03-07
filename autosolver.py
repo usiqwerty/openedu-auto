@@ -60,7 +60,7 @@ class OpenEduAutoSolver:
             time.sleep(5)
             api.publish_completion(blkid)
         elif block.type == "problem":
-            for problem in api.get_problems(blkid):
+            for problem in api.get_problems(blkid, self.describer):
                 answers = {}
                 for question in problem:
                     # print(question.query())

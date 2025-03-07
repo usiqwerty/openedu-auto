@@ -3,7 +3,7 @@ import urllib.parse
 from bs4 import Tag
 from pydantic import BaseModel
 
-from config import get_describer
+from images.image_describer import ImageDescriber
 from openedu.questions.question import Question
 
 
@@ -40,7 +40,7 @@ class FreeMatchQuestion(BaseModel, Question):
 """
 
 
-def parse_freematch_problem(problem: Tag):
+def parse_freematch_problem(problem: Tag, describer: ImageDescriber):
     questions = []
     answers = []
     q_text = problem.find('p').text
@@ -85,6 +85,3 @@ def parse_freematch_problem(problem: Tag):
                           field_columns=columns,
                           option_columns=all_col_answers
                           )
-
-
-describer = get_describer()
