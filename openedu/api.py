@@ -1,11 +1,18 @@
-import json
+import logging
+import urllib.parse
 
 from requests import Session
-import logging
 
 import config
-from openedu.oed_parser import VerticalBlock
 from openedu.local_api_storage import LocalApiStorage
+
+referer_params = urllib.parse.urlencode({
+    "show_title": 0,
+    "show_bookmark_button": 0,
+    "recheck_access": 1,
+    "view": "student_view",
+    "format": "Тест к практическому занятию"
+}, quote_via=urllib.parse.quote)
 
 
 class OpenEduAPI:
@@ -38,10 +45,10 @@ class OpenEduAPI:
     def problem_check(self, blk: str, answers: dict[str, str]):
         logging.info(f"Checking answer: {answers}")
         url = f"https://courses.openedu.ru/courses/course-v1:{self.course_id}/xblock/{blk}/handler/xmodule_handler/problem_check"
-        # url = f"https://courses.openedu.ru/courses/course-v1:{self.course_id}/xblock/block-v1:{self.course_id}+type@problem+block@{blk}/handler/xmodule_handler/problem_check"
+
         hdrs = config.get_headers(
             csrf=self.csrf,
-            referer=f"https://courses.openedu.ru/xblock/{blk}?show_title=0&show_bookmark_button=0&recheck_access=1&view=student_view&format=%D0%A2%D0%B5%D1%81%D1%82%20%D0%BA%20%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%BC%D1%83%20%D0%B7%D0%B0%D0%BD%D1%8F%D1%82%D0%B8%D1%8E",
+            referer=f"https://courses.openedu.ru/xblock/{blk}?" + referer_params,
             origin="https://courses.openedu.ru"
         )
 
