@@ -2,7 +2,7 @@ from mistralai import Mistral
 import logging
 
 import config
-from solvers.gpt_solver import LLMSolver
+from solvers.llm_solver import LLMSolver
 
 
 class MistralSolver(LLMSolver):

@@ -4,7 +4,7 @@ from abc import ABC
 from openai import OpenAI
 
 import config
-from solvers.gpt_solver import LLMSolver
+from solvers.llm_solver import LLMSolver
 
 
 class OpenRouterSolver(LLMSolver, ABC):
