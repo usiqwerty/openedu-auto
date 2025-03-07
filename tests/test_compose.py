@@ -28,6 +28,6 @@ d = {
 
 def test_compose_freematch():
     ans = ["С.М. Соловьев", "Изображение: С.М. Соловьев"]
-    should = str({'answer': {"a1": "b2", "a2": "f2"}})
+    should = str({'answer': {"a1": ["b2"], "a2": ["f2"]}})
     q = FreeMatchQuestion(**d)
     assert compose_freematch(ans, q) == (q.id, should)
