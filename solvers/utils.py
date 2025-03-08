@@ -9,11 +9,11 @@ def extract_choice_from_id(choid_id: str):
     return r.group(1), r.group(2)
 
 
-def compose_answer(answer: list[str] | str, ids: list[str], options: list[str]):
+def compose_choice(answer: list[str] | str, ids: list[str], options: list[str]):
     if isinstance(answer, str):
-        return singular_answer(answer, ids, options)
+        return singular_choice(answer, ids, options)
     else:
-        return plural_answer(answer, ids, options)
+        return plural_choice(answer, ids, options)
 
 
 def get_ans_id(answers: list[tuple[str, str]], answer: str):
@@ -31,7 +31,7 @@ def compose_match(answers: list[str], fields: list[tuple[str, str]], options: li
     return quest_id, str({"answer": choices}).replace("'", '"')
 
 
-def plural_answer(answer: list, ids: list[str], options: list[str]) -> tuple[str, str | list[str]]:
+def plural_choice(answer: list, ids: list[str], options: list[str]) -> tuple[str, str | list[str]]:
     choices = []
     for ans in answer:
         try:
@@ -45,7 +45,7 @@ def plural_answer(answer: list, ids: list[str], options: list[str]) -> tuple[str
     return quest_id, choices
 
 
-def singular_answer(answer: str, ids: list[str], options: list[str]) -> tuple[str, str | list[str]]:
+def singular_choice(answer: str, ids: list[str], options: list[str]) -> tuple[str, str | list[str]]:
     if answer in options:
         index = options.index(answer)
         ans_input_id = ids[index]

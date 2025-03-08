@@ -16,7 +16,7 @@ class ChoiceQuestion(BaseModel, Question):
                 '\n'.join(f"{ans}" for ans in self.options))
 
 
-def parse_choice_problem(questions: Tag):
+def parse_choice_question(questions: Tag):
     problem_text = ""
 
     for child in questions.children:

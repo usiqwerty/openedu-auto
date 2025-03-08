@@ -43,7 +43,7 @@ class MatchQuestion(BaseModel, Question):
 """
 
 
-def parse_match_problem(problem: Tag):
+def parse_match_question(problem: Tag):
     questions = []
     answers = []
     q_text = problem.find('p').text

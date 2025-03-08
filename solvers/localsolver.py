@@ -2,7 +2,7 @@ import csv
 
 from fuzzywuzzy import process
 
-from solvers.utils import compose_answer
+from solvers.utils import compose_choice
 
 answers: list[list[str, str]] = []
 
@@ -32,6 +32,6 @@ def pick_answer(question, options) -> list | str:
 
 def solve(question: str, options: list[str], ids: list[str]) -> tuple[str, str | list[str]]:
     answer = pick_answer(question, options)
-    return compose_answer(answer, ids, options)
+    return compose_choice(answer, ids, options)
 
 

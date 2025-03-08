@@ -9,7 +9,7 @@ from openedu.questions.question import Question
 from openedu.questions.choice import ChoiceQuestion
 from openedu.questions.match import MatchQuestion
 from solvers.abstract_solver import AbstractSolver
-from solvers.utils import compose_answer, compose_match, compose_freematch
+from solvers.utils import compose_choice, compose_match, compose_freematch
 
 
 class LLMSolver(AbstractSolver, ABC):
@@ -63,7 +63,7 @@ class LLMSolver(AbstractSolver, ABC):
             res = raw[0]
         else:
             res = raw
-        return compose_answer(res, question.ids, question.options)
+        return compose_choice(res, question.ids, question.options)
 
     def solve_match(self, question: MatchQuestion):
         res = self.get_answer(question.query()).split('\n')

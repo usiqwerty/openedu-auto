@@ -2,9 +2,9 @@ from bs4 import BeautifulSoup as bs, BeautifulSoup, Tag
 from pydantic import BaseModel
 
 from images.image_describer import ImageDescriber
-from openedu.questions.choice import parse_choice_problem
-from openedu.questions.freematch import parse_freematch_problem
-from openedu.questions.match import parse_match_problem
+from openedu.questions.choice import parse_choice_question
+from openedu.questions.freematch import parse_freematch_question
+from openedu.questions.match import parse_match_question
 from openedu.questions.question import Question
 from openedu.questions.select import parse_select_question
 
@@ -62,13 +62,13 @@ class OpenEduParser:
         if question_tag.select_one('div.matching_table') is not None:
             if question_tag.select_one('div.matching_table').select("td.conf-text"):
                 problem_type = "match"
-                question = parse_match_problem(question_tag)
+                question = parse_match_question(question_tag)
             else:
                 problem_type = "freematch"
-                question = parse_freematch_problem(question_tag, self.describer)
+                question = parse_freematch_question(question_tag, self.describer)
         elif question_tag.find('select'):
             question = parse_select_question(question_tag)
         else:
             problem_type = "choice"
-            question = parse_choice_problem(question_tag)
+            question = parse_choice_question(question_tag)
         return question

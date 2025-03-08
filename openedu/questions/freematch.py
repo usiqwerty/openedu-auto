@@ -40,7 +40,7 @@ class FreeMatchQuestion(BaseModel, Question):
 """
 
 
-def parse_freematch_problem(problem: Tag, describer: ImageDescriber):
+def parse_freematch_question(problem: Tag, describer: ImageDescriber):
     questions = []
     answers = []
     q_text = problem.find('p').text
