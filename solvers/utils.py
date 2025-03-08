@@ -1,5 +1,6 @@
 import re
 
+from errors import NoSolutionFoundError
 from openedu.questions.freematch import FreeMatchQuestion
 
 
@@ -19,7 +20,7 @@ def get_ans_id(answers: list[tuple[str, str]], answer: str):
     for ans, aid in answers:
         if answer == ans:
             return aid
-
+    raise NoSolutionFoundError(f"'{answer}' was not present in options {answers}")
 
 def compose_match(answers: list[str], fields: list[tuple[str, str]], options: list[tuple[str, str]], quest_id: str):
     choices = {}
@@ -33,7 +34,10 @@ def compose_match(answers: list[str], fields: list[tuple[str, str]], options: li
 def plural_answer(answer: list, ids: list[str], options: list[str]) -> tuple[str, str | list[str]]:
     choices = []
     for ans in answer:
-        index = options.index(ans)
+        try:
+            index = options.index(ans)
+        except ValueError:
+            raise NoSolutionFoundError(f"'{ans}' was not a present option: {options}")
         ans_input_id = ids[index]
         quest_id, choice_id = extract_choice_from_id(ans_input_id)
         choices.append(choice_id)
@@ -49,7 +53,7 @@ def singular_answer(answer: str, ids: list[str], options: list[str]) -> tuple[st
 
         return quest_id, choice_id
     else:
-        raise KeyError(f"'{answer}' is not in options {options}")
+        raise NoSolutionFoundError(f"'{answer}' is not in options {options}")
         quest_id = ids[0]
         return quest_id, answer
 
@@ -71,7 +75,7 @@ def compose_freematch(flat_answers: list[str], question: FreeMatchQuestion):
             row_key = question.field_columns[col][row_]
             ans_id = lookup_option_id_in_columns(flat_answers[i + col], question.option_columns)
             if ans_id is None:
-                raise ValueError(f"Could not find id for answer ({flat_answers[i + col]}): {flat_answers} {question}")
+                raise NoSolutionFoundError(f"Answer {flat_answers} does not solve {question!r}")
             answer[row_key] = [ans_id]
 
     return question.id, str({'answer': answer})
