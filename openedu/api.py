@@ -1,5 +1,7 @@
+import json
 import logging
 import urllib.parse
+from typing import Any
 
 from requests import Session
 
@@ -17,12 +19,39 @@ referer_params = urllib.parse.urlencode({
 
 class OpenEduAPI:
     api_storage: LocalApiStorage
+    __csrf = None
+
+    @property
+    def csrf(self):
+        if self.__csrf is None:
+            self.get_csrf()
+        return self.__csrf
+
+    @csrf.setter
+    def csrf(self, value):
+        self.__csrf = value
 
     def __init__(self, course_id):
         self.csrf = config.config.get('csrf')
         self.course_id = course_id
         self.session = Session()
         self.api_storage = LocalApiStorage()
+
+    def get_csrf(self) -> str:
+        logging.debug('Requesting csrf token')
+        r = self.session.get('https://courses.openedu.ru/csrf/api/v1/token',
+                             headers=config.get_headers(),
+                             cookies=config.get_cookies(self.csrf))
+        self.csrf = r.json()['csrfToken']
+        config.config['csrf'] = self.csrf
+        self.save_config(config.config)
+
+        return self.csrf
+
+    def save_config(self, cfg: dict[str, Any]):
+        with open(config.config_fn, 'w', encoding='utf-8') as f:
+            json.dump(cfg, f)
+        logging.debug("Config saved")
 
     def publish_completion(self, block_id: str):
         url = ("https://courses.openedu.ru/courses/"

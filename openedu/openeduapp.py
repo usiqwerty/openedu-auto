@@ -13,15 +13,16 @@ from openedu.oed_parser import OpenEduParser, VerticalBlock
 from openedu.questions.question import Question
 
 
-class OpenEdu(OpenEduAPI, OpenEduParser):
+class OpenEduApp:
     course_id: str
     blocks: dict[str, VerticalBlock]
 
+    parser: OpenEduParser
+    api: OpenEduAPI
+
     def __init__(self, course_id: str, describer: ImageDescriber):
-        super().__init__(course_id)
-        self.describer = describer
-        if self.csrf is None:
-            self.get_csrf()
+        self.api = OpenEduAPI(course_id)
+        self.parser = OpenEduParser(describer)
 
     def add_block_and_save(self, blk: VerticalBlock):
         self.blocks[blk.id] = blk
@@ -34,9 +35,8 @@ class OpenEdu(OpenEduAPI, OpenEduParser):
         logging.debug("Blocks saved")
 
     def parse_and_save_sequential_block(self, url: str):
-        logging.debug(f"Parsing {url}")
-        r = get(url, self.csrf or "")
-        for blk in self.parse_sequential_block_(r):
+        r = get(url, self.api.csrf or "")
+        for blk in self.parser.parse_sequential_block_(r):
             self.add_block_and_save(blk)
 
     def iterate_incomplete_blocks(self):
@@ -47,25 +47,9 @@ class OpenEdu(OpenEduAPI, OpenEduParser):
     def get_problems(self, blk: str) -> list[list[Question]]:
         logging.debug("Requesting xblock")
         url = f"https://courses.openedu.ru/xblock/{blk}"
-        r = get(url, headers=get_headers(), cookies=get_cookies(self.csrf), is_json=False)
-        return self.parse_vertical_block_html(r)
-
-    def get_csrf(self) -> str:
-        logging.debug('Requesting csrf token')
-        r = requests.get('https://courses.openedu.ru/csrf/api/v1/token',
-                         headers=get_headers(),
-                         cookies=get_cookies(self.csrf))
-        self.csrf = r.json()['csrfToken']
-        config.config['csrf'] = self.csrf
-        self.save_config(config.config)
-
-        return self.csrf
+        r = get(url, headers=get_headers(), cookies=get_cookies(self.api.csrf), is_json=False)
+        return self.parser.parse_vertical_block_html(r)
 
     def extract_quest_id(self, qfield: str) -> str:
         r = re.search(r"input_([\w\d]+)_\d+_\d+", qfield)
         return r.group(1)
-
-    def save_config(self, cfg: dict[str, Any]):
-        with open(config.config_fn, 'w', encoding='utf-8') as f:
-            json.dump(cfg, f)
-        logging.debug("Config saved")

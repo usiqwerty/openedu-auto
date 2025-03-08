@@ -7,7 +7,7 @@ import urllib
 from cached_requests import CacheContext
 from images.image_describer import ImageDescriber
 from openedu.oed_parser import VerticalBlock
-from openedu.openedu import OpenEdu
+from openedu.openeduapp import OpenEduApp
 from openedu.questions.question import Question
 from openedu.utils import parse_page_url
 from solvers.abstract_solver import AbstractSolver
@@ -31,13 +31,13 @@ class OpenEduAutoSolver:
                f"+block@{seq}")
 
         with CacheContext():
-            api = OpenEdu(course_id, self.describer)
-            api.parse_and_save_sequential_block(url)
+            app = OpenEduApp(course_id, self.describer)
+            app.parse_and_save_sequential_block(url)
 
-            for blkid, block in api.iterate_incomplete_blocks():
-                self.solve_block(api, blkid, block, course_id)
+            for blkid, block in app.iterate_incomplete_blocks():
+                self.solve_block(app, blkid, block, course_id)
 
-    def solve_block(self, api: OpenEdu, blkid: str, block: VerticalBlock, course_id: str):
+    def solve_block(self, api: OpenEduApp, blkid: str, block: VerticalBlock, course_id: str):
         logging.debug(blkid)
         logging.debug(f"Block '{block.title}' (complete={block.complete}) of type '{block.type}'")
         if block.type == 'other':
@@ -51,7 +51,7 @@ class OpenEduAutoSolver:
                 self.solve_problem(api, course_id, problem)
             return
 
-    def solve_problem(self, api: OpenEdu, course_id: str, problem: list[Question]):
+    def solve_problem(self, api: OpenEduApp, course_id: str, problem: list[Question]):
         answers = {}
         for question in problem:
             # print(question.query())
