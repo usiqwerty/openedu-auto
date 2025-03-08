@@ -34,8 +34,8 @@ class OpenEduApp:
             json.dump({k: v.json() for k, v in self.blocks.items()}, f)
         logging.debug("Blocks saved")
 
-    def parse_and_save_sequential_block(self, url: str):
-        r = get(url, self.api.csrf or "")
+    def parse_and_save_sequential_block(self, block_id: str):
+        r = self.api.get_sequential_block(block_id)
         for blk in self.parser.parse_sequential_block_(r):
             self.add_block_and_save(blk)
 

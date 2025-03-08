@@ -6,6 +6,8 @@ from typing import Any
 from requests import Session
 
 import config
+from cached_requests import get
+from config import get_headers
 from openedu.local_api_storage import LocalApiStorage
 
 referer_params = urllib.parse.urlencode({
@@ -18,8 +20,10 @@ referer_params = urllib.parse.urlencode({
 
 
 class OpenEduAPI:
-    api_storage: LocalApiStorage
     __csrf = None
+    api_storage: LocalApiStorage
+    session: Session
+    course_id: str
 
     @property
     def csrf(self):
@@ -41,12 +45,21 @@ class OpenEduAPI:
         logging.debug('Requesting csrf token')
         r = self.session.get('https://courses.openedu.ru/csrf/api/v1/token',
                              headers=config.get_headers(),
-                             cookies=config.get_cookies(self.csrf))
-        self.csrf = r.json()['csrfToken']
+                             cookies=config.get_cookies(""))
+
+        self.csrf = r.cookies['csrftoken'] # r.json()['csrfToken']
         config.config['csrf'] = self.csrf
         self.save_config(config.config)
 
         return self.csrf
+
+    def get_sequential_block(self, block_id: str):
+        url = (f"https://courses.openedu.ru/api/courseware/sequence/"
+               f"block-v1:{self.course_id}+type@sequential"
+               f"+block@{block_id}")
+        hdrs = get_headers(referer='https://apps.openedu.ru', origin='https://apps.openedu.ru')
+        # hdrs["USE-JWT-COOKIE"] = 'true'
+        return get(url, self.csrf, headers=hdrs)
 
     def save_config(self, cfg: dict[str, Any]):
         with open(config.config_fn, 'w', encoding='utf-8') as f:

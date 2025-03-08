@@ -26,13 +26,11 @@ class OpenEduAutoSolver:
 
         logging.debug(f"Course: {course_id}")
         logging.debug(f"Starting at block {seq}")
-        url = (f"https://courses.openedu.ru/api/courseware/sequence/"
-               f"block-v1:{course_id}+type@sequential"
-               f"+block@{seq.block_id}")
+
 
         with CacheContext():
             app = OpenEduApp(course_id, self.describer)
-            app.parse_and_save_sequential_block(url)
+            app.parse_and_save_sequential_block(seq.block_id)
 
             for blkid, block in app.iterate_incomplete_blocks():
                 self.solve_block(app, blkid, block, course_id)
