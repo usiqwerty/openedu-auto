@@ -4,6 +4,7 @@ import os
 import pytest
 from bs4 import BeautifulSoup
 
+from errors import FormatError
 from tests.fakes import DummyDescriber
 from openedu.oed_parser import OpenEduParser, VerticalBlock
 
@@ -54,3 +55,13 @@ def test_parse_problem(testname):
 
     parser = OpenEduParser(DummyDescriber())
     assert [json.loads(x.json()) for x in parser.parse_problem(BeautifulSoup(html, "html.parser"))] == expected
+
+def test_parse_choice_different_ids():
+    filename_input = f"tests/data/problem_choice_diff_ids.html"
+    with open(filename_input, encoding='utf-8') as f:
+        html = f.read()
+
+    parser = OpenEduParser(DummyDescriber())
+
+    with pytest.raises(FormatError):
+        parser.parse_problem(BeautifulSoup(html, "html.parser"))

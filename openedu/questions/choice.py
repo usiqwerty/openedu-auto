@@ -2,6 +2,7 @@ from bs4 import Tag
 from pydantic import BaseModel
 
 from openedu.questions.question import Question
+from openedu.utils import ensure_ids_same
 
 
 class ChoiceQuestion(BaseModel, Question):
@@ -30,4 +31,5 @@ def parse_choice_question(questions: Tag):
             ids = [qid['id'] for qid in child.find_all('input')]
 
             if ids:
+                ensure_ids_same(ids)
                 return ChoiceQuestion(text=problem_text, options=qs, ids=ids)
