@@ -22,13 +22,13 @@ class AbstractSolver(ABC):
             return self.solve_freematch(question)
 
     @abstractmethod
-    def solve_choice(self, question: ChoiceQuestion):
+    def solve_choice(self, question: ChoiceQuestion) -> tuple[str, str | list[str]]:
         pass
 
     @abstractmethod
-    def solve_match(self, question: MatchQuestion):
+    def solve_match(self, question: MatchQuestion) -> tuple[str, str | list[str]]:
         pass
 
     @abstractmethod
-    def solve_freematch(self, question: FreeMatchQuestion):
+    def solve_freematch(self, question: FreeMatchQuestion) -> tuple[str, str | list[str]]:
         pass
