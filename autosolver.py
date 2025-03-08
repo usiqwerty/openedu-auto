@@ -28,7 +28,7 @@ class OpenEduAutoSolver:
         logging.debug(f"Starting at block {seq}")
         url = (f"https://courses.openedu.ru/api/courseware/sequence/"
                f"block-v1:{course_id}+type@sequential"
-               f"+block@{seq}")
+               f"+block@{seq.block_id}")
 
         with CacheContext():
             app = OpenEduApp(course_id, self.describer)
