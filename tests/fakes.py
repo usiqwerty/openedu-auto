@@ -9,9 +9,11 @@ from solvers.abstract_solver import AbstractSolver
 
 class FakeSession:
     history: list
+    cookies: dict
 
     def __init__(self):
         self.history = []
+        self.cookies = {}
 
     def get(self, url, *, headers=None, cookies=None):
         print("fake get")
