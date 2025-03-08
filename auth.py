@@ -66,20 +66,16 @@ class OpenEduAuth:
             next = "https://apps.openedu.ru/learning/course/course-v1:urfu+HIST+spring_2025/block-v1:urfu+HIST+spring_2025+type@sequential+block@09fbecc104434360b01020d47e207973/block-v1:urfu+HIST+spring_2025+type@vertical+block@4c42e3f65b334f0c947a7ec1dc7e08d1"
             self.session.get(f"https://courses.openedu.ru/auth/login/keycloak/?auth_entry=login&next={next}")
 
-        if self.login_refresh() == 401:
-            pars = {
-                "client_id": "edx",
-                "redirect_uri": "https://courses.openedu.ru/auth/complete/keycloak/",
-                "state": "2ZsdWa3y0eI0lMlvCHpIR3pe6jUO0wHR",
-                "response_type": "code",
-                "nonce": "JLDKnzMYbkmgRuCC3Q4s2UIpf4jibkK2feCKfiRFHlqNUVgXqawy4ELOg1UcgGqb",
-                "scope": "openid profile email",
-            }
-            self.session.get("https://sso.openedu.ru/realms/openedu/protocol/openid-connect/auth", params=pars)
-
-        # print(r)
-        # print(r.history)
-        # print(self.session.cookies['csrftoken'])
+            if self.login_refresh() == 401:
+                pars = {
+                    "client_id": "edx",
+                    "redirect_uri": "https://courses.openedu.ru/auth/complete/keycloak/",
+                    "state": "2ZsdWa3y0eI0lMlvCHpIR3pe6jUO0wHR",
+                    "response_type": "code",
+                    "nonce": "JLDKnzMYbkmgRuCC3Q4s2UIpf4jibkK2feCKfiRFHlqNUVgXqawy4ELOg1UcgGqb",
+                    "scope": "openid profile email",
+                }
+                self.session.get("https://sso.openedu.ru/realms/openedu/protocol/openid-connect/auth", params=pars)
 
     def login_refresh(self):
         logging.debug("Login refresh")
