@@ -53,11 +53,14 @@ class OpenEduAPI:
             raise Exception(json_result['developer_message'])
         return json_result
 
-    def get(self, url, headers=None):
+    def get(self, url, headers=None, is_json=True):
         if url not in self.cache:
             logging.debug(f"Real request: {url}")
             r = self.session.get(url, headers=headers)
-            self.cache[url] = r.json()
+            if is_json:
+                self.cache[url] = r.json()
+            else:
+                self.cache[url] = r.text
         return self.cache[url]
 
     def save_cache(self):
