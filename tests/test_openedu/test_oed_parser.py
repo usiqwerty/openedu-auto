@@ -4,7 +4,7 @@ import os
 import pytest
 from bs4 import BeautifulSoup
 
-from images.dummy_describer import DummyDescriber
+from tests.fakes import DummyDescriber
 from openedu.oed_parser import OpenEduParser, VerticalBlock
 
 

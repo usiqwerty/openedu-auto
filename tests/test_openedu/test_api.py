@@ -4,7 +4,7 @@ import config
 from openedu.api import OpenEduAPI
 from openedu.local_api_storage import LocalApiStorage
 from openedu.oed_parser import VerticalBlock
-from tests.fake_session import FakeSession
+from tests.fakes import FakeSession
 
 
 @pytest.mark.parametrize("safemode", [True, False], ids=['safemode', 'no safemode'])
