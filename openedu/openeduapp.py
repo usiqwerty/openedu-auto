@@ -20,8 +20,8 @@ class OpenEduApp:
     parser: OpenEduParser
     api: OpenEduAPI
 
-    def __init__(self, course_id: str, describer: ImageDescriber):
-        self.api = OpenEduAPI(course_id)
+    def __init__(self, describer: ImageDescriber):
+        self.api = OpenEduAPI()
         self.parser = OpenEduParser(describer)
 
     def add_block_and_save(self, blk: VerticalBlock):
@@ -34,8 +34,8 @@ class OpenEduApp:
             json.dump({k: v.json() for k, v in self.blocks.items()}, f)
         logging.debug("Blocks saved")
 
-    def parse_and_save_sequential_block(self, block_id: str):
-        r = self.api.get_sequential_block(block_id)
+    def parse_and_save_sequential_block(self, course_id: str, block_id: str):
+        r = self.api.get_sequential_block(course_id, block_id)
         for blk in self.parser.parse_sequential_block_(r):
             self.add_block_and_save(blk)
 

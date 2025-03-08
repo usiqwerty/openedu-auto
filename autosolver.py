@@ -5,6 +5,7 @@ import traceback
 import urllib
 
 from cached_requests import CacheContext
+from config import get_headers
 from images.image_describer import ImageDescriber
 from openedu.oed_parser import VerticalBlock
 from openedu.openeduapp import OpenEduApp
@@ -16,24 +17,26 @@ from solvers.abstract_solver import AbstractSolver
 class OpenEduAutoSolver:
     solver: AbstractSolver
     describer: ImageDescriber
+    app: OpenEduApp
 
     def __init__(self, solver: AbstractSolver, describer: ImageDescriber):
         self.solver = solver
         self.describer = describer
+        self.app = OpenEduApp(self.describer)
 
     def solve_course(self, url: str):
         course_id, seq, ver = parse_page_url(url)
-
         logging.debug(f"Course: {course_id}")
         logging.debug(f"Starting at block {seq}")
 
-
-        with CacheContext():
-            app = OpenEduApp(course_id, self.describer)
-            app.parse_and_save_sequential_block(seq.block_id)
-
-            for blkid, block in app.iterate_incomplete_blocks():
-                self.solve_block(app, blkid, block, course_id)
+        with CacheContext([lambda: self.app.api.auth.save(), lambda: self.app.api.save_cache()]):
+            # self.app.api.get(url) #update token
+            # self.app.api.auth.login_refresh()
+            self.app.api.auth.complete_login()
+            self.app.api.get("https://courses.openedu.ru/csrf/api/v1/token") #update token
+            self.app.parse_and_save_sequential_block(course_id, seq.block_id)
+            for blkid, block in self.app.iterate_incomplete_blocks():
+                self.solve_block(self.app, blkid, block, course_id)
 
     def solve_block(self, api: OpenEduApp, blkid: str, block: VerticalBlock, course_id: str):
         logging.debug(blkid)

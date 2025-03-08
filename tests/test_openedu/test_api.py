@@ -11,10 +11,10 @@ from tests.fakes import FakeSession
 def test_publish_completion(safemode):
     testing_block = VerticalBlock(id="test_block", title="Тестировочный блок", complete=False, type="problem")
     config.config['restrict-actions'] = safemode
-    api = OpenEduAPI("test_course")
+    api = OpenEduAPI()
     api.api_storage = LocalApiStorage({testing_block.id: testing_block})
     api.session = FakeSession()
-    api.publish_completion("test_block")
+    api.publish_completion("test_course", "test_block")
     if safemode:
         assert len(api.session.history) == 0
     else:
@@ -30,10 +30,10 @@ def test_publish_completion(safemode):
 def test_problem_check(safemode):
     testing_block = VerticalBlock(id="test_block", title="Тестировочный блок", complete=False, type="problem")
     config.config['restrict-actions'] = safemode
-    api = OpenEduAPI("test_course")
+    api = OpenEduAPI()
     api.api_storage = LocalApiStorage({testing_block.id: testing_block})
     api.session = FakeSession()
-    api.problem_check("test_block", {"input_id": "input_value"})
+    api.problem_check("test_course","test_block", {"input_id": "input_value"})
     if safemode:
         assert len(api.session.history) == 0
     else:
