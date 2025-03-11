@@ -9,6 +9,7 @@ from config import get_headers
 from images.image_describer import ImageDescriber
 from openedu.oed_parser import VerticalBlock
 from openedu.openeduapp import OpenEduApp
+from openedu.questions.freematch import FreeMatchQuestion
 from openedu.questions.question import Question
 from openedu.utils import parse_page_url
 from solvers.abstract_solver import AbstractSolver
@@ -50,10 +51,13 @@ class OpenEduAutoSolver:
                 self.solve_problem(api, course_id, problem)
             return
 
-    def solve_problem(self, api: OpenEduApp, course_id: str, problem: list[Question]):
+    def solve_problem(self, app: OpenEduApp, course_id: str, problem: list[Question]):
         answers = {}
+        input_id = None
         for question in problem:
-            # print(question.query())
+            if isinstance(question, FreeMatchQuestion):
+                logging.warning(f"Skipped freematch question")
+                continue
             try:
                 input_id, input_value = self.solver.solve(question)
                 answers[input_id] = input_value
@@ -61,10 +65,12 @@ class OpenEduAutoSolver:
                 print("Error:", e)
                 traceback.print_exc()
                 exit(1)
-        quest_id = api.extract_quest_id(input_id)
+        if input_id is None:
+            return
+        quest_id = app.extract_quest_id(input_id)
         print(f"{answers=}")
         new_block_id = f"block-v1:{course_id}+type@problem+block@{quest_id}"
-        got, total = api.problem_check(new_block_id, answers)
+        got, total = app.api.problem_check(new_block_id, answers)
         logging.info(f"Solved ({got}/{total})")
         if got < total:
             logging.critical("Wrong answer!")
