@@ -1,5 +1,7 @@
+import datetime
 import json
 import os.path
+import time
 from abc import abstractmethod, ABC
 
 import logging
@@ -15,6 +17,8 @@ from solvers.utils import compose_choice, compose_match, compose_freematch, comp
 
 class LLMSolver(AbstractSolver, ABC):
     cache_fn: str
+    last_described = 0
+    interval_sec = 5
 
     @property
     def cache_path(self):
@@ -39,7 +43,13 @@ class LLMSolver(AbstractSolver, ABC):
     def get_answer(self, query) -> str:
         if query not in self.__cache:
             logging.debug("Question was not in cache")
+
+            now = datetime.datetime.now().timestamp()
+            delta = now - self.last_described
+            if delta < self.interval_sec:
+                time.sleep(delta)
             self.cache_set(query, self.make_gpt_request(query))
+            self.last_described = now
         else:
             logging.debug("Picking LLM answer from cache")
         return self.cache_get(query)
@@ -58,7 +68,7 @@ class LLMSolver(AbstractSolver, ABC):
 
     def solve_choice(self, question: ChoiceQuestion):
         raw = self.get_answer(question.query()).split('\n')
-        raw = filter(lambda x: x, raw)
+        raw = list(filter(lambda x: x, raw))
         res: list[str] | str
         if len(raw) == 1:
             res = raw[0]

@@ -12,6 +12,8 @@ class OpenRouterSolver(LLMSolver, ABC):
     model: str
     base_url = "https://openrouter.ai/api/v1"
 
+    interval_sec = 10
+
     def __init__(self):
         self.client = OpenAI(base_url=self.base_url, api_key=config.config['openrouter-key'])
         super().__init__()
@@ -27,4 +29,11 @@ class OpenRouterSolver(LLMSolver, ABC):
                 }
             ]
         )
+
+        if completion.choices is None:
+            error = completion.model_extra['error']
+            logging.critical(f"Error solving")
+            logging.critical(f"Code {error['code']}: {error['message']}")
+            logging.critical(error['metadata'])
+            raise Exception
         return completion.choices[0].message.content
