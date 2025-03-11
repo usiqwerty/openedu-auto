@@ -34,7 +34,12 @@ def compose_match(answers: list[str], fields: list[tuple[str, str]], options: li
 
 def get_similar_index(ans: str, options: list[str]):
     for i, opt in enumerate(options):
-        if fuzz.ratio(opt, ans) > 95:
+        threshold = 95
+
+        if max(len(opt), len(ans)) <= 7:
+            threshold = 85
+
+        if fuzz.ratio(opt, ans) > threshold:
             return i
 
 
@@ -62,9 +67,14 @@ def singular_choice(answer: str, ids: list[str], options: list[str]) -> tuple[st
 
         return quest_id, choice_id
     else:
-        raise NoSolutionFoundError(f"'{answer}' is not in options {options}")
-        quest_id = ids[0]
-        return quest_id, answer
+        index = get_similar_index(answer, options)
+        if index is None:
+            raise NoSolutionFoundError(f"'{answer}' is not in options {options}")
+
+    ans_input_id = ids[index]
+    quest_id, choice_id = extract_choice_from_id(ans_input_id)
+
+    return quest_id, choice_id
 
 
 def lookup_option_id_in_columns(answer, option_columns: list[list[tuple[str, str]]]):
