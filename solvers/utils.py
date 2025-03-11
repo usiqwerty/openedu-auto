@@ -3,7 +3,7 @@ import re
 from errors import NoSolutionFoundError
 from openedu.questions.freematch import FreeMatchQuestion
 from openedu.questions.select import SelectQuestion
-
+from fuzzywuzzy import fuzz
 
 def extract_choice_from_id(choid_id: str):
     r = re.search(r"(input_[\w\d]+_\d+_\d+)_(choice_\d+)", choid_id)
@@ -32,13 +32,21 @@ def compose_match(answers: list[str], fields: list[tuple[str, str]], options: li
     return quest_id, str({"answer": choices}).replace("'", '"')
 
 
+def get_similar_index(ans: str, options: list[str]):
+    for i, opt in enumerate(options):
+        if fuzz.ratio(opt, ans) > 95:
+            return i
+
+
 def plural_choice(answer: list, ids: list[str], options: list[str]) -> tuple[str, str | list[str]]:
     choices = []
     for ans in answer:
         try:
             index = options.index(ans)
         except ValueError:
-            raise NoSolutionFoundError(f"'{ans}' was not a present option: {options}")
+            index = get_similar_index(ans, options)
+            if index is None:
+                raise NoSolutionFoundError(f"'{ans}' was not a present option: {options}")
         ans_input_id = ids[index]
         quest_id, choice_id = extract_choice_from_id(ans_input_id)
         choices.append(choice_id)
