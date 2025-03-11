@@ -56,8 +56,8 @@ class OpenEduAutoSolver:
         input_id = None
         for question in problem:
             if isinstance(question, FreeMatchQuestion):
-                logging.warning(f"Skipped freematch question")
-                continue
+                logging.warning(f"Found freematch question, skipping problem")
+                return
             try:
                 input_id, input_value = self.solver.solve(question)
                 answers[input_id] = input_value
