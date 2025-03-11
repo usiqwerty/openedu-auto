@@ -90,8 +90,11 @@ class OpenEduAPI:
         logging.info(f"Checking answer: {answers}")
         url = f"https://courses.openedu.ru/courses/course-v1:{course_id}/xblock/{blk}/handler/xmodule_handler/problem_check"
 
+        cccc = self.session.cookies.get('csrftoken', domain='')
+        if cccc is None:
+            raise Exception
         hdrs = config.get_headers(
-            csrf=self.session.cookies.get('csrftoken'),
+            csrf=cccc,
             referer=f"https://courses.openedu.ru/xblock/{blk}?" + referer_params,
             origin="https://courses.openedu.ru"
         )

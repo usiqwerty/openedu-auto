@@ -70,7 +70,7 @@ class OpenEduAutoSolver:
         quest_id = app.extract_quest_id(input_id)
         print(f"{answers=}")
         new_block_id = f"block-v1:{course_id}+type@problem+block@{quest_id}"
-        got, total = app.api.problem_check(new_block_id, answers)
+        got, total = app.api.problem_check(course_id, new_block_id, answers)
         logging.info(f"Solved ({got}/{total})")
         if got < total:
             logging.critical("Wrong answer!")
