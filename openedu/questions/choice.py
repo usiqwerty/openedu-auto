@@ -21,7 +21,7 @@ def parse_choice_question(questions: Tag):
     problem_text = ""
 
     for child in questions.children:
-        if child.name == "p":
+        if child.name in ["p", "pre"]:
             problem_text += child.text
         elif child.name == "div":
             legend = child.find('legend')
