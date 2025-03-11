@@ -30,10 +30,8 @@ class OpenEduAutoSolver:
         logging.debug(f"Starting at block {seq}")
 
         with CacheContext([lambda: self.app.api.auth.save(), lambda: self.app.api.save_cache()]):
-            # self.app.api.get(url) #update token
-            # self.app.api.auth.login_refresh()
-            self.app.api.auth.complete_login()
-            self.app.api.get("https://courses.openedu.ru/csrf/api/v1/token") #update token
+            self.app.api.auth.refresh()
+            # self.app.api.get("https://courses.openedu.ru/csrf/api/v1/token") #update token
             self.app.parse_and_save_sequential_block(course_id, seq.block_id)
             for blkid, block in self.app.iterate_incomplete_blocks():
                 self.solve_block(self.app, blkid, block, course_id)

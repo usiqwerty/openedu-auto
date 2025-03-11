@@ -50,3 +50,6 @@ class OpenEduApp:
     def extract_quest_id(self, qfield: str) -> str:
         r = re.search(r"input_([\w\d]+)_\d+_\d+", qfield)
         return r.group(1)
+
+    def login(self, username: str, password: str):
+        self.api.auth.login(username, password)

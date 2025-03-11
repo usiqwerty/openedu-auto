@@ -1,5 +1,5 @@
 import json
-from http.cookiejar import Cookie
+import os
 
 from requests import Request, Response
 
@@ -7,23 +7,6 @@ from tests.fake_api_session import FakeApiSession
 
 course_id = 'test_course'
 block_id = 'test_block'
-
-
-@FakeApiSession.register("https://courses.openedu.ru/login_refresh")
-def refresh_login(req: Request):
-    resp = Response()
-    resp.status_code = 401
-    resp.cookies.set_cookie(Cookie(**{
-        "name": "sessionid",
-        "domain": ".openedu.ru",
-        "expires": "2025-03-24T10:33:01.000Z",
-        "httpOnly": 'true',
-        "path": "/",
-        "samesite": "None",
-        "secure": 'true',
-        "value": "blablabla"
-    }))
-    return resp
 
 
 @FakeApiSession.register(
@@ -80,4 +63,14 @@ def publish_completion(req: Request):
 def problecm_check(req: Request):
     resp = Response()
     resp._content = b'{"current_score": 1, "total_possible": 1}'
+    return resp
+
+
+@FakeApiSession.register("https://openedu.ru/")
+@FakeApiSession.register("https://openedu.ru")
+def openedu_ru(req: Request):
+    resp = Response()
+    with open (os.path.join("tests","data", "openeduru.html"), 'rb') as f:
+        resp._content = f.read()
+    resp.status_code=200
     return resp
