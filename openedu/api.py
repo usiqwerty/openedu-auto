@@ -6,7 +6,7 @@ from typing import Any
 from requests import Session
 
 import config
-from auth import OpenEduAuth
+from openedu.auth import OpenEduAuth
 from cached_requests import cache_fn
 from config import get_headers
 from openedu.local_api_storage import LocalApiStorage

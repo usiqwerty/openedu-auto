@@ -1,9 +1,7 @@
 import pytest
 
-from auth import OpenEduAuth
+from openedu.auth import OpenEduAuth
 from tests.fake_api_session import FakeApiSession
-from tests.test_api.api import refresh
-from tests.test_api.api import auth
 
 
 @pytest.mark.parametrize("logged_in", [True, False])

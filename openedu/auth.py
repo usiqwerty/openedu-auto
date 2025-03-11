@@ -133,31 +133,41 @@ class OpenEduAuth:
             r = self.session.get(url, headers=h, params=params, allow_redirects=False)
         return r
 
-    def openid_auth(self, url: str):
+    def openid_auth(self):
         """"""
         h = {
             "User-Agent": self.user_agent,
             "Accept": 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
             "Accept-Language": "en-US,en;q=0.5",
             "Referer": "https://apps.openedu.ru/",
-            "Host": "sso.openedu.ru",
+            # "Host": "sso.openedu.ru",
             'Upgrade-Insecure-Requests': '1',
             "Sec-Fetch-Dest": "document",
             "Sec-Fetch-Mode": "navigate",
             "Sec-Fetch-Site": "same-site",
             "Priority": 'u=0, i'
         }
-        res = urllib.parse.urlparse(url)
-        base_url = f"{res.scheme}://{res.netloc}/{res.path}"
-        params = {k: v for k, v in urllib.parse.parse_qsl(res.query)}
+
+
+        url = "https://sso.openedu.ru/realms/openedu/protocol/openid-connect/auth"
+        params = {
+            "client_id": "edx",
+            "redirect_uri": "https://courses.openedu.ru/auth/complete/keycloak/",
+            "state": "WY3duzh17XHy7zS3Ml2aIC2ZT6OyDaEq",
+            "response_type": "code",
+            "nonce": "ax6kW7bTQLtcNxeWK5HWzDxjnIiK9NOT6HR9KwjsciDgDMI7JUwlcRKKAh99oum4",
+            "scope": "openid profile email"
+        }
         with CookieContext(self.session, SSO_COOKIES):
-            return self.session.get(base_url, params=params, headers=h)
+            return self.session.get(url, params=params, headers=h)
 
     def refresh(self):
         """Perform full token refresh process"""
         lr = self.login_refresh()
-        kr = self.login_keycloak()
-        oiar = self.openid_auth(kr.headers['location'])
-        if oiar.status_code == 200 and len(oiar.history) == 1:
-            logn = self.post_login_data(config.config['username'], config.config['password'], oiar.text)
+        if lr.status_code == 200:
+            return
+        oiar = self.openid_auth()
+        # kr = self.login_keycloak()
+        # if oiar.status_code == 200 and len(oiar.history) == 1:
+        #     logn = self.post_login_data(config.config['username'], config.config['password'], oiar.text)
         pass
