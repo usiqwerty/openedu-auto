@@ -66,6 +66,7 @@ class OpenEduAPI:
     def save_cache(self):
         with open(cache_fn, 'w', encoding='utf-8') as f:
             json.dump(self.cache, f)
+        self.api_storage.save()
         logging.debug("Cache saved")
 
     def publish_completion(self, course_id: str, block_id: str):

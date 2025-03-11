@@ -49,6 +49,7 @@ class OpenEduAutoSolver:
         elif block.type == "problem":
             for problem in api.get_problems(blkid):
                 self.solve_problem(api, course_id, problem)
+            self.app.api.api_storage.mark_block_as_completed(blkid)
             return
 
     def solve_problem(self, app: OpenEduApp, course_id: str, problem: list[Question]):
