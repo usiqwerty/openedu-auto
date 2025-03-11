@@ -2,6 +2,7 @@ import re
 
 from errors import NoSolutionFoundError
 from openedu.questions.freematch import FreeMatchQuestion
+from openedu.questions.select import SelectQuestion
 
 
 def extract_choice_from_id(choid_id: str):
@@ -79,3 +80,7 @@ def compose_freematch(flat_answers: list[str], question: FreeMatchQuestion):
             answer[row_key] = [ans_id]
 
     return question.id, str({'answer': answer})
+
+
+def compose_select(answer: str, question: SelectQuestion):
+    return question.id, answer.strip()

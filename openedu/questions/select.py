@@ -11,7 +11,9 @@ class SelectQuestion(BaseModel, Question):
     options: list[tuple[str, str]]
 
     def query(self) -> str:
-        raise NotImplementedError
+        return (f"{self.text}\n"
+                f"В ответе напиши только ответ, без каких-либо дополнений и поясненийх. Ты можешь выбирать только среди вариантов:\n" +
+                '\n'.join(f"{ans}" for ans in self.options))
 
 
 def parse_select_question(tag: Tag) -> SelectQuestion:

@@ -8,8 +8,9 @@ from openedu.questions.freematch import FreeMatchQuestion
 from openedu.questions.question import Question
 from openedu.questions.choice import ChoiceQuestion
 from openedu.questions.match import MatchQuestion
+from openedu.questions.select import SelectQuestion
 from solvers.abstract_solver import AbstractSolver
-from solvers.utils import compose_choice, compose_match, compose_freematch
+from solvers.utils import compose_choice, compose_match, compose_freematch, compose_select
 
 
 class LLMSolver(AbstractSolver, ABC):
@@ -74,3 +75,7 @@ class LLMSolver(AbstractSolver, ABC):
         res = self.get_answer(question.query()).split('\n')
         res = list(filter(lambda x: x, res))
         return compose_freematch(res, question)
+
+    def solve_select(self, question: SelectQuestion) -> tuple[str, str | list[str]]:
+        res = self.get_answer(question.query())
+        return compose_select(res, question)
