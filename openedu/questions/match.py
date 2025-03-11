@@ -62,7 +62,7 @@ def parse_match_question(problem: Tag):
 
     ans_place = table_div.select_one("div.conf-answers-place")
     for answer in ans_place.find_all():
-        answers.append((answer.text, answer['id']))
+        answers.append((answer.text.strip(), answer['id']))
 
     response_div = problem.select_one("div.wrapper-problem-response")
     q_id = response_div.find("input")['id']
