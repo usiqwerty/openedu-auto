@@ -37,18 +37,18 @@ class OpenEduAutoSolver:
             for blkid, block in self.app.iterate_incomplete_blocks():
                 self.solve_block(self.app, blkid, block, course_id)
 
-    def solve_block(self, api: OpenEduApp, blkid: str, block: VerticalBlock, course_id: str):
+    def solve_block(self, app: OpenEduApp, blkid: str, block: VerticalBlock, course_id: str):
         logging.debug(blkid)
         logging.debug(f"Block '{block.title}' (complete={block.complete}) of type '{block.type}'")
         if block.type == 'other':
-            return
+            # return
             # print(blkid, block)
             # api.tick_page(blkid)
             # time.sleep(5)
-            # api.publish_completion(blkid)
+            app.api.publish_completion(course_id, blkid)
         elif block.type == "problem":
-            for problem in api.get_problems(blkid):
-                self.solve_problem(api, course_id, problem)
+            for problem in app.get_problems(blkid):
+                self.solve_problem(app, course_id, problem)
             self.app.api.api_storage.mark_block_as_completed(blkid)
             return
 

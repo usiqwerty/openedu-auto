@@ -77,13 +77,17 @@ class OpenEduAPI:
 
         if not self.api_storage.is_block_complete(block_id):
             logging.debug(f"[COMPLETE] {url}")
-            mhdrs = config.get_headers(
-                csrf=self.session.cookies.get('csrftoken'),
-                referer=f"https://courses.openedu.ru/xblock/{block_id}?show_title=0&show_bookmark_button=0&recheck_access=1&view=student_view"
-            )
+            referer=f"https://courses.openedu.ru/xblock/{block_id}?show_title=0&show_bookmark_button=0&recheck_access=1&view=student_view"
+            hdrs = {
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/113.0",
+                'X-CSRFToken': self.session.cookies.get('csrftoken'),
+                "Referer": referer
+            }
             if not config.config.get('restrict-actions'):
                 logging.debug("[POST] publish completion")
-                r = self.session.post(url, headers=mhdrs, json={"completion": 1})
+                r = self.session.post(url, headers=hdrs, json={"completion": 1})
+                if r.json()['result'] != 'ok':
+                    logging.error(f"Completion was not okay: {r.json()}")
                 logging.debug(r)
         self.api_storage.mark_block_as_completed(block_id)
 
@@ -105,8 +109,12 @@ class OpenEduAPI:
             r = self.session.post(url, headers=hdrs, data=answers)
             logging.debug(f"Response status: {r.status_code}")
             self.api_storage.mark_block_as_completed(blk)
-            current = r.json()['current_score']
-            maxscore = r.json()['total_possible']
+            try:
+                current = r.json()['current_score']
+                maxscore = r.json()['total_possible']
+            except KeyError as e:
+                logging.warning(e)
+                return 0, 0
             return current, maxscore
         else:
             logging.debug(f"False answer check {answers}")
