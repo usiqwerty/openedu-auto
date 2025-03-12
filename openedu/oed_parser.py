@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup as bs, BeautifulSoup, Tag
 from pydantic import BaseModel
 
+from errors import LayoutError
 from images.image_describer import ImageDescriber
 from openedu.questions.choice import parse_choice_question
 from openedu.questions.freematch import parse_freematch_question
@@ -56,7 +57,7 @@ class OpenEduParser:
             wrappers = problem.find_all("div", attrs={"class": "wrapper-problem-response"})
             if len(wrappers) > 1:
                 if not all(w.select("legend, p") for w in wrappers):
-                    raise Exception("Non-separated questions")
+                    raise LayoutError("Can't parse non-separated questions")
 
             for question_tag in problem.find_all("div", attrs={"class": "wrapper-problem-response"}):
                 q = self.parse_question(question_tag)

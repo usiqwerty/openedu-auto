@@ -8,3 +8,7 @@ class NoSolutionFoundError(Exception):
 
 class UnsupportedProblemType(Exception):
     pass
+
+
+class LayoutError(Exception):
+    pass
