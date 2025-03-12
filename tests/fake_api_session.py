@@ -1,6 +1,7 @@
 import urllib.parse
 from typing import Callable
 
+import requests.utils
 from requests import Response, Request
 from requests.cookies import RequestsCookieJar
 
@@ -10,10 +11,30 @@ class FakeApiSession:
     cookies: RequestsCookieJar
     endpoints: dict[str, Callable[[Request], Response]] = {}
     logged_in: bool
+    last_request: Request
 
     def __init__(self):
         self.history = []
-        self.cookies = RequestsCookieJar()
+        self.cookies = requests.utils.cookiejar_from_dict({
+            "csrftoken": "token",
+            "edx-user-info": "userinfp",
+            "edxloggedin": "true",
+            "sessionid": "sid",
+            "openedx-language-preference": "ru",
+            "KEYCLOAK_SESSION": "openedu/123",
+            "KEYCLOAK_IDENTITY": "123",
+            "KEYCLOAK_SESSION_LEGACY": "openedu/123",
+            "KEYCLOAK_REMEMBER_ME": "username:user",
+            "AUTH_SESSION_ID": "asid",
+            "KEYCLOAK_IDENTITY_LEGACY": "id",
+            "KEYCLOAK_LOCALE": "ru",
+            "AUTH_SESSION_ID_LEGACY": "asid",
+            "KC_RESTART": "keysee-restart",
+            "edx-jwt-cookie-header-payload": "jwt",
+            "edx-jwt-cookie-signature": "jwt-sign"
+        })
+
+
 
     @staticmethod
     def register(url: str):
@@ -42,6 +63,7 @@ class FakeApiSession:
             r.history += resp.history
             r.history.insert(0, resp)
             resp = r
+        self.last_request = req
         return resp
 
     def get(self, url, *, headers=None, cookies=None, params=None, allow_redirects=None):

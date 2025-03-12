@@ -1,4 +1,5 @@
 from requests import Response
+from requests.cookies import RequestsCookieJar
 
 from images.image_describer import ImageDescriber
 from openedu.questions.choice import ChoiceQuestion
@@ -9,11 +10,11 @@ from solvers.abstract_solver import AbstractSolver
 
 class FakeSession:
     history: list
-    cookies: dict
+    cookies: RequestsCookieJar
 
     def __init__(self):
         self.history = []
-        self.cookies = {}
+        self.cookies = RequestsCookieJar()
 
     def get(self, url, *, headers=None, cookies=None):
         print("fake get")
