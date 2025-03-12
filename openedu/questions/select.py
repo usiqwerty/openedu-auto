@@ -13,7 +13,7 @@ class SelectQuestion(BaseModel, Question):
     def query(self) -> str:
         return (f"{self.text}\n"
                 f"В ответе напиши только ответ, без каких-либо дополнений и поясненийх. Ты можешь выбирать только среди вариантов:\n" +
-                '\n'.join(f"{ans}" for ans in self.options))
+                '\n'.join(f"{ans[0]}" for ans in self.options))
 
 
 def parse_select_question(tag: Tag) -> SelectQuestion:

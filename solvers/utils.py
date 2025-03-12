@@ -101,4 +101,11 @@ def compose_freematch(flat_answers: list[str], question: FreeMatchQuestion):
 
 
 def compose_select(answer: str, question: SelectQuestion):
-    return question.id, answer.strip()
+    ans_id = None
+    for opt, option_id in question.options:
+        if opt == answer.strip():
+            ans_id = option_id
+            break
+    if ans_id is None:
+        raise NoSolutionFoundError
+    return question.id, ans_id
