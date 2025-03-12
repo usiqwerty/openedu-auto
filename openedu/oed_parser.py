@@ -53,6 +53,11 @@ class OpenEduParser:
             q = self.parse_question(problem)
             questions.append(q)
         else:
+            wrappers = problem.find_all("div", attrs={"class": "wrapper-problem-response"})
+            if len(wrappers) > 1:
+                if not all(w.select("legend, p") for w in wrappers):
+                    raise Exception("Non-separated questions")
+
             for question_tag in problem.find_all("div", attrs={"class": "wrapper-problem-response"}):
                 q = self.parse_question(question_tag)
                 questions.append(q)

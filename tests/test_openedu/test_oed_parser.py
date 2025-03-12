@@ -22,16 +22,17 @@ def test_parse_sequential_block(inp):
 
 @pytest.mark.parametrize(
     "testname",
-    ["test", "free_match_whole_page", "multiple_questions_in_prob"]
+    ["test", "free_match_whole_page", "multiple_questions_in_prob", "with_video"]
 )
 def test_parse_vertical_block_html(testname: str):
     filename_input = f"tests/data/pages/{testname}.html"
     filename_result = f"tests/data/pages/{testname}.json"
     # TODO: use utf-8
-    if testname != 'multiple_questions_in_prob':
-        enc = 'cp1251'
-    else:
+
+    if testname not in ['test', 'free_match_whole_page']:
         enc='utf-8'
+    else:
+        enc = 'cp1251'
     with open(filename_input, encoding=enc) as f:
         html = f.read()
 
