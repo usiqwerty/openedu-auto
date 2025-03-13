@@ -32,6 +32,7 @@ config_fn = os.path.join(userdata_dir, "config.json")
 blocks_fn = os.path.join(userdata_dir, "blocks.json")
 courses_fn = os.path.join(userdata_dir, "courses.json")
 solved_fn = os.path.join(userdata_dir, "solved.json")
+ignored_fn = os.path.join(userdata_dir, "ignored.json")
 
 with open(config_fn, encoding='utf-8') as f:
     config = json.load(f)

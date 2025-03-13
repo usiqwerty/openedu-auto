@@ -6,7 +6,7 @@ import requests
 import logging
 
 from cached_requests import get
-from config import get_cookies, blocks_fn, get_headers, config, courses_fn
+from config import get_cookies, blocks_fn, get_headers, courses_fn, ignored_fn
 from images.image_describer import ImageDescriber
 from openedu.api import OpenEduAPI
 from openedu.oed_parser import OpenEduParser, VerticalBlock
@@ -67,3 +67,14 @@ class OpenEduApp:
             course = self.api.course_info(course_id)
             self.api.api_storage.courses[course_id] = course
         return self.api.api_storage.courses[course_id]
+
+    def skip_forever(self, block_id):
+        try:
+            with open(ignored_fn, encoding='utf-8') as f:
+                skipped = json.load(f)
+        except FileNotFoundError:
+            skipped = []
+        skipped.append(block_id)
+
+        with open(ignored_fn, 'w', encoding='utf-8') as f:
+            json.dump(skipped, f)

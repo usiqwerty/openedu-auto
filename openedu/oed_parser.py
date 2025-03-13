@@ -41,11 +41,11 @@ class OpenEduParser:
         for ddd in soup.find_all("div", class_="problems-wrapper"):
             task_raw = str(ddd['data-content'])
             task = bs(task_raw, 'html.parser')
-            try:
-                problem = self.parse_problem(task)
-                total.append(problem)
-            except UnsupportedProblemType as e:
-                logging.error(f"Unsupported problem type: {e}")
+            # try:
+            problem = self.parse_problem(task)
+            total.append(problem)
+            # except UnsupportedProblemType as e:
+            #     logging.error(f"Unsupported problem type: {e}")
         return total
 
     def parse_problem(self, problem: BeautifulSoup) -> list[Question]:

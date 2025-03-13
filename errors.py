@@ -12,3 +12,7 @@ class UnsupportedProblemType(Exception):
 
 class LayoutError(Exception):
     pass
+
+
+class WrongAnswer(Exception):
+    pass

@@ -87,8 +87,9 @@ class OpenEduAPI:
             if not config.config.get('restrict-actions'):
                 logging.debug("[POST] publish completion")
                 r = self.session.post(url, headers=hdrs, json={"completion": 1})
-                if r.json()['result'] != 'ok':
-                    logging.error(f"Completion was not okay: {r.json()}")
+                data = r.json()
+                if 'error' in data or (data['result'] != 'ok'):
+                    logging.error(f"Completion was not okay: {data}")
                 logging.debug(r)
         self.api_storage.mark_block_as_completed(block_id)
 

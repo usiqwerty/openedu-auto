@@ -6,6 +6,7 @@ import urllib
 
 from cached_requests import CacheContext
 from config import get_headers
+from errors import WrongAnswer, UnsupportedProblemType
 from images.image_describer import ImageDescriber
 from openedu.ids import SequentialBlockID
 from openedu.oed_parser import VerticalBlock
@@ -53,8 +54,12 @@ class OpenEduAutoSolver:
 
                     for vertical in self.app.parse_sequential_block(course_id, seq_id.block_id):
                         blk = self.app.api.api_storage.blocks.get(vertical.id)
+                        if self.app.is_block_solved(blk.id):
+                            continue
                         if blk and not blk.complete:
                             self.solve_block(self.app, blk.id, vertical, course_id)
+                        else:
+                            logging.info("Requested block was already completed")
                     self.app.api.api_storage.mark_block_as_completed(seq_id.block_id)
 
     def solve_block(self, app: OpenEduApp, blkid: str, block: VerticalBlock, course_id: str):
@@ -67,9 +72,12 @@ class OpenEduAutoSolver:
             # time.sleep(5)
             app.api.publish_completion(course_id, blkid)
         elif block.type == "problem":
-            for problem in app.get_problems(blkid):
-                self.solve_problem(app, course_id, problem)
-
+            try:
+                for problem in app.get_problems(blkid):
+                    self.solve_problem(app, course_id, problem)
+            except UnsupportedProblemType as e:
+                logging.error(f"Unsupported problem type: {e}")
+                self.app.skip_forever(blkid)
         self.app.api.api_storage.mark_block_as_completed(blkid)
 
     def solve_problem(self, app: OpenEduApp, course_id: str, problem: list[Question]):
@@ -77,8 +85,7 @@ class OpenEduAutoSolver:
         input_id = None
         for question in problem:
             if isinstance(question, FreeMatchQuestion):
-                logging.warning(f"Found freematch question, skipping problem")
-                return
+                raise UnsupportedProblemType("freematch")
             try:
                 input_id, input_value = self.solver.solve(question)
                 answers[input_id] = input_value
@@ -94,5 +101,4 @@ class OpenEduAutoSolver:
         got, total = app.api.problem_check(course_id, new_block_id, answers)
         logging.info(f"Solved ({got}/{total})")
         if got < total:
-            logging.critical("Wrong answer!")
-            exit(1)
+            raise WrongAnswer
