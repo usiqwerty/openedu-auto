@@ -22,7 +22,7 @@ def test_parse_sequential_block(inp):
 
 @pytest.mark.parametrize(
     "testname",
-    ["test", "free_match_whole_page", "multiple_questions_in_prob"]
+    ["test", "free_match_whole_page", "multiple_questions_in_prob", "new_mt_and_fill"]
 )
 def test_parse_vertical_block_html(testname: str):
     filename_input = f"tests/data/pages/{testname}.html"
@@ -46,7 +46,7 @@ def test_parse_vertical_block_html(testname: str):
 
 @pytest.mark.xfail
 @pytest.mark.parametrize('testname', ["with_video", "map_problem"])
-def test_parse_vertical_block_html(testname: str):
+def test_parse_vertical_block_html_(testname: str):
     filename_input = f"tests/data/pages/{testname}.html"
     filename_result = f"tests/data/pages/{testname}.json"
     # TODO: use utf-8

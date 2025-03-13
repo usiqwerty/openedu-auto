@@ -6,13 +6,14 @@ from abc import abstractmethod, ABC
 
 import logging
 
+from openedu.questions.fill import FillQuestion
 from openedu.questions.freematch import FreeMatchQuestion
 from openedu.questions.question import Question
 from openedu.questions.choice import ChoiceQuestion
 from openedu.questions.match import MatchQuestion
 from openedu.questions.select import SelectQuestion
 from solvers.abstract_solver import AbstractSolver
-from solvers.utils import compose_choice, compose_match, compose_freematch, compose_select
+from solvers.utils import compose_choice, compose_match, compose_freematch, compose_select, compose_fill
 
 
 class LLMSolver(AbstractSolver, ABC):
@@ -89,3 +90,7 @@ class LLMSolver(AbstractSolver, ABC):
     def solve_select(self, question: SelectQuestion) -> tuple[str, str | list[str]]:
         res = self.get_answer(question.query())
         return compose_select(res, question)
+
+    def solve_fill(self, question: FillQuestion):
+        res = self.get_answer(question.query())
+        return compose_fill(res, question)

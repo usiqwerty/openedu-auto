@@ -26,7 +26,7 @@ def parse_choice_question(questions: Tag):
         elif child.name == "div":
             legend = child.find('legend')
             if legend:
-                problem_text = legend.text
+                problem_text += legend.text
             qs = [question.text.strip() for question in child.find_all('label')]
             ids = [qid['id'] for qid in child.find_all('input')]
 

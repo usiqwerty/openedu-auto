@@ -5,6 +5,7 @@ import logging
 from errors import LayoutError, UnsupportedProblemType
 from images.image_describer import ImageDescriber
 from openedu.questions.choice import parse_choice_question
+from openedu.questions.fill import parse_fill_question
 from openedu.questions.freematch import parse_freematch_question
 from openedu.questions.match import parse_match_question
 from openedu.questions.question import Question
@@ -80,6 +81,8 @@ class OpenEduParser:
                 question = parse_freematch_question(question_tag, self.describer)
         elif question_tag.find('select'):
             question = parse_select_question(question_tag)
+        elif question_tag.select_one('input[type=text]'):
+            question = parse_fill_question(question_tag)
         else:
             problem_type = "choice"
             question = parse_choice_question(question_tag)

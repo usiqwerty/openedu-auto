@@ -1,6 +1,7 @@
 import re
 
 from errors import NoSolutionFoundError
+from openedu.questions.fill import FillQuestion
 from openedu.questions.freematch import FreeMatchQuestion
 from openedu.questions.select import SelectQuestion
 from fuzzywuzzy import fuzz
@@ -109,3 +110,7 @@ def compose_select(answer: str, question: SelectQuestion):
     if ans_id is None:
         raise NoSolutionFoundError
     return question.id, ans_id
+
+
+def compose_fill(answer: str, question: FillQuestion):
+    return question.id, answer
