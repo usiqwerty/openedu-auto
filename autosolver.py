@@ -7,6 +7,7 @@ import urllib
 from cached_requests import CacheContext
 from config import get_headers
 from images.image_describer import ImageDescriber
+from openedu.ids import SequentialBlockID
 from openedu.oed_parser import VerticalBlock
 from openedu.openeduapp import OpenEduApp
 from openedu.questions.freematch import FreeMatchQuestion
@@ -19,23 +20,42 @@ class OpenEduAutoSolver:
     solver: AbstractSolver
     describer: ImageDescriber
     app: OpenEduApp
+    cache_context: CacheContext
 
     def __init__(self, solver: AbstractSolver, describer: ImageDescriber):
         self.solver = solver
         self.describer = describer
         self.app = OpenEduApp(self.describer)
+        self.cache_context = CacheContext([lambda: self.app.api.auth.save(), lambda: self.app.api.save_cache()])
 
-    def solve_course(self, url: str):
+    def solve_by_url(self, url: str):
         course_id, seq, ver = parse_page_url(url)
         logging.debug(f"Course: {course_id}")
         logging.debug(f"Starting at block {seq}")
 
-        with CacheContext([lambda: self.app.api.auth.save(), lambda: self.app.api.save_cache()]):
+        with self.cache_context:
             self.app.api.auth.refresh()
             # self.app.api.get("https://courses.openedu.ru/csrf/api/v1/token") #update token
             self.app.parse_and_save_sequential_block(course_id, seq.block_id)
             for blkid, block in self.app.iterate_incomplete_blocks():
                 self.solve_block(self.app, blkid, block, course_id)
+
+    def solve_course(self, course_id: str):
+        with self.cache_context:
+            course = self.app.get_course_info(course_id)
+            self.app.api.auth.refresh()
+            for ch in course.chapters:
+                for seq in ch.sequentials:
+                    seq_id = SequentialBlockID.parse(seq)
+
+                    if self.app.is_block_solved(seq_id.block_id):
+                        continue
+
+                    for vertical in self.app.parse_sequential_block(course_id, seq_id.block_id):
+                        blk = self.app.api.api_storage.blocks.get(vertical.id)
+                        if blk and not blk.complete:
+                            self.solve_block(self.app, blk.id, vertical, course_id)
+                    self.app.api.api_storage.mark_block_as_completed(seq_id.block_id)
 
     def solve_block(self, app: OpenEduApp, blkid: str, block: VerticalBlock, course_id: str):
         logging.debug(blkid)
@@ -49,8 +69,8 @@ class OpenEduAutoSolver:
         elif block.type == "problem":
             for problem in app.get_problems(blkid):
                 self.solve_problem(app, course_id, problem)
-            self.app.api.api_storage.mark_block_as_completed(blkid)
-            return
+
+        self.app.api.api_storage.mark_block_as_completed(blkid)
 
     def solve_problem(self, app: OpenEduApp, course_id: str, problem: list[Question]):
         answers = {}

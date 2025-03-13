@@ -30,6 +30,8 @@ def get_cookies(csrf):
 userdata_dir = "userdata"
 config_fn = os.path.join(userdata_dir, "config.json")
 blocks_fn = os.path.join(userdata_dir, "blocks.json")
+courses_fn = os.path.join(userdata_dir, "courses.json")
+solved_fn = os.path.join(userdata_dir, "solved.json")
 
 with open(config_fn, encoding='utf-8') as f:
     config = json.load(f)

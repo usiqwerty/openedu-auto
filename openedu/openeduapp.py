@@ -6,7 +6,7 @@ import requests
 import logging
 
 from cached_requests import get
-from config import get_cookies, blocks_fn, get_headers, config
+from config import get_cookies, blocks_fn, get_headers, config, courses_fn
 from images.image_describer import ImageDescriber
 from openedu.api import OpenEduAPI
 from openedu.oed_parser import OpenEduParser, VerticalBlock
@@ -31,9 +31,17 @@ class OpenEduApp:
             json.dump({k: v.json() for k, v in self.api.api_storage.blocks.items()}, f)
         logging.debug("Blocks saved")
 
-    def parse_and_save_sequential_block(self, course_id: str, block_id: str):
+    def parse_sequential_block(self, course_id: str, block_id: str):
         r = self.api.get_sequential_block(course_id, block_id)
         for blk in self.parser.parse_sequential_block_(r):
+            self.add_block_and_save(blk)
+            yield blk
+
+    def is_block_solved(self, block_id: str) -> bool:
+        return block_id in self.api.api_storage.solved
+
+    def parse_and_save_sequential_block(self, course_id: str, block_id: str):
+        for blk in self.parse_sequential_block(course_id, block_id):
             self.add_block_and_save(blk)
 
     def iterate_incomplete_blocks(self):
@@ -53,3 +61,9 @@ class OpenEduApp:
 
     def login(self, username: str, password: str):
         self.api.auth.login(username, password)
+
+    def get_course_info(self, course_id: str):
+        if course_id not in self.api.api_storage.courses:
+            course = self.api.course_info(course_id)
+            self.api.api_storage.courses[course_id] = course
+        return self.api.api_storage.courses[course_id]

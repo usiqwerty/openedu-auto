@@ -1,7 +1,8 @@
 from bs4 import BeautifulSoup as bs, BeautifulSoup, Tag
 from pydantic import BaseModel
+import logging
 
-from errors import LayoutError
+from errors import LayoutError, UnsupportedProblemType
 from images.image_describer import ImageDescriber
 from openedu.questions.choice import parse_choice_question
 from openedu.questions.freematch import parse_freematch_question
@@ -40,14 +41,19 @@ class OpenEduParser:
         for ddd in soup.find_all("div", class_="problems-wrapper"):
             task_raw = str(ddd['data-content'])
             task = bs(task_raw, 'html.parser')
-            problem = self.parse_problem(task)
-            total.append(problem)
-
+            try:
+                problem = self.parse_problem(task)
+                total.append(problem)
+            except UnsupportedProblemType as e:
+                logging.error(f"Unsupported problem type: {e}")
         return total
 
     def parse_problem(self, problem: BeautifulSoup) -> list[Question]:
         questions = []
         mt = problem.find('div', class_='matching_table')
+        map = problem.find("div", class_="historical-path-container")
+        if map:
+            raise UnsupportedProblemType("historical-path-container")
         # а здесь мы делаем очень смелое предположение, что если matching table есть в задаче,
         # то ничего другого там не встречается
         if mt:

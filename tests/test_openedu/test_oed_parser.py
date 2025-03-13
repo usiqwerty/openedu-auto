@@ -45,7 +45,7 @@ def test_parse_vertical_block_html(testname: str):
 
 
 @pytest.mark.xfail
-@pytest.mark.parametrize('testname', ["with_video"])
+@pytest.mark.parametrize('testname', ["with_video", "map_problem"])
 def test_parse_vertical_block_html(testname: str):
     filename_input = f"tests/data/pages/{testname}.html"
     filename_result = f"tests/data/pages/{testname}.json"

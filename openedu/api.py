@@ -6,9 +6,10 @@ from typing import Any
 from requests import Session
 
 import config
-from openedu.auth import OpenEduAuth
 from cached_requests import cache_fn
 from config import get_headers
+from openedu.auth import OpenEduAuth
+from openedu.course import Course, Chapter
 from openedu.local_api_storage import LocalApiStorage
 
 referer_params = urllib.parse.urlencode({
@@ -42,9 +43,9 @@ class OpenEduAPI:
                f"+block@{block_id}")
         hdrs = get_headers(referer='https://apps.openedu.ru/', origin='https://apps.openedu.ru')
         hdrs["USE-JWT-COOKIE"] = 'true'
-        hdrs['Sec-Fetch-Dest']='empty'
-        hdrs['Sec-Fetch-Mode']='cors'
-        hdrs['Sec-Fetch-Site']='same-site'
+        hdrs['Sec-Fetch-Dest'] = 'empty'
+        hdrs['Sec-Fetch-Mode'] = 'cors'
+        hdrs['Sec-Fetch-Site'] = 'same-site'
 
         # json_result = get(url, self.session, headers=hdrs)
         r = self.session.get(url, headers=hdrs, cookies={})
@@ -77,7 +78,7 @@ class OpenEduAPI:
 
         if not self.api_storage.is_block_complete(block_id):
             logging.debug(f"[COMPLETE] {url}")
-            referer=f"https://courses.openedu.ru/xblock/{block_id}?show_title=0&show_bookmark_button=0&recheck_access=1&view=student_view"
+            referer = f"https://courses.openedu.ru/xblock/{block_id}?show_title=0&show_bookmark_button=0&recheck_access=1&view=student_view"
             hdrs = {
                 "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/113.0",
                 'X-CSRFToken': self.session.cookies.get('csrftoken'),
@@ -119,6 +120,33 @@ class OpenEduAPI:
         else:
             logging.debug(f"False answer check {answers}")
             return 0, 0
+
+    def course_info(self, course_id):
+        headers = {"Host": "courses.openedu.ru",
+                   "Origin": "https://apps.openedu.ru",
+                   "Referer": "https://apps.openedu.ru/",
+                   "Sec-Fetch-Dest": "empty",
+                   "Sec-Fetch-Mode": "cors",
+                   "Sec-Fetch-Site": "same-site",
+                   "USE-JWT-COOKIE": "true",
+                   "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:135.0) Gecko/20100101 Firefox/135.0"
+                   }
+        r = self.session.get(f"https://courses.openedu.ru/api/course_home/outline/course-v1:{course_id}", headers=headers)
+        data = r.json()
+        course_block = None
+        blocks = data['course_blocks']['blocks']
+        for blk in blocks.values():
+            if blk['type'] == 'course':
+                course_block = blk
+                break
+
+        course_name = course_block['display_name']
+        chapters = []
+        for chapter_id in course_block['children']:
+            chapter_name = blocks[chapter_id]['display_name']
+            chapters.append(Chapter(name=chapter_name, sequentials=blocks[chapter_id]['children']))
+
+        return Course(id=course_id, name=course_name, chapters=chapters)
 
     # def next_page(self):
     #     curtab = 2
