@@ -1,19 +1,14 @@
 import logging
-import re
-import time
 import traceback
-import urllib
 
 from cached_requests import CacheContext
-from config import get_headers
 from errors import WrongAnswer, UnsupportedProblemType
 from images.image_describer import ImageDescriber
 from openedu.ids import SequentialBlockID
 from openedu.oed_parser import VerticalBlock
-from openedu.openeduapp import OpenEduApp
+from openedu.openeduapp import OpenEduApp, extract_quest_id
 from openedu.questions.freematch import FreeMatchQuestion
 from openedu.questions.question import Question
-from openedu.utils import parse_page_url
 from solvers.abstract_solver import AbstractSolver
 
 
@@ -29,17 +24,17 @@ class OpenEduAutoSolver:
         self.app = OpenEduApp(self.describer)
         self.cache_context = CacheContext([lambda: self.app.api.auth.save(), lambda: self.app.api.save_cache()])
 
-    def solve_by_url(self, url: str):
-        course_id, seq, ver = parse_page_url(url)
-        logging.debug(f"Course: {course_id}")
-        logging.debug(f"Starting at block {seq}")
-
-        with self.cache_context:
-            self.app.api.auth.refresh()
-            # self.app.api.get("https://courses.openedu.ru/csrf/api/v1/token") #update token
-            self.app.parse_and_save_sequential_block(course_id, seq.block_id)
-            for blkid, block in self.app.iterate_incomplete_blocks():
-                self.solve_block(self.app, blkid, block, course_id)
+    # def solve_by_url(self, url: str):
+    #     course_id, seq, ver = parse_page_url(url)
+    #     logging.debug(f"Course: {course_id}")
+    #     logging.debug(f"Starting at block {seq}")
+    #
+    #     with self.cache_context:
+    #         self.app.api.auth.refresh()
+    #         # self.app.api.get("https://courses.openedu.ru/csrf/api/v1/token") #update token
+    #         self.app.parse_and_save_sequential_block(course_id, seq.block_id)
+    #         for blkid, block in self.app.incomplete_blocks():
+    #             self.solve_block(self.app, blkid, block, course_id)
 
     def solve_course(self, course_id: str):
         with self.cache_context:
@@ -52,17 +47,17 @@ class OpenEduAutoSolver:
                     if self.app.is_block_solved(seq_id.block_id):
                         continue
 
-                    for vertical in self.app.parse_sequential_block(course_id, seq_id.block_id):
-                        blk = self.app.api.api_storage.blocks.get(vertical.id)
+                    for vertical in self.app.get_sequential_block(course_id, seq_id.block_id):
+                        blk = self.app.get_vertical_block(vertical.id)
                         if self.app.is_block_solved(blk.id):
                             continue
                         if blk and not blk.complete:
-                            self.solve_block(self.app, blk.id, vertical, course_id)
+                            self.solve_vertical(self.app, blk.id, vertical, course_id)
                         else:
                             logging.info("Requested block was already completed")
                     self.app.api.api_storage.mark_block_as_completed(seq_id.block_id)
 
-    def solve_block(self, app: OpenEduApp, blkid: str, block: VerticalBlock, course_id: str):
+    def solve_vertical(self, app: OpenEduApp, blkid: str, block: VerticalBlock, course_id: str):
         logging.debug(blkid)
         logging.debug(f"Block '{block.title}' (complete={block.complete}) of type '{block.type}'")
         if block.type == 'other':
@@ -73,7 +68,7 @@ class OpenEduAutoSolver:
             app.api.publish_completion(course_id, blkid)
         elif block.type == "problem":
             try:
-                for problem in app.get_problems(blkid):
+                for problem in app.get_problems_for_vertical(blkid):
                     self.solve_problem(app, course_id, problem)
             except UnsupportedProblemType as e:
                 logging.error(f"Unsupported problem type: {e}")
@@ -95,7 +90,7 @@ class OpenEduAutoSolver:
                 exit(1)
         if input_id is None:
             return
-        quest_id = app.extract_quest_id(input_id)
+        quest_id = extract_quest_id(input_id)
         print(f"{answers=}")
         new_block_id = f"block-v1:{course_id}+type@problem+block@{quest_id}"
         got, total = app.api.problem_check(course_id, new_block_id, answers)

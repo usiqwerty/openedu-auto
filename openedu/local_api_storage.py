@@ -37,20 +37,11 @@ class LocalApiStorage:
             except FileNotFoundError:
                 self.solved = set()
         else:
-            self.blocks = blocks
-
-    # TODO: what the hell
-    #  duplicate method
-    def is_block_complete(self, block_id: str):
-        return self.blocks[block_id].complete
+            # self.blocks = blocks
+            pass
 
     def mark_block_as_completed(self, block_id: str):
         if not config.config.get('restrict-actions'):
-            if block_id in self.blocks:
-                self.blocks[block_id].complete = True
-                logging.info("Block completed")
-            else:
-                logging.warning("block that we are checking is not saved, this should not have happened")
             self.solved.add(block_id)
             logging.info(f"Added to solved: {block_id}")
 

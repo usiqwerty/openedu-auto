@@ -149,6 +149,12 @@ class OpenEduAPI:
 
         return Course(id=course_id, name=course_name, chapters=chapters)
 
+    def get_vertical_html(self, blk: str) -> str:
+        logging.debug("Requesting xblock")
+        url = f"https://courses.openedu.ru/xblock/{blk}"
+        r = self.get(url, is_json=False)
+        return r
+
     # def next_page(self):
     #     curtab = 2
     #     tabcount = 4
