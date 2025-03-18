@@ -10,3 +10,6 @@ class Question(ABC):
         """Generate prompt for LLM"""
 
 
+    @abstractmethod
+    def compose(self, answer) -> tuple[str, str | dict]:
+        """Compose respose payload"""

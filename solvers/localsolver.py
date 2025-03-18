@@ -2,7 +2,7 @@ import csv
 
 from fuzzywuzzy import process
 
-from solvers.utils import compose_choice
+from openedu.questions.choice import compose_choice
 
 answers: list[list[str, str]] = []
 

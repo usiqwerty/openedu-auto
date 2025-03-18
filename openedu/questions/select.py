@@ -1,6 +1,7 @@
 from bs4 import Tag
 from pydantic import BaseModel
 
+from errors import NoSolutionFoundError
 from openedu.questions.question import Question
 
 
@@ -14,6 +15,16 @@ class SelectQuestion(BaseModel, Question):
         return (f"{self.text}\n"
                 f"В ответе напиши только ответ, без каких-либо дополнений и поясненийх. Ты можешь выбирать только среди вариантов:\n" +
                 '\n'.join(f"{ans[0]}" for ans in self.options))
+
+    def compose(self, answer: str):
+        ans_id = None
+        for opt, option_id in self.options:
+            if opt == answer.strip():
+                ans_id = option_id
+                break
+        if ans_id is None:
+            raise NoSolutionFoundError
+        return self.id, ans_id
 
 
 def parse_select_question(tag: Tag) -> SelectQuestion:

@@ -3,8 +3,10 @@ import urllib.parse
 from bs4 import Tag
 from pydantic import BaseModel
 
+from errors import NoSolutionFoundError
 from images.image_describer import ImageDescriber
 from openedu.questions.question import Question
+from solvers.utils import lookup_option_id_in_columns
 
 
 class FreeMatchQuestion(BaseModel, Question):
@@ -34,6 +36,21 @@ class FreeMatchQuestion(BaseModel, Question):
 {'\n'.join(x[0] for x in self.option_columns[1])}
 
 """
+
+    def compose(self, flat_answers: list[str]):
+        col_num = 2
+        answer = {}
+
+        for i in range(0, len(flat_answers), col_num):
+            row_ = i // col_num
+            for col in range(col_num):
+                row_key = self.field_columns[col][row_]
+                ans_id = lookup_option_id_in_columns(flat_answers[i + col], self.option_columns)
+                if ans_id is None:
+                    raise NoSolutionFoundError(f"Answer {flat_answers} does not solve {self!r}")
+                answer[row_key] = [ans_id]
+
+        return self.id, str({'answer': answer})
 
 
 def parse_freematch_question(problem: Tag, describer: ImageDescriber):

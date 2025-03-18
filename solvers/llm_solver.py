@@ -8,12 +8,10 @@ import logging
 
 from openedu.questions.fill import FillQuestion
 from openedu.questions.freematch import FreeMatchQuestion
-from openedu.questions.question import Question
 from openedu.questions.choice import ChoiceQuestion
 from openedu.questions.match import MatchQuestion
 from openedu.questions.select import SelectQuestion
 from solvers.abstract_solver import AbstractSolver
-from solvers.utils import compose_choice, compose_match, compose_freematch, compose_select, compose_fill
 
 
 class LLMSolver(AbstractSolver, ABC):
@@ -75,22 +73,21 @@ class LLMSolver(AbstractSolver, ABC):
             res = raw[0]
         else:
             res = raw
-        return compose_choice(res, question.ids, question.options)
+        return question.compose(res)
 
     def solve_match(self, question: MatchQuestion):
         res = self.get_answer(question.query()).split('\n')
-
-        return compose_match(res, question.fields, question.options, question.id)
+        return question.compose(res)
 
     def solve_freematch(self, question: FreeMatchQuestion):
         res = self.get_answer(question.query()).split('\n')
         res = list(filter(lambda x: x, res))
-        return compose_freematch(res, question)
+        return question.compose(res)
 
     def solve_select(self, question: SelectQuestion) -> tuple[str, str | list[str]]:
         res = self.get_answer(question.query())
-        return compose_select(res, question)
+        return question.compose(res)
 
     def solve_fill(self, question: FillQuestion):
         res = self.get_answer(question.query())
-        return compose_fill(res, question)
+        return question.compose(res)

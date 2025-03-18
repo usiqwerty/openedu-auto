@@ -1,8 +1,10 @@
 from bs4 import Tag
 from pydantic import BaseModel
 
+from errors import NoSolutionFoundError
 from openedu.questions.question import Question
 from openedu.utils import ensure_ids_same
+from solvers.utils import get_similar_index, extract_choice_from_id
 
 
 class ChoiceQuestion(BaseModel, Question):
@@ -15,6 +17,12 @@ class ChoiceQuestion(BaseModel, Question):
         return (f"{self.text}\n"
                 f"В ответе напиши только ответ, без каких-либо дополнений и пояснений, разные ответы пиши в разных строках. Ты можешь выбирать только среди вариантов:\n" +
                 '\n'.join(f"{ans}" for ans in self.options))
+
+    def compose(self, answer: list[str] | str):
+        if isinstance(answer, str):
+            return singular_choice(answer, self.ids, self.options)
+        else:
+            return plural_choice(answer, self.ids, self.options)
 
 
 def parse_choice_question(questions: Tag):
@@ -33,3 +41,37 @@ def parse_choice_question(questions: Tag):
             if ids:
                 ensure_ids_same(ids)
                 return ChoiceQuestion(text=problem_text, options=qs, ids=ids)
+
+
+def plural_choice(answer: list, ids: list[str], options: list[str]) -> tuple[str, str | list[str]]:
+    choices = []
+    for ans in answer:
+        try:
+            index = options.index(ans)
+        except ValueError:
+            index = get_similar_index(ans, options)
+            if index is None:
+                raise NoSolutionFoundError(f"'{ans}' was not a present option: {options}")
+        ans_input_id = ids[index]
+        quest_id, choice_id = extract_choice_from_id(ans_input_id)
+        choices.append(choice_id)
+    quest_id += "[]"
+    return quest_id, choices
+
+
+def singular_choice(answer: str, ids: list[str], options: list[str]) -> tuple[str, str | list[str]]:
+    if answer in options:
+        index = options.index(answer)
+        ans_input_id = ids[index]
+        quest_id, choice_id = extract_choice_from_id(ans_input_id)
+
+        return quest_id, choice_id
+    else:
+        index = get_similar_index(answer, options)
+        if index is None:
+            raise NoSolutionFoundError(f"'{answer}' is not in options {options}")
+
+    ans_input_id = ids[index]
+    quest_id, choice_id = extract_choice_from_id(ans_input_id)
+
+    return quest_id, choice_id

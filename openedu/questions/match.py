@@ -2,6 +2,7 @@ from bs4 import Tag
 from pydantic import BaseModel
 
 from openedu.questions.question import Question
+from solvers.utils import get_ans_id
 
 
 class MatchQuestion(BaseModel, Question):
@@ -41,6 +42,14 @@ class MatchQuestion(BaseModel, Question):
 Звезда
 Спутник
 """
+
+    def compose(self, answers: list[str]):
+        choices = {}
+        # {"a1": [], "a2": [], "a3": [], "a4": [], "a5": ["b1"]}
+        for field, ans in zip(self.fields, answers):
+            field_name, field_id = field
+            choices[field_id] = [get_ans_id(self.options, ans)]
+        return self.id, str({"answer": choices}).replace("'", '"')
 
 
 def parse_match_question(problem: Tag):

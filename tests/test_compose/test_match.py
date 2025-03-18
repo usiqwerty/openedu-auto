@@ -1,7 +1,7 @@
 import pytest
 
 from errors import NoSolutionFoundError
-from solvers.utils import compose_match
+from openedu.questions.match import MatchQuestion
 
 
 def test_success():
@@ -17,7 +17,8 @@ def test_success():
     ans = ["first_option", "third_option"]
     qid = "asod"
     should = {'answer': {"a1": ["b1"], "a2": ["b3"]}}
-    assert compose_match(ans, fields, options, qid) == (qid, str(should).replace("'", '"'))
+    q = MatchQuestion(text="", id=qid, options=options, fields=fields)
+    assert q.compose(ans) == (qid, str(should).replace("'", '"'))
 
 
 def test_no_solution():
@@ -32,5 +33,6 @@ def test_no_solution():
     ]
     ans = ["first_option", "fourth_option"]
     qid = "question id"
+    q = MatchQuestion(text="", id=qid, options=options, fields=fields)
     with pytest.raises(NoSolutionFoundError):
-        compose_match(ans, fields, options, qid)
+        q.compose(ans)

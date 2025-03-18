@@ -2,7 +2,6 @@ import pytest
 
 from errors import NoSolutionFoundError
 from openedu.questions.freematch import FreeMatchQuestion
-from solvers.utils import compose_freematch
 
 d = {
     "column_headers": ["Имя", "Изображение"
@@ -33,7 +32,7 @@ def test_success():
     ans = ["С.М. Соловьев", "Изображение: С.М. Соловьев"]
     should = str({'answer': {"a1": ["b2"], "a2": ["f2"]}})
     q = FreeMatchQuestion(**d)
-    assert compose_freematch(ans, q) == (q.id, should)
+    assert q.compose(ans) == (q.id, should)
 
 
 def test_no_answer():
@@ -41,4 +40,4 @@ def test_no_answer():
 
     q = FreeMatchQuestion(**d)
     with pytest.raises(NoSolutionFoundError):
-        compose_freematch(ans, q)
+        q.compose(ans)
