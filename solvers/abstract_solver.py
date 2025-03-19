@@ -4,6 +4,7 @@ from openedu.questions.choice import ChoiceQuestion
 from openedu.questions.fill import FillQuestion
 from openedu.questions.freematch import FreeMatchQuestion
 from openedu.questions.match import MatchQuestion
+from openedu.questions.new_match import NewMatchQuestion
 from openedu.questions.select import SelectQuestion
 
 
@@ -26,6 +27,8 @@ class AbstractSolver(ABC):
             return self.solve_select(question)
         elif isinstance(question, FillQuestion):
             return self.solve_fill(question)
+        elif isinstance(question, NewMatchQuestion):
+            return self.solve_new_match(question)
 
     @abstractmethod
     def solve_choice(self, question: ChoiceQuestion) -> tuple[str, str | list[str]]:
@@ -45,4 +48,8 @@ class AbstractSolver(ABC):
 
     @abstractmethod
     def solve_fill(self, question: FillQuestion) -> tuple[str, str | list[str]]:
+        pass
+
+    @abstractmethod
+    def solve_new_match(self, question: NewMatchQuestion) -> tuple[str, str | list[str]]:
         pass
