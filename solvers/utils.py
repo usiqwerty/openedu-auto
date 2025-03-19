@@ -17,7 +17,7 @@ def get_ans_id(answers: list[tuple[str, str]], answer: str):
 
 def get_similar_index(ans: str, options: list[str]):
     for i, opt in enumerate(options):
-        threshold = 95
+        threshold = 90
 
         if max(len(opt), len(ans)) <= 7:
             threshold = 85

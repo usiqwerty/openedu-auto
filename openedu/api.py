@@ -65,12 +65,13 @@ class OpenEduAPI:
                f"{block_id}"
                "/handler/publish_completion")
 
-        if not self.api_storage.is_block_complete(block_id):
+        if not block_id in self.api_storage.solved:
             logging.debug(f"[COMPLETE] {url}")
+
             referer = f"https://courses.openedu.ru/xblock/{block_id}?show_title=0&show_bookmark_button=0&recheck_access=1&view=student_view"
             hdrs = {
                 "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/113.0",
-                'X-CSRFToken': self.session.cookies.get('csrftoken'),
+                'X-CSRFToken': self.session.cookies.get('csrftoken', domain=''),
                 "Referer": referer
             }
             if not config.config.get('restrict-actions'):
