@@ -9,6 +9,7 @@ from openedu.oed_parser import VerticalBlock
 from openedu.openeduapp import OpenEduApp, extract_quest_id
 from openedu.questions.freematch import FreeMatchQuestion
 from openedu.questions.question import Question
+from openedu.utils import parse_page_url
 from solvers.abstract_solver import AbstractSolver
 
 
@@ -22,19 +23,20 @@ class OpenEduAutoSolver:
         self.solver = solver
         self.describer = describer
         self.app = OpenEduApp(self.describer)
-        self.cache_context = CacheContext([lambda: self.app.api.auth.save(), lambda: self.app.api.save_cache()])
+        self.cache_context = CacheContext([lambda: self.app.api.auth.save()])
 
-    # def solve_by_url(self, url: str):
-    #     course_id, seq, ver = parse_page_url(url)
-    #     logging.debug(f"Course: {course_id}")
-    #     logging.debug(f"Starting at block {seq}")
-    #
-    #     with self.cache_context:
-    #         self.app.api.auth.refresh()
-    #         # self.app.api.get("https://courses.openedu.ru/csrf/api/v1/token") #update token
-    #         self.app.parse_and_save_sequential_block(course_id, seq.block_id)
-    #         for blkid, block in self.app.incomplete_blocks():
-    #             self.solve_block(self.app, blkid, block, course_id)
+    def solve_by_url(self, url: str):
+        course_id, seq, ver = parse_page_url(url)
+        logging.debug(f"Course: {course_id}")
+        logging.debug(f"Starting at block {seq}")
+
+        with self.cache_context:
+            self.app.api.auth.refresh()
+            # self.app.api.get("https://courses.openedu.ru/csrf/api/v1/token") #update token
+            for vert in self.app.get_sequential_block(course_id, seq.block_id):
+                print(vert)
+            # for blkid, block in self.app.incomplete_blocks():
+            #     self.solve_block(self.app, blkid, block, course_id)
 
     def solve_course(self, course_id: str):
         with self.cache_context:

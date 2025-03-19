@@ -67,7 +67,6 @@ class OpenEduAuth:
         """Perform full login process"""
         headers = {
             "User-Agent": self.user_agent,
-            "Host": "openedu.ru",
             "Accept": "application/json, text/plain, */*",
             "Accept-Language": "en-US,en;q=0.5",
             "Sec-Fetch-Dest": "empty",
@@ -77,7 +76,6 @@ class OpenEduAuth:
         rr = self.session.get('https://openedu.ru/', headers=headers)
         rd = self.session.get('https://openedu.ru/login/npoedsso/', params={"next": "/"}, headers=headers, allow_redirects=False)
         assert rd.status_code == 302
-        headers['Host'] = 'sso.openedu.ru'
         r = self.session.get(rd.headers['Location'], headers=headers)
         return self.post_login_data(username, password, r.text)
 
@@ -90,7 +88,6 @@ class OpenEduAuth:
         params = urllib.parse.parse_qs(res.query)
         headers = {
             "User-Agent": self.user_agent,
-            "Host": res.netloc,
             "Accept": "application/json, text/plain, */*",
             "Accept-Language": "en-US,en;q=0.5",
             "Sec-Fetch-Dest": "empty",
@@ -103,7 +100,6 @@ class OpenEduAuth:
         logging.debug("Login refresh")
         headers = {
             "User-Agent": self.user_agent,
-            "Host": "courses.openedu.ru",
             "Accept": "application/json, text/plain, */*",
             "Referer": 'https://apps.openedu.ru/',
             "Origin": 'https://apps.openedu.ru',
@@ -112,8 +108,8 @@ class OpenEduAuth:
             "Sec-Fetch-Mode": "cors",
             "Sec-Fetch-Site": "same-site"
         }
-        with CookieContext(self.session, COURSES_COOKIES):
-            r = self.session.post("https://courses.openedu.ru/login_refresh", headers=headers)
+        # with CookieContext(self.session, COURSES_COOKIES):
+        r = self.session.post("https://courses.openedu.ru/login_refresh", headers=headers)
         return r
         if r.status_code == 200:
             return
@@ -134,7 +130,6 @@ class OpenEduAuth:
             "Accept": 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
             "Accept-Language": "en-US,en;q=0.5",
             "Referer": "https://apps.openedu.ru/",
-            "Host": "courses.openedu.ru",
             'Upgrade-Insecure-Requests': '1',
             "Sec-Fetch-Dest": "document",
             "Sec-Fetch-Mode": "navigate",
@@ -142,26 +137,22 @@ class OpenEduAuth:
             "Priority": 'u=0, i'
         }
         url = 'https://courses.openedu.ru/auth/login/keycloak/'
-        with CookieContext(self.session, COURSES_COOKIES):
-            r = self.session.get(url, headers=h, params=params, allow_redirects=False)
+        # with CookieContext(self.session, COURSES_COOKIES):
+        r = self.session.get(url, headers=h, params=params)
         return r
 
     def openid_auth(self):
-        """"""
         h = {
             "User-Agent": self.user_agent,
             "Accept": 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
             "Accept-Language": "en-US,en;q=0.5",
             "Referer": "https://apps.openedu.ru/",
-            # "Host": "sso.openedu.ru",
             'Upgrade-Insecure-Requests': '1',
             "Sec-Fetch-Dest": "document",
             "Sec-Fetch-Mode": "navigate",
             "Sec-Fetch-Site": "same-site",
             "Priority": 'u=0, i'
         }
-
-
         url = "https://sso.openedu.ru/realms/openedu/protocol/openid-connect/auth"
         params = {
             "client_id": "edx",
@@ -171,17 +162,20 @@ class OpenEduAuth:
             "nonce": "ax6kW7bTQLtcNxeWK5HWzDxjnIiK9NOT6HR9KwjsciDgDMI7JUwlcRKKAh99oum4",
             "scope": "openid profile email"
         }
-        with CookieContext(self.session, SSO_COOKIES):
-            return self.session.get(url, params=params, headers=h)
+        # with CookieContext(self.session, SSO_COOKIES):
+        return self.session.get(url, params=params, headers=h)
 
     def refresh(self):
         """Perform full token refresh process"""
         lr = self.login_refresh()
         if lr.status_code == 200:
             return
-        oiar = self.openid_auth()
-        if oiar.status_code != 200:
-            logging.error(f"OpenID-auth returned code {oiar.status_code}")
+        lk = self.login_keycloak()
+        if lk.status_code != 200:
+            raise Exception(f"login-keycloak returned code {lk.status_code}")
+        # oiar = self.openid_auth()
+        # if oiar.status_code != 200:
+        #     raise Exception(f"OpenID-auth returned code {oiar.status_code}")
         # kr = self.login_keycloak()
         # if oiar.status_code == 200 and len(oiar.history) == 1:
         #     logn = self.post_login_data(config.config['username'], config.config['password'], oiar.text)

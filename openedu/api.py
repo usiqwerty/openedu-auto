@@ -7,7 +7,6 @@ from requests import Session
 
 import config
 from cached_requests import cache_fn
-from config import get_headers
 from openedu.auth import OpenEduAuth
 from openedu.course import Course, Chapter
 from openedu.local_api_storage import LocalApiStorage
@@ -41,11 +40,16 @@ class OpenEduAPI:
         url = (f"https://courses.openedu.ru/api/courseware/sequence/"
                f"block-v1:{course_id}+type@sequential"
                f"+block@{block_id}")
-        hdrs = get_headers(referer='https://apps.openedu.ru/', origin='https://apps.openedu.ru')
-        hdrs["USE-JWT-COOKIE"] = 'true'
-        hdrs['Sec-Fetch-Dest'] = 'empty'
-        hdrs['Sec-Fetch-Mode'] = 'cors'
-        hdrs['Sec-Fetch-Site'] = 'same-site'
+        hdrs = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/113.0",
+            "Referer": 'https://apps.openedu.ru/',
+            "Origin": 'https://apps.openedu.ru',
+            "USE-JWT-COOKIE": 'true',
+            'Sec-Fetch-Dest': 'empty',
+            'Sec-Fetch-Mode': 'cors',
+            'Sec-Fetch-Site': 'same-site',
+            "Accept": "application/json, text/plain, */*"
+        }
 
         r = self.session.get(url, headers=hdrs)
         if r.status_code == 401:
@@ -54,25 +58,6 @@ class OpenEduAPI:
         if 'developer_message' in json_result:
             raise Exception(json_result['developer_message'])
         return json_result
-
-    def get(self, url, headers=None, is_json=True):
-        if url not in self.cache:
-            logging.debug(f"Real request: {url}")
-            r = self.session.get(url, headers=headers)
-            if is_json:
-                content = r.json()
-            else:
-                content = r.text
-            if r.status_code == 200:
-                self.cache[url] = content
-            return content
-        return self.cache[url]
-
-    def save_cache(self):
-        with open(cache_fn, 'w', encoding='utf-8') as f:
-            json.dump(self.cache, f)
-        self.api_storage.save()
-        logging.debug("Cache saved")
 
     def publish_completion(self, course_id: str, block_id: str):
         url = ("https://courses.openedu.ru/courses/"
@@ -127,16 +112,17 @@ class OpenEduAPI:
             return 0, 0
 
     def course_info(self, course_id):
-        headers = {"Host": "courses.openedu.ru",
-                   "Origin": "https://apps.openedu.ru",
-                   "Referer": "https://apps.openedu.ru/",
-                   "Sec-Fetch-Dest": "empty",
-                   "Sec-Fetch-Mode": "cors",
-                   "Sec-Fetch-Site": "same-site",
-                   "USE-JWT-COOKIE": "true",
-                   "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:135.0) Gecko/20100101 Firefox/135.0"
-                   }
-        r = self.session.get(f"https://courses.openedu.ru/api/course_home/outline/course-v1:{course_id}", headers=headers)
+        headers = {
+            "Origin": "https://apps.openedu.ru",
+            "Referer": "https://apps.openedu.ru/",
+            "Sec-Fetch-Dest": "empty",
+            "Sec-Fetch-Mode": "cors",
+            "Sec-Fetch-Site": "same-site",
+            "USE-JWT-COOKIE": "true",
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:135.0) Gecko/20100101 Firefox/135.0"
+        }
+        r = self.session.get(f"https://courses.openedu.ru/api/course_home/outline/course-v1:{course_id}",
+                             headers=headers)
         data = r.json()
         course_block = None
         blocks = data['course_blocks']['blocks']
