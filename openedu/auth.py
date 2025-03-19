@@ -74,8 +74,11 @@ class OpenEduAuth:
             "Sec-Fetch-Mode": "cors",
             "Sec-Fetch-Site": "same-site"
         }
-        self.session.get('https://openedu.ru/')
-        r = self.session.get('https://openedu.ru/login/npoedsso/', params={"next": "/"}, headers=headers)
+        rr = self.session.get('https://openedu.ru/', headers=headers)
+        rd = self.session.get('https://openedu.ru/login/npoedsso/', params={"next": "/"}, headers=headers, allow_redirects=False)
+        assert rd.status_code == 302
+        headers['Host'] = 'sso.openedu.ru'
+        r = self.session.get(rd.headers['Location'], headers=headers)
         return self.post_login_data(username, password, r.text)
 
     def post_login_data(self, username: str, password: str, login_page_html: str):
@@ -85,7 +88,16 @@ class OpenEduAuth:
         res = urllib.parse.urlparse(url)
         base = f"{res.scheme}://{res.netloc}{res.path}"
         params = urllib.parse.parse_qs(res.query)
-        return self.session.post(base, data={"username": username, "password": password}, params=params)
+        headers = {
+            "User-Agent": self.user_agent,
+            "Host": res.netloc,
+            "Accept": "application/json, text/plain, */*",
+            "Accept-Language": "en-US,en;q=0.5",
+            "Sec-Fetch-Dest": "empty",
+            "Sec-Fetch-Mode": "cors",
+            "Sec-Fetch-Site": "same-site"
+        }
+        return self.session.post(base, data={"username": username, "password": password}, params=params, headers=headers)
 
     def login_refresh(self):
         logging.debug("Login refresh")
