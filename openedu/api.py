@@ -47,8 +47,9 @@ class OpenEduAPI:
         hdrs['Sec-Fetch-Mode'] = 'cors'
         hdrs['Sec-Fetch-Site'] = 'same-site'
 
-        # json_result = get(url, self.session, headers=hdrs)
-        r = self.session.get(url, headers=hdrs, cookies={})
+        r = self.session.get(url, headers=hdrs)
+        if r.status_code == 401:
+            raise Exception("Unauthorized")
         json_result = r.json()
         if 'developer_message' in json_result:
             raise Exception(json_result['developer_message'])
@@ -59,9 +60,12 @@ class OpenEduAPI:
             logging.debug(f"Real request: {url}")
             r = self.session.get(url, headers=headers)
             if is_json:
-                self.cache[url] = r.json()
+                content = r.json()
             else:
-                self.cache[url] = r.text
+                content = r.text
+            if r.status_code == 200:
+                self.cache[url] = content
+            return content
         return self.cache[url]
 
     def save_cache(self):

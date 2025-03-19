@@ -48,6 +48,7 @@ class OpenEduAuth:
         try:
             with open(self.jar_path, encoding='utf-8') as f:
                 jar_json = json.load(f)
+                logging.debug(f"Loaded {len(jar_json)} cookies from file")
         except FileNotFoundError:
             jar_json = {}
 
@@ -167,6 +168,8 @@ class OpenEduAuth:
         if lr.status_code == 200:
             return
         oiar = self.openid_auth()
+        if oiar.status_code != 200:
+            logging.error(f"OpenID-auth returned code {oiar.status_code}")
         # kr = self.login_keycloak()
         # if oiar.status_code == 200 and len(oiar.history) == 1:
         #     logn = self.post_login_data(config.config['username'], config.config['password'], oiar.text)

@@ -20,3 +20,5 @@ if not app.app.api.session.cookies:
     app.app.api.auth.save()
 
 app.solve_course('urfu+HIST+spring_2025')
+# with app.cache_context:
+#     app.app.api.auth.refresh()
