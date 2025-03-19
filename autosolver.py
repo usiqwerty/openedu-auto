@@ -45,6 +45,7 @@ class OpenEduAutoSolver:
             course = self.app.get_course_info(course_id)
             self.app.api.auth.refresh()
             for ch in course.chapters:
+                print(f"Chapter: {ch.name}")
                 for seq in ch.sequentials:
                     seq_id = SequentialBlockID.parse(seq)
 
@@ -52,6 +53,7 @@ class OpenEduAutoSolver:
                         continue
 
                     for vertical in self.app.get_sequential_block(course_id, seq_id.block_id):
+                        print(vertical.title)
                         blk = self.app.get_vertical_block(vertical.id)
                         if self.app.is_block_solved(blk.id):
                             continue
