@@ -23,7 +23,7 @@ class OpenEduAutoSolver:
         self.solver = solver
         self.describer = describer
         self.app = OpenEduApp(self.describer)
-        self.cache_context = CacheContext([lambda: self.app.api.auth.save()])
+        self.cache_context = CacheContext([lambda: self.app.api.auth.save(), lambda: self.app.api.api_storage.save()])
 
     def solve_by_url(self, url: str):
         course_id, seq, ver = parse_page_url(url)
@@ -35,6 +35,8 @@ class OpenEduAutoSolver:
             # self.app.api.get("https://courses.openedu.ru/csrf/api/v1/token") #update token
             for vert in self.app.get_sequential_block(course_id, seq.block_id):
                 print(vert)
+                self.solve_vertical(self.app, vert.id, vert, course_id)
+
             # for blkid, block in self.app.incomplete_blocks():
             #     self.solve_block(self.app, blkid, block, course_id)
 
@@ -93,9 +95,13 @@ class OpenEduAutoSolver:
         if input_id is None:
             return
         quest_id = extract_quest_id(input_id)
+        if app.is_block_solved(quest_id):
+            return
+
         print(f"{answers=}")
         new_block_id = f"block-v1:{course_id}+type@problem+block@{quest_id}"
         got, total = app.api.problem_check(course_id, new_block_id, answers)
         logging.info(f"Solved ({got}/{total})")
+        self.app.api.api_storage.mark_block_as_completed(quest_id)
         if got < total:
             raise WrongAnswer

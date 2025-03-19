@@ -142,8 +142,8 @@ class OpenEduAPI:
     def get_vertical_html(self, blk: str) -> str:
         logging.debug("Requesting xblock")
         url = f"https://courses.openedu.ru/xblock/{blk}"
-        r = self.get(url, is_json=False)
-        return r
+        r = self.session.get(url)
+        return r.text
 
     # def next_page(self):
     #     curtab = 2
