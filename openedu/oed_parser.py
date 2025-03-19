@@ -27,6 +27,9 @@ class OpenEduParser:
         self.describer = describer
 
     def parse_sequential_block_(self, sequential_block: dict):
+        if sequential_block['is_proctored']:
+            logging.info("Skipped proctoring block")
+            return
         for item in sequential_block['items']:
             title = item['page_title']
             blk_type = item['type']
