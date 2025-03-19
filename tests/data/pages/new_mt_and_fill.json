@@ -171,5 +171,334 @@
         "input_cb9f0a7b43b4fc065bea_2_1_choice_5"
       ]
     }
+  ],
+  [
+    {
+      "type": "new-match",
+      "text": "Заполните пустые ячейки таблицы, используя приведенный ниже список пропущенных элементов.",
+      "id": "input_2d6152305fef47cca863e02bebeefad4_2_1",
+      "options": [
+        ["Ярослав Мудрый", "id_nzb98C6m"],
+        ["X век", "id_coVykFNL"],
+        ["Битва на реке Воже", "id_bokIXTS3"],
+        ["Рюрик", "id_FDvu9JIz"],
+        ["Битва на Чудском озере", "id_qH5aTUXO"],
+        ["Окончательный разгром печенегов", "id_fbYzSayN"],
+        ["Олег", "id_cQ6IwjC2"],
+        ["IX век", "id_YFHzdX8k"],
+        ["XII век", "id_90htPO8x"]
+      ],
+      "fields": [
+        [
+          {
+            "is_fixed": true,
+            "id": null,
+            "value": [
+              "Век"
+            ]
+          },
+          {
+            "is_fixed": true,
+            "id": null,
+            "value": [
+              "Историческое событие"
+            ]
+          },
+          {
+            "is_fixed": true,
+            "id": null,
+            "value": [
+              "Исторический деятель"
+            ]
+          }
+        ],
+        [
+          {
+            "is_fixed": true,
+            "id": null,
+            "value": [
+              "XI век"
+            ]
+          },
+          {
+            "is_fixed": false,
+            "id": "id_iZTpCzKR",
+            "value": null
+          },
+          {
+            "is_fixed": false,
+            "id": "id_o52b6E0u",
+            "value": null
+          }
+        ],
+        [
+          {
+            "is_fixed": false,
+            "id": "id_nCrbWFJk",
+            "value": null
+          },
+          {
+            "is_fixed": true,
+            "id": null,
+            "value": ["«Крестовый поход» против половцев"]
+          },
+          {
+            "is_fixed": true,
+            "id": null,
+            "value": ["Владимир Мономах"]
+          }
+        ],
+        [
+          {
+            "is_fixed": false,
+            "id": "id_ZOsI9WCG",
+            "value": null
+          },
+          {
+            "is_fixed": true,
+            "id": null,
+            "value": ["Первый договор Руси и Византии"]
+          },
+          {
+            "is_fixed": false,
+            "id": "id_xAET7wBb",
+            "value": null
+          }
+        ],
+        [
+          {
+            "is_fixed": true,
+            "id": null,
+            "value": ["XIII век"]
+          },
+          {
+            "is_fixed": false,
+            "id": "id_VGZnD28z",
+            "value": null
+          },
+          {
+            "is_fixed": true,
+            "id": null,
+            "value": ["Александр Невский"]
+          }
+        ]
+      ]
+    }
+  ],
+  [
+    {
+      "type": "new-match",
+      "text": "Расположите в хронологической последовательности исторические события.",
+      "id": "input_c2385dc88a5642c9af2bb63f4fe76fd6_2_1",
+      "options": [
+        ["Восстание в Твери против Шевкала", "id_fbYzSayN"],
+        ["Строительство белокаменного Кремля в Москве", "id_nzb98C6m"],
+        ["Пленение Василия II Темного ордынцами", "id_90htPO8x"]
+      ],
+      "fields": [
+        [
+          {
+            "is_fixed": true,
+            "id": null,
+            "value": [
+              "Хронологический порядок"
+            ]
+          },
+          {
+            "is_fixed": true,
+            "id": null,
+            "value": [
+              "Историческое событие"
+            ]
+          }
+        ],
+        [
+          {
+            "is_fixed": true,
+            "id": null,
+            "value": [
+              "1"
+            ]
+          },
+          {
+            "is_fixed": false,
+            "id": "id_iZTpCzKR",
+            "value": null
+          }
+        ],
+        [
+          {
+            "is_fixed": true,
+            "id": null,
+            "value": [
+              "2"
+            ]
+          },
+          {
+            "is_fixed": false,
+            "id": "id_o52b6E0u",
+            "value": null
+          }
+        ],
+        [
+          {
+            "is_fixed": true,
+            "id": null,
+            "value": [
+              "3"
+            ]
+          },
+          {
+            "is_fixed": false,
+            "id": "id_nCrbWFJk",
+            "value": null
+          }
+        ]
+      ]
+    }
+  ],
+  [
+    {
+      "type": "new-match",
+      "text": "Расположите в хронологической последовательности исторические события.",
+      "id": "input_bbec9acf91614823b13f31dc6cba5b90_2_1",
+      "options": [
+        ["Первое летописное упоминание о Москве", "id_fbYzSayN"],
+        ["Битва на реке Калке", "id_nzb98C6m"],
+        ["Куликовская битва", "id_90htPO8x"]
+      ],
+      "fields": [
+        [
+          {
+            "is_fixed": true,
+            "id": null,
+            "value": [
+              "Хронологический порядок"
+            ]
+          },
+          {
+            "is_fixed": true,
+            "id": null,
+            "value": [
+              "Историческое событие"
+            ]
+          }
+        ],
+        [
+          {
+            "is_fixed": true,
+            "id": null,
+            "value": [
+              "1"
+            ]
+          },
+          {
+            "is_fixed": false,
+            "id": "id_iZTpCzKR",
+            "value": null
+          }
+        ],
+        [
+          {
+            "is_fixed": true,
+            "id": null,
+            "value": [
+              "2"
+            ]
+          },
+          {
+            "is_fixed": false,
+            "id": "id_o52b6E0u",
+            "value": null
+          }
+        ],
+        [
+          {
+            "is_fixed": true,
+            "id": null,
+            "value": [
+              "3"
+            ]
+          },
+          {
+            "is_fixed": false,
+            "id": "id_nCrbWFJk",
+            "value": null
+          }
+        ]
+      ]
+    }
+  ],
+  [
+    {
+      "type": "new-match",
+      "text": "Расположите в хронологической последовательности исторические события.",
+      "id": "input_5f9f1d2a13df4dbca5de2b67d0074870_2_1",
+      "options": [
+        ["Разорение Ельца войсками Тамерлана", "id_fbYzSayN"],
+        ["Стояние на реке Угре", "id_nzb98C6m"],
+        ["Присоединение Казанского ханства к России", "id_90htPO8x"]
+      ],
+      "fields": [
+        [
+          {
+            "is_fixed": true,
+            "id": null,
+            "value": [
+              "Хронологический порядок"
+            ]
+          },
+          {
+            "is_fixed": true,
+            "id": null,
+            "value": [
+              "Историческое событие"
+            ]
+          }
+        ],
+        [
+          {
+            "is_fixed": true,
+            "id": null,
+            "value": [
+              "1"
+            ]
+          },
+          {
+            "is_fixed": false,
+            "id": "id_iZTpCzKR",
+            "value": null
+          }
+        ],
+        [
+          {
+            "is_fixed": true,
+            "id": null,
+            "value": [
+              "2"
+            ]
+          },
+          {
+            "is_fixed": false,
+            "id": "id_o52b6E0u",
+            "value": null
+          }
+        ],
+        [
+          {
+            "is_fixed": true,
+            "id": null,
+            "value": [
+              "3"
+            ]
+          },
+          {
+            "is_fixed": false,
+            "id": "id_nCrbWFJk",
+            "value": null
+          }
+        ]
+      ]
+    }
   ]
 ]

@@ -8,6 +8,7 @@ from openedu.questions.choice import parse_choice_question
 from openedu.questions.fill import parse_fill_question
 from openedu.questions.freematch import parse_freematch_question
 from openedu.questions.match import parse_match_question
+from openedu.questions.new_match import parse_new_match
 from openedu.questions.question import Question
 from openedu.questions.select import parse_select_question
 
@@ -51,7 +52,7 @@ class OpenEduParser:
 
     def parse_problem(self, problem: BeautifulSoup) -> list[Question]:
         questions = []
-        mt = problem.find('div', class_='matching_table')
+        mt = problem.select_one('div.matching_table, div.adv-app')
         map = problem.find("div", class_="historical-path-container")
         if map:
             raise UnsupportedProblemType("historical-path-container")
@@ -72,8 +73,10 @@ class OpenEduParser:
         return questions
 
     def parse_question(self, question_tag: Tag) -> Question:
-        if question_tag.select_one('div.matching_table') is not None:
-            if question_tag.select_one('div.matching_table').select("td.conf-text"):
+        if question_tag.select_one('div.matching_table, div.adv-app') is not None:
+            if question_tag.select_one('.adv-app'):
+                question = parse_new_match(question_tag)
+            elif question_tag.select_one('div.matching_table').select("td.conf-text"):
                 problem_type = "match"
                 question = parse_match_question(question_tag)
             else:
@@ -83,7 +86,9 @@ class OpenEduParser:
             question = parse_select_question(question_tag)
         elif question_tag.select_one('input[type=text]'):
             question = parse_fill_question(question_tag)
-        else:
+        elif question_tag.select_one('input.input-radio, input.input-checkbox'):
             problem_type = "choice"
             question = parse_choice_question(question_tag)
+        else:
+            raise UnsupportedProblemType
         return question

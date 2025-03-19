@@ -10,6 +10,7 @@ from openedu.questions.fill import FillQuestion
 from openedu.questions.freematch import FreeMatchQuestion
 from openedu.questions.choice import ChoiceQuestion
 from openedu.questions.match import MatchQuestion
+from openedu.questions.new_match import NewMatchQuestion
 from openedu.questions.select import SelectQuestion
 from solvers.abstract_solver import AbstractSolver
 
@@ -90,4 +91,15 @@ class LLMSolver(AbstractSolver, ABC):
 
     def solve_fill(self, question: FillQuestion):
         res = self.get_answer(question.query())
+        return question.compose(res)
+
+    def solve_new_match(self, question: NewMatchQuestion):
+        raw = self.get_answer(question.query())
+        res = []
+        for raw_row in raw.split('\n'):
+            row = []
+            for c in raw_row.split('|'):
+                cell = c.strip()
+                if cell: row.append(cell)
+            res.append(row)
         return question.compose(res)
