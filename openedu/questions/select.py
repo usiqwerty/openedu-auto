@@ -1,4 +1,5 @@
 from bs4 import Tag
+from fuzzywuzzy import fuzz
 from pydantic import BaseModel
 
 from errors import NoSolutionFoundError
@@ -19,7 +20,7 @@ class SelectQuestion(BaseModel, Question):
     def compose(self, answer: str):
         ans_id = None
         for opt, option_id in self.options:
-            if opt == answer.strip():
+            if fuzz.ratio(opt, answer.strip()) > 85:
                 ans_id = option_id
                 break
         if ans_id is None:
