@@ -68,18 +68,17 @@ class OpenEduAutoSolver:
     def solve_vertical(self, app: OpenEduApp, blkid: str, block: VerticalBlock, course_id: str):
         logging.debug(blkid)
         logging.debug(f"Block '{block.title}' (complete={block.complete}) of type '{block.type}'")
-        if block.type == 'other':
+        if block.type == 'other' and not block.graded:
             # return
             # print(blkid, block)
             # api.tick_page(blkid)
             # time.sleep(5)
-            app.api.publish_completion(course_id, blkid)
-        elif block.type == "problem":
             r = app.api.get_vertical_html(blkid)
             soup = BeautifulSoup(r, 'html.parser')
             xblock_vert = soup.select_one("div.xblock div.vert")
             html_block_id = xblock_vert['data-id']
             app.api.publish_completion(course_id, html_block_id)
+        elif block.type == "problem" or (block.type == 'other' and block.graded):
             try:
                 for problem in app.get_problems_for_vertical(blkid):
                     self.solve_problem(app, course_id, problem)

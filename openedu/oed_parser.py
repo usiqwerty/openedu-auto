@@ -18,6 +18,7 @@ class VerticalBlock(BaseModel):
     title: str
     complete: bool
     type: str
+    graded: bool
 
 
 class OpenEduParser:
@@ -34,11 +35,12 @@ class OpenEduParser:
             title = item['page_title']
             blk_type = item['type']
             block_id = item['id']
+            graded = item['graded']
             try:
                 complete = item['complete']
             except KeyError:
                 raise Exception("Block doesn't have 'complete' field, maybe you are not authorized")
-            yield VerticalBlock(id=block_id, title=title, complete=complete, type=blk_type)
+            yield VerticalBlock(id=block_id, title=title, complete=complete, type=blk_type, graded=graded)
 
     def parse_vertical_block_html(self, html_block: str) -> list[list[Question]]:
         soup = bs(html_block, "html.parser")
