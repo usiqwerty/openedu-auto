@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 from cached_requests import CacheContext
 from errors import WrongAnswer, UnsupportedProblemType
 from images.image_describer import ImageDescriber
-from openedu.ids import SequentialBlockID
+from openedu.ids import SequentialBlockID, BlockID
 from openedu.oed_parser import VerticalBlock
 from openedu.openeduapp import OpenEduApp, extract_quest_id
 from openedu.questions.freematch import FreeMatchQuestion
@@ -68,17 +68,23 @@ class OpenEduAutoSolver:
     def solve_vertical(self, app: OpenEduApp, blkid: str, block: VerticalBlock, course_id: str):
         logging.debug(blkid)
         logging.debug(f"Block '{block.title}' (complete={block.complete}) of type '{block.type}'")
-        if block.type == 'other' and not block.graded:
-            # return
-            # print(blkid, block)
-            # api.tick_page(blkid)
-            # time.sleep(5)
-            r = app.api.get_vertical_html(blkid)
-            soup = BeautifulSoup(r, 'html.parser')
-            xblock_vert = soup.select_one("div.xblock div.vert")
-            html_block_id = xblock_vert['data-id']
-            app.api.publish_completion(course_id, html_block_id)
-        elif block.type == "problem" or (block.type == 'other' and block.graded):
+
+        r = app.api.get_vertical_html(blkid)
+        soup = BeautifulSoup(r, 'html.parser')
+        for xblock_vert in soup.select("div.xblock div.vert"):
+            block_id_str = xblock_vert['data-id']
+
+            rich_block_id = BlockID.parse(block_id_str)
+            if rich_block_id.type in {"html", "xvideoblock"}:
+                app.api.publish_completion(course_id, block_id_str)
+        # if block.type == 'other' and not block.graded:
+        #     # return
+        #     # print(blkid, block)
+        #     # api.tick_page(blkid)
+        #     # time.sleep(5)
+        #
+        #     app.api.publish_completion(course_id, block_id_str)
+        if 1 or block.type == "problem" or (block.type == 'other' and block.graded):
             try:
                 for problem in app.get_problems_for_vertical(blkid):
                     self.solve_problem(app, course_id, problem)
