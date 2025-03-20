@@ -59,16 +59,17 @@ class OpenEduAPI:
             raise Exception(json_result['developer_message'])
         return json_result
 
-    def publish_completion(self, course_id: str, block_id: str):
-        url = ("https://courses.openedu.ru/courses/"
-               f"course-v1:{course_id}/xblock/"
-               f"{block_id}"
-               "/handler/publish_completion")
 
-        if not block_id in self.api_storage.solved:
+    def publish_completion(self, course_id: str, html_block_id: str):
+        url = (f"https://courses.openedu.ru/courses/course-v1:{course_id}"
+         f"/xblock/{html_block_id}"
+         f"/handler/publish_completion")
+
+
+        if html_block_id not in self.api_storage.solved:
             logging.debug(f"[COMPLETE] {url}")
 
-            referer = f"https://courses.openedu.ru/xblock/{block_id}?show_title=0&show_bookmark_button=0&recheck_access=1&view=student_view"
+            referer = f"https://courses.openedu.ru/xblock/{html_block_id}?show_title=0&show_bookmark_button=0&recheck_access=1&view=student_view"
             hdrs = {
                 "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/113.0",
                 'X-CSRFToken': self.session.cookies.get('csrftoken', domain=''),
@@ -80,8 +81,11 @@ class OpenEduAPI:
                 data = r.json()
                 if 'error' in data or (data['result'] != 'ok'):
                     logging.error(f"Completion was not okay: {data}")
-                logging.debug(r)
-        self.api_storage.mark_block_as_completed(block_id)
+                if r.status_code == 200:
+                    logging.debug("Completion successful")
+                else:
+                    logging.error(f"Completion error: {r}")
+        self.api_storage.mark_block_as_completed(html_block_id)
 
     def problem_check(self, course_id: str, blk: str, answers: dict[str, str]):
         logging.info(f"Checking answer: {answers}")
