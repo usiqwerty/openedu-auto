@@ -34,7 +34,12 @@ class OpenEduApp:
             yield blk
 
     def is_block_solved(self, block_id: str) -> bool:
-        return block_id in self.api.api_storage.solved
+        block = self.api.api_storage.blocks.get(block_id)
+        if block is None:
+            complete_in_blocks = False
+        else:
+            complete_in_blocks = block.complete
+        return block_id in self.api.api_storage.solved or complete_in_blocks
 
     def get_problems_for_vertical(self, blk: str) -> list[list[Question]]:
         r = self.api.get_vertical_html(blk)
