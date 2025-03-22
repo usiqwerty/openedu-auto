@@ -1,6 +1,8 @@
 import json
 import os
 
+from errors import ConfigError
+
 
 def get_headers(*, csrf=None, referer=None, origin=None):
     hrds = {
@@ -25,6 +27,12 @@ def get_cookies(csrf):
         "openedx-language-preference": "ru",
         "sessionid": config["sessionid"]
     }
+
+
+def require_config_field(name: str):
+    if name in config:
+        return config[name]
+    raise ConfigError(f"Config field '{name}' was not found")
 
 
 userdata_dir = "userdata"

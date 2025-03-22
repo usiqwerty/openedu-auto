@@ -118,4 +118,7 @@ class OpenEduAutoSolver:
         logging.info(f"Solved ({got}/{total})")
         self.app.api.api_storage.mark_block_as_completed(new_block_id)
         if got < total:
-            raise WrongAnswer
+            raise WrongAnswer(quest_id, answers)
+
+    def pull_answers(self, course_id: str):
+        raise NotImplementedError

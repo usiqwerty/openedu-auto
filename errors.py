@@ -15,4 +15,10 @@ class LayoutError(Exception):
 
 
 class WrongAnswer(Exception):
+    def __init__(self, prob_id: str, ans):
+        self.id = prob_id
+        self.answer = ans
+
+
+class ConfigError(Exception):
     pass
