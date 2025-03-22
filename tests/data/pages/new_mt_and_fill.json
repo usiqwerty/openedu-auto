@@ -15,7 +15,7 @@
         "input_5533e7524a5de46f20e0_2_1_choice_2",
         "input_5533e7524a5de46f20e0_2_1_choice_0"
       ],
-      "correct_answer": null
+      "correct_answer": "choice_1"
     }
   ],
   [
@@ -34,7 +34,7 @@
         "input_2d095b412e8a738f8ce2_2_1_choice_2",
         "input_2d095b412e8a738f8ce2_2_1_choice_0"
       ],
-      "correct_answer": null
+      "correct_answer": "choice_2"
     }
   ],
   [
@@ -53,7 +53,7 @@
         "input_0e1a46343b76939ecfcc_2_1_choice_2",
         "input_0e1a46343b76939ecfcc_2_1_choice_0"
       ],
-      "correct_answer": null
+      "correct_answer": "choice_2"
     }
   ],
   [
@@ -72,7 +72,7 @@
         "input_bf3b0d26182d11788495_2_1_choice_2",
         "input_bf3b0d26182d11788495_2_1_choice_0"
       ],
-      "correct_answer": null
+      "correct_answer": "choice_2"
     }
   ],
   [
@@ -91,7 +91,7 @@
         "input_0d1d3d557b1a689067b5_2_1_choice_2",
         "input_0d1d3d557b1a689067b5_2_1_choice_0"
       ],
-      "correct_answer": null
+      "correct_answer": "choice_0"
     }
   ],
   [
@@ -110,7 +110,7 @@
         "input_5960bd124fd986769d66_2_1_choice_2",
         "input_5960bd124fd986769d66_2_1_choice_0"
       ],
-      "correct_answer": null
+      "correct_answer": "choice_1"
     }
   ],
   [
@@ -129,7 +129,7 @@
         "input_cd6c4f22cf5e42ec93bd_2_1_choice_2",
         "input_cd6c4f22cf5e42ec93bd_2_1_choice_0"
       ],
-      "correct_answer": null
+      "correct_answer": "choice_1"
     }
   ],
   [
@@ -148,7 +148,7 @@
         "input_754a5c1df658d6e970a3_2_1_choice_2",
         "input_754a5c1df658d6e970a3_2_1_choice_0"
       ],
-      "correct_answer": null
+      "correct_answer": "choice_2"
     }
   ],
   [
@@ -156,7 +156,7 @@
       "type": "fill",
       "text": "Дополните\n«И пошел на Оку реку и на Волгу, и встретил вятичей и сказал им: «Кому дань даете?» Они же ответили: «Хазарам – по шлягу от рала даем».В год 6472. Пошел ______________ на хазар. Услышав же, хазары вышли навстречу во главе со своим князем Каганом и сошлись биться, и в битве одолел _____________ хазар и город их Белую Вежу взял. И победил ясов и касогов».\nПрочтите отрывок из документа и напишите пропущенное в нем имя древнерусского князя",
       "id": "input_ccce274d168a3aa15059_2_1",
-      "correct_answer": null
+      "correct_answer": ""
     }
   ],
   [

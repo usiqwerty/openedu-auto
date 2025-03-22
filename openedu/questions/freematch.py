@@ -93,7 +93,12 @@ def parse_freematch_question(problem: Tag, describer: ImageDescriber):
     response_div = problem.select_one("div.wrapper-problem-response")
     answer_input = response_div.find("input")
     q_id = answer_input['id']
-    correct_answer = json.loads(answer_input.get("value", '{"answer":{}}'))['answer']
+
+    answer_json_string = answer_input.get("value", "").replace("'", '"')
+    if answer_json_string:
+        correct_answer = json.loads(answer_json_string)['answer']
+    else:
+        correct_answer = None
     return FreeMatchQuestion(text=q_text,
                           id=q_id,
                           column_headers=column_headers,

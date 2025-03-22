@@ -69,7 +69,13 @@ def parse_new_match(tag: Tag) -> NewMatchQuestion:
     options = [(x['title'], x['id']) for x in json_data['answers']]
     fields = []
     answer_input = tag.select_one("input")
-    correct_answer = json.loads(answer_input.get('value', '{"answer":{}}'))['answer']
+
+    answer_json_string = answer_input.get('value', "").replace("'", '"')
+    if answer_json_string:
+        correct_answer = json.loads(answer_json_string)['answer']
+    else:
+        correct_answer = None
+
     for json_row in json_data['table']:
         row = []
         for cell in json_row:

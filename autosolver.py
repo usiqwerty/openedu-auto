@@ -34,13 +34,9 @@ class OpenEduAutoSolver:
 
         with self.cache_context:
             self.app.api.auth.refresh()
-            # self.app.api.get("https://courses.openedu.ru/csrf/api/v1/token") #update token
             for vert in self.app.get_sequential_block(course_id, seq.block_id):
                 print(vert)
                 self.solve_vertical(self.app, vert.id, vert, course_id)
-
-            # for blkid, block in self.app.incomplete_blocks():
-            #     self.solve_block(self.app, blkid, block, course_id)
 
     def solve_course(self, course_id: str):
         with self.cache_context:
@@ -60,23 +56,23 @@ class OpenEduAutoSolver:
                         if self.app.is_block_solved(blk.id):
                             continue
                         if blk and not blk.complete:
-                            self.solve_vertical(self.app, blk.id, vertical, course_id)
+                            self.solve_vertical(blk.id, vertical, course_id)
                         else:
                             logging.info("Requested block was already completed")
                     self.app.api.api_storage.mark_block_as_completed(seq_id.block_id)
 
-    def solve_vertical(self, app: OpenEduApp, blkid: str, block: VerticalBlock, course_id: str):
+    def solve_vertical(self, blkid: str, block: VerticalBlock, course_id: str):
         logging.debug(blkid)
         logging.debug(f"Block '{block.title}' (complete={block.complete}) of type '{block.type}'")
 
-        r = app.api.get_vertical_html(blkid)
+        r = self.app.api.get_vertical_html(blkid)
         soup = BeautifulSoup(r, 'html.parser')
         for xblock_vert in soup.select("div.xblock div.vert"):
             block_id_str = xblock_vert['data-id']
 
             rich_block_id = BlockID.parse(block_id_str)
             if rich_block_id.type in {"html", "xvideoblock"}:
-                app.api.publish_completion(course_id, block_id_str)
+                self.app.api.publish_completion(course_id, block_id_str)
         # if block.type == 'other' and not block.graded:
         #     # return
         #     # print(blkid, block)
@@ -86,14 +82,14 @@ class OpenEduAutoSolver:
         #     app.api.publish_completion(course_id, block_id_str)
         if 1 or block.type == "problem" or (block.type == 'other' and block.graded):
             try:
-                for problem in app.get_problems_for_vertical(blkid):
-                    self.solve_problem(app, course_id, problem)
+                for problem in self.app.get_problems_for_vertical(blkid):
+                    self.solve_problem(course_id, problem)
             except UnsupportedProblemType as e:
                 logging.error(f"Unsupported problem type: {e}")
                 self.app.skip_forever(blkid)
         self.app.api.api_storage.mark_block_as_completed(blkid)
 
-    def solve_problem(self, app: OpenEduApp, course_id: str, problem: list[Question]):
+    def solve_problem(self, course_id: str, problem: list[Question]):
         answers = {}
         input_id = None
         for question in problem:
@@ -110,11 +106,11 @@ class OpenEduAutoSolver:
             return
         quest_id = extract_quest_id(input_id)
         new_block_id = f"block-v1:{course_id}+type@problem+block@{quest_id}"
-        if app.is_block_solved(new_block_id):
+        if self.app.is_block_solved(new_block_id):
             return
         print(f"{answers=}")
 
-        got, total = app.api.problem_check(course_id, new_block_id, answers)
+        got, total = self.app.api.problem_check(course_id, new_block_id, answers)
         logging.info(f"Solved ({got}/{total})")
         self.app.api.api_storage.mark_block_as_completed(new_block_id)
         if got < total:

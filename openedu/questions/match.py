@@ -78,7 +78,13 @@ def parse_match_question(problem: Tag):
     response_div = problem.select_one("div.wrapper-problem-response")
     answer_input = response_div.find("input")
     q_id = answer_input['id']
-    correct_answer = json.loads(answer_input.get("value", '{"answer":{}}').replace("'", '"'))['answer']
+
+    answer_json_string = answer_input.get("value", "").replace("'", '"')
+    if answer_json_string:
+        correct_answer = json.loads(answer_json_string)['answer']
+    else:
+        correct_answer = None
+
     questions.sort(key=lambda x: x[1])
     answers.sort(key=lambda x: x[1])
     return MatchQuestion(text=q_text, id=q_id, fields=questions, options=answers, correct_answer=correct_answer)

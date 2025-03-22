@@ -45,8 +45,10 @@ def parse_choice_question(questions: Tag):
                 correct_answers = [extract_choice_from_id(ans)[1]  for ans in corrects]
                 if len(correct_answers) > 1:
                     correct_answer = correct_answers
-                else:
+                elif len(correct_answers) == 1:
                     correct_answer = correct_answers[0]
+                else:
+                    correct_answer = None
                 return ChoiceQuestion(text=problem_text, options=qs, ids=ids, correct_answer=correct_answer)
 
 

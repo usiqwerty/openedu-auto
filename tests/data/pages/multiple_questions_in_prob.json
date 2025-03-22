@@ -15,7 +15,7 @@
         "input_9b947547a9e64f54b959dd61cafed7bd_2_1_choice_2",
         "input_9b947547a9e64f54b959dd61cafed7bd_2_1_choice_3"
       ],
-      "correct_answer": null
+      "correct_answer": "choice_3"
     },
     {
       "type": "choice",
@@ -33,7 +33,7 @@
         "input_9b947547a9e64f54b959dd61cafed7bd_3_1_choice_3"
 
       ],
-      "correct_answer": null
+      "correct_answer": "choice_2"
     },
     {
       "type": "choice",
@@ -50,7 +50,7 @@
         "input_9b947547a9e64f54b959dd61cafed7bd_4_1_choice_2",
         "input_9b947547a9e64f54b959dd61cafed7bd_4_1_choice_3"
       ],
-      "correct_answer": null
+      "correct_answer": "choice_1"
     },
     {
       "type": "choice",
@@ -67,7 +67,7 @@
         "input_9b947547a9e64f54b959dd61cafed7bd_5_1_choice_2",
         "input_9b947547a9e64f54b959dd61cafed7bd_5_1_choice_3"
       ],
-      "correct_answer": null
+      "correct_answer": "choice_0"
     },
     {
       "type": "choice",
@@ -85,7 +85,7 @@
         "input_9b947547a9e64f54b959dd61cafed7bd_6_1_choice_3"
 
       ],
-      "correct_answer": null
+      "correct_answer": "choice_0"
     }
   ],
   [
@@ -104,7 +104,7 @@
         "input_b2ff117416f34ac4aeab77f7dbc6df3e_2_1_choice_2",
         "input_b2ff117416f34ac4aeab77f7dbc6df3e_2_1_choice_3"
       ],
-      "correct_answer": null
+      "correct_answer": "choice_3"
     },
     {
       "type": "choice",
@@ -121,7 +121,7 @@
         "input_b2ff117416f34ac4aeab77f7dbc6df3e_3_1_choice_2",
         "input_b2ff117416f34ac4aeab77f7dbc6df3e_3_1_choice_3"
       ],
-      "correct_answer": null
+      "correct_answer": "choice_2"
     }
   ]
 ]
