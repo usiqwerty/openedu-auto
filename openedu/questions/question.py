@@ -5,6 +5,7 @@ from typing import Any
 class Question(ABC):
     type: str
     text: str
+    id: str
 
     correct_answer: Any | None = None
 

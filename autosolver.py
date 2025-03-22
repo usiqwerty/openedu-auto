@@ -1,95 +1,26 @@
 import logging
 import traceback
 
-from bs4 import BeautifulSoup
-
 from cached_requests import CacheContext
 from errors import WrongAnswer, UnsupportedProblemType
 from images.image_describer import ImageDescriber
-from openedu.ids import SequentialBlockID, BlockID
-from openedu.oed_parser import VerticalBlock
 from openedu.openeduapp import OpenEduApp, extract_quest_id
 from openedu.questions.freematch import FreeMatchQuestion
 from openedu.questions.question import Question
 from openedu.utils import parse_page_url
+from openedu_processor import OpenEduProcessor
 from solvers.abstract_solver import AbstractSolver
 
 
-class OpenEduAutoSolver:
+class OpenEduAutoSolver(OpenEduProcessor):
     solver: AbstractSolver
     describer: ImageDescriber
     app: OpenEduApp
     cache_context: CacheContext
 
-    def __init__(self, solver: AbstractSolver, describer: ImageDescriber):
-        self.solver = solver
-        self.describer = describer
-        self.app = OpenEduApp(self.describer)
-        self.cache_context = CacheContext([lambda: self.app.api.auth.save(), lambda: self.app.api.api_storage.save()])
+    require_incomplete = True
 
-    def solve_by_url(self, url: str):
-        course_id, seq, ver = parse_page_url(url)
-        logging.debug(f"Course: {course_id}")
-        logging.debug(f"Starting at block {seq}")
-
-        with self.cache_context:
-            self.app.api.auth.refresh()
-            for vert in self.app.get_sequential_block(course_id, seq.block_id):
-                print(vert)
-                self.solve_vertical(self.app, vert.id, vert, course_id)
-
-    def solve_course(self, course_id: str):
-        with self.cache_context:
-            course = self.app.get_course_info(course_id)
-            self.app.api.auth.refresh()
-            for ch in course.chapters:
-                print(f"Chapter: {ch.name}")
-                for seq in ch.sequentials:
-                    seq_id = SequentialBlockID.parse(seq)
-
-                    if self.app.is_block_solved(seq_id.block_id):
-                        continue
-
-                    for vertical in self.app.get_sequential_block(course_id, seq_id.block_id):
-                        print(vertical.title)
-                        blk = self.app.get_vertical_block(vertical.id)
-                        if self.app.is_block_solved(blk.id):
-                            continue
-                        if blk and not blk.complete:
-                            self.solve_vertical(blk.id, vertical, course_id)
-                        else:
-                            logging.info("Requested block was already completed")
-                    self.app.api.api_storage.mark_block_as_completed(seq_id.block_id)
-
-    def solve_vertical(self, blkid: str, block: VerticalBlock, course_id: str):
-        logging.debug(blkid)
-        logging.debug(f"Block '{block.title}' (complete={block.complete}) of type '{block.type}'")
-
-        r = self.app.api.get_vertical_html(blkid)
-        soup = BeautifulSoup(r, 'html.parser')
-        for xblock_vert in soup.select("div.xblock div.vert"):
-            block_id_str = xblock_vert['data-id']
-
-            rich_block_id = BlockID.parse(block_id_str)
-            if rich_block_id.type in {"html", "xvideoblock"}:
-                self.app.api.publish_completion(course_id, block_id_str)
-        # if block.type == 'other' and not block.graded:
-        #     # return
-        #     # print(blkid, block)
-        #     # api.tick_page(blkid)
-        #     # time.sleep(5)
-        #
-        #     app.api.publish_completion(course_id, block_id_str)
-        if 1 or block.type == "problem" or (block.type == 'other' and block.graded):
-            try:
-                for problem in self.app.get_problems_for_vertical(blkid):
-                    self.solve_problem(course_id, problem)
-            except UnsupportedProblemType as e:
-                logging.error(f"Unsupported problem type: {e}")
-                self.app.skip_forever(blkid)
-        self.app.api.api_storage.mark_block_as_completed(blkid)
-
-    def solve_problem(self, course_id: str, problem: list[Question]):
+    def process_problem(self, course_id: str, problem: list[Question]):
         answers = {}
         input_id = None
         for question in problem:
@@ -116,5 +47,13 @@ class OpenEduAutoSolver:
         if got < total:
             raise WrongAnswer(quest_id, answers)
 
-    def pull_answers(self, course_id: str):
-        raise NotImplementedError
+    def solve_by_url(self, url: str):
+        course_id, seq, ver = parse_page_url(url)
+        logging.debug(f"Course: {course_id}")
+        logging.debug(f"Starting at block {seq}")
+
+        with self.cache_context:
+            self.app.api.auth.refresh()
+            for vert in self.app.get_sequential_block(course_id, seq.block_id):
+                print(vert)
+                self.process_vertical(vert.id, vert, course_id)

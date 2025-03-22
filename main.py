@@ -2,6 +2,7 @@ import logging
 import re
 
 import config
+from ans_saver import AnswersSaver
 from autosolver import OpenEduAutoSolver
 from config import set_config
 from errors import WrongAnswer
@@ -70,17 +71,18 @@ while True:
         if input("Нажимте Enter, чтобы начать, иначе выйдем "):
             break
         try:
-            app.solve_course(course_id)
+            app.process_course(course_id)
         except WrongAnswer as e:
             print(f"Неправильный ответ на задачу {e.id}: {e.answer}")
             exit(1)
     elif cmd == '3':
+        saver = AnswersSaver()
         try:
             course_id = input_course_id()
         except ValueError:
             print("Не удалось распознать ссылку")
             continue
-        app.pull_answers(course_id)
+        saver.pull_answers(course_id)
     else:
         continue
     break
