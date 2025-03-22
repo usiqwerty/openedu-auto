@@ -1,0 +1,153 @@
+[
+  [
+    {
+      "correct_answer": {"id_iZTpCzKR":["id_fbYzSayN"],"id_o52b6E0u":["id_nzb98C6m"],"id_nCrbWFJk":["id_90htPO8x"],"id_ZOsI9WCG":["id_coVykFNL"],"id_xAET7wBb":["id_cQ6IwjC2"],"id_VGZnD28z":["id_qH5aTUXO"]},
+      "fields": [
+        [
+          {
+            "id": null,
+            "is_fixed": true,
+            "value": [
+              "Век"
+            ]
+          },
+          {
+            "id": null,
+            "is_fixed": true,
+            "value": [
+              "Историческое событие"
+            ]
+          },
+          {
+            "id": null,
+            "is_fixed": true,
+            "value": [
+              "Исторический деятель"
+            ]
+          }
+        ],
+        [
+          {
+            "id": null,
+            "is_fixed": true,
+            "value": [
+              "XI век"
+            ]
+          },
+          {
+            "id": "id_iZTpCzKR",
+            "is_fixed": false,
+            "value": null
+          },
+          {
+            "id": "id_o52b6E0u",
+            "is_fixed": false,
+            "value": null
+          }
+        ],
+        [
+          {
+            "id": "id_nCrbWFJk",
+            "is_fixed": false,
+            "value": null
+          },
+          {
+            "id": null,
+            "is_fixed": true,
+            "value": [
+              "«Крестовый поход» против половцев"
+            ]
+          },
+          {
+            "id": null,
+            "is_fixed": true,
+            "value": [
+              "Владимир Мономах"
+            ]
+          }
+        ],
+        [
+          {
+            "id": "id_ZOsI9WCG",
+            "is_fixed": false,
+            "value": null
+          },
+          {
+            "id": null,
+            "is_fixed": true,
+            "value": [
+              "Первый договор Руси и Византии"
+            ]
+          },
+          {
+            "id": "id_xAET7wBb",
+            "is_fixed": false,
+            "value": null
+          }
+        ],
+        [
+          {
+            "id": null,
+            "is_fixed": true,
+            "value": [
+              "XIII век"
+            ]
+          },
+          {
+            "id": "id_VGZnD28z",
+            "is_fixed": false,
+            "value": null
+          },
+          {
+            "id": null,
+            "is_fixed": true,
+            "value": [
+              "Александр Невский"
+            ]
+          }
+        ]
+      ],
+      "id": "input_2d6152305fef47cca863e02bebeefad4_2_1",
+      "options": [
+        [
+          "Ярослав Мудрый",
+          "id_nzb98C6m"
+        ],
+        [
+          "X век",
+          "id_coVykFNL"
+        ],
+        [
+          "Битва на реке Воже",
+          "id_bokIXTS3"
+        ],
+        [
+          "Рюрик",
+          "id_FDvu9JIz"
+        ],
+        [
+          "Битва на Чудском озере",
+          "id_qH5aTUXO"
+        ],
+        [
+          "Окончательный разгром печенегов",
+          "id_fbYzSayN"
+        ],
+        [
+          "Олег",
+          "id_cQ6IwjC2"
+        ],
+        [
+          "IX век",
+          "id_YFHzdX8k"
+        ],
+        [
+          "XII век",
+          "id_90htPO8x"
+        ]
+      ],
+      "text": "Заполните пустые ячейки таблицы, используя приведенный ниже список пропущенных элементов.",
+      "type": "new-match"
+    }
+  ]
+]

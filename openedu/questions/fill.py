@@ -26,5 +26,6 @@ def parse_fill_question(tag: Tag) -> FillQuestion:
 
     input_tag = tag.find("input")
     q_id = input_tag['id']
-    return FillQuestion(id=q_id, text=text)
+    correct_answer = input_tag['value']
+    return FillQuestion(id=q_id, text=text, correct_answer=correct_answer)
 

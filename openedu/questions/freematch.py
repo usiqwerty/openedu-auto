@@ -1,3 +1,4 @@
+import json
 import urllib.parse
 
 from bs4 import Tag
@@ -90,11 +91,12 @@ def parse_freematch_question(problem: Tag, describer: ImageDescriber):
         all_col_answers.append(column_answers)
 
     response_div = problem.select_one("div.wrapper-problem-response")
-    q_id = response_div.find("input")['id']
-    # print(all_col_answers)
+    answer_input = response_div.find("input")
+    q_id = answer_input['id']
+    correct_answer = json.loads(answer_input.get("value", '{"answer":{}}'))['answer']
     return FreeMatchQuestion(text=q_text,
                           id=q_id,
                           column_headers=column_headers,
                           field_columns=columns,
-                          option_columns=all_col_answers
-                          )
+                          option_columns=all_col_answers,
+                          correct_answer=correct_answer)

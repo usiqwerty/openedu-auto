@@ -1,3 +1,5 @@
+import json
+
 from bs4 import Tag
 from pydantic import BaseModel
 
@@ -74,8 +76,9 @@ def parse_match_question(problem: Tag):
         answers.append((answer.text.strip(), answer['id']))
 
     response_div = problem.select_one("div.wrapper-problem-response")
-    q_id = response_div.find("input")['id']
-
+    answer_input = response_div.find("input")
+    q_id = answer_input['id']
+    correct_answer = json.loads(answer_input.get("value", '{"answer":{}}').replace("'", '"'))['answer']
     questions.sort(key=lambda x: x[1])
     answers.sort(key=lambda x: x[1])
-    return MatchQuestion(text=q_text, id=q_id, fields=questions, options=answers)
+    return MatchQuestion(text=q_text, id=q_id, fields=questions, options=answers, correct_answer=correct_answer)

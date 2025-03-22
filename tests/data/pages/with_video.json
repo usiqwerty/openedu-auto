@@ -13,7 +13,8 @@
       "input_f39eb398c68748d9859b2b3f3b11651b_2_1_choice_1",
       "input_f39eb398c68748d9859b2b3f3b11651b_2_1_choice_2",
       "input_f39eb398c68748d9859b2b3f3b11651b_2_1_choice_3"
-    ]
+    ],
+    "correct_answer": null
   },
   {
     "type": "choice",
@@ -29,7 +30,8 @@
       "input_f39eb398c68748d9859b2b3f3b11651b_3_1_choice_1",
       "input_f39eb398c68748d9859b2b3f3b11651b_3_1_choice_2",
       "input_f39eb398c68748d9859b2b3f3b11651b_3_1_choice_0"
-    ]
+    ],
+    "correct_answer": null
   },
   {
     "type": "choice",
@@ -45,6 +47,7 @@
       "input_f39eb398c68748d9859b2b3f3b11651b_4_1_choice_1",
       "input_f39eb398c68748d9859b2b3f3b11651b_4_1_choice_2",
       "input_f39eb398c68748d9859b2b3f3b11651b_4_1_choice_3"
-    ]
+    ],
+    "correct_answer": null
   }
 ]]

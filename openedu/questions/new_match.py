@@ -4,7 +4,6 @@ import re
 from bs4 import Tag
 from pydantic import BaseModel
 
-from errors import NoSolutionFoundError
 from openedu.questions.question import Question
 from solvers.utils import get_ans_id
 
@@ -69,6 +68,8 @@ def parse_new_match(tag: Tag) -> NewMatchQuestion:
     qid = tag.find('input')['id']
     options = [(x['title'], x['id']) for x in json_data['answers']]
     fields = []
+    answer_input = tag.select_one("input")
+    correct_answer = json.loads(answer_input.get('value', '{"answer":{}}'))['answer']
     for json_row in json_data['table']:
         row = []
         for cell in json_row:
@@ -79,4 +80,4 @@ def parse_new_match(tag: Tag) -> NewMatchQuestion:
                 final_value = [parse_custom_markdown(v) for v in value]
             row.append(NewMatchField(is_fixed=cell['isFixed'], value=final_value, id=cell.get('id')))
         fields.append(row)
-    return NewMatchQuestion(id=qid, text=text, fields=fields, options=options)
+    return NewMatchQuestion(id=qid, text=text, fields=fields, options=options, correct_answer=correct_answer)

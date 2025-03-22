@@ -39,8 +39,11 @@ def parse_select_question(tag: Tag) -> SelectQuestion:
 
     sel = tag.select_one('select')
     q_id = sel['id']
+    correct_answer = None
     for opt in sel.find_all('option'):
         if 'default' not in opt['value']:
+            if opt.get('selected'):
+                correct_answer = opt['value']
             answers.append((opt.text.strip(), opt['value']))
 
-    return SelectQuestion(id=q_id, text=text, options=answers)
+    return SelectQuestion(id=q_id, text=text, options=answers, correct_answer=correct_answer)
