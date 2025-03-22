@@ -49,7 +49,9 @@ def parse_choice_question(questions: Tag):
                     correct_answer = correct_answers[0]
                 else:
                     correct_answer = None
-                return ChoiceQuestion(text=problem_text, options=qs, ids=ids, correct_answer=correct_answer)
+                quest_id, choice_id = extract_choice_from_id(ids[0])
+
+                return ChoiceQuestion(id=quest_id, text=problem_text, options=qs, ids=ids, correct_answer=correct_answer)
 
 
 def plural_choice(answer: list, ids: list[str], options: list[str]) -> tuple[str, str | list[str]]:

@@ -1,6 +1,7 @@
 [
   [
     {
+      "id": "input_e33e6e3b5a1744c9ae9ec23ce702385c_2_1",
       "correct_answer": ["choice_1", "choice_3"],
       "ids": [
         "input_e33e6e3b5a1744c9ae9ec23ce702385c_2_1_choice_0",
@@ -18,6 +19,7 @@
       "type": "choice"
     },
     {
+      "id": "input_e33e6e3b5a1744c9ae9ec23ce702385c_3_1",
       "correct_answer": "choice_0",
       "ids": [
         "input_e33e6e3b5a1744c9ae9ec23ce702385c_3_1_choice_3",
@@ -35,6 +37,7 @@
       "type": "choice"
     },
     {
+      "id": "input_e33e6e3b5a1744c9ae9ec23ce702385c_4_1",
       "correct_answer": "choice_2",
       "ids": [
         "input_e33e6e3b5a1744c9ae9ec23ce702385c_4_1_choice_2",
