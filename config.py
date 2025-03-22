@@ -29,6 +29,14 @@ def get_cookies(csrf):
     }
 
 
+def set_config(key: str, val):
+    global config
+    config[key] = val
+
+    with open(config_fn, 'w', encoding='utf-8') as f:
+        json.dump(config, f)
+
+
 def require_config_field(name: str):
     if name in config:
         return config[name]

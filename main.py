@@ -1,7 +1,9 @@
 import logging
 import re
 
+import config
 from autosolver import OpenEduAutoSolver
+from config import set_config
 from errors import WrongAnswer
 from images.openrouter.qwen_describer import QwenImageDescriber
 from solvers.openrouter.gemini_solver import GeminiSolver
@@ -45,11 +47,24 @@ while True:
     print("3. Сохранить решение в файл")
     cmd = input("Ввод: ")
     if cmd == "1":
-        try:
-            course_id = input_course_id()
-        except ValueError:
-            print("Не удалось распознать ссылку")
-            continue
+        last_course = config.config.get("last-course")
+
+        if last_course is not None:
+            course = app.app.get_course_info(last_course)
+            print(f"Продолжаем решать курс {course.name}?")
+            continue_course = input("y/n: ") == "y"
+            if continue_course:
+                course_id = last_course
+            else:
+                last_course = None
+        if last_course is None:
+            try:
+                course_id = input_course_id()
+            except ValueError:
+                print("Не удалось распознать ссылку")
+                continue
+
+        set_config("last-course", course_id)
         course = app.app.get_course_info(course_id)
         print(f"Будем решать курс {course.name}")
         if input("Нажимте Enter, чтобы начать, иначе выйдем "):
