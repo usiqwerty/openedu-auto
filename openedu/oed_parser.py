@@ -1,8 +1,9 @@
-from bs4 import BeautifulSoup as bs, BeautifulSoup, Tag
-from pydantic import BaseModel
 import logging
 
-from errors import LayoutError, UnsupportedProblemType
+from bs4 import BeautifulSoup as bs, BeautifulSoup, Tag
+from pydantic import BaseModel
+
+from errors import UnsupportedProblemType
 from images.image_describer import ImageDescriber
 from openedu.questions.choice import parse_choice_question
 from openedu.questions.fill import parse_fill_question
@@ -55,6 +56,22 @@ class OpenEduParser:
             #     logging.error(f"Unsupported problem type: {e}")
         return total
 
+    def prepare_non_separated_questions(self, problem_: BeautifulSoup):
+        problem = problem_.select_one("div.problem").find("div")
+
+        texts = []
+        for child in problem.children:
+            if not isinstance(child, Tag):
+                continue
+
+            if child.name == 'div' and 'wrapper-problem-response' in child['class']:
+                for i, t in enumerate(texts):
+                    child.insert(i, t)
+                texts = []
+            else:
+                texts.append(child)
+
+
     def parse_problem(self, problem: BeautifulSoup) -> list[Question]:
         questions = []
         mt = problem.select_one('div.matching_table, div.adv-app')
@@ -68,9 +85,8 @@ class OpenEduParser:
             questions.append(q)
         else:
             wrappers = problem.find_all("div", attrs={"class": "wrapper-problem-response"})
-            if len(wrappers) > 1:
-                if not all(w.select("legend, p") for w in wrappers):
-                    raise LayoutError("Can't parse non-separated questions")
+            # if len(wrappers) > 1:
+            #     self.prepare_non_separated_questions(problem)
 
             for question_tag in problem.find_all("div", attrs={"class": "wrapper-problem-response"}):
                 q = self.parse_question(question_tag)

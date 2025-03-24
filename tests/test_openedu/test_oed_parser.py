@@ -44,7 +44,6 @@ def test_parse_vertical_block_html(testname: str):
     assert [[json.loads(q.json())for q in prob] for prob in problems_got] == expected
 
 
-@pytest.mark.xfail
 @pytest.mark.parametrize('testname', ["with_video", "map_problem"])
 def test_parse_vertical_block_html_(testname: str):
     filename_input = f"tests/data/pages/{testname}.html"
