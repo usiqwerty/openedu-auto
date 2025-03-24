@@ -23,6 +23,9 @@ class OpenEduProcessor:
         self.describer = describer
         self.app = OpenEduApp(self.describer)
 
+    def is_block_solved(self, block_id: str):
+        return self.require_incomplete and self.app.is_block_solved(block_id)
+
     def process_course(self, course_id: str):
         with self.cache_context:
             course = self.app.get_course_info(course_id)
@@ -32,13 +35,13 @@ class OpenEduProcessor:
                 for seq in ch.sequentials:
                     seq_id = SequentialBlockID.parse(seq)
 
-                    if self.require_incomplete and self.app.is_block_solved(seq_id.block_id):
+                    if self.is_block_solved(seq_id.block_id):
                         continue
 
                     for vertical in self.app.get_sequential_block(course_id, seq_id.block_id):
                         print(vertical.title)
                         blk = self.app.get_vertical_block(vertical.id)
-                        if self.require_incomplete and self.app.is_block_solved(blk.id) and not blk.complete:
+                        if self.is_block_solved(blk.id) and not blk.complete:
                             continue
                         self.process_vertical(blk.id, vertical, course_id)
 

@@ -53,18 +53,19 @@ class OpenEduAPI:
 
         r = self.session.get(url, headers=hdrs)
         if r.status_code == 401:
-            raise Exception("Unauthorized")
+            self.auth.refresh()
+            r = self.session.get(url, headers=hdrs)
+            if r.status_code == 401:
+                raise Exception("Unauthorized even after refresh")
         json_result = r.json()
         if 'developer_message' in json_result:
             raise Exception(json_result['developer_message'])
         return json_result
 
-
     def publish_completion(self, course_id: str, html_block_id: str):
         url = (f"https://courses.openedu.ru/courses/course-v1:{course_id}"
-         f"/xblock/{html_block_id}"
-         f"/handler/publish_completion")
-
+               f"/xblock/{html_block_id}"
+               f"/handler/publish_completion")
 
         if html_block_id not in self.api_storage.solved:
             logging.debug(f"[COMPLETE] {url}")
@@ -147,9 +148,23 @@ class OpenEduAPI:
     def get_vertical_html(self, blk: str) -> str:
         logging.debug("Requesting xblock")
         url = f"https://courses.openedu.ru/xblock/{blk}"
-        r = self.session.get(url)
-        return r.text
+        # r = self.session.get(url)
+        # return r.text
+        return self.get(url)
 
+    def get(self, url, is_json=False):
+        if url not in self.cache:
+            r = self.session.get(url)
+            if is_json:
+                self.cache[url] = r.json()
+            else:
+                self.cache[url] = r.text
+            self.save()
+        return self.cache[url]
+
+    def save(self):
+        with open(config.cache_fn, 'w', encoding='utf-8') as f:
+            json.dump(self.cache, f)
     # def next_page(self):
     #     curtab = 2
     #     tabcount = 4
