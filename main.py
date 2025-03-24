@@ -1,4 +1,5 @@
 import logging
+import os
 import re
 
 import config
@@ -7,6 +8,7 @@ from autosolver import OpenEduAutoSolver
 from config import set_config
 from errors import WrongAnswer
 from images.openrouter.qwen_describer import QwenImageDescriber
+from solvers.localsolver import LocalSolver
 from solvers.openrouter.gemini_solver import GeminiSolver
 
 logging.getLogger().setLevel(logging.DEBUG)
@@ -47,6 +49,7 @@ while True:
     print("2. Решить из файла")
     print("3. Сохранить решение в файл")
     print("4. Сбросить куки")
+    print("5. Сбросить кеш")
     cmd = input("Ввод: ")
     if cmd == "1":
         last_course = config.config.get("last-course")
@@ -76,6 +79,27 @@ while True:
         except WrongAnswer as e:
             print(f"Неправильный ответ на задачу {e.id}: {e.answer}")
             exit(1)
+    elif cmd == '2':
+        solutions_dir = os.path.join("userdata", "solutions")
+        files = os.listdir(solutions_dir)
+        for i, fn in enumerate(files):
+            print(f"{i+1}. {fn}")
+        f_i = int(input("Выбор: "))-1
+        course_id = files[f_i].split('.')[0]
+        solver = LocalSolver(course_id)
+        app = OpenEduAutoSolver(solver, describer)
+
+        set_config("last-course", course_id)
+        course = app.app.get_course_info(course_id)
+        print(f"Будем решать курс {course.name}")
+        if input("Нажимте Enter, чтобы начать, иначе выйдем "):
+            break
+        try:
+            app.process_course(course_id)
+        except WrongAnswer as e:
+            print(f"Неправильный ответ на задачу {e.id}: {e.answer}")
+            exit(1)
+
     elif cmd == '3':
         saver = AnswersSaver()
         try:
@@ -87,6 +111,9 @@ while True:
     elif cmd == '4':
         with app.cache_context:
             app.app.api.auth.drop()
+    elif cmd == '5':
+        if os.path.exists(config.cache_fn):
+            os.remove(config.cache_fn)
     else:
         continue
     break

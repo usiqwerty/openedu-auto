@@ -1,37 +1,37 @@
-import csv
+import json
+import os
+from typing import Any
 
-from fuzzywuzzy import process
-
-from openedu.questions.choice import compose_choice
-
-answers: list[list[str, str]] = []
-
-start = 210
-with open("../userdata/Filosofia.csv", encoding='utf-8') as f:
-    rd = csv.reader(f, delimiter=';', quotechar='"')
-    for row in list(rd)[start:]:
-        answers.append(row)
-
-
-def pick_answer(question, options) -> list | str:
-    only_qs = list(map(lambda x: x[0], answers))
-    known_question, _ = process.extractOne(question, only_qs)
-    idx = only_qs.index(known_question)
-    known_answer = answers[idx][1]
-
-    if not options:
-        return known_answer
-    if '\n' in known_answer:
-        real_answer = []
-        for known_subanswer in known_answer.split('\n'):
-            real_answer.append(process.extractOne(known_subanswer, options)[0])
-    else:
-        real_answer = process.extractOne(known_answer, options)[0]
-    return real_answer
+from errors import WrongAnswer
+from openedu.questions.choice import ChoiceQuestion
+from openedu.questions.fill import FillQuestion
+from openedu.questions.freematch import FreeMatchQuestion
+from openedu.questions.match import MatchQuestion
+from openedu.questions.new_match import NewMatchQuestion
+from openedu.questions.question import Question
+from openedu.questions.select import SelectQuestion
+from solvers.abstract_solver import AbstractSolver
 
 
-def solve(question: str, options: list[str], ids: list[str]) -> tuple[str, str | list[str]]:
-    answer = pick_answer(question, options)
-    return compose_choice(answer, ids, options)
+class LocalSolver(AbstractSolver):
+    answers: dict[str, Any]
 
+    def __init__(self, course_id: str):
+        with open(os.path.join("userdata", "solutions", f"{course_id}.json")) as f:
+            self.answers = json.load(f)
 
+    def solve(self, question: Question):
+        ans = self.answers.get(question.id)
+        if ans is None:
+            raise WrongAnswer
+        question_id = question.id
+        if isinstance(ans, list) and len(ans) > 1:
+            question_id += "[]"
+        return question_id, ans
+
+    def solve_choice(self, question: ChoiceQuestion) -> tuple[str, str | list[str]]: ...
+    def solve_match(self, question: MatchQuestion) -> tuple[str, str | list[str]]: ...
+    def solve_freematch(self, question: FreeMatchQuestion) -> tuple[str, str | list[str]]: ...
+    def solve_select(self, question: SelectQuestion) -> tuple[str, str | list[str]]: ...
+    def solve_fill(self, question: FillQuestion) -> tuple[str, str | list[str]]: ...
+    def solve_new_match(self, question: NewMatchQuestion) -> tuple[str, str | list[str]]: ...
