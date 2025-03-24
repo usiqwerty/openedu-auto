@@ -12,6 +12,7 @@ from openedu.questions.match import parse_match_question
 from openedu.questions.new_match import parse_new_match
 from openedu.questions.question import Question
 from openedu.questions.select import parse_select_question
+from openedu.questions.unsupported import UnsupportedQuestion
 
 
 class VerticalBlock(BaseModel):
@@ -77,7 +78,10 @@ class OpenEduParser:
         mt = problem.select_one('div.matching_table, div.adv-app')
         map = problem.find("div", class_="historical-path-container")
         if map:
-            raise UnsupportedProblemType("historical-path-container")
+            map_input = map.parent.find('input')
+            questions.append(UnsupportedQuestion(id=map_input['id'], correct_answer=map_input['value'], text=''))
+            return questions
+            # raise UnsupportedProblemType("historical-path-container")
         # а здесь мы делаем очень смелое предположение, что если matching table есть в задаче,
         # то ничего другого там не встречается
         if mt:
