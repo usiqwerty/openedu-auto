@@ -1,6 +1,7 @@
 import hashlib
 import json
 import os
+from idlelib.iomenu import encoding
 from typing import Any
 
 import config
@@ -18,8 +19,8 @@ from solvers.abstract_solver import AbstractSolver
 class LocalSolver(AbstractSolver):
     answers: dict[str, Any]
 
-    def __init__(self, course_id: str):
-        with open(os.path.join("userdata", "solutions", f"{course_id}.json")) as f:
+    def __init__(self, solution_path: str):
+        with open(os.path.join(solution_path), encoding='utf-8') as f:
             data = json.load(f)
         sha256 = data['sha256']
         self.answers = data['answers']

@@ -9,6 +9,7 @@ import config
 from cached_requests import cache_fn
 from openedu.auth import OpenEduAuth
 from openedu.course import Course, Chapter
+from openedu.ids import CourseID
 from openedu.local_api_storage import LocalApiStorage
 
 referer_params = urllib.parse.urlencode({
@@ -117,7 +118,7 @@ class OpenEduAPI:
             logging.debug(f"False answer check {answers}")
             return 0, 0
 
-    def course_info(self, course_id):
+    def course_info(self, course_id: CourseID):
         headers = {
             "Origin": "https://apps.openedu.ru",
             "Referer": "https://apps.openedu.ru/",
@@ -143,7 +144,7 @@ class OpenEduAPI:
             chapter_name = blocks[chapter_id]['display_name']
             chapters.append(Chapter(name=chapter_name, sequentials=blocks[chapter_id]['children']))
 
-        return Course(id=course_id, name=course_name, chapters=chapters)
+        return Course(id=str(course_id), name=course_name, chapters=chapters)
 
     def get_vertical_html(self, blk: str) -> str:
         logging.debug("Requesting xblock")

@@ -1,6 +1,36 @@
 import re
-from typing import Literal
+from typing import Literal, Any
 
+from pydantic import BaseModel
+
+
+class CourseID(BaseModel):
+    org: str
+    course_id: str
+    run: str
+    def __init__(self, org: str, course_id: str, run: str):
+        super().__init__(org=org, course_id=course_id, run=run)
+        self.org = org
+        self.course_id = course_id
+        self.run = run
+
+    def __repr__(self):
+        return f"{self.org}+{self.course_id}+{self.run}"
+
+    def __str__(self):
+        return repr(self)
+
+    def __hash__(self):
+        return hash(repr(self))
+
+    def same_course(self, other: "CourseID"):
+        """Check both coures are same except, maybe, course run"""
+        return self.org == other.org and self.course_id == other.course_id
+
+    @staticmethod
+    def parse(rich_id: str):
+        org, course_id, run = re.search(r"(\w+)\+(\w+)\+(\w+)", rich_id).groups()
+        return CourseID(org, course_id, run)
 
 class BlockID:
     course_id: str
@@ -20,7 +50,8 @@ class BlockID:
 
     @staticmethod
     def parse(rich_id: str):
-        course_id, block_type, block_id = re.search(r"block-v1:([\w+_]+)\+type@(\w+)\+block@([\w\W]+)", rich_id).groups()
+        course_id, block_type, block_id = re.search(r"block-v1:([\w+_]+)\+type@(\w+)\+block@([\w\W]+)",
+                                                    rich_id).groups()
         if block_type == 'sequential':
             return SequentialBlockID(course_id, block_id, block_type)
         elif block_type == 'vertical':

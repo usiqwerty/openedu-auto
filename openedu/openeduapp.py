@@ -6,6 +6,7 @@ import logging
 from config import blocks_fn, ignored_fn
 from images.image_describer import ImageDescriber
 from openedu.api import OpenEduAPI
+from openedu.ids import CourseID
 from openedu.oed_parser import OpenEduParser, VerticalBlock
 from openedu.questions.question import Question
 
@@ -48,11 +49,12 @@ class OpenEduApp:
     def login(self, username: str, password: str):
         self.api.auth.login(username, password)
 
-    def get_course_info(self, course_id: str):
+    def get_course_info(self, course_id: CourseID):
         if course_id not in self.api.api_storage.courses:
+            self.api.auth.refresh()
             course = self.api.course_info(course_id)
-            self.api.api_storage.courses[course_id] = course
-        return self.api.api_storage.courses[course_id]
+            self.api.api_storage.courses[str(course_id)] = course
+        return self.api.api_storage.courses[str(course_id)]
 
     def get_vertical_block(self, block_id: str) -> VerticalBlock:
         return self.api.api_storage.blocks.get(block_id)

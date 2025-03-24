@@ -1,3 +1,4 @@
+import json
 import logging
 import os
 import re
@@ -8,6 +9,8 @@ from autosolver import OpenEduAutoSolver
 from config import set_config
 from errors import WrongAnswer
 from images.openrouter.qwen_describer import QwenImageDescriber
+from openedu.course import Course
+from openedu.ids import CourseID
 from solvers.localsolver import LocalSolver
 from solvers.openrouter.gemini_solver import GeminiSolver
 
@@ -36,6 +39,7 @@ def input_course_id():
     link = input("Ссылка: ")
     return parse_course_by_any_link(link)
 
+
 app = OpenEduAutoSolver(solver, describer)
 if not app.app.api.session.cookies:
     print("Нужно ввести данные формы, чтобы авторизоваться")
@@ -43,6 +47,35 @@ if not app.app.api.session.cookies:
     password = input("Пароль: ")
     app.app.login(username, password)
     app.app.api.auth.save()
+
+
+def get_course_id() -> CourseID:
+    last_course = config.config.get("last-course")
+    if last_course is not None:
+        course = app.app.get_course_info(last_course)
+        print(f"Продолжаем решать курс {course.name}?")
+        continue_course = input("y/n: ") == "y"
+        if continue_course:
+            course_id = last_course
+        else:
+            course_id = input_course_id()
+    else:
+        course_id = input_course_id()
+
+    set_config("last-course", str(course_id))
+    return CourseID.parse(course_id)
+
+
+def solve(course: Course):
+    print(f"Будем решать курс {course.name}")
+    if input("Нажимте Enter, чтобы начать, иначе выйдем "):
+        return
+    try:
+        app.process_course(course_id)
+    except WrongAnswer as e:
+        print(f"Неправильный ответ на задачу {e.id}: {e.answer}")
+        exit(1)
+
 
 while True:
     print("1. Решить через нейросеть")
@@ -52,50 +85,44 @@ while True:
     print("5. Сбросить кеш")
     cmd = input("Ввод: ")
     if cmd == "1":
-        last_course = config.config.get("last-course")
-
-        if last_course is not None:
-            course = app.app.get_course_info(last_course)
-            print(f"Продолжаем решать курс {course.name}?")
-            continue_course = input("y/n: ") == "y"
-            if continue_course:
-                course_id = last_course
-            else:
-                last_course = None
-        if last_course is None:
-            try:
-                course_id = input_course_id()
-            except ValueError:
-                print("Не удалось распознать ссылку")
-                continue
-
-        set_config("last-course", course_id)
-        course = app.app.get_course_info(course_id)
-        print(f"Будем решать курс {course.name}")
-        if input("Нажимте Enter, чтобы начать, иначе выйдем "):
-            break
         try:
-            app.process_course(course_id)
-        except WrongAnswer as e:
-            print(f"Неправильный ответ на задачу {e.id}: {e.answer}")
-            exit(1)
+            course_id = get_course_id()
+        except ValueError:
+            print("Не удалось распознать ссылку")
+            continue
+        course = app.app.get_course_info(course_id)
+        solve(course)
     elif cmd == '2':
+        try:
+            course_id = get_course_id()
+        except ValueError:
+            print("Не удалось распознать ссылку")
+            continue
+
         solutions_dir = os.path.join("userdata", "solutions")
         files = os.listdir(solutions_dir)
+        filepath = None
         for i, fn in enumerate(files):
-            print(f"{i+1}. {fn}")
-        f_i = int(input("Выбор: "))-1
-        course_id = files[f_i].split('.')[0]
-        solver = LocalSolver(course_id)
+            filepath = os.path.join(solutions_dir, fn)
+            with open(filepath, encoding='utf-8') as f:
+                data = json.load(f)
+                file_course_id = data['course']
+                if CourseID.parse(file_course_id).same_course(course_id):
+                    solution_path = filepath
+                    break
+        if filepath is None:
+            print("Не удалось найти файл с решением для этого курса")
+            continue
+        solver = LocalSolver(filepath)
         app = OpenEduAutoSolver(solver, describer)
 
-        set_config("last-course", course_id)
+        set_config("last-course", str(course_id))
         course = app.app.get_course_info(course_id)
         print(f"Будем решать курс {course.name}")
         if input("Нажимте Enter, чтобы начать, иначе выйдем "):
             break
         try:
-            app.process_course(course_id)
+            app.process_course(str(course_id))
         except WrongAnswer as e:
             print(f"Неправильный ответ на задачу {e.id}: {e.answer}")
             exit(1)
