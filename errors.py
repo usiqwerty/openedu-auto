@@ -22,3 +22,7 @@ class WrongAnswer(Exception):
 
 class ConfigError(Exception):
     pass
+
+
+class HashMismatch(Exception):
+    pass

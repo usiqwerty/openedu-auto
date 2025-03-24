@@ -1,9 +1,9 @@
+import hashlib
 import json
 import logging
 import os.path
 
 import config
-from errors import NoSolutionFoundError
 from openedu.questions.question import Question
 from openedu_processor import OpenEduProcessor
 from tests.fakes import DummyDescriber
@@ -32,5 +32,8 @@ class AnswersSaver(OpenEduProcessor):
             if not question.correct_answer:
                 logging.error(f"Question doesn't have a correct answer: {question}")
             self.answers[question.id] = question.correct_answer
+        answers_str = str(self.answers)
+        sha256_hash = hashlib.sha256(answers_str.encode()).hexdigest()
+        data = {"course": course_id, "sha256": sha256_hash, "answers": self.answers}
         with open(solution_fn, 'w', encoding='utf-8') as f:
-            json.dump(self.answers, f)
+            json.dump(data, f)

@@ -1,8 +1,10 @@
+import hashlib
 import json
 import os
 from typing import Any
 
-from errors import WrongAnswer
+import config
+from errors import WrongAnswer, HashMismatch
 from openedu.questions.choice import ChoiceQuestion
 from openedu.questions.fill import FillQuestion
 from openedu.questions.freematch import FreeMatchQuestion
@@ -18,7 +20,12 @@ class LocalSolver(AbstractSolver):
 
     def __init__(self, course_id: str):
         with open(os.path.join("userdata", "solutions", f"{course_id}.json")) as f:
-            self.answers = json.load(f)
+            data = json.load(f)
+        sha256 = data['sha256']
+        self.answers = data['answers']
+        got_hash = hashlib.sha256(str(self.answers).encode()).hexdigest()
+        if got_hash != sha256 and not config.config.get("ls-allow-hash-mismatch"):
+            raise HashMismatch("Solution corrupted")
 
     def solve(self, question: Question):
         ans = self.answers.get(question.id)
@@ -29,9 +36,20 @@ class LocalSolver(AbstractSolver):
             question_id += "[]"
         return question_id, ans
 
-    def solve_choice(self, question: ChoiceQuestion) -> tuple[str, str | list[str]]: ...
-    def solve_match(self, question: MatchQuestion) -> tuple[str, str | list[str]]: ...
-    def solve_freematch(self, question: FreeMatchQuestion) -> tuple[str, str | list[str]]: ...
-    def solve_select(self, question: SelectQuestion) -> tuple[str, str | list[str]]: ...
-    def solve_fill(self, question: FillQuestion) -> tuple[str, str | list[str]]: ...
-    def solve_new_match(self, question: NewMatchQuestion) -> tuple[str, str | list[str]]: ...
+    def solve_choice(self, question: ChoiceQuestion) -> tuple[str, str | list[str]]:
+        ...
+
+    def solve_match(self, question: MatchQuestion) -> tuple[str, str | list[str]]:
+        ...
+
+    def solve_freematch(self, question: FreeMatchQuestion) -> tuple[str, str | list[str]]:
+        ...
+
+    def solve_select(self, question: SelectQuestion) -> tuple[str, str | list[str]]:
+        ...
+
+    def solve_fill(self, question: FillQuestion) -> tuple[str, str | list[str]]:
+        ...
+
+    def solve_new_match(self, question: NewMatchQuestion) -> tuple[str, str | list[str]]:
+        ...
