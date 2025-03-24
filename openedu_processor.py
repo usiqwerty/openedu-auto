@@ -32,7 +32,7 @@ class OpenEduProcessor:
                 for seq in ch.sequentials:
                     seq_id = SequentialBlockID.parse(seq)
 
-                    if self.app.is_block_solved(seq_id.block_id):
+                    if self.require_incomplete and self.app.is_block_solved(seq_id.block_id):
                         continue
 
                     for vertical in self.app.get_sequential_block(course_id, seq_id.block_id):
@@ -50,12 +50,13 @@ class OpenEduProcessor:
 
         r = self.app.api.get_vertical_html(blkid)
         soup = BeautifulSoup(r, 'html.parser')
-        for xblock_vert in soup.select("div.xblock div.vert"):
-            block_id_str = xblock_vert['data-id']
+        if self.require_incomplete:
+            for xblock_vert in soup.select("div.xblock div.vert"):
+                block_id_str = xblock_vert['data-id']
 
-            rich_block_id = BlockID.parse(block_id_str)
-            if rich_block_id.type in {"html", "xvideoblock"}:
-                self.app.api.publish_completion(course_id, block_id_str)
+                rich_block_id = BlockID.parse(block_id_str)
+                if rich_block_id.type in {"html", "xvideoblock"}:
+                    self.app.api.publish_completion(course_id, block_id_str)
         # if block.type == 'other' and not block.graded:
         #     # return
         #     # print(blkid, block)
