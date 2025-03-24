@@ -6,6 +6,7 @@ import urllib.parse
 
 import requests.utils
 from requests import Session
+from requests.cookies import RequestsCookieJar
 
 import config
 
@@ -180,3 +181,8 @@ class OpenEduAuth:
         # if oiar.status_code == 200 and len(oiar.history) == 1:
         #     logn = self.post_login_data(config.config['username'], config.config['password'], oiar.text)
         pass
+
+    def drop(self):
+        self.session.cookies = RequestsCookieJar()
+        self.save()
+        logging.debug("Auth cookies reset")

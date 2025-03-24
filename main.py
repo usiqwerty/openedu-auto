@@ -46,6 +46,7 @@ while True:
     print("1. Решить через нейросеть")
     print("2. Решить из файла")
     print("3. Сохранить решение в файл")
+    print("4. Сбросить куки")
     cmd = input("Ввод: ")
     if cmd == "1":
         last_course = config.config.get("last-course")
@@ -83,6 +84,9 @@ while True:
             print("Не удалось распознать ссылку")
             continue
         saver.pull_answers(course_id)
+    elif cmd == '4':
+        with app.cache_context:
+            app.app.api.auth.drop()
     else:
         continue
     break
