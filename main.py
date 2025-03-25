@@ -50,6 +50,7 @@ def main():
             set_config("last-course", str(course_id))
 
             filepath = get_solution_filepath(course_id)
+            logging.debug(f"Solution file: {filepath}")
             if filepath is None:
                 print("Не удалось найти файл с решением для этого курса")
                 continue
