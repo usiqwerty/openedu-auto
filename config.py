@@ -44,6 +44,7 @@ def require_config_field(name: str):
 
 
 userdata_dir = "userdata"
+solutions_dir = os.path.join(userdata_dir, "solutions")
 config_fn = os.path.join(userdata_dir, "config.json")
 cache_fn = os.path.join(userdata_dir, "cache.json")
 blocks_fn = os.path.join(userdata_dir, "blocks.json")
@@ -51,5 +52,11 @@ courses_fn = os.path.join(userdata_dir, "courses.json")
 solved_fn = os.path.join(userdata_dir, "solved.json")
 ignored_fn = os.path.join(userdata_dir, "ignored.json")
 
-with open(config_fn, encoding='utf-8') as f:
-    config = json.load(f)
+os.makedirs(solutions_dir, exist_ok=True)
+
+try:
+    with open(config_fn, encoding='utf-8') as f:
+        config = json.load(f)
+except FileNotFoundError:
+    config = {}
+
