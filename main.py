@@ -9,6 +9,7 @@ from config import set_config
 from images.openrouter.qwen_describer import QwenImageDescriber
 from solvers.localsolver import LocalSolver
 from solvers.openrouter.gemini_solver import GeminiSolver
+from tests.fakes import DummyDescriber
 
 logging.getLogger().setLevel(logging.DEBUG)
 
@@ -56,7 +57,7 @@ def main():
                 continue
 
             solver = LocalSolver(filepath)
-            describer = None
+            describer = DummyDescriber()
             solve(solver, describer, course)
         elif cmd == '3':
             try:
