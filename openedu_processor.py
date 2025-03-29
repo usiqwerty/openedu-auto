@@ -4,7 +4,7 @@ from abc import abstractmethod
 from bs4 import BeautifulSoup
 
 from cached_requests import CacheContext
-from errors import UnsupportedProblemType
+from errors import UnsupportedProblemType, NoSolutionFoundError
 from images.image_describer import ImageDescriber
 from openedu.ids import SequentialBlockID, BlockID
 from openedu.oed_parser import VerticalBlock
@@ -74,6 +74,8 @@ class OpenEduProcessor:
                 except UnsupportedProblemType as e:
                     logging.error(f"Unsupported problem type: {e}")
                     self.app.skip_forever(blkid)
+                except NoSolutionFoundError as e:
+                    logging.error(f"No solution found: {e}")
         self.app.api.api_storage.mark_block_as_completed(blkid)
 
     @abstractmethod
