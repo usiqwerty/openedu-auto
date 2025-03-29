@@ -26,3 +26,6 @@ class ConfigError(Exception):
 
 class HashMismatch(Exception):
     pass
+
+class Unauthorized(Exception):
+    pass

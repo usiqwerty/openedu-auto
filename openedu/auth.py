@@ -170,6 +170,8 @@ class OpenEduAuth:
         """Perform full token refresh process"""
         lr = self.login_refresh()
         if lr.status_code == 200:
+            if len(lr.history) < 3:
+                logging.warning("Too short login refresh history")
             return
         lk = self.login_keycloak()
         if lk.status_code != 200:

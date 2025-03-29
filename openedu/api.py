@@ -7,6 +7,7 @@ from requests import Session
 
 import config
 from cached_requests import cache_fn
+from errors import Unauthorized
 from openedu.auth import OpenEduAuth
 from openedu.course import Course, Chapter
 from openedu.ids import CourseID
@@ -128,6 +129,11 @@ class OpenEduAPI:
             "USE-JWT-COOKIE": "true",
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:135.0) Gecko/20100101 Firefox/135.0"
         }
+        r_meta = self.session.get(f'https://courses.openedu.ru/api/course_home/course_metadata/course-v1:{course_id}')
+        meta_data = r_meta.json()
+        if not meta_data['course_access']['has_access']:
+            logging.error(meta_data['course_access']['user_message'])
+            raise Unauthorized
         r = self.session.get(f"https://courses.openedu.ru/api/course_home/outline/course-v1:{course_id}",
                              headers=headers)
         data = r.json()
