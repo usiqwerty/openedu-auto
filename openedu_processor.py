@@ -53,7 +53,7 @@ class OpenEduProcessor:
 
         r = self.app.api.get_vertical_html(blkid)
         soup = BeautifulSoup(r, 'html.parser')
-        if self.require_incomplete:
+        if not self.is_block_solved(blkid):
             for xblock_vert in soup.select("div.xblock div.vert"):
                 block_id_str = xblock_vert['data-id']
 
@@ -67,13 +67,13 @@ class OpenEduProcessor:
         #     # time.sleep(5)
         #
         #     app.api.publish_completion(course_id, block_id_str)
-        if 1 or block.type == "problem" or (block.type == 'other' and block.graded):
-            try:
-                for problem in self.app.get_problems_for_vertical(blkid):
-                    self.process_problem(course_id, problem)
-            except UnsupportedProblemType as e:
-                logging.error(f"Unsupported problem type: {e}")
-                self.app.skip_forever(blkid)
+            if 1 or block.type == "problem" or (block.type == 'other' and block.graded):
+                try:
+                    for problem in self.app.get_problems_for_vertical(blkid):
+                        self.process_problem(course_id, problem)
+                except UnsupportedProblemType as e:
+                    logging.error(f"Unsupported problem type: {e}")
+                    self.app.skip_forever(blkid)
         self.app.api.api_storage.mark_block_as_completed(blkid)
 
     @abstractmethod
