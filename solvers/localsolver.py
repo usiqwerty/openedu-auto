@@ -31,7 +31,7 @@ class LocalSolver(AbstractSolver):
     def solve(self, question: Question):
         ans = self.answers.get(question.id)
         if ans is None:
-            raise WrongAnswer
+            raise WrongAnswer(question.id, ans)
         question_id = question.id
         if isinstance(ans, list) and len(ans) > 1:
             question_id += "[]"
