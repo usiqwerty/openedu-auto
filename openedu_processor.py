@@ -76,6 +76,7 @@ class OpenEduProcessor:
                     self.app.skip_forever(blkid)
                 except NoSolutionFoundError as e:
                     logging.error(f"No solution found: {e}")
+                    return # do not mark as complete, so we can come back later
         self.app.api.api_storage.mark_block_as_completed(blkid)
 
     @abstractmethod
