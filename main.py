@@ -6,6 +6,7 @@ from ans_saver import AnswersSaver
 from autosolver import OpenEduAutoSolver
 from cli_tools import get_course_id, solve, get_solution_filepath
 from config import set_config
+from errors import Unauthorized
 from images.openrouter.qwen_describer import QwenImageDescriber
 from solvers.localsolver import LocalSolver
 from solvers.openrouter.gemini_solver import GeminiSolver
@@ -16,12 +17,11 @@ logging.getLogger().setLevel(logging.DEBUG)
 
 def main():
     empty_app = OpenEduAutoSolver(None, None)
-    if not empty_app.app.api.session.cookies:
-        print("Нужно ввести данные формы, чтобы авторизоваться")
-        username = input("Имя пользователя: ")
-        password = input("Пароль: ")
-        empty_app.app.login(username, password)
-        empty_app.app.api.auth.save()
+    try:
+        require_login(empty_app)
+    except Unauthorized:
+        print("Не удалось войти")
+        exit(1)
     while True:
         print("1. Решить через нейросеть")
         print("2. Решить из файла")
@@ -77,6 +77,18 @@ def main():
         else:
             continue
         break
+
+
+def require_login(empty_app: OpenEduAutoSolver):
+    if not empty_app.app.api.session.cookies:
+        print("Нужно ввести данные формы, чтобы авторизоваться")
+        username = input("Имя пользователя: ").strip()
+        password = input("Пароль: ").strip()
+        status = empty_app.app.login(username, password)
+        if status.get("auth"):
+            empty_app.app.api.auth.save()
+        else:
+            raise Unauthorized("Could not log in")
 
 
 if __name__ == "__main__":

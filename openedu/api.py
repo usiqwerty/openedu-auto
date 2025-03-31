@@ -217,3 +217,6 @@ class OpenEduAPI:
     #         self.session.get(url, headers=hrds, cookies=config.get_cookies(self.csrf))
     #     else:
     #         logging.debug("fake [GET] tick page")
+    def status(self):
+        r = self.session.get("https://openedu.ru/auth/status?url=/")
+        return r.json()

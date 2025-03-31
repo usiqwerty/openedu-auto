@@ -48,6 +48,7 @@ class OpenEduApp:
 
     def login(self, username: str, password: str):
         self.api.auth.login(username, password)
+        return self.api.status()
 
     def get_course_info(self, course_id: CourseID):
         if course_id not in self.api.api_storage.courses:
