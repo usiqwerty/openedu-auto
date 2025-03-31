@@ -1,6 +1,7 @@
 import json
 import logging
 import urllib.parse
+from json import JSONDecodeError
 from typing import Any
 
 from requests import Session
@@ -81,7 +82,12 @@ class OpenEduAPI:
             if not config.config.get('restrict-actions'):
                 logging.debug("[POST] publish completion")
                 r = self.session.post(url, headers=hdrs, json={"completion": 1})
-                data = r.json()
+                try:
+                    data = r.json()
+                except JSONDecodeError as e:
+                    logging.error(f"Could not decode JSON for publish completion response: {e}")
+                    return  # remains not marked as complete
+
                 if 'error' in data or (data['result'] != 'ok'):
                     logging.error(f"Completion was not okay: {data}")
                 if r.status_code == 200:
