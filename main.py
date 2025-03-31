@@ -15,6 +15,51 @@ from tests.fakes import DummyDescriber
 logging.getLogger().setLevel(logging.DEBUG)
 
 
+def solve_with_llm(empty_app: OpenEduAutoSolver):
+    try:
+        course_id = get_course_id(empty_app)
+    except ValueError:
+        print("Не удалось распознать ссылку")
+        return
+    course = empty_app.app.get_course_info(course_id)
+    set_config("last-course", str(course_id))
+
+    solver = GeminiSolver()
+    describer = QwenImageDescriber()
+    solve(solver, describer, course)
+
+
+def solve_with_file(empty_app: OpenEduAutoSolver):
+    try:
+        course_id = get_course_id(empty_app)
+    except ValueError:
+        print("Не удалось распознать ссылку")
+        return
+    course = empty_app.app.get_course_info(course_id)
+    set_config("last-course", str(course_id))
+
+    filepath = get_solution_filepath(course_id)
+    logging.debug(f"Solution file: {filepath}")
+    if filepath is None:
+        print("Не удалось найти файл с решением для этого курса")
+        return
+
+    solver = LocalSolver(filepath)
+    describer = DummyDescriber()
+    solve(solver, describer, course)
+
+
+def save_answers(empty_app: OpenEduAutoSolver):
+    try:
+        course_id = get_course_id(empty_app)
+    except ValueError:
+        print("Не удалось распознать ссылку")
+        return
+
+    saver = AnswersSaver()
+    saver.pull_answers(str(course_id))
+
+
 def main():
     empty_app = OpenEduAutoSolver(None, None)
     try:
@@ -30,44 +75,14 @@ def main():
         print("5. Сбросить кеш")
         cmd = input("Ввод: ")
         if cmd == "1":
-            try:
-                course_id = get_course_id(empty_app)
-            except ValueError:
-                print("Не удалось распознать ссылку")
-                continue
-            course = empty_app.app.get_course_info(course_id)
-            set_config("last-course", str(course_id))
-
-            solver = GeminiSolver()
-            describer = QwenImageDescriber()
-            solve(solver, describer, course)
+            solve_with_llm(empty_app)
+            continue
         elif cmd == '2':
-            try:
-                course_id = get_course_id(empty_app)
-            except ValueError:
-                print("Не удалось распознать ссылку")
-                continue
-            course = empty_app.app.get_course_info(course_id)
-            set_config("last-course", str(course_id))
-
-            filepath = get_solution_filepath(course_id)
-            logging.debug(f"Solution file: {filepath}")
-            if filepath is None:
-                print("Не удалось найти файл с решением для этого курса")
-                continue
-
-            solver = LocalSolver(filepath)
-            describer = DummyDescriber()
-            solve(solver, describer, course)
+            solve_with_file(empty_app)
+            continue
         elif cmd == '3':
-            try:
-                course_id = get_course_id(empty_app)
-            except ValueError:
-                print("Не удалось распознать ссылку")
-                continue
-
-            saver = AnswersSaver()
-            saver.pull_answers(str(course_id))
+            save_answers(empty_app)
+            continue
         elif cmd == '4':
             with empty_app.cache_context:
                 empty_app.app.api.auth.drop()
