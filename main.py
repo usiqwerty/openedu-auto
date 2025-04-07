@@ -9,6 +9,7 @@ from config import set_config
 from errors import Unauthorized
 from images.openrouter.qwen_describer import QwenImageDescriber
 from solvers.localsolver import LocalSolver
+from solvers.mistral_solver import MistralSolver
 from solvers.openrouter.gemini_solver import GeminiSolver
 from tests.fakes import DummyDescriber
 
@@ -73,6 +74,7 @@ def main():
         print("3. Сохранить решение в файл")
         print("4. Сбросить куки")
         print("5. Сбросить кеш")
+        print("6. По ссылке")
         cmd = input("Ввод: ")
         if cmd == "1":
             solve_with_llm(empty_app)
@@ -89,6 +91,12 @@ def main():
         elif cmd == '5':
             if os.path.exists(config.cache_fn):
                 os.remove(config.cache_fn)
+        elif cmd == '6':
+            solver = MistralSolver()
+            describer = DummyDescriber()
+            app = OpenEduAutoSolver(solver, describer)
+            url = input("Ссылка: ")
+            app.solve_by_url(url)
         else:
             continue
         break
