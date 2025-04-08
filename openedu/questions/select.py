@@ -29,13 +29,13 @@ class SelectQuestion(BaseModel, Question):
 
 
 def parse_select_question(tag: Tag) -> SelectQuestion:
-    text = ""
+    lines = []
     q_id = None
     answers = []
     for child in tag.children:
 
         if child.name == "p":
-            text += child.text
+            lines.append(child.text)
 
     sel = tag.select_one('select')
     q_id = sel['id']
@@ -46,4 +46,4 @@ def parse_select_question(tag: Tag) -> SelectQuestion:
                 correct_answer = opt['value']
             answers.append((opt.text.strip(), opt['value']))
 
-    return SelectQuestion(id=q_id, text=text, options=answers, correct_answer=correct_answer)
+    return SelectQuestion(id=q_id, text='\n'.join(lines), options=answers, correct_answer=correct_answer)

@@ -17,16 +17,17 @@ class FillQuestion(BaseModel, Question):
 
 
 def parse_fill_question(tag: Tag) -> FillQuestion:
-    text = ""
     lines = []
     for p in tag.find_all("p"):
-        lines.append(p.text)
+        lines.append(p.text.strip())
     label = tag.find('label')
     if label:
-        lines.append(label.text)
+        lines.append(label.text.strip())
 
     input_tag = tag.find("input")
     q_id = input_tag['id']
     correct_answer = input_tag['value']
-    return FillQuestion(id=q_id, text='\n'.join(lines), correct_answer=correct_answer)
+
+    question_text = '\n'.join(filter(lambda x: x, lines))
+    return FillQuestion(id=q_id, text=question_text, correct_answer=correct_answer)
 
