@@ -16,8 +16,8 @@ class FillQuestion(BaseModel, Question):
         return self.id, answer
 
 
-def parse_fill_question(tag: Tag) -> FillQuestion:
-    lines = []
+def parse_fill_question(tag: Tag, prepend_lines: list[str] = None) -> FillQuestion:
+    lines = prepend_lines + []
     for p in tag.find_all("p"):
         lines.append(p.text.strip())
     label = tag.find('label')

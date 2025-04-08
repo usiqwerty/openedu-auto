@@ -54,7 +54,7 @@ class FreeMatchQuestion(BaseModel, Question):
         return self.id, str({'answer': answer})
 
 
-def parse_freematch_question(problem: Tag, describer: ImageDescriber):
+def parse_freematch_question(problem: Tag, describer: ImageDescriber, prepend_lines: list[str] = None):
     questions = []
     answers = []
     q_text = '\n'.join(p.text for p in problem.select('.matching_table > p'))

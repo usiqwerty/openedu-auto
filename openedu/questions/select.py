@@ -28,8 +28,8 @@ class SelectQuestion(BaseModel, Question):
         return self.id, ans_id
 
 
-def parse_select_question(tag: Tag) -> SelectQuestion:
-    lines = []
+def parse_select_question(tag: Tag, prepend_lines: list[str] = None) -> SelectQuestion:
+    lines = prepend_lines + []
     q_id = None
     answers = []
     for child in tag.children:

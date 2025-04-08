@@ -96,10 +96,17 @@ class OpenEduParser:
             wrappers = problem.find_all("div", attrs={"class": "wrapper-problem-response"})
             # if len(wrappers) > 1:
             #     self.prepare_non_separated_questions(problem)
-
-            for question_tag in problem.find_all("div", attrs={"class": "wrapper-problem-response"}):
-                q = self.parse_question(question_tag)
-                questions.append(q)
+            prepend = []
+            #find_all("div", attrs={"class": "wrapper-problem-response"})
+            for question_tag in problem.select("div.wrapper-problem-response, .problem > div > p"):
+                if question_tag.name == 'div':
+                    q = self.parse_question(question_tag, prepend)
+                    questions.append(q)
+                    prepend = []
+                elif question_tag.name == 'p':
+                    p_text = question_tag.text.strip()
+                    if p_text:
+                        prepend.append(p_text)
 
         if problem_header is not None and len(problem_header.strip()) > 1:
             for i in range(len(questions)):
@@ -107,23 +114,23 @@ class OpenEduParser:
                 q.text = (problem_header + "\n" + q.text).strip()
         return questions
 
-    def parse_question(self, question_tag: Tag) -> Question:
+    def parse_question(self, question_tag: Tag, prepend_lines: list[str] = None) -> Question:
         if question_tag.select_one('div.matching_table, div.adv-app') is not None:
             if question_tag.select_one('.adv-app'):
-                question = parse_new_match(question_tag)
+                question = parse_new_match(question_tag, prepend_lines)
             elif question_tag.select_one('div.matching_table').select("td.conf-text"):
                 problem_type = "match"
-                question = parse_match_question(question_tag)
+                question = parse_match_question(question_tag, prepend_lines)
             else:
                 problem_type = "freematch"
-                question = parse_freematch_question(question_tag, self.describer)
+                question = parse_freematch_question(question_tag, self.describer, prepend_lines)
         elif question_tag.find('select'):
-            question = parse_select_question(question_tag)
+            question = parse_select_question(question_tag, prepend_lines)
         elif question_tag.select_one('input[type=text]'):
-            question = parse_fill_question(question_tag)
+            question = parse_fill_question(question_tag, prepend_lines)
         elif question_tag.select_one('input.input-radio, input.input-checkbox'):
             problem_type = "choice"
-            question = parse_choice_question(question_tag)
+            question = parse_choice_question(question_tag, prepend_lines)
         else:
             raise UnsupportedProblemType
         return question

@@ -25,16 +25,15 @@ class ChoiceQuestion(BaseModel, Question):
             return plural_choice(answer, self.ids, self.options)
 
 
-def parse_choice_question(questions: Tag):
-    problem_text = ""
-
+def parse_choice_question(questions: Tag, prepend_lines: list[str] = None):
+    lines = prepend_lines + []
     for child in questions.children:
         if child.name in ["p", "pre"]:
-            problem_text += child.text
+            lines.append(child.text.strip())
         elif child.name == "div":
             legend = child.find('legend')
             if legend:
-                problem_text += legend.text
+                lines.append(legend.text)
             qs = [question.text.strip() for question in child.find_all('label')]
             ids = [qid['id'] for qid in child.find_all('input')]
 
@@ -51,7 +50,7 @@ def parse_choice_question(questions: Tag):
                     correct_answer = None
                 quest_id, choice_id = extract_choice_from_id(ids[0])
 
-                return ChoiceQuestion(id=quest_id, text=problem_text, options=qs, ids=ids, correct_answer=correct_answer)
+                return ChoiceQuestion(id=quest_id, text='\n'.join(lines), options=qs, ids=ids, correct_answer=correct_answer)
 
 
 def plural_choice(answer: list, ids: list[str], options: list[str]) -> tuple[str, str | list[str]]:
