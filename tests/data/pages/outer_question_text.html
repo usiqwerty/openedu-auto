@@ -1,0 +1,3385 @@
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<!--[if lte IE 9]><html class="ie ie9 lte9" lang="en"><![endif]-->
+<!--[if !IE]><!--><html lang="en"><!--<![endif]-->
+<head dir="ltr">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="origin-trial" content="ArNBN7d1AkvMhJTGWXlJ8td/AN4lOokzOnqKRNkTnLqaqx0HpfYvmx8JePPs/emKh6O5fckx14LeZIGJ1AQYjgAAAABzeyJvcmlnaW4iOiJodHRwOi8vbG9jYWxob3N0OjE4MDAwIiwiZmVhdHVyZSI6IkRpc2FibGVEaWZmZXJlbnRPcmlnaW5TdWJmcmFtZURpYWxvZ1N1cHByZXNzaW9uIiwiZXhwaXJ5IjoxNjM5NTI2Mzk5fQ==">
+
+
+
+
+  <title>
+
+ RUSHIS Courseware | Открытое образование
+</title>
+
+
+  
+
+  <script type="text/javascript" src="https://cdn2.openedu.ru/static/js/i18n/en/djangojs.705ead69114e.js"></script>
+  <script type="text/javascript" src="https://cdn2.openedu.ru/static/js/ie11_find_array.bd1c6dc7a133.js"></script>
+  
+  <link rel="icon" type="image/x-icon" href="https://cdn2.openedu.ru/static/edx-theme/images/favicon.bd3d272022e9.ico"/>
+
+
+
+  
+  
+
+    <link href="https://cdn2.openedu.ru/static/edx-theme/css/lms-style-vendor.68e48093f5dd.css" rel="stylesheet" type="text/css" />
+
+
+
+    
+  
+
+    <link href="https://cdn2.openedu.ru/static/edx-theme/css/lms-main-v1.4fcbf1c0bdb5.css" rel="stylesheet" type="text/css" />
+
+
+
+
+    
+    
+<script type="text/javascript" src="https://cdn2.openedu.ru/static/js/lms-main_vendor.3c3c9a2604d6.js" charset="utf-8"></script>
+
+
+    
+    
+<script type="text/javascript" src="https://cdn2.openedu.ru/static/js/lms-application.5ba2aca48790.js" charset="utf-8"></script>
+
+
+
+  
+    
+    
+    <script type="text/javascript" src="https://cdn2.openedu.ru/static/bundles/commons.18ca13fd3a36eedcddd3.6ddbb79b7234.js" ></script>
+
+
+
+  <script>
+    window.baseUrl = "https://cdn2.openedu.ru/static/";
+    (function (require) {
+      require.config({
+          baseUrl: window.baseUrl
+      });
+    }).call(this, require || RequireJS.require);
+  </script>
+  <script type="text/javascript" src="https://cdn2.openedu.ru/static/lms/js/require-config.38226099c6ad.js"></script>
+  
+    <script type="text/javascript">
+        (function (require) {
+          require.config({
+              paths: {
+                'course_bookmarks/js/views/bookmark_button': 'course_bookmarks/js/views/bookmark_button.d4cfaf3361fa',
+'js/views/message_banner': 'js/views/message_banner.141974fd4f5d',
+'moment': 'common/js/vendor/moment-with-locales.e3cc27d412a1',
+'moment-timezone': 'common/js/vendor/moment-timezone-with-data.60142e6c4416',
+'js/courseware/course_info_events': 'js/courseware/course_info_events.2fc35b57627f',
+'js/courseware/accordion_events': 'js/courseware/accordion_events.6064c7809de5',
+'js/dateutil_factory': 'js/dateutil_factory.a28baef97506',
+'js/courseware/link_clicked_events': 'js/courseware/link_clicked_events',
+'js/courseware/toggle_element_visibility': 'js/courseware/toggle_element_visibility.474ff5ba9de3',
+'js/student_account/logistration_factory': 'js/student_account/logistration_factory.5e55252d0ace',
+'js/courseware/courseware_factory': 'js/courseware/courseware_factory.1504fc10caef',
+'js/groups/views/cohorts_dashboard_factory': 'js/groups/views/cohorts_dashboard_factory.abc7c817c498',
+'js/groups/discussions_management/discussions_dashboard_factory': 'js/discussions_management/views/discussions_dashboard_factory.2e10d9097343',
+'draggabilly': 'js/vendor/draggabilly.26caba6f7187',
+'hls': 'common/js/vendor/hls.5e0c7e1b3bfd'
+            }
+          });
+        }).call(this, require || RequireJS.require);
+    </script>
+  
+
+  
+
+  
+
+    <link href="https://cdn2.openedu.ru/static/edx-theme/css/lms-style-course-vendor.cc467ea1c47d.css" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+
+    <link href="https://cdn2.openedu.ru/static/edx-theme/css/lms-course.d3e35273eae9.css" rel="stylesheet" type="text/css" />
+
+
+
+
+<script type="text/javascript" src="https://cdn2.openedu.ru/static/js/jquery.autocomplete.964a0bfb4fd2.js" async></script>
+<script type="text/javascript" src="https://cdn2.openedu.ru/static/js/src/tooltip_manager.b8fa94d4cefc.js" async></script>
+
+<link href="https://cdn2.openedu.ru/static/css/vendor/jquery.autocomplete.css" rel="preload" type="text/css">
+  
+
+  <base target="_parent">
+
+<script type="text/javascript">
+  var $$course_id = "course\u002Dv1:spbstu+RUSHIS+spring_2025";
+</script>
+
+
+  
+
+  
+
+
+  
+
+
+<script type="application/json" id="user-metadata">
+    null
+</script>
+
+  
+
+  
+
+
+  
+
+
+<!-- dummy Segment -->
+<script type="text/javascript">
+  var analytics = {
+    track: function() { return; },
+    trackLink: function() { return; },
+    pageview: function() { return; },
+    page: function() { return; }
+  };
+</script>
+<!-- end dummy Segment -->
+
+
+  <meta name="path_prefix" content="">
+  
+
+  <meta name="openedx-release-line" content="maple" />
+
+
+
+
+
+</head>
+
+<body class="ltr view-in-course view-courseware courseware  lang_en">
+
+
+
+<div id="page-prompt"></div>
+    
+    <a class="nav-skip sr-only sr-only-focusable" href="#main">Skip to main content</a>
+
+
+    
+
+
+
+
+
+
+
+
+
+
+    <div class="marketing-hero"></div>
+
+    <div class="content-wrapper main-container" id="content" dir="ltr">
+      
+
+
+
+
+
+
+
+
+<script type="text/template" id="image-modal-tpl">
+    <div class="wrapper-modal wrapper-modal-image">
+  <section class="image-link">
+    <%= smallHTML%> <% // xss-lint: disable=underscore-not-escaped %>
+    <a href="#" class="modal-ui-icon action-fullscreen" role="button">
+      <span class="label">
+        <span class="icon fa fa-arrows-alt fa-large" aria-hidden="true"></span> <%- gettext("Fullscreen") %>
+      </span>
+    </a>
+  </section>
+
+  <section class="image-modal">
+    <section class="image-content">
+      <div class="image-wrapper">
+        <img alt="<%- largeALT %>, <%- gettext('Large') %>" src="<%- largeSRC %>" />
+      </div>
+
+      <a href="#" class="modal-ui-icon action-close" role="button">
+        <span class="label">
+          <span class="icon fa fa-remove fa-large" aria-hidden="true"></span> <%- gettext("Close") %>
+        </span>
+      </a>
+
+      <ul class="image-controls">
+        <li class="image-control">
+          <a href="#" class="modal-ui-icon action-zoom-in" role="button">
+            <span class="label">
+              <span class="icon fa fa fa-search-plus fa-large" aria-hidden="true"></span> <%- gettext("Zoom In") %>
+            </span>
+          </a>
+        </li>
+
+        <li class="image-control">
+          <a href="#" class="modal-ui-icon action-zoom-out is-disabled" aria-disabled="true" role="button">
+            <span class="label">
+              <span class="icon fa fa fa-search-minus fa-large" aria-hidden="true"></span> <%- gettext("Zoom Out") %>
+            </span>
+          </a>
+        </li>
+      </ul>
+    </section>
+  </section>
+</div>
+
+</script>
+
+
+
+
+
+
+
+<div class="course-wrapper chromeless">
+  <section class="course-content" id="course-content"      data-enable-completion-on-view-service="false"     style="display: block; width: auto; margin: 0;"
+  >
+      <main id="main" aria-label="Content">
+        
+<div class="xblock xblock-student_view xblock-student_view-vertical" data-course-id="course-v1:spbstu+RUSHIS+spring_2025" data-init="VerticalStudentView" data-runtime-class="LmsRuntime" data-runtime-version="1" data-block-type="vertical" data-usage-id="block-v1:spbstu+RUSHIS+spring_2025+type@vertical+block@ab33542938aa4dea8b08cbfd3bfddb81" data-request-token="b56d6ea613b811f08a482ec5b8b31def" data-graded="True" data-has-score="False">
+  
+
+
+
+
+
+    <h4 class="hd-8 de-emphasized">This content is graded
+        as <td>'Промежуточный тест'</td><br>
+        weight:&nbsp;1.0
+    </h4>
+
+
+<div class="vert-mod">
+    <div class="vert vert-0" data-id="block-v1:spbstu+RUSHIS+spring_2025+type@html+block@ded38acbcd824e7084ee381ac147b037">
+        
+<div class="xblock xblock-student_view xblock-student_view-html xmodule_display xmodule_HtmlBlock" data-course-id="course-v1:spbstu+RUSHIS+spring_2025" data-init="XBlockToXModuleShim" data-runtime-class="LmsRuntime" data-runtime-version="1" data-block-type="html" data-usage-id="block-v1:spbstu+RUSHIS+spring_2025+type@html+block@ded38acbcd824e7084ee381ac147b037" data-request-token="b56d6ea613b811f08a482ec5b8b31def" data-graded="True" data-has-score="False">
+  <script type="json/xblock-args" class="xblock-json-init-args">
+    {"xmodule-type": "HTMLModule"}
+  </script>
+  <h6 style="text-rendering: optimizelegibility; margin-bottom: 1rem; padding: 0px; border: 0px; outline: 0px; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-stretch: inherit; font-size: 15px; line-height: 1.4em; font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif; vertical-align: baseline; box-sizing: border-box; color: #3a3a3a;">Правила проведения теста:</h6>
+<ul class="fa-ul" style="text-rendering: optimizelegibility; margin-top: 0px; margin-bottom: 1rem; margin-left: 2.14286em; padding-left: 0px; border: 0px; outline: 0px; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-stretch: inherit; font-size: 15px; line-height: 1.4em; font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif; vertical-align: baseline; list-style-type: none; color: #3a3a3a; box-sizing: border-box;">
+<li style="text-rendering: optimizelegibility; margin-top: 0px; margin-right: 0px; margin-left: 0px; padding: 0px; border: 0px; outline: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; font-size: inherit; line-height: 1.4em; font-family: inherit; vertical-align: baseline; position: relative; box-sizing: border-box;"><span class="fa fa-list-ol" aria-hidden="true" style="text-rendering: auto; margin: 0px; padding: 0px; border: 0px; outline: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; font-size: inherit; line-height: 1; font-family: FontAwesome; vertical-align: baseline; display: inline-block; -webkit-font-smoothing: antialiased; box-sizing: border-box;"></span> Количество вопросов в тесте – 20</li>
+<li style="text-rendering: optimizelegibility; margin-top: 0px; margin-right: 0px; margin-left: 0px; padding: 0px; border: 0px; outline: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; font-size: inherit; line-height: 1.4em; font-family: inherit; vertical-align: baseline; position: relative; box-sizing: border-box;"><span class="fa fa-check-square-o" aria-hidden="true" style="text-rendering: auto; margin: 0px; padding: 0px; border: 0px; outline: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; font-size: inherit; line-height: 1; font-family: FontAwesome; vertical-align: baseline; display: inline-block; -webkit-font-smoothing: antialiased; box-sizing: border-box;"></span> Количество попыток тестирования – 2 (в зачет идет последний отправленный ответ. Если в первой попытке все ответы верны, вторую можно не использовать)</li>
+<li style="text-rendering: optimizelegibility; margin-top: 0px; margin-right: 0px; margin-left: 0px; padding: 0px; border: 0px; outline: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; font-size: inherit; line-height: 1.4em; font-family: inherit; vertical-align: baseline; position: relative; box-sizing: border-box;"><span class="fa fa-clock-o" aria-hidden="true" style="text-rendering: auto; margin: 0px; padding: 0px; border: 0px; outline: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; font-size: inherit; line-height: 1; font-family: FontAwesome; vertical-align: baseline; display: inline-block; -webkit-font-smoothing: antialiased; box-sizing: border-box; color: #f15a22;"></span> Ограничение времени на ответы  – нет</li>
+</ul>
+<p align="justify" style="text-rendering: optimizelegibility; margin: 0px 0px 1rem; padding: 0px; border: 0px; outline: 0px; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-stretch: inherit; font-size: 15px; font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif; vertical-align: baseline; color: #3a3a3a; box-sizing: border-box;"><span style="text-rendering: optimizelegibility; margin: 0px; padding: 0px; border: 0px; outline: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; font-size: inherit; line-height: 1.4em; font-family: inherit; vertical-align: baseline; box-sizing: border-box;">Целью заданий является прежде всего </span><span style="text-rendering: optimizelegibility; margin: 0px; padding: 0px; border: 0px; outline: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; font-size: inherit; line-height: 1.4em; font-family: inherit; vertical-align: baseline; box-sizing: border-box;">проверка понимания</span><span style="text-rendering: optimizelegibility; margin: 0px; padding: 0px; border: 0px; outline: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; font-size: inherit; line-height: 1.4em; font-family: inherit; vertical-align: baseline; box-sizing: border-box;"> материала, данного в лекции и практическом занятии темы. Данное задание  оценивается. Усвоение материалов темы считается удовлетворительным, если тест выполнен на 60% и выше. </span>Максимальная оценка — 20 баллов.</p>
+<p align="justify" style="text-rendering: optimizelegibility; margin: 0px 0px 1rem; padding: 0px; border: 0px; outline: 0px; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-stretch: inherit; font-size: 15px; font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif; vertical-align: baseline; color: #3a3a3a; box-sizing: border-box;">К тесту есть две кнопки <em style="text-rendering: optimizelegibility; margin: 0px; padding: 0px; border: 0px; outline: 0px; font-variant: inherit; font-weight: inherit; font-stretch: inherit; font-size: inherit; line-height: 1.4em; font-family: inherit; vertical-align: baseline;">Отправить</em> и <em style="text-rendering: optimizelegibility; margin: 0px; padding: 0px; border: 0px; outline: 0px; font-variant: inherit; font-weight: inherit; font-stretch: inherit; font-size: inherit; line-height: 1.4em; font-family: inherit; vertical-align: baseline;">Сохранить</em>. Первая кнопка засчитывает вашу попытку ответа как использованную и отсылает ответ на проверку. Вторая – сохраняет Ваши ответы, не отправляя их на проверку.</p>
+</div>
+
+    </div>
+    <div class="vert vert-1" data-id="block-v1:spbstu+RUSHIS+spring_2025+type@library_content+block@06fa4663e4a3431f9459e97cd8922fd1">
+        
+<div class="xblock xblock-student_view xblock-student_view-library_content" data-course-id="course-v1:spbstu+RUSHIS+spring_2025" data-block-type="library_content" data-usage-id="block-v1:spbstu+RUSHIS+spring_2025+type@library_content+block@06fa4663e4a3431f9459e97cd8922fd1" data-request-token="b56d6ea613b811f08a482ec5b8b31def" data-graded="True" data-has-score="False">
+  
+
+
+
+
+
+
+
+<div class="vert-mod">
+    <div class="vert vert-0" data-id="block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@075b8ef4acdb45779842">
+        
+<div class="xblock xblock-student_view xblock-student_view-problem xmodule_display xmodule_ProblemBlock" data-course-id="course-v1:spbstu+RUSHIS+spring_2025" data-init="XBlockToXModuleShim" data-runtime-class="LmsRuntime" data-runtime-version="1" data-block-type="problem" data-usage-id="block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@075b8ef4acdb45779842" data-request-token="b56d6ea613b811f08a482ec5b8b31def" data-graded="True" data-has-score="True">
+  <script type="json/xblock-args" class="xblock-json-init-args">
+    {"xmodule-type": "Problem"}
+  </script>
+  <div id="problem_075b8ef4acdb45779842" class="problems-wrapper" role="group"
+     aria-labelledby="075b8ef4acdb45779842-problem-title"
+     data-problem-id="block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@075b8ef4acdb45779842" data-url="/courses/course-v1:spbstu+RUSHIS+spring_2025/xblock/block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@075b8ef4acdb45779842/handler/xmodule_handler"
+     data-problem-score="1.0"
+     data-problem-total-possible="1.0"
+     data-attempts-used="1"
+     data-content="
+
+
+
+&lt;h3 class=&#34;hd hd-3 problem-header&#34; id=&#34;075b8ef4acdb45779842-problem-title&#34; aria-describedby=&#34;block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@075b8ef4acdb45779842-problem-progress&#34; tabindex=&#34;-1&#34;&gt;
+  Укажите годы, в которые происходили восстания на территории Царства Польского (выберите несколько вариантов ответа). 
+&lt;/h3&gt;
+
+&lt;div class=&#34;problem-progress&#34; id=&#34;block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@075b8ef4acdb45779842-problem-progress&#34;&gt;&lt;/div&gt;
+
+&lt;div class=&#34;problem&#34;&gt;
+  &lt;div&gt;
+  &lt;div class=&#34;wrapper-problem-response&#34; tabindex=&#34;-1&#34; aria-label=&#34;Question 1&#34; role=&#34;group&#34;&gt;&lt;div class=&#34;choicegroup capa_inputtype&#34; id=&#34;inputtype_075b8ef4acdb45779842_2_1&#34;&gt;
+    &lt;fieldset aria-describedby=&#34;status_075b8ef4acdb45779842_2_1&#34;&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;checkbox&#34; name=&#34;input_075b8ef4acdb45779842_2_1[]&#34; id=&#34;input_075b8ef4acdb45779842_2_1_choice_0&#34; class=&#34;field-input input-checkbox&#34; value=&#34;choice_0&#34;/&gt;&lt;label id=&#34;075b8ef4acdb45779842_2_1-choice_0-label&#34; for=&#34;input_075b8ef4acdb45779842_2_1_choice_0&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_075b8ef4acdb45779842_2_1&#34;&gt; 1821-1822 гг.
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;checkbox&#34; name=&#34;input_075b8ef4acdb45779842_2_1[]&#34; id=&#34;input_075b8ef4acdb45779842_2_1_choice_1&#34; class=&#34;field-input input-checkbox submitted&#34; value=&#34;choice_1&#34; checked=&#34;true&#34;/&gt;&lt;label id=&#34;075b8ef4acdb45779842_2_1-choice_1-label&#34; for=&#34;input_075b8ef4acdb45779842_2_1_choice_1&#34; class=&#34;response-label field-label label-inline choicegroup_correct&#34; aria-describedby=&#34;status_075b8ef4acdb45779842_2_1&#34;&gt; 1830-1831 гг.
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;checkbox&#34; name=&#34;input_075b8ef4acdb45779842_2_1[]&#34; id=&#34;input_075b8ef4acdb45779842_2_1_choice_2&#34; class=&#34;field-input input-checkbox&#34; value=&#34;choice_2&#34;/&gt;&lt;label id=&#34;075b8ef4acdb45779842_2_1-choice_2-label&#34; for=&#34;input_075b8ef4acdb45779842_2_1_choice_2&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_075b8ef4acdb45779842_2_1&#34;&gt; 1853-1856 гг.
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;checkbox&#34; name=&#34;input_075b8ef4acdb45779842_2_1[]&#34; id=&#34;input_075b8ef4acdb45779842_2_1_choice_3&#34; class=&#34;field-input input-checkbox submitted&#34; value=&#34;choice_3&#34; checked=&#34;true&#34;/&gt;&lt;label id=&#34;075b8ef4acdb45779842_2_1-choice_3-label&#34; for=&#34;input_075b8ef4acdb45779842_2_1_choice_3&#34; class=&#34;response-label field-label label-inline choicegroup_correct&#34; aria-describedby=&#34;status_075b8ef4acdb45779842_2_1&#34;&gt; 1863-1864 гг.
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;checkbox&#34; name=&#34;input_075b8ef4acdb45779842_2_1[]&#34; id=&#34;input_075b8ef4acdb45779842_2_1_choice_4&#34; class=&#34;field-input input-checkbox&#34; value=&#34;choice_4&#34;/&gt;&lt;label id=&#34;075b8ef4acdb45779842_2_1-choice_4-label&#34; for=&#34;input_075b8ef4acdb45779842_2_1_choice_4&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_075b8ef4acdb45779842_2_1&#34;&gt; 1870-1871 гг.
+            &lt;/label&gt;
+          &lt;/div&gt;
+        &lt;span id=&#34;answer_075b8ef4acdb45779842_2_1&#34;/&gt;
+    &lt;/fieldset&gt;
+    &lt;div class=&#34;indicator-container&#34;&gt;
+          
+
+&lt;span class=&#34;status correct&#34; id=&#34;status_075b8ef4acdb45779842_2_1&#34; data-tooltip=&#34;This answer is correct.&#34;&gt;
+  &lt;span class=&#34;sr&#34;&gt;correct&lt;/span&gt;&lt;span class=&#34;status-icon&#34; aria-hidden=&#34;true&#34;/&gt;
+&lt;/span&gt;
+
+    &lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+  &lt;div class=&#34;action&#34;&gt;
+    &lt;input type=&#34;hidden&#34; name=&#34;problem_id&#34; value=&#34;Укажите годы, в которые происходили восстания на территории Царства Польского (выберите несколько вариантов ответа). &#34; /&gt;
+
+    &lt;div class=&#34;problem-action-buttons-wrapper&#34;&gt;
+      &lt;span class=&#34;problem-action-button-wrapper&#34;&gt;
+          &lt;button type=&#34;button&#34; class=&#34;save problem-action-btn btn-link btn-small&#34; data-value=&#34;Save&#34;&gt;
+              &lt;span aria-hidden=&#34;true&#34;&gt;Save&lt;/span&gt;
+              &lt;span class=&#34;sr&#34;&gt;Save your answer&lt;/span&gt;
+          &lt;/button&gt;
+      &lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class=&#34;submit-attempt-container&#34;&gt;
+      &lt;button type=&#34;button&#34; class=&#34;submit btn-brand&#34; data-submitting=&#34;Submitting&#34; data-value=&#34;Submit&#34; data-should-enable-submit-button=&#34;True&#34; aria-describedby=&#34;submission_feedback_075b8ef4acdb45779842&#34; &gt;
+          &lt;span class=&#34;submit-label&#34;&gt;Submit&lt;/span&gt;
+      &lt;/button&gt;
+
+      &lt;div class=&#34;submission-feedback &#34; id=&#34;submission_feedback_075b8ef4acdb45779842&#34;&gt;
+          You have used 1 of 2 attempts
+        &lt;span class=&#34;sr&#34;&gt;Some problems have options such as save, reset, hints, or show answer. These options follow the Submit button.&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+    
+
+
+&lt;div class=&#34;notification warning notification-gentle-alert
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-exclamation-circle&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;075b8ef4acdb45779842-problem-title&#34;&gt;
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Review&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+    
+
+
+&lt;div class=&#34;notification warning notification-save
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-save&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;075b8ef4acdb45779842-problem-title&#34;&gt;None
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Review&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+    
+    
+
+
+&lt;div class=&#34;notification general notification-show-answer
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-info-circle&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;075b8ef4acdb45779842-problem-title&#34;&gt;Answers are displayed within the problem
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Review&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;script&gt;
+    function emit_event(message) {
+        parent.postMessage(message, &#39;*&#39;);
+    }
+&lt;/script&gt;
+"
+     data-graded="True">
+    <p class="loading-spinner">
+        <i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
+        <span class="sr">Loading&hellip;</span>
+    </p>
+</div>
+
+</div>
+
+    </div>
+    <div class="vert vert-1" data-id="block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@e0e95e70a6549537ec0f">
+        
+<div class="xblock xblock-student_view xblock-student_view-problem xmodule_display xmodule_ProblemBlock" data-course-id="course-v1:spbstu+RUSHIS+spring_2025" data-init="XBlockToXModuleShim" data-runtime-class="LmsRuntime" data-runtime-version="1" data-block-type="problem" data-usage-id="block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@e0e95e70a6549537ec0f" data-request-token="b56d6ea613b811f08a482ec5b8b31def" data-graded="True" data-has-score="True">
+  <script type="json/xblock-args" class="xblock-json-init-args">
+    {"xmodule-type": "Problem"}
+  </script>
+  <div id="problem_e0e95e70a6549537ec0f" class="problems-wrapper" role="group"
+     aria-labelledby="e0e95e70a6549537ec0f-problem-title"
+     data-problem-id="block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@e0e95e70a6549537ec0f" data-url="/courses/course-v1:spbstu+RUSHIS+spring_2025/xblock/block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@e0e95e70a6549537ec0f/handler/xmodule_handler"
+     data-problem-score="0.0"
+     data-problem-total-possible="1.0"
+     data-attempts-used="0"
+     data-content="
+
+
+
+&lt;h3 class=&#34;hd hd-3 problem-header&#34; id=&#34;e0e95e70a6549537ec0f-problem-title&#34; aria-describedby=&#34;block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@e0e95e70a6549537ec0f-problem-progress&#34; tabindex=&#34;-1&#34;&gt;
+  Обострение англо-русских отношений, едва не вылившееся в вооруженный конфликт в 1885 г., получило название:
+&lt;/h3&gt;
+
+&lt;div class=&#34;problem-progress&#34; id=&#34;block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@e0e95e70a6549537ec0f-problem-progress&#34;&gt;&lt;/div&gt;
+
+&lt;div class=&#34;problem&#34;&gt;
+  &lt;div&gt;
+  &lt;div class=&#34;wrapper-problem-response&#34; tabindex=&#34;-1&#34; aria-label=&#34;Question 1&#34; role=&#34;group&#34;&gt;&lt;div class=&#34;choicegroup capa_inputtype&#34; id=&#34;inputtype_e0e95e70a6549537ec0f_2_1&#34;&gt;
+    &lt;fieldset aria-describedby=&#34;status_e0e95e70a6549537ec0f_2_1&#34;&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;radio&#34; name=&#34;input_e0e95e70a6549537ec0f_2_1&#34; id=&#34;input_e0e95e70a6549537ec0f_2_1_choice_0&#34; class=&#34;field-input input-radio&#34; value=&#34;choice_0&#34;/&gt;&lt;label id=&#34;e0e95e70a6549537ec0f_2_1-choice_0-label&#34; for=&#34;input_e0e95e70a6549537ec0f_2_1_choice_0&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_e0e95e70a6549537ec0f_2_1&#34;&gt; Афганский кризис;
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;radio&#34; name=&#34;input_e0e95e70a6549537ec0f_2_1&#34; id=&#34;input_e0e95e70a6549537ec0f_2_1_choice_1&#34; class=&#34;field-input input-radio&#34; value=&#34;choice_1&#34;/&gt;&lt;label id=&#34;e0e95e70a6549537ec0f_2_1-choice_1-label&#34; for=&#34;input_e0e95e70a6549537ec0f_2_1_choice_1&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_e0e95e70a6549537ec0f_2_1&#34;&gt; Азиатский конфликт;
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;radio&#34; name=&#34;input_e0e95e70a6549537ec0f_2_1&#34; id=&#34;input_e0e95e70a6549537ec0f_2_1_choice_2&#34; class=&#34;field-input input-radio&#34; value=&#34;choice_2&#34;/&gt;&lt;label id=&#34;e0e95e70a6549537ec0f_2_1-choice_2-label&#34; for=&#34;input_e0e95e70a6549537ec0f_2_1_choice_2&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_e0e95e70a6549537ec0f_2_1&#34;&gt; Большая игра;
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;radio&#34; name=&#34;input_e0e95e70a6549537ec0f_2_1&#34; id=&#34;input_e0e95e70a6549537ec0f_2_1_choice_3&#34; class=&#34;field-input input-radio&#34; value=&#34;choice_3&#34;/&gt;&lt;label id=&#34;e0e95e70a6549537ec0f_2_1-choice_3-label&#34; for=&#34;input_e0e95e70a6549537ec0f_2_1_choice_3&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_e0e95e70a6549537ec0f_2_1&#34;&gt; Мервский кризис.
+            &lt;/label&gt;
+          &lt;/div&gt;
+        &lt;span id=&#34;answer_e0e95e70a6549537ec0f_2_1&#34;/&gt;
+    &lt;/fieldset&gt;
+    &lt;div class=&#34;indicator-container&#34;&gt;
+          
+
+&lt;span class=&#34;status unanswered&#34; id=&#34;status_e0e95e70a6549537ec0f_2_1&#34; data-tooltip=&#34;Not yet answered.&#34;&gt;
+  &lt;span class=&#34;sr&#34;&gt;unanswered&lt;/span&gt;&lt;span class=&#34;status-icon&#34; aria-hidden=&#34;true&#34;/&gt;
+&lt;/span&gt;
+
+    &lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+  &lt;div class=&#34;action&#34;&gt;
+    &lt;input type=&#34;hidden&#34; name=&#34;problem_id&#34; value=&#34;Обострение англо-русских отношений, едва не вылившееся в вооруженный конфликт в 1885 г., получило название:&#34; /&gt;
+
+    &lt;div class=&#34;problem-action-buttons-wrapper&#34;&gt;
+      &lt;span class=&#34;problem-action-button-wrapper&#34;&gt;
+          &lt;button type=&#34;button&#34; class=&#34;save problem-action-btn btn-link btn-small&#34; data-value=&#34;Save&#34;&gt;
+              &lt;span aria-hidden=&#34;true&#34;&gt;Save&lt;/span&gt;
+              &lt;span class=&#34;sr&#34;&gt;Save your answer&lt;/span&gt;
+          &lt;/button&gt;
+      &lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class=&#34;submit-attempt-container&#34;&gt;
+      &lt;button type=&#34;button&#34; class=&#34;submit btn-brand&#34; data-submitting=&#34;Submitting&#34; data-value=&#34;Submit&#34; data-should-enable-submit-button=&#34;True&#34; aria-describedby=&#34;submission_feedback_e0e95e70a6549537ec0f&#34; &gt;
+          &lt;span class=&#34;submit-label&#34;&gt;Submit&lt;/span&gt;
+      &lt;/button&gt;
+
+      &lt;div class=&#34;submission-feedback &#34; id=&#34;submission_feedback_e0e95e70a6549537ec0f&#34;&gt;
+          You have used 0 of 2 attempts
+        &lt;span class=&#34;sr&#34;&gt;Some problems have options such as save, reset, hints, or show answer. These options follow the Submit button.&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+    
+
+
+&lt;div class=&#34;notification warning notification-gentle-alert
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-exclamation-circle&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;e0e95e70a6549537ec0f-problem-title&#34;&gt;
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Review&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+    
+
+
+&lt;div class=&#34;notification warning notification-save
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-save&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;e0e95e70a6549537ec0f-problem-title&#34;&gt;None
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Review&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+    
+    
+
+
+&lt;div class=&#34;notification general notification-show-answer
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-info-circle&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;e0e95e70a6549537ec0f-problem-title&#34;&gt;Answers are displayed within the problem
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Review&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;script&gt;
+    function emit_event(message) {
+        parent.postMessage(message, &#39;*&#39;);
+    }
+&lt;/script&gt;
+"
+     data-graded="True">
+    <p class="loading-spinner">
+        <i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
+        <span class="sr">Loading&hellip;</span>
+    </p>
+</div>
+
+</div>
+
+    </div>
+    <div class="vert vert-2" data-id="block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@215468061fa834e22c6a">
+        
+<div class="xblock xblock-student_view xblock-student_view-problem xmodule_display xmodule_ProblemBlock" data-course-id="course-v1:spbstu+RUSHIS+spring_2025" data-init="XBlockToXModuleShim" data-runtime-class="LmsRuntime" data-runtime-version="1" data-block-type="problem" data-usage-id="block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@215468061fa834e22c6a" data-request-token="b56d6ea613b811f08a482ec5b8b31def" data-graded="True" data-has-score="True">
+  <script type="json/xblock-args" class="xblock-json-init-args">
+    {"xmodule-type": "Problem"}
+  </script>
+  <div id="problem_215468061fa834e22c6a" class="problems-wrapper" role="group"
+     aria-labelledby="215468061fa834e22c6a-problem-title"
+     data-problem-id="block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@215468061fa834e22c6a" data-url="/courses/course-v1:spbstu+RUSHIS+spring_2025/xblock/block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@215468061fa834e22c6a/handler/xmodule_handler"
+     data-problem-score="0.0"
+     data-problem-total-possible="1.0"
+     data-attempts-used="0"
+     data-content="
+
+
+
+&lt;h3 class=&#34;hd hd-3 problem-header&#34; id=&#34;215468061fa834e22c6a-problem-title&#34; aria-describedby=&#34;block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@215468061fa834e22c6a-problem-progress&#34; tabindex=&#34;-1&#34;&gt;
+  Борьба между Российской и Британской империями за контроль над обширными территориями азиатского континента, развернувшаяся в XIX в., получила название:
+&lt;/h3&gt;
+
+&lt;div class=&#34;problem-progress&#34; id=&#34;block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@215468061fa834e22c6a-problem-progress&#34;&gt;&lt;/div&gt;
+
+&lt;div class=&#34;problem&#34;&gt;
+  &lt;div&gt;
+  &lt;div class=&#34;wrapper-problem-response&#34; tabindex=&#34;-1&#34; aria-label=&#34;Question 1&#34; role=&#34;group&#34;&gt;&lt;div class=&#34;choicegroup capa_inputtype&#34; id=&#34;inputtype_215468061fa834e22c6a_2_1&#34;&gt;
+    &lt;fieldset aria-describedby=&#34;status_215468061fa834e22c6a_2_1&#34;&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;radio&#34; name=&#34;input_215468061fa834e22c6a_2_1&#34; id=&#34;input_215468061fa834e22c6a_2_1_choice_0&#34; class=&#34;field-input input-radio&#34; value=&#34;choice_0&#34;/&gt;&lt;label id=&#34;215468061fa834e22c6a_2_1-choice_0-label&#34; for=&#34;input_215468061fa834e22c6a_2_1_choice_0&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_215468061fa834e22c6a_2_1&#34;&gt; Восточный вопрос
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;radio&#34; name=&#34;input_215468061fa834e22c6a_2_1&#34; id=&#34;input_215468061fa834e22c6a_2_1_choice_1&#34; class=&#34;field-input input-radio&#34; value=&#34;choice_1&#34;/&gt;&lt;label id=&#34;215468061fa834e22c6a_2_1-choice_1-label&#34; for=&#34;input_215468061fa834e22c6a_2_1_choice_1&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_215468061fa834e22c6a_2_1&#34;&gt; Большая игра
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;radio&#34; name=&#34;input_215468061fa834e22c6a_2_1&#34; id=&#34;input_215468061fa834e22c6a_2_1_choice_2&#34; class=&#34;field-input input-radio&#34; value=&#34;choice_2&#34;/&gt;&lt;label id=&#34;215468061fa834e22c6a_2_1-choice_2-label&#34; for=&#34;input_215468061fa834e22c6a_2_1_choice_2&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_215468061fa834e22c6a_2_1&#34;&gt; Азиатский гамбит
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;radio&#34; name=&#34;input_215468061fa834e22c6a_2_1&#34; id=&#34;input_215468061fa834e22c6a_2_1_choice_3&#34; class=&#34;field-input input-radio&#34; value=&#34;choice_3&#34;/&gt;&lt;label id=&#34;215468061fa834e22c6a_2_1-choice_3-label&#34; for=&#34;input_215468061fa834e22c6a_2_1_choice_3&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_215468061fa834e22c6a_2_1&#34;&gt; Русско-британский концерт
+            &lt;/label&gt;
+          &lt;/div&gt;
+        &lt;span id=&#34;answer_215468061fa834e22c6a_2_1&#34;/&gt;
+    &lt;/fieldset&gt;
+    &lt;div class=&#34;indicator-container&#34;&gt;
+          
+
+&lt;span class=&#34;status unanswered&#34; id=&#34;status_215468061fa834e22c6a_2_1&#34; data-tooltip=&#34;Not yet answered.&#34;&gt;
+  &lt;span class=&#34;sr&#34;&gt;unanswered&lt;/span&gt;&lt;span class=&#34;status-icon&#34; aria-hidden=&#34;true&#34;/&gt;
+&lt;/span&gt;
+
+    &lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+  &lt;div class=&#34;action&#34;&gt;
+    &lt;input type=&#34;hidden&#34; name=&#34;problem_id&#34; value=&#34;Борьба между Российской и Британской империями за контроль над обширными территориями азиатского континента, развернувшаяся в XIX в., получила название:&#34; /&gt;
+
+    &lt;div class=&#34;problem-action-buttons-wrapper&#34;&gt;
+      &lt;span class=&#34;problem-action-button-wrapper&#34;&gt;
+          &lt;button type=&#34;button&#34; class=&#34;save problem-action-btn btn-link btn-small&#34; data-value=&#34;Save&#34;&gt;
+              &lt;span aria-hidden=&#34;true&#34;&gt;Save&lt;/span&gt;
+              &lt;span class=&#34;sr&#34;&gt;Save your answer&lt;/span&gt;
+          &lt;/button&gt;
+      &lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class=&#34;submit-attempt-container&#34;&gt;
+      &lt;button type=&#34;button&#34; class=&#34;submit btn-brand&#34; data-submitting=&#34;Submitting&#34; data-value=&#34;Submit&#34; data-should-enable-submit-button=&#34;True&#34; aria-describedby=&#34;submission_feedback_215468061fa834e22c6a&#34; &gt;
+          &lt;span class=&#34;submit-label&#34;&gt;Submit&lt;/span&gt;
+      &lt;/button&gt;
+
+      &lt;div class=&#34;submission-feedback &#34; id=&#34;submission_feedback_215468061fa834e22c6a&#34;&gt;
+          You have used 0 of 2 attempts
+        &lt;span class=&#34;sr&#34;&gt;Some problems have options such as save, reset, hints, or show answer. These options follow the Submit button.&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+    
+
+
+&lt;div class=&#34;notification warning notification-gentle-alert
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-exclamation-circle&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;215468061fa834e22c6a-problem-title&#34;&gt;
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Review&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+    
+
+
+&lt;div class=&#34;notification warning notification-save
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-save&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;215468061fa834e22c6a-problem-title&#34;&gt;None
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Review&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+    
+    
+
+
+&lt;div class=&#34;notification general notification-show-answer
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-info-circle&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;215468061fa834e22c6a-problem-title&#34;&gt;Answers are displayed within the problem
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Review&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;script&gt;
+    function emit_event(message) {
+        parent.postMessage(message, &#39;*&#39;);
+    }
+&lt;/script&gt;
+"
+     data-graded="True">
+    <p class="loading-spinner">
+        <i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
+        <span class="sr">Loading&hellip;</span>
+    </p>
+</div>
+
+</div>
+
+    </div>
+    <div class="vert vert-3" data-id="block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@e352c11e4dbb9df2fe0e">
+        
+<div class="xblock xblock-student_view xblock-student_view-problem xmodule_display xmodule_ProblemBlock" data-course-id="course-v1:spbstu+RUSHIS+spring_2025" data-init="XBlockToXModuleShim" data-runtime-class="LmsRuntime" data-runtime-version="1" data-block-type="problem" data-usage-id="block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@e352c11e4dbb9df2fe0e" data-request-token="b56d6ea613b811f08a482ec5b8b31def" data-graded="True" data-has-score="True">
+  <script type="json/xblock-args" class="xblock-json-init-args">
+    {"xmodule-type": "Problem"}
+  </script>
+  <div id="problem_e352c11e4dbb9df2fe0e" class="problems-wrapper" role="group"
+     aria-labelledby="e352c11e4dbb9df2fe0e-problem-title"
+     data-problem-id="block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@e352c11e4dbb9df2fe0e" data-url="/courses/course-v1:spbstu+RUSHIS+spring_2025/xblock/block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@e352c11e4dbb9df2fe0e/handler/xmodule_handler"
+     data-problem-score="0.0"
+     data-problem-total-possible="1.0"
+     data-attempts-used="0"
+     data-content="
+
+
+
+&lt;h3 class=&#34;hd hd-3 problem-header&#34; id=&#34;e352c11e4dbb9df2fe0e-problem-title&#34; aria-describedby=&#34;block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@e352c11e4dbb9df2fe0e-problem-progress&#34; tabindex=&#34;-1&#34;&gt;
+  Национально-освободительное движение итальянского народа против иноземного господства и за объединение раздробленной Италии получило название:
+&lt;/h3&gt;
+
+&lt;div class=&#34;problem-progress&#34; id=&#34;block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@e352c11e4dbb9df2fe0e-problem-progress&#34;&gt;&lt;/div&gt;
+
+&lt;div class=&#34;problem&#34;&gt;
+  &lt;div&gt;
+  &lt;div class=&#34;wrapper-problem-response&#34; tabindex=&#34;-1&#34; aria-label=&#34;Question 1&#34; role=&#34;group&#34;&gt;&lt;div class=&#34;choicegroup capa_inputtype&#34; id=&#34;inputtype_e352c11e4dbb9df2fe0e_2_1&#34;&gt;
+    &lt;fieldset aria-describedby=&#34;status_e352c11e4dbb9df2fe0e_2_1&#34;&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;radio&#34; name=&#34;input_e352c11e4dbb9df2fe0e_2_1&#34; id=&#34;input_e352c11e4dbb9df2fe0e_2_1_choice_0&#34; class=&#34;field-input input-radio&#34; value=&#34;choice_0&#34;/&gt;&lt;label id=&#34;e352c11e4dbb9df2fe0e_2_1-choice_0-label&#34; for=&#34;input_e352c11e4dbb9df2fe0e_2_1_choice_0&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_e352c11e4dbb9df2fe0e_2_1&#34;&gt; Вендетта
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;radio&#34; name=&#34;input_e352c11e4dbb9df2fe0e_2_1&#34; id=&#34;input_e352c11e4dbb9df2fe0e_2_1_choice_1&#34; class=&#34;field-input input-radio&#34; value=&#34;choice_1&#34;/&gt;&lt;label id=&#34;e352c11e4dbb9df2fe0e_2_1-choice_1-label&#34; for=&#34;input_e352c11e4dbb9df2fe0e_2_1_choice_1&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_e352c11e4dbb9df2fe0e_2_1&#34;&gt; Рисорджименто
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;radio&#34; name=&#34;input_e352c11e4dbb9df2fe0e_2_1&#34; id=&#34;input_e352c11e4dbb9df2fe0e_2_1_choice_2&#34; class=&#34;field-input input-radio&#34; value=&#34;choice_2&#34;/&gt;&lt;label id=&#34;e352c11e4dbb9df2fe0e_2_1-choice_2-label&#34; for=&#34;input_e352c11e4dbb9df2fe0e_2_1_choice_2&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_e352c11e4dbb9df2fe0e_2_1&#34;&gt; Реконкиста
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;radio&#34; name=&#34;input_e352c11e4dbb9df2fe0e_2_1&#34; id=&#34;input_e352c11e4dbb9df2fe0e_2_1_choice_3&#34; class=&#34;field-input input-radio&#34; value=&#34;choice_3&#34;/&gt;&lt;label id=&#34;e352c11e4dbb9df2fe0e_2_1-choice_3-label&#34; for=&#34;input_e352c11e4dbb9df2fe0e_2_1_choice_3&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_e352c11e4dbb9df2fe0e_2_1&#34;&gt; Кортез
+            &lt;/label&gt;
+          &lt;/div&gt;
+        &lt;span id=&#34;answer_e352c11e4dbb9df2fe0e_2_1&#34;/&gt;
+    &lt;/fieldset&gt;
+    &lt;div class=&#34;indicator-container&#34;&gt;
+          
+
+&lt;span class=&#34;status unanswered&#34; id=&#34;status_e352c11e4dbb9df2fe0e_2_1&#34; data-tooltip=&#34;Not yet answered.&#34;&gt;
+  &lt;span class=&#34;sr&#34;&gt;unanswered&lt;/span&gt;&lt;span class=&#34;status-icon&#34; aria-hidden=&#34;true&#34;/&gt;
+&lt;/span&gt;
+
+    &lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+  &lt;div class=&#34;action&#34;&gt;
+    &lt;input type=&#34;hidden&#34; name=&#34;problem_id&#34; value=&#34;Национально-освободительное движение итальянского народа против иноземного господства и за объединение раздробленной Италии получило название:&#34; /&gt;
+
+    &lt;div class=&#34;problem-action-buttons-wrapper&#34;&gt;
+      &lt;span class=&#34;problem-action-button-wrapper&#34;&gt;
+          &lt;button type=&#34;button&#34; class=&#34;save problem-action-btn btn-link btn-small&#34; data-value=&#34;Save&#34;&gt;
+              &lt;span aria-hidden=&#34;true&#34;&gt;Save&lt;/span&gt;
+              &lt;span class=&#34;sr&#34;&gt;Save your answer&lt;/span&gt;
+          &lt;/button&gt;
+      &lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class=&#34;submit-attempt-container&#34;&gt;
+      &lt;button type=&#34;button&#34; class=&#34;submit btn-brand&#34; data-submitting=&#34;Submitting&#34; data-value=&#34;Submit&#34; data-should-enable-submit-button=&#34;True&#34; aria-describedby=&#34;submission_feedback_e352c11e4dbb9df2fe0e&#34; &gt;
+          &lt;span class=&#34;submit-label&#34;&gt;Submit&lt;/span&gt;
+      &lt;/button&gt;
+
+      &lt;div class=&#34;submission-feedback &#34; id=&#34;submission_feedback_e352c11e4dbb9df2fe0e&#34;&gt;
+          You have used 0 of 2 attempts
+        &lt;span class=&#34;sr&#34;&gt;Some problems have options such as save, reset, hints, or show answer. These options follow the Submit button.&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+    
+
+
+&lt;div class=&#34;notification warning notification-gentle-alert
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-exclamation-circle&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;e352c11e4dbb9df2fe0e-problem-title&#34;&gt;
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Review&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+    
+
+
+&lt;div class=&#34;notification warning notification-save
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-save&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;e352c11e4dbb9df2fe0e-problem-title&#34;&gt;None
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Review&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+    
+    
+
+
+&lt;div class=&#34;notification general notification-show-answer
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-info-circle&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;e352c11e4dbb9df2fe0e-problem-title&#34;&gt;Answers are displayed within the problem
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Review&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;script&gt;
+    function emit_event(message) {
+        parent.postMessage(message, &#39;*&#39;);
+    }
+&lt;/script&gt;
+"
+     data-graded="True">
+    <p class="loading-spinner">
+        <i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
+        <span class="sr">Loading&hellip;</span>
+    </p>
+</div>
+
+</div>
+
+    </div>
+    <div class="vert vert-4" data-id="block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@c9499bfbcb91cf9b9fbd">
+        
+<div class="xblock xblock-student_view xblock-student_view-problem xmodule_display xmodule_ProblemBlock" data-course-id="course-v1:spbstu+RUSHIS+spring_2025" data-init="XBlockToXModuleShim" data-runtime-class="LmsRuntime" data-runtime-version="1" data-block-type="problem" data-usage-id="block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@c9499bfbcb91cf9b9fbd" data-request-token="b56d6ea613b811f08a482ec5b8b31def" data-graded="True" data-has-score="True">
+  <script type="json/xblock-args" class="xblock-json-init-args">
+    {"xmodule-type": "Problem"}
+  </script>
+  <div id="problem_c9499bfbcb91cf9b9fbd" class="problems-wrapper" role="group"
+     aria-labelledby="c9499bfbcb91cf9b9fbd-problem-title"
+     data-problem-id="block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@c9499bfbcb91cf9b9fbd" data-url="/courses/course-v1:spbstu+RUSHIS+spring_2025/xblock/block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@c9499bfbcb91cf9b9fbd/handler/xmodule_handler"
+     data-problem-score="0.0"
+     data-problem-total-possible="1.0"
+     data-attempts-used="0"
+     data-content="
+
+
+
+&lt;h3 class=&#34;hd hd-3 problem-header&#34; id=&#34;c9499bfbcb91cf9b9fbd-problem-title&#34; aria-describedby=&#34;block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@c9499bfbcb91cf9b9fbd-problem-progress&#34; tabindex=&#34;-1&#34;&gt;
+  Расположите события в хронологической последовательности (Ответ запишите в формате: 213, без каких-либо дополнительных символов или знаков):
+&lt;/h3&gt;
+
+&lt;div class=&#34;problem-progress&#34; id=&#34;block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@c9499bfbcb91cf9b9fbd-problem-progress&#34;&gt;&lt;/div&gt;
+
+&lt;div class=&#34;problem&#34;&gt;
+  &lt;div&gt;
+  &lt;div class=&#34;wrapper-problem-response&#34; tabindex=&#34;-1&#34; aria-label=&#34;Question 1&#34; role=&#34;group&#34;&gt;&lt;p&gt;1. Признание Бухарским эмиром вассальной зависимости от России;&lt;/p&gt;
+    &lt;p&gt;2. Завоевание Россией Кокандского ханства;&lt;/p&gt;
+    &lt;p&gt;3. Установление протектората России над Хивинским ханством.&lt;/p&gt;
+    &lt;div id=&#34;formulaequationinput_c9499bfbcb91cf9b9fbd_2_1&#34; class=&#34;inputtype formulaequationinput&#34;&gt;
+    &lt;div class=&#34;unanswered&#34;&gt;
+        &lt;input type=&#34;text&#34; name=&#34;input_c9499bfbcb91cf9b9fbd_2_1&#34; id=&#34;input_c9499bfbcb91cf9b9fbd_2_1&#34; autocomplete=&#34;off&#34; data-input-id=&#34;c9499bfbcb91cf9b9fbd_2_1&#34; value=&#34;&#34; aria-describedby=&#34;status_c9499bfbcb91cf9b9fbd_2_1&#34; size=&#34;20&#34;/&gt;
+        &lt;span class=&#34;trailing_text&#34; id=&#34;trailing_text_c9499bfbcb91cf9b9fbd_2_1&#34;/&gt;
+
+        
+
+&lt;span class=&#34;status unanswered&#34; id=&#34;status_c9499bfbcb91cf9b9fbd_2_1&#34; data-tooltip=&#34;Not yet answered.&#34;&gt;
+  &lt;span class=&#34;sr&#34;&gt;unanswered&lt;/span&gt;&lt;span class=&#34;status-icon&#34; aria-hidden=&#34;true&#34;/&gt;
+&lt;/span&gt;
+
+
+        &lt;p id=&#34;answer_c9499bfbcb91cf9b9fbd_2_1&#34; class=&#34;answer&#34;/&gt;
+
+        &lt;div id=&#34;input_c9499bfbcb91cf9b9fbd_2_1_preview&#34; class=&#34;equation&#34;&gt;
+            \(\)
+            &lt;img src=&#34;https://cdn2.openedu.ru/static/images/spinner.bc34f953403f.gif&#34; class=&#34;loading&#34; alt=&#34;Loading&#34;/&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&#34;script_placeholder&#34; data-src=&#34;https://cdn2.openedu.ru/static/js/capa/src/formula_equation_preview.b038868b7a98.js&#34;/&gt;
+
+&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+  &lt;div class=&#34;action&#34;&gt;
+    &lt;input type=&#34;hidden&#34; name=&#34;problem_id&#34; value=&#34;Расположите события в хронологической последовательности (Ответ запишите в формате: 213, без каких-либо дополнительных символов или знаков):&#34; /&gt;
+
+    &lt;div class=&#34;problem-action-buttons-wrapper&#34;&gt;
+      &lt;span class=&#34;problem-action-button-wrapper&#34;&gt;
+          &lt;button type=&#34;button&#34; class=&#34;save problem-action-btn btn-link btn-small&#34; data-value=&#34;Save&#34;&gt;
+              &lt;span aria-hidden=&#34;true&#34;&gt;Save&lt;/span&gt;
+              &lt;span class=&#34;sr&#34;&gt;Save your answer&lt;/span&gt;
+          &lt;/button&gt;
+      &lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class=&#34;submit-attempt-container&#34;&gt;
+      &lt;button type=&#34;button&#34; class=&#34;submit btn-brand&#34; data-submitting=&#34;Submitting&#34; data-value=&#34;Submit&#34; data-should-enable-submit-button=&#34;True&#34; aria-describedby=&#34;submission_feedback_c9499bfbcb91cf9b9fbd&#34; &gt;
+          &lt;span class=&#34;submit-label&#34;&gt;Submit&lt;/span&gt;
+      &lt;/button&gt;
+
+      &lt;div class=&#34;submission-feedback &#34; id=&#34;submission_feedback_c9499bfbcb91cf9b9fbd&#34;&gt;
+          You have used 0 of 2 attempts
+        &lt;span class=&#34;sr&#34;&gt;Some problems have options such as save, reset, hints, or show answer. These options follow the Submit button.&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+    
+
+
+&lt;div class=&#34;notification warning notification-gentle-alert
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-exclamation-circle&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;c9499bfbcb91cf9b9fbd-problem-title&#34;&gt;
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Review&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+    
+
+
+&lt;div class=&#34;notification warning notification-save
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-save&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;c9499bfbcb91cf9b9fbd-problem-title&#34;&gt;None
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Review&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+    
+    
+
+
+&lt;div class=&#34;notification general notification-show-answer
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-info-circle&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;c9499bfbcb91cf9b9fbd-problem-title&#34;&gt;Answers are displayed within the problem
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Review&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;script&gt;
+    function emit_event(message) {
+        parent.postMessage(message, &#39;*&#39;);
+    }
+&lt;/script&gt;
+"
+     data-graded="True">
+    <p class="loading-spinner">
+        <i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
+        <span class="sr">Loading&hellip;</span>
+    </p>
+</div>
+
+</div>
+
+    </div>
+    <div class="vert vert-5" data-id="block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@8a516a1cc1b28291a71e">
+        
+<div class="xblock xblock-student_view xblock-student_view-problem xmodule_display xmodule_ProblemBlock" data-course-id="course-v1:spbstu+RUSHIS+spring_2025" data-init="XBlockToXModuleShim" data-runtime-class="LmsRuntime" data-runtime-version="1" data-block-type="problem" data-usage-id="block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@8a516a1cc1b28291a71e" data-request-token="b56d6ea613b811f08a482ec5b8b31def" data-graded="True" data-has-score="True">
+  <script type="json/xblock-args" class="xblock-json-init-args">
+    {"xmodule-type": "Problem"}
+  </script>
+  <div id="problem_8a516a1cc1b28291a71e" class="problems-wrapper" role="group"
+     aria-labelledby="8a516a1cc1b28291a71e-problem-title"
+     data-problem-id="block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@8a516a1cc1b28291a71e" data-url="/courses/course-v1:spbstu+RUSHIS+spring_2025/xblock/block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@8a516a1cc1b28291a71e/handler/xmodule_handler"
+     data-problem-score="0.0"
+     data-problem-total-possible="1.0"
+     data-attempts-used="0"
+     data-content="
+
+
+
+&lt;h3 class=&#34;hd hd-3 problem-header&#34; id=&#34;8a516a1cc1b28291a71e-problem-title&#34; aria-describedby=&#34;block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@8a516a1cc1b28291a71e-problem-progress&#34; tabindex=&#34;-1&#34;&gt;
+  Руководителем заговора против Павла I, в ходе которого к власти пришел Александр I, являлся:
+&lt;/h3&gt;
+
+&lt;div class=&#34;problem-progress&#34; id=&#34;block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@8a516a1cc1b28291a71e-problem-progress&#34;&gt;&lt;/div&gt;
+
+&lt;div class=&#34;problem&#34;&gt;
+  &lt;div&gt;
+  &lt;div class=&#34;wrapper-problem-response&#34; tabindex=&#34;-1&#34; aria-label=&#34;Question 1&#34; role=&#34;group&#34;&gt;&lt;div class=&#34;choicegroup capa_inputtype&#34; id=&#34;inputtype_8a516a1cc1b28291a71e_2_1&#34;&gt;
+    &lt;fieldset aria-describedby=&#34;status_8a516a1cc1b28291a71e_2_1&#34;&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;radio&#34; name=&#34;input_8a516a1cc1b28291a71e_2_1&#34; id=&#34;input_8a516a1cc1b28291a71e_2_1_choice_0&#34; class=&#34;field-input input-radio&#34; value=&#34;choice_0&#34;/&gt;&lt;label id=&#34;8a516a1cc1b28291a71e_2_1-choice_0-label&#34; for=&#34;input_8a516a1cc1b28291a71e_2_1_choice_0&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_8a516a1cc1b28291a71e_2_1&#34;&gt; Граф П. Пален
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;radio&#34; name=&#34;input_8a516a1cc1b28291a71e_2_1&#34; id=&#34;input_8a516a1cc1b28291a71e_2_1_choice_1&#34; class=&#34;field-input input-radio&#34; value=&#34;choice_1&#34;/&gt;&lt;label id=&#34;8a516a1cc1b28291a71e_2_1-choice_1-label&#34; for=&#34;input_8a516a1cc1b28291a71e_2_1_choice_1&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_8a516a1cc1b28291a71e_2_1&#34;&gt; Ф. Лагарп
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;radio&#34; name=&#34;input_8a516a1cc1b28291a71e_2_1&#34; id=&#34;input_8a516a1cc1b28291a71e_2_1_choice_2&#34; class=&#34;field-input input-radio&#34; value=&#34;choice_2&#34;/&gt;&lt;label id=&#34;8a516a1cc1b28291a71e_2_1-choice_2-label&#34; for=&#34;input_8a516a1cc1b28291a71e_2_1_choice_2&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_8a516a1cc1b28291a71e_2_1&#34;&gt; Н. Салтыков
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;radio&#34; name=&#34;input_8a516a1cc1b28291a71e_2_1&#34; id=&#34;input_8a516a1cc1b28291a71e_2_1_choice_3&#34; class=&#34;field-input input-radio&#34; value=&#34;choice_3&#34;/&gt;&lt;label id=&#34;8a516a1cc1b28291a71e_2_1-choice_3-label&#34; for=&#34;input_8a516a1cc1b28291a71e_2_1_choice_3&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_8a516a1cc1b28291a71e_2_1&#34;&gt; Граф П. Строганов
+            &lt;/label&gt;
+          &lt;/div&gt;
+        &lt;span id=&#34;answer_8a516a1cc1b28291a71e_2_1&#34;/&gt;
+    &lt;/fieldset&gt;
+    &lt;div class=&#34;indicator-container&#34;&gt;
+          
+
+&lt;span class=&#34;status unanswered&#34; id=&#34;status_8a516a1cc1b28291a71e_2_1&#34; data-tooltip=&#34;Not yet answered.&#34;&gt;
+  &lt;span class=&#34;sr&#34;&gt;unanswered&lt;/span&gt;&lt;span class=&#34;status-icon&#34; aria-hidden=&#34;true&#34;/&gt;
+&lt;/span&gt;
+
+    &lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+  &lt;div class=&#34;action&#34;&gt;
+    &lt;input type=&#34;hidden&#34; name=&#34;problem_id&#34; value=&#34;Руководителем заговора против Павла I, в ходе которого к власти пришел Александр I, являлся:&#34; /&gt;
+
+    &lt;div class=&#34;problem-action-buttons-wrapper&#34;&gt;
+      &lt;span class=&#34;problem-action-button-wrapper&#34;&gt;
+          &lt;button type=&#34;button&#34; class=&#34;save problem-action-btn btn-link btn-small&#34; data-value=&#34;Save&#34;&gt;
+              &lt;span aria-hidden=&#34;true&#34;&gt;Save&lt;/span&gt;
+              &lt;span class=&#34;sr&#34;&gt;Save your answer&lt;/span&gt;
+          &lt;/button&gt;
+      &lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class=&#34;submit-attempt-container&#34;&gt;
+      &lt;button type=&#34;button&#34; class=&#34;submit btn-brand&#34; data-submitting=&#34;Submitting&#34; data-value=&#34;Submit&#34; data-should-enable-submit-button=&#34;True&#34; aria-describedby=&#34;submission_feedback_8a516a1cc1b28291a71e&#34; &gt;
+          &lt;span class=&#34;submit-label&#34;&gt;Submit&lt;/span&gt;
+      &lt;/button&gt;
+
+      &lt;div class=&#34;submission-feedback &#34; id=&#34;submission_feedback_8a516a1cc1b28291a71e&#34;&gt;
+          You have used 0 of 2 attempts
+        &lt;span class=&#34;sr&#34;&gt;Some problems have options such as save, reset, hints, or show answer. These options follow the Submit button.&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+    
+
+
+&lt;div class=&#34;notification warning notification-gentle-alert
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-exclamation-circle&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;8a516a1cc1b28291a71e-problem-title&#34;&gt;
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Review&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+    
+
+
+&lt;div class=&#34;notification warning notification-save
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-save&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;8a516a1cc1b28291a71e-problem-title&#34;&gt;None
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Review&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+    
+    
+
+
+&lt;div class=&#34;notification general notification-show-answer
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-info-circle&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;8a516a1cc1b28291a71e-problem-title&#34;&gt;Answers are displayed within the problem
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Review&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;script&gt;
+    function emit_event(message) {
+        parent.postMessage(message, &#39;*&#39;);
+    }
+&lt;/script&gt;
+"
+     data-graded="True">
+    <p class="loading-spinner">
+        <i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
+        <span class="sr">Loading&hellip;</span>
+    </p>
+</div>
+
+</div>
+
+    </div>
+    <div class="vert vert-6" data-id="block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@d0bbc38acbbb5862c977">
+        
+<div class="xblock xblock-student_view xblock-student_view-problem xmodule_display xmodule_ProblemBlock" data-course-id="course-v1:spbstu+RUSHIS+spring_2025" data-init="XBlockToXModuleShim" data-runtime-class="LmsRuntime" data-runtime-version="1" data-block-type="problem" data-usage-id="block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@d0bbc38acbbb5862c977" data-request-token="b56d6ea613b811f08a482ec5b8b31def" data-graded="True" data-has-score="True">
+  <script type="json/xblock-args" class="xblock-json-init-args">
+    {"xmodule-type": "Problem"}
+  </script>
+  <div id="problem_d0bbc38acbbb5862c977" class="problems-wrapper" role="group"
+     aria-labelledby="d0bbc38acbbb5862c977-problem-title"
+     data-problem-id="block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@d0bbc38acbbb5862c977" data-url="/courses/course-v1:spbstu+RUSHIS+spring_2025/xblock/block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@d0bbc38acbbb5862c977/handler/xmodule_handler"
+     data-problem-score="0.0"
+     data-problem-total-possible="1.0"
+     data-attempts-used="0"
+     data-content="
+
+
+
+&lt;h3 class=&#34;hd hd-3 problem-header&#34; id=&#34;d0bbc38acbbb5862c977-problem-title&#34; aria-describedby=&#34;block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@d0bbc38acbbb5862c977-problem-progress&#34; tabindex=&#34;-1&#34;&gt;
+  Кому принадлежат данные слова: «Говорят, что Россия сердится. Нет, Россия не сердится, Россия сосредоточивается»? 
+&lt;/h3&gt;
+
+&lt;div class=&#34;problem-progress&#34; id=&#34;block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@d0bbc38acbbb5862c977-problem-progress&#34;&gt;&lt;/div&gt;
+
+&lt;div class=&#34;problem&#34;&gt;
+  &lt;div&gt;
+  &lt;div class=&#34;wrapper-problem-response&#34; tabindex=&#34;-1&#34; aria-label=&#34;Question 1&#34; role=&#34;group&#34;&gt;&lt;div class=&#34;choicegroup capa_inputtype&#34; id=&#34;inputtype_d0bbc38acbbb5862c977_2_1&#34;&gt;
+    &lt;fieldset aria-describedby=&#34;status_d0bbc38acbbb5862c977_2_1&#34;&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;radio&#34; name=&#34;input_d0bbc38acbbb5862c977_2_1&#34; id=&#34;input_d0bbc38acbbb5862c977_2_1_choice_0&#34; class=&#34;field-input input-radio&#34; value=&#34;choice_0&#34;/&gt;&lt;label id=&#34;d0bbc38acbbb5862c977_2_1-choice_0-label&#34; for=&#34;input_d0bbc38acbbb5862c977_2_1_choice_0&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_d0bbc38acbbb5862c977_2_1&#34;&gt; А.М. Горчакову
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;radio&#34; name=&#34;input_d0bbc38acbbb5862c977_2_1&#34; id=&#34;input_d0bbc38acbbb5862c977_2_1_choice_1&#34; class=&#34;field-input input-radio&#34; value=&#34;choice_1&#34;/&gt;&lt;label id=&#34;d0bbc38acbbb5862c977_2_1-choice_1-label&#34; for=&#34;input_d0bbc38acbbb5862c977_2_1_choice_1&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_d0bbc38acbbb5862c977_2_1&#34;&gt; Николаю I
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;radio&#34; name=&#34;input_d0bbc38acbbb5862c977_2_1&#34; id=&#34;input_d0bbc38acbbb5862c977_2_1_choice_2&#34; class=&#34;field-input input-radio&#34; value=&#34;choice_2&#34;/&gt;&lt;label id=&#34;d0bbc38acbbb5862c977_2_1-choice_2-label&#34; for=&#34;input_d0bbc38acbbb5862c977_2_1_choice_2&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_d0bbc38acbbb5862c977_2_1&#34;&gt; Н.И. Панину
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;radio&#34; name=&#34;input_d0bbc38acbbb5862c977_2_1&#34; id=&#34;input_d0bbc38acbbb5862c977_2_1_choice_3&#34; class=&#34;field-input input-radio&#34; value=&#34;choice_3&#34;/&gt;&lt;label id=&#34;d0bbc38acbbb5862c977_2_1-choice_3-label&#34; for=&#34;input_d0bbc38acbbb5862c977_2_1_choice_3&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_d0bbc38acbbb5862c977_2_1&#34;&gt; А.С. Грибоедову
+            &lt;/label&gt;
+          &lt;/div&gt;
+        &lt;span id=&#34;answer_d0bbc38acbbb5862c977_2_1&#34;/&gt;
+    &lt;/fieldset&gt;
+    &lt;div class=&#34;indicator-container&#34;&gt;
+          
+
+&lt;span class=&#34;status unanswered&#34; id=&#34;status_d0bbc38acbbb5862c977_2_1&#34; data-tooltip=&#34;Not yet answered.&#34;&gt;
+  &lt;span class=&#34;sr&#34;&gt;unanswered&lt;/span&gt;&lt;span class=&#34;status-icon&#34; aria-hidden=&#34;true&#34;/&gt;
+&lt;/span&gt;
+
+    &lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+  &lt;div class=&#34;action&#34;&gt;
+    &lt;input type=&#34;hidden&#34; name=&#34;problem_id&#34; value=&#34;Кому принадлежат данные слова: «Говорят, что Россия сердится. Нет, Россия не сердится, Россия сосредоточивается»? &#34; /&gt;
+
+    &lt;div class=&#34;problem-action-buttons-wrapper&#34;&gt;
+      &lt;span class=&#34;problem-action-button-wrapper&#34;&gt;
+          &lt;button type=&#34;button&#34; class=&#34;save problem-action-btn btn-link btn-small&#34; data-value=&#34;Save&#34;&gt;
+              &lt;span aria-hidden=&#34;true&#34;&gt;Save&lt;/span&gt;
+              &lt;span class=&#34;sr&#34;&gt;Save your answer&lt;/span&gt;
+          &lt;/button&gt;
+      &lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class=&#34;submit-attempt-container&#34;&gt;
+      &lt;button type=&#34;button&#34; class=&#34;submit btn-brand&#34; data-submitting=&#34;Submitting&#34; data-value=&#34;Submit&#34; data-should-enable-submit-button=&#34;True&#34; aria-describedby=&#34;submission_feedback_d0bbc38acbbb5862c977&#34; &gt;
+          &lt;span class=&#34;submit-label&#34;&gt;Submit&lt;/span&gt;
+      &lt;/button&gt;
+
+      &lt;div class=&#34;submission-feedback &#34; id=&#34;submission_feedback_d0bbc38acbbb5862c977&#34;&gt;
+          You have used 0 of 2 attempts
+        &lt;span class=&#34;sr&#34;&gt;Some problems have options such as save, reset, hints, or show answer. These options follow the Submit button.&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+    
+
+
+&lt;div class=&#34;notification warning notification-gentle-alert
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-exclamation-circle&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;d0bbc38acbbb5862c977-problem-title&#34;&gt;
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Review&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+    
+
+
+&lt;div class=&#34;notification warning notification-save
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-save&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;d0bbc38acbbb5862c977-problem-title&#34;&gt;None
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Review&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+    
+    
+
+
+&lt;div class=&#34;notification general notification-show-answer
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-info-circle&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;d0bbc38acbbb5862c977-problem-title&#34;&gt;Answers are displayed within the problem
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Review&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;script&gt;
+    function emit_event(message) {
+        parent.postMessage(message, &#39;*&#39;);
+    }
+&lt;/script&gt;
+"
+     data-graded="True">
+    <p class="loading-spinner">
+        <i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
+        <span class="sr">Loading&hellip;</span>
+    </p>
+</div>
+
+</div>
+
+    </div>
+    <div class="vert vert-7" data-id="block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@2419b5df4e17af40edac">
+        
+<div class="xblock xblock-student_view xblock-student_view-problem xmodule_display xmodule_ProblemBlock" data-course-id="course-v1:spbstu+RUSHIS+spring_2025" data-init="XBlockToXModuleShim" data-runtime-class="LmsRuntime" data-runtime-version="1" data-block-type="problem" data-usage-id="block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@2419b5df4e17af40edac" data-request-token="b56d6ea613b811f08a482ec5b8b31def" data-graded="True" data-has-score="True">
+  <script type="json/xblock-args" class="xblock-json-init-args">
+    {"xmodule-type": "Problem"}
+  </script>
+  <div id="problem_2419b5df4e17af40edac" class="problems-wrapper" role="group"
+     aria-labelledby="2419b5df4e17af40edac-problem-title"
+     data-problem-id="block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@2419b5df4e17af40edac" data-url="/courses/course-v1:spbstu+RUSHIS+spring_2025/xblock/block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@2419b5df4e17af40edac/handler/xmodule_handler"
+     data-problem-score="0.0"
+     data-problem-total-possible="1.0"
+     data-attempts-used="0"
+     data-content="
+
+
+
+&lt;h3 class=&#34;hd hd-3 problem-header&#34; id=&#34;2419b5df4e17af40edac-problem-title&#34; aria-describedby=&#34;block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@2419b5df4e17af40edac-problem-progress&#34; tabindex=&#34;-1&#34;&gt;
+  Что из перечисленного отражает политические взгляды Н.М. Карамзина? Выберите несколько вариантов ответа.
+&lt;/h3&gt;
+
+&lt;div class=&#34;problem-progress&#34; id=&#34;block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@2419b5df4e17af40edac-problem-progress&#34;&gt;&lt;/div&gt;
+
+&lt;div class=&#34;problem&#34;&gt;
+  &lt;div&gt;
+  &lt;div class=&#34;wrapper-problem-response&#34; tabindex=&#34;-1&#34; aria-label=&#34;Question 1&#34; role=&#34;group&#34;&gt;&lt;div class=&#34;choicegroup capa_inputtype&#34; id=&#34;inputtype_2419b5df4e17af40edac_2_1&#34;&gt;
+    &lt;fieldset aria-describedby=&#34;status_2419b5df4e17af40edac_2_1&#34;&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;checkbox&#34; name=&#34;input_2419b5df4e17af40edac_2_1[]&#34; id=&#34;input_2419b5df4e17af40edac_2_1_choice_0&#34; class=&#34;field-input input-checkbox&#34; value=&#34;choice_0&#34;/&gt;&lt;label id=&#34;2419b5df4e17af40edac_2_1-choice_0-label&#34; for=&#34;input_2419b5df4e17af40edac_2_1_choice_0&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_2419b5df4e17af40edac_2_1&#34;&gt; Самодержавие – оплот государственного порядка;
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;checkbox&#34; name=&#34;input_2419b5df4e17af40edac_2_1[]&#34; id=&#34;input_2419b5df4e17af40edac_2_1_choice_1&#34; class=&#34;field-input input-checkbox&#34; value=&#34;choice_1&#34;/&gt;&lt;label id=&#34;2419b5df4e17af40edac_2_1-choice_1-label&#34; for=&#34;input_2419b5df4e17af40edac_2_1_choice_1&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_2419b5df4e17af40edac_2_1&#34;&gt; Крепостное право – это зло, которое должно быть искоренено;
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;checkbox&#34; name=&#34;input_2419b5df4e17af40edac_2_1[]&#34; id=&#34;input_2419b5df4e17af40edac_2_1_choice_2&#34; class=&#34;field-input input-checkbox&#34; value=&#34;choice_2&#34;/&gt;&lt;label id=&#34;2419b5df4e17af40edac_2_1-choice_2-label&#34; for=&#34;input_2419b5df4e17af40edac_2_1_choice_2&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_2419b5df4e17af40edac_2_1&#34;&gt; Проведение любых преобразований в стране опасно, так как может привести к тяжелым последствиям;
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;checkbox&#34; name=&#34;input_2419b5df4e17af40edac_2_1[]&#34; id=&#34;input_2419b5df4e17af40edac_2_1_choice_3&#34; class=&#34;field-input input-checkbox&#34; value=&#34;choice_3&#34;/&gt;&lt;label id=&#34;2419b5df4e17af40edac_2_1-choice_3-label&#34; for=&#34;input_2419b5df4e17af40edac_2_1_choice_3&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_2419b5df4e17af40edac_2_1&#34;&gt; Ликвидация «нераздельного» управления неминуемо приведет страну к гибели;
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;checkbox&#34; name=&#34;input_2419b5df4e17af40edac_2_1[]&#34; id=&#34;input_2419b5df4e17af40edac_2_1_choice_4&#34; class=&#34;field-input input-checkbox&#34; value=&#34;choice_4&#34;/&gt;&lt;label id=&#34;2419b5df4e17af40edac_2_1-choice_4-label&#34; for=&#34;input_2419b5df4e17af40edac_2_1_choice_4&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_2419b5df4e17af40edac_2_1&#34;&gt; Чиновники должны избираться, а не назначаться.
+            &lt;/label&gt;
+          &lt;/div&gt;
+        &lt;span id=&#34;answer_2419b5df4e17af40edac_2_1&#34;/&gt;
+    &lt;/fieldset&gt;
+    &lt;div class=&#34;indicator-container&#34;&gt;
+          
+
+&lt;span class=&#34;status unanswered&#34; id=&#34;status_2419b5df4e17af40edac_2_1&#34; data-tooltip=&#34;Not yet answered.&#34;&gt;
+  &lt;span class=&#34;sr&#34;&gt;unanswered&lt;/span&gt;&lt;span class=&#34;status-icon&#34; aria-hidden=&#34;true&#34;/&gt;
+&lt;/span&gt;
+
+    &lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+  &lt;div class=&#34;action&#34;&gt;
+    &lt;input type=&#34;hidden&#34; name=&#34;problem_id&#34; value=&#34;Что из перечисленного отражает политические взгляды Н.М. Карамзина? Выберите несколько вариантов ответа.&#34; /&gt;
+
+    &lt;div class=&#34;problem-action-buttons-wrapper&#34;&gt;
+      &lt;span class=&#34;problem-action-button-wrapper&#34;&gt;
+          &lt;button type=&#34;button&#34; class=&#34;save problem-action-btn btn-link btn-small&#34; data-value=&#34;Save&#34;&gt;
+              &lt;span aria-hidden=&#34;true&#34;&gt;Save&lt;/span&gt;
+              &lt;span class=&#34;sr&#34;&gt;Save your answer&lt;/span&gt;
+          &lt;/button&gt;
+      &lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class=&#34;submit-attempt-container&#34;&gt;
+      &lt;button type=&#34;button&#34; class=&#34;submit btn-brand&#34; data-submitting=&#34;Submitting&#34; data-value=&#34;Submit&#34; data-should-enable-submit-button=&#34;True&#34; aria-describedby=&#34;submission_feedback_2419b5df4e17af40edac&#34; &gt;
+          &lt;span class=&#34;submit-label&#34;&gt;Submit&lt;/span&gt;
+      &lt;/button&gt;
+
+      &lt;div class=&#34;submission-feedback &#34; id=&#34;submission_feedback_2419b5df4e17af40edac&#34;&gt;
+          You have used 0 of 2 attempts
+        &lt;span class=&#34;sr&#34;&gt;Some problems have options such as save, reset, hints, or show answer. These options follow the Submit button.&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+    
+
+
+&lt;div class=&#34;notification warning notification-gentle-alert
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-exclamation-circle&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;2419b5df4e17af40edac-problem-title&#34;&gt;
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Review&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+    
+
+
+&lt;div class=&#34;notification warning notification-save
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-save&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;2419b5df4e17af40edac-problem-title&#34;&gt;None
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Review&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+    
+    
+
+
+&lt;div class=&#34;notification general notification-show-answer
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-info-circle&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;2419b5df4e17af40edac-problem-title&#34;&gt;Answers are displayed within the problem
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Review&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;script&gt;
+    function emit_event(message) {
+        parent.postMessage(message, &#39;*&#39;);
+    }
+&lt;/script&gt;
+"
+     data-graded="True">
+    <p class="loading-spinner">
+        <i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
+        <span class="sr">Loading&hellip;</span>
+    </p>
+</div>
+
+</div>
+
+    </div>
+    <div class="vert vert-8" data-id="block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@6949103d66f304092538">
+        
+<div class="xblock xblock-student_view xblock-student_view-problem xmodule_display xmodule_ProblemBlock" data-course-id="course-v1:spbstu+RUSHIS+spring_2025" data-init="XBlockToXModuleShim" data-runtime-class="LmsRuntime" data-runtime-version="1" data-block-type="problem" data-usage-id="block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@6949103d66f304092538" data-request-token="b56d6ea613b811f08a482ec5b8b31def" data-graded="True" data-has-score="True">
+  <script type="json/xblock-args" class="xblock-json-init-args">
+    {"xmodule-type": "Problem"}
+  </script>
+  <div id="problem_6949103d66f304092538" class="problems-wrapper" role="group"
+     aria-labelledby="6949103d66f304092538-problem-title"
+     data-problem-id="block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@6949103d66f304092538" data-url="/courses/course-v1:spbstu+RUSHIS+spring_2025/xblock/block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@6949103d66f304092538/handler/xmodule_handler"
+     data-problem-score="0.0"
+     data-problem-total-possible="1.0"
+     data-attempts-used="0"
+     data-content="
+
+
+
+&lt;h3 class=&#34;hd hd-3 problem-header&#34; id=&#34;6949103d66f304092538-problem-title&#34; aria-describedby=&#34;block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@6949103d66f304092538-problem-progress&#34; tabindex=&#34;-1&#34;&gt;
+  Прозвище «Железный канцлер» получил глава германского правительства, занимавший свой пост с 1871 по 1890 гг.:
+&lt;/h3&gt;
+
+&lt;div class=&#34;problem-progress&#34; id=&#34;block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@6949103d66f304092538-problem-progress&#34;&gt;&lt;/div&gt;
+
+&lt;div class=&#34;problem&#34;&gt;
+  &lt;div&gt;
+  &lt;div class=&#34;wrapper-problem-response&#34; tabindex=&#34;-1&#34; aria-label=&#34;Question 1&#34; role=&#34;group&#34;&gt;&lt;div class=&#34;choicegroup capa_inputtype&#34; id=&#34;inputtype_6949103d66f304092538_2_1&#34;&gt;
+    &lt;fieldset aria-describedby=&#34;status_6949103d66f304092538_2_1&#34;&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;radio&#34; name=&#34;input_6949103d66f304092538_2_1&#34; id=&#34;input_6949103d66f304092538_2_1_choice_0&#34; class=&#34;field-input input-radio&#34; value=&#34;choice_0&#34;/&gt;&lt;label id=&#34;6949103d66f304092538_2_1-choice_0-label&#34; for=&#34;input_6949103d66f304092538_2_1_choice_0&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_6949103d66f304092538_2_1&#34;&gt; Отто фон Бисмарк
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;radio&#34; name=&#34;input_6949103d66f304092538_2_1&#34; id=&#34;input_6949103d66f304092538_2_1_choice_1&#34; class=&#34;field-input input-radio&#34; value=&#34;choice_1&#34;/&gt;&lt;label id=&#34;6949103d66f304092538_2_1-choice_1-label&#34; for=&#34;input_6949103d66f304092538_2_1_choice_1&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_6949103d66f304092538_2_1&#34;&gt; Альбрехт фон Роон
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;radio&#34; name=&#34;input_6949103d66f304092538_2_1&#34; id=&#34;input_6949103d66f304092538_2_1_choice_2&#34; class=&#34;field-input input-radio&#34; value=&#34;choice_2&#34;/&gt;&lt;label id=&#34;6949103d66f304092538_2_1-choice_2-label&#34; for=&#34;input_6949103d66f304092538_2_1_choice_2&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_6949103d66f304092538_2_1&#34;&gt; Клеменс фон Меттерних
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;radio&#34; name=&#34;input_6949103d66f304092538_2_1&#34; id=&#34;input_6949103d66f304092538_2_1_choice_3&#34; class=&#34;field-input input-radio&#34; value=&#34;choice_3&#34;/&gt;&lt;label id=&#34;6949103d66f304092538_2_1-choice_3-label&#34; for=&#34;input_6949103d66f304092538_2_1_choice_3&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_6949103d66f304092538_2_1&#34;&gt; Хельмут фон Мольтке
+            &lt;/label&gt;
+          &lt;/div&gt;
+        &lt;span id=&#34;answer_6949103d66f304092538_2_1&#34;/&gt;
+    &lt;/fieldset&gt;
+    &lt;div class=&#34;indicator-container&#34;&gt;
+          
+
+&lt;span class=&#34;status unanswered&#34; id=&#34;status_6949103d66f304092538_2_1&#34; data-tooltip=&#34;Not yet answered.&#34;&gt;
+  &lt;span class=&#34;sr&#34;&gt;unanswered&lt;/span&gt;&lt;span class=&#34;status-icon&#34; aria-hidden=&#34;true&#34;/&gt;
+&lt;/span&gt;
+
+    &lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+  &lt;div class=&#34;action&#34;&gt;
+    &lt;input type=&#34;hidden&#34; name=&#34;problem_id&#34; value=&#34;Прозвище «Железный канцлер» получил глава германского правительства, занимавший свой пост с 1871 по 1890 гг.:&#34; /&gt;
+
+    &lt;div class=&#34;problem-action-buttons-wrapper&#34;&gt;
+      &lt;span class=&#34;problem-action-button-wrapper&#34;&gt;
+          &lt;button type=&#34;button&#34; class=&#34;save problem-action-btn btn-link btn-small&#34; data-value=&#34;Save&#34;&gt;
+              &lt;span aria-hidden=&#34;true&#34;&gt;Save&lt;/span&gt;
+              &lt;span class=&#34;sr&#34;&gt;Save your answer&lt;/span&gt;
+          &lt;/button&gt;
+      &lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class=&#34;submit-attempt-container&#34;&gt;
+      &lt;button type=&#34;button&#34; class=&#34;submit btn-brand&#34; data-submitting=&#34;Submitting&#34; data-value=&#34;Submit&#34; data-should-enable-submit-button=&#34;True&#34; aria-describedby=&#34;submission_feedback_6949103d66f304092538&#34; &gt;
+          &lt;span class=&#34;submit-label&#34;&gt;Submit&lt;/span&gt;
+      &lt;/button&gt;
+
+      &lt;div class=&#34;submission-feedback &#34; id=&#34;submission_feedback_6949103d66f304092538&#34;&gt;
+          You have used 0 of 2 attempts
+        &lt;span class=&#34;sr&#34;&gt;Some problems have options such as save, reset, hints, or show answer. These options follow the Submit button.&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+    
+
+
+&lt;div class=&#34;notification warning notification-gentle-alert
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-exclamation-circle&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;6949103d66f304092538-problem-title&#34;&gt;
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Review&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+    
+
+
+&lt;div class=&#34;notification warning notification-save
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-save&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;6949103d66f304092538-problem-title&#34;&gt;None
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Review&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+    
+    
+
+
+&lt;div class=&#34;notification general notification-show-answer
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-info-circle&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;6949103d66f304092538-problem-title&#34;&gt;Answers are displayed within the problem
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Review&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;script&gt;
+    function emit_event(message) {
+        parent.postMessage(message, &#39;*&#39;);
+    }
+&lt;/script&gt;
+"
+     data-graded="True">
+    <p class="loading-spinner">
+        <i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
+        <span class="sr">Loading&hellip;</span>
+    </p>
+</div>
+
+</div>
+
+    </div>
+    <div class="vert vert-9" data-id="block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@ab9768359ffd73e56f08">
+        
+<div class="xblock xblock-student_view xblock-student_view-problem xmodule_display xmodule_ProblemBlock" data-course-id="course-v1:spbstu+RUSHIS+spring_2025" data-init="XBlockToXModuleShim" data-runtime-class="LmsRuntime" data-runtime-version="1" data-block-type="problem" data-usage-id="block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@ab9768359ffd73e56f08" data-request-token="b56d6ea613b811f08a482ec5b8b31def" data-graded="True" data-has-score="True">
+  <script type="json/xblock-args" class="xblock-json-init-args">
+    {"xmodule-type": "Problem"}
+  </script>
+  <div id="problem_ab9768359ffd73e56f08" class="problems-wrapper" role="group"
+     aria-labelledby="ab9768359ffd73e56f08-problem-title"
+     data-problem-id="block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@ab9768359ffd73e56f08" data-url="/courses/course-v1:spbstu+RUSHIS+spring_2025/xblock/block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@ab9768359ffd73e56f08/handler/xmodule_handler"
+     data-problem-score="0.0"
+     data-problem-total-possible="1.0"
+     data-attempts-used="0"
+     data-content="
+
+
+
+&lt;h3 class=&#34;hd hd-3 problem-header&#34; id=&#34;ab9768359ffd73e56f08-problem-title&#34; aria-describedby=&#34;block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@ab9768359ffd73e56f08-problem-progress&#34; tabindex=&#34;-1&#34;&gt;
+  К практическим результатам деятельности Сперанского в годы правления Александра I относятся (выберите несколько вариантов ответа):
+&lt;/h3&gt;
+
+&lt;div class=&#34;problem-progress&#34; id=&#34;block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@ab9768359ffd73e56f08-problem-progress&#34;&gt;&lt;/div&gt;
+
+&lt;div class=&#34;problem&#34;&gt;
+  &lt;div&gt;
+  &lt;div class=&#34;wrapper-problem-response&#34; tabindex=&#34;-1&#34; aria-label=&#34;Question 1&#34; role=&#34;group&#34;&gt;&lt;div class=&#34;choicegroup capa_inputtype&#34; id=&#34;inputtype_ab9768359ffd73e56f08_2_1&#34;&gt;
+    &lt;fieldset aria-describedby=&#34;status_ab9768359ffd73e56f08_2_1&#34;&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;checkbox&#34; name=&#34;input_ab9768359ffd73e56f08_2_1[]&#34; id=&#34;input_ab9768359ffd73e56f08_2_1_choice_0&#34; class=&#34;field-input input-checkbox&#34; value=&#34;choice_0&#34;/&gt;&lt;label id=&#34;ab9768359ffd73e56f08_2_1-choice_0-label&#34; for=&#34;input_ab9768359ffd73e56f08_2_1_choice_0&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_ab9768359ffd73e56f08_2_1&#34;&gt; Издание указа, требующего от чиновников, претендующих на чин коллежского асессора и статского советника, наличия диплома или сдачи специального экзамена;
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;checkbox&#34; name=&#34;input_ab9768359ffd73e56f08_2_1[]&#34; id=&#34;input_ab9768359ffd73e56f08_2_1_choice_1&#34; class=&#34;field-input input-checkbox&#34; value=&#34;choice_1&#34;/&gt;&lt;label id=&#34;ab9768359ffd73e56f08_2_1-choice_1-label&#34; for=&#34;input_ab9768359ffd73e56f08_2_1_choice_1&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_ab9768359ffd73e56f08_2_1&#34;&gt; Учреждение законосовещательного Государственного Совета;
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;checkbox&#34; name=&#34;input_ab9768359ffd73e56f08_2_1[]&#34; id=&#34;input_ab9768359ffd73e56f08_2_1_choice_2&#34; class=&#34;field-input input-checkbox&#34; value=&#34;choice_2&#34;/&gt;&lt;label id=&#34;ab9768359ffd73e56f08_2_1-choice_2-label&#34; for=&#34;input_ab9768359ffd73e56f08_2_1_choice_2&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_ab9768359ffd73e56f08_2_1&#34;&gt; Принятие Конституции Российской империи;
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;checkbox&#34; name=&#34;input_ab9768359ffd73e56f08_2_1[]&#34; id=&#34;input_ab9768359ffd73e56f08_2_1_choice_3&#34; class=&#34;field-input input-checkbox&#34; value=&#34;choice_3&#34;/&gt;&lt;label id=&#34;ab9768359ffd73e56f08_2_1-choice_3-label&#34; for=&#34;input_ab9768359ffd73e56f08_2_1_choice_3&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_ab9768359ffd73e56f08_2_1&#34;&gt; Учреждение Государственной Думы;
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;checkbox&#34; name=&#34;input_ab9768359ffd73e56f08_2_1[]&#34; id=&#34;input_ab9768359ffd73e56f08_2_1_choice_4&#34; class=&#34;field-input input-checkbox&#34; value=&#34;choice_4&#34;/&gt;&lt;label id=&#34;ab9768359ffd73e56f08_2_1-choice_4-label&#34; for=&#34;input_ab9768359ffd73e56f08_2_1_choice_4&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_ab9768359ffd73e56f08_2_1&#34;&gt; Наделение крепостных крестьян базовыми гражданскими правами.
+            &lt;/label&gt;
+          &lt;/div&gt;
+        &lt;span id=&#34;answer_ab9768359ffd73e56f08_2_1&#34;/&gt;
+    &lt;/fieldset&gt;
+    &lt;div class=&#34;indicator-container&#34;&gt;
+          
+
+&lt;span class=&#34;status unanswered&#34; id=&#34;status_ab9768359ffd73e56f08_2_1&#34; data-tooltip=&#34;Not yet answered.&#34;&gt;
+  &lt;span class=&#34;sr&#34;&gt;unanswered&lt;/span&gt;&lt;span class=&#34;status-icon&#34; aria-hidden=&#34;true&#34;/&gt;
+&lt;/span&gt;
+
+    &lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+  &lt;div class=&#34;action&#34;&gt;
+    &lt;input type=&#34;hidden&#34; name=&#34;problem_id&#34; value=&#34;К практическим результатам деятельности Сперанского в годы правления Александра I относятся (выберите несколько вариантов ответа):&#34; /&gt;
+
+    &lt;div class=&#34;problem-action-buttons-wrapper&#34;&gt;
+      &lt;span class=&#34;problem-action-button-wrapper&#34;&gt;
+          &lt;button type=&#34;button&#34; class=&#34;save problem-action-btn btn-link btn-small&#34; data-value=&#34;Save&#34;&gt;
+              &lt;span aria-hidden=&#34;true&#34;&gt;Save&lt;/span&gt;
+              &lt;span class=&#34;sr&#34;&gt;Save your answer&lt;/span&gt;
+          &lt;/button&gt;
+      &lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class=&#34;submit-attempt-container&#34;&gt;
+      &lt;button type=&#34;button&#34; class=&#34;submit btn-brand&#34; data-submitting=&#34;Submitting&#34; data-value=&#34;Submit&#34; data-should-enable-submit-button=&#34;True&#34; aria-describedby=&#34;submission_feedback_ab9768359ffd73e56f08&#34; &gt;
+          &lt;span class=&#34;submit-label&#34;&gt;Submit&lt;/span&gt;
+      &lt;/button&gt;
+
+      &lt;div class=&#34;submission-feedback &#34; id=&#34;submission_feedback_ab9768359ffd73e56f08&#34;&gt;
+          You have used 0 of 2 attempts
+        &lt;span class=&#34;sr&#34;&gt;Some problems have options such as save, reset, hints, or show answer. These options follow the Submit button.&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+    
+
+
+&lt;div class=&#34;notification warning notification-gentle-alert
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-exclamation-circle&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;ab9768359ffd73e56f08-problem-title&#34;&gt;
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Review&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+    
+
+
+&lt;div class=&#34;notification warning notification-save
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-save&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;ab9768359ffd73e56f08-problem-title&#34;&gt;None
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Review&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+    
+    
+
+
+&lt;div class=&#34;notification general notification-show-answer
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-info-circle&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;ab9768359ffd73e56f08-problem-title&#34;&gt;Answers are displayed within the problem
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Review&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;script&gt;
+    function emit_event(message) {
+        parent.postMessage(message, &#39;*&#39;);
+    }
+&lt;/script&gt;
+"
+     data-graded="True">
+    <p class="loading-spinner">
+        <i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
+        <span class="sr">Loading&hellip;</span>
+    </p>
+</div>
+
+</div>
+
+    </div>
+    <div class="vert vert-10" data-id="block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@4489b9638710204e037b">
+        
+<div class="xblock xblock-student_view xblock-student_view-problem xmodule_display xmodule_ProblemBlock" data-course-id="course-v1:spbstu+RUSHIS+spring_2025" data-init="XBlockToXModuleShim" data-runtime-class="LmsRuntime" data-runtime-version="1" data-block-type="problem" data-usage-id="block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@4489b9638710204e037b" data-request-token="b56d6ea613b811f08a482ec5b8b31def" data-graded="True" data-has-score="True">
+  <script type="json/xblock-args" class="xblock-json-init-args">
+    {"xmodule-type": "Problem"}
+  </script>
+  <div id="problem_4489b9638710204e037b" class="problems-wrapper" role="group"
+     aria-labelledby="4489b9638710204e037b-problem-title"
+     data-problem-id="block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@4489b9638710204e037b" data-url="/courses/course-v1:spbstu+RUSHIS+spring_2025/xblock/block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@4489b9638710204e037b/handler/xmodule_handler"
+     data-problem-score="0.0"
+     data-problem-total-possible="1.0"
+     data-attempts-used="0"
+     data-content="
+
+
+
+&lt;h3 class=&#34;hd hd-3 problem-header&#34; id=&#34;4489b9638710204e037b-problem-title&#34; aria-describedby=&#34;block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@4489b9638710204e037b-problem-progress&#34; tabindex=&#34;-1&#34;&gt;
+  Что из перечисленного относится к условиям Парижского мирного договора 1856 г.? Выберите правильные варианты ответа
+&lt;/h3&gt;
+
+&lt;div class=&#34;problem-progress&#34; id=&#34;block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@4489b9638710204e037b-problem-progress&#34;&gt;&lt;/div&gt;
+
+&lt;div class=&#34;problem&#34;&gt;
+  &lt;div&gt;
+  &lt;div class=&#34;wrapper-problem-response&#34; tabindex=&#34;-1&#34; aria-label=&#34;Question 1&#34; role=&#34;group&#34;&gt;&lt;div class=&#34;choicegroup capa_inputtype&#34; id=&#34;inputtype_4489b9638710204e037b_2_1&#34;&gt;
+    &lt;fieldset aria-describedby=&#34;status_4489b9638710204e037b_2_1&#34;&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;checkbox&#34; name=&#34;input_4489b9638710204e037b_2_1[]&#34; id=&#34;input_4489b9638710204e037b_2_1_choice_0&#34; class=&#34;field-input input-checkbox&#34; value=&#34;choice_0&#34;/&gt;&lt;label id=&#34;4489b9638710204e037b_2_1-choice_0-label&#34; for=&#34;input_4489b9638710204e037b_2_1_choice_0&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_4489b9638710204e037b_2_1&#34;&gt; Установление контроля России над Босфором;
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;checkbox&#34; name=&#34;input_4489b9638710204e037b_2_1[]&#34; id=&#34;input_4489b9638710204e037b_2_1_choice_1&#34; class=&#34;field-input input-checkbox&#34; value=&#34;choice_1&#34;/&gt;&lt;label id=&#34;4489b9638710204e037b_2_1-choice_1-label&#34; for=&#34;input_4489b9638710204e037b_2_1_choice_1&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_4489b9638710204e037b_2_1&#34;&gt; Объявление Черного моря нейтральным;
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;checkbox&#34; name=&#34;input_4489b9638710204e037b_2_1[]&#34; id=&#34;input_4489b9638710204e037b_2_1_choice_2&#34; class=&#34;field-input input-checkbox&#34; value=&#34;choice_2&#34;/&gt;&lt;label id=&#34;4489b9638710204e037b_2_1-choice_2-label&#34; for=&#34;input_4489b9638710204e037b_2_1_choice_2&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_4489b9638710204e037b_2_1&#34;&gt; Лишение России права покровительствовать в отношении дунайских княжеств и православных подданных султана;
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;checkbox&#34; name=&#34;input_4489b9638710204e037b_2_1[]&#34; id=&#34;input_4489b9638710204e037b_2_1_choice_3&#34; class=&#34;field-input input-checkbox&#34; value=&#34;choice_3&#34;/&gt;&lt;label id=&#34;4489b9638710204e037b_2_1-choice_3-label&#34; for=&#34;input_4489b9638710204e037b_2_1_choice_3&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_4489b9638710204e037b_2_1&#34;&gt; Переход Крыма под совместный контроль Великобритании и Франции;
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;checkbox&#34; name=&#34;input_4489b9638710204e037b_2_1[]&#34; id=&#34;input_4489b9638710204e037b_2_1_choice_4&#34; class=&#34;field-input input-checkbox&#34; value=&#34;choice_4&#34;/&gt;&lt;label id=&#34;4489b9638710204e037b_2_1-choice_4-label&#34; for=&#34;input_4489b9638710204e037b_2_1_choice_4&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_4489b9638710204e037b_2_1&#34;&gt; Восстановление независимости Крымского ханства.
+            &lt;/label&gt;
+          &lt;/div&gt;
+        &lt;span id=&#34;answer_4489b9638710204e037b_2_1&#34;/&gt;
+    &lt;/fieldset&gt;
+    &lt;div class=&#34;indicator-container&#34;&gt;
+          
+
+&lt;span class=&#34;status unanswered&#34; id=&#34;status_4489b9638710204e037b_2_1&#34; data-tooltip=&#34;Not yet answered.&#34;&gt;
+  &lt;span class=&#34;sr&#34;&gt;unanswered&lt;/span&gt;&lt;span class=&#34;status-icon&#34; aria-hidden=&#34;true&#34;/&gt;
+&lt;/span&gt;
+
+    &lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+  &lt;div class=&#34;action&#34;&gt;
+    &lt;input type=&#34;hidden&#34; name=&#34;problem_id&#34; value=&#34;Что из перечисленного относится к условиям Парижского мирного договора 1856 г.? Выберите правильные варианты ответа&#34; /&gt;
+
+    &lt;div class=&#34;problem-action-buttons-wrapper&#34;&gt;
+      &lt;span class=&#34;problem-action-button-wrapper&#34;&gt;
+          &lt;button type=&#34;button&#34; class=&#34;save problem-action-btn btn-link btn-small&#34; data-value=&#34;Save&#34;&gt;
+              &lt;span aria-hidden=&#34;true&#34;&gt;Save&lt;/span&gt;
+              &lt;span class=&#34;sr&#34;&gt;Save your answer&lt;/span&gt;
+          &lt;/button&gt;
+      &lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class=&#34;submit-attempt-container&#34;&gt;
+      &lt;button type=&#34;button&#34; class=&#34;submit btn-brand&#34; data-submitting=&#34;Submitting&#34; data-value=&#34;Submit&#34; data-should-enable-submit-button=&#34;True&#34; aria-describedby=&#34;submission_feedback_4489b9638710204e037b&#34; &gt;
+          &lt;span class=&#34;submit-label&#34;&gt;Submit&lt;/span&gt;
+      &lt;/button&gt;
+
+      &lt;div class=&#34;submission-feedback &#34; id=&#34;submission_feedback_4489b9638710204e037b&#34;&gt;
+          You have used 0 of 2 attempts
+        &lt;span class=&#34;sr&#34;&gt;Some problems have options such as save, reset, hints, or show answer. These options follow the Submit button.&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+    
+
+
+&lt;div class=&#34;notification warning notification-gentle-alert
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-exclamation-circle&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;4489b9638710204e037b-problem-title&#34;&gt;
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Review&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+    
+
+
+&lt;div class=&#34;notification warning notification-save
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-save&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;4489b9638710204e037b-problem-title&#34;&gt;None
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Review&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+    
+    
+
+
+&lt;div class=&#34;notification general notification-show-answer
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-info-circle&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;4489b9638710204e037b-problem-title&#34;&gt;Answers are displayed within the problem
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Review&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;script&gt;
+    function emit_event(message) {
+        parent.postMessage(message, &#39;*&#39;);
+    }
+&lt;/script&gt;
+"
+     data-graded="True">
+    <p class="loading-spinner">
+        <i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
+        <span class="sr">Loading&hellip;</span>
+    </p>
+</div>
+
+</div>
+
+    </div>
+    <div class="vert vert-11" data-id="block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@7fdfd83a1bff3cbbc3c6">
+        
+<div class="xblock xblock-student_view xblock-student_view-problem xmodule_display xmodule_ProblemBlock" data-course-id="course-v1:spbstu+RUSHIS+spring_2025" data-init="XBlockToXModuleShim" data-runtime-class="LmsRuntime" data-runtime-version="1" data-block-type="problem" data-usage-id="block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@7fdfd83a1bff3cbbc3c6" data-request-token="b56d6ea613b811f08a482ec5b8b31def" data-graded="True" data-has-score="True">
+  <script type="json/xblock-args" class="xblock-json-init-args">
+    {"xmodule-type": "Problem"}
+  </script>
+  <div id="problem_7fdfd83a1bff3cbbc3c6" class="problems-wrapper" role="group"
+     aria-labelledby="7fdfd83a1bff3cbbc3c6-problem-title"
+     data-problem-id="block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@7fdfd83a1bff3cbbc3c6" data-url="/courses/course-v1:spbstu+RUSHIS+spring_2025/xblock/block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@7fdfd83a1bff3cbbc3c6/handler/xmodule_handler"
+     data-problem-score="0.0"
+     data-problem-total-possible="1.0"
+     data-attempts-used="0"
+     data-content="
+
+
+
+&lt;h3 class=&#34;hd hd-3 problem-header&#34; id=&#34;7fdfd83a1bff3cbbc3c6-problem-title&#34; aria-describedby=&#34;block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@7fdfd83a1bff3cbbc3c6-problem-progress&#34; tabindex=&#34;-1&#34;&gt;
+  Укажите год, в котором Царству Польскому была дарована Конституция (ответ запишите в формате: 1993 без каких-либо дополнительных символов или знаков). 
+&lt;/h3&gt;
+
+&lt;div class=&#34;problem-progress&#34; id=&#34;block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@7fdfd83a1bff3cbbc3c6-problem-progress&#34;&gt;&lt;/div&gt;
+
+&lt;div class=&#34;problem&#34;&gt;
+  &lt;div&gt;
+  &lt;div class=&#34;wrapper-problem-response&#34; tabindex=&#34;-1&#34; aria-label=&#34;Question 1&#34; role=&#34;group&#34;&gt;&lt;div id=&#34;formulaequationinput_7fdfd83a1bff3cbbc3c6_2_1&#34; class=&#34;inputtype formulaequationinput&#34;&gt;
+    &lt;div class=&#34;unanswered&#34;&gt;
+        &lt;input type=&#34;text&#34; name=&#34;input_7fdfd83a1bff3cbbc3c6_2_1&#34; id=&#34;input_7fdfd83a1bff3cbbc3c6_2_1&#34; autocomplete=&#34;off&#34; data-input-id=&#34;7fdfd83a1bff3cbbc3c6_2_1&#34; value=&#34;&#34; aria-describedby=&#34;status_7fdfd83a1bff3cbbc3c6_2_1&#34; size=&#34;20&#34;/&gt;
+        &lt;span class=&#34;trailing_text&#34; id=&#34;trailing_text_7fdfd83a1bff3cbbc3c6_2_1&#34;/&gt;
+
+        
+
+&lt;span class=&#34;status unanswered&#34; id=&#34;status_7fdfd83a1bff3cbbc3c6_2_1&#34; data-tooltip=&#34;Not yet answered.&#34;&gt;
+  &lt;span class=&#34;sr&#34;&gt;unanswered&lt;/span&gt;&lt;span class=&#34;status-icon&#34; aria-hidden=&#34;true&#34;/&gt;
+&lt;/span&gt;
+
+
+        &lt;p id=&#34;answer_7fdfd83a1bff3cbbc3c6_2_1&#34; class=&#34;answer&#34;/&gt;
+
+        &lt;div id=&#34;input_7fdfd83a1bff3cbbc3c6_2_1_preview&#34; class=&#34;equation&#34;&gt;
+            \(\)
+            &lt;img src=&#34;https://cdn2.openedu.ru/static/images/spinner.bc34f953403f.gif&#34; class=&#34;loading&#34; alt=&#34;Loading&#34;/&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&#34;script_placeholder&#34; data-src=&#34;https://cdn2.openedu.ru/static/js/capa/src/formula_equation_preview.b038868b7a98.js&#34;/&gt;
+
+&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+  &lt;div class=&#34;action&#34;&gt;
+    &lt;input type=&#34;hidden&#34; name=&#34;problem_id&#34; value=&#34;Укажите год, в котором Царству Польскому была дарована Конституция (ответ запишите в формате: 1993 без каких-либо дополнительных символов или знаков). &#34; /&gt;
+
+    &lt;div class=&#34;problem-action-buttons-wrapper&#34;&gt;
+      &lt;span class=&#34;problem-action-button-wrapper&#34;&gt;
+          &lt;button type=&#34;button&#34; class=&#34;save problem-action-btn btn-link btn-small&#34; data-value=&#34;Save&#34;&gt;
+              &lt;span aria-hidden=&#34;true&#34;&gt;Save&lt;/span&gt;
+              &lt;span class=&#34;sr&#34;&gt;Save your answer&lt;/span&gt;
+          &lt;/button&gt;
+      &lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class=&#34;submit-attempt-container&#34;&gt;
+      &lt;button type=&#34;button&#34; class=&#34;submit btn-brand&#34; data-submitting=&#34;Submitting&#34; data-value=&#34;Submit&#34; data-should-enable-submit-button=&#34;True&#34; aria-describedby=&#34;submission_feedback_7fdfd83a1bff3cbbc3c6&#34; &gt;
+          &lt;span class=&#34;submit-label&#34;&gt;Submit&lt;/span&gt;
+      &lt;/button&gt;
+
+      &lt;div class=&#34;submission-feedback &#34; id=&#34;submission_feedback_7fdfd83a1bff3cbbc3c6&#34;&gt;
+          You have used 0 of 2 attempts
+        &lt;span class=&#34;sr&#34;&gt;Some problems have options such as save, reset, hints, or show answer. These options follow the Submit button.&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+    
+
+
+&lt;div class=&#34;notification warning notification-gentle-alert
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-exclamation-circle&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;7fdfd83a1bff3cbbc3c6-problem-title&#34;&gt;
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Review&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+    
+
+
+&lt;div class=&#34;notification warning notification-save
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-save&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;7fdfd83a1bff3cbbc3c6-problem-title&#34;&gt;None
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Review&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+    
+    
+
+
+&lt;div class=&#34;notification general notification-show-answer
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-info-circle&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;7fdfd83a1bff3cbbc3c6-problem-title&#34;&gt;Answers are displayed within the problem
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Review&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;script&gt;
+    function emit_event(message) {
+        parent.postMessage(message, &#39;*&#39;);
+    }
+&lt;/script&gt;
+"
+     data-graded="True">
+    <p class="loading-spinner">
+        <i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
+        <span class="sr">Loading&hellip;</span>
+    </p>
+</div>
+
+</div>
+
+    </div>
+    <div class="vert vert-12" data-id="block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@0cb57bdf28ffc731097f">
+        
+<div class="xblock xblock-student_view xblock-student_view-problem xmodule_display xmodule_ProblemBlock" data-course-id="course-v1:spbstu+RUSHIS+spring_2025" data-init="XBlockToXModuleShim" data-runtime-class="LmsRuntime" data-runtime-version="1" data-block-type="problem" data-usage-id="block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@0cb57bdf28ffc731097f" data-request-token="b56d6ea613b811f08a482ec5b8b31def" data-graded="True" data-has-score="True">
+  <script type="json/xblock-args" class="xblock-json-init-args">
+    {"xmodule-type": "Problem"}
+  </script>
+  <div id="problem_0cb57bdf28ffc731097f" class="problems-wrapper" role="group"
+     aria-labelledby="0cb57bdf28ffc731097f-problem-title"
+     data-problem-id="block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@0cb57bdf28ffc731097f" data-url="/courses/course-v1:spbstu+RUSHIS+spring_2025/xblock/block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@0cb57bdf28ffc731097f/handler/xmodule_handler"
+     data-problem-score="0.0"
+     data-problem-total-possible="1.0"
+     data-attempts-used="0"
+     data-content="
+
+
+
+&lt;h3 class=&#34;hd hd-3 problem-header&#34; id=&#34;0cb57bdf28ffc731097f-problem-title&#34; aria-describedby=&#34;block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@0cb57bdf28ffc731097f-problem-progress&#34; tabindex=&#34;-1&#34;&gt;
+  Военно-политический блок Германии, Австро-Венгрии и Италии, окончательно сформировавшийся в 1882 г., получил название:
+&lt;/h3&gt;
+
+&lt;div class=&#34;problem-progress&#34; id=&#34;block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@0cb57bdf28ffc731097f-problem-progress&#34;&gt;&lt;/div&gt;
+
+&lt;div class=&#34;problem&#34;&gt;
+  &lt;div&gt;
+  &lt;div class=&#34;wrapper-problem-response&#34; tabindex=&#34;-1&#34; aria-label=&#34;Question 1&#34; role=&#34;group&#34;&gt;&lt;div class=&#34;choicegroup capa_inputtype&#34; id=&#34;inputtype_0cb57bdf28ffc731097f_2_1&#34;&gt;
+    &lt;fieldset aria-describedby=&#34;status_0cb57bdf28ffc731097f_2_1&#34;&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;radio&#34; name=&#34;input_0cb57bdf28ffc731097f_2_1&#34; id=&#34;input_0cb57bdf28ffc731097f_2_1_choice_0&#34; class=&#34;field-input input-radio&#34; value=&#34;choice_0&#34;/&gt;&lt;label id=&#34;0cb57bdf28ffc731097f_2_1-choice_0-label&#34; for=&#34;input_0cb57bdf28ffc731097f_2_1_choice_0&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_0cb57bdf28ffc731097f_2_1&#34;&gt; Союз центральных держав
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;radio&#34; name=&#34;input_0cb57bdf28ffc731097f_2_1&#34; id=&#34;input_0cb57bdf28ffc731097f_2_1_choice_1&#34; class=&#34;field-input input-radio&#34; value=&#34;choice_1&#34;/&gt;&lt;label id=&#34;0cb57bdf28ffc731097f_2_1-choice_1-label&#34; for=&#34;input_0cb57bdf28ffc731097f_2_1_choice_1&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_0cb57bdf28ffc731097f_2_1&#34;&gt; Тройственный союз
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;radio&#34; name=&#34;input_0cb57bdf28ffc731097f_2_1&#34; id=&#34;input_0cb57bdf28ffc731097f_2_1_choice_2&#34; class=&#34;field-input input-radio&#34; value=&#34;choice_2&#34;/&gt;&lt;label id=&#34;0cb57bdf28ffc731097f_2_1-choice_2-label&#34; for=&#34;input_0cb57bdf28ffc731097f_2_1_choice_2&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_0cb57bdf28ffc731097f_2_1&#34;&gt; Союз Трех императоров
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;radio&#34; name=&#34;input_0cb57bdf28ffc731097f_2_1&#34; id=&#34;input_0cb57bdf28ffc731097f_2_1_choice_3&#34; class=&#34;field-input input-radio&#34; value=&#34;choice_3&#34;/&gt;&lt;label id=&#34;0cb57bdf28ffc731097f_2_1-choice_3-label&#34; for=&#34;input_0cb57bdf28ffc731097f_2_1_choice_3&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_0cb57bdf28ffc731097f_2_1&#34;&gt; Священный союз
+            &lt;/label&gt;
+          &lt;/div&gt;
+        &lt;span id=&#34;answer_0cb57bdf28ffc731097f_2_1&#34;/&gt;
+    &lt;/fieldset&gt;
+    &lt;div class=&#34;indicator-container&#34;&gt;
+          
+
+&lt;span class=&#34;status unanswered&#34; id=&#34;status_0cb57bdf28ffc731097f_2_1&#34; data-tooltip=&#34;Not yet answered.&#34;&gt;
+  &lt;span class=&#34;sr&#34;&gt;unanswered&lt;/span&gt;&lt;span class=&#34;status-icon&#34; aria-hidden=&#34;true&#34;/&gt;
+&lt;/span&gt;
+
+    &lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+  &lt;div class=&#34;action&#34;&gt;
+    &lt;input type=&#34;hidden&#34; name=&#34;problem_id&#34; value=&#34;Военно-политический блок Германии, Австро-Венгрии и Италии, окончательно сформировавшийся в 1882 г., получил название:&#34; /&gt;
+
+    &lt;div class=&#34;problem-action-buttons-wrapper&#34;&gt;
+      &lt;span class=&#34;problem-action-button-wrapper&#34;&gt;
+          &lt;button type=&#34;button&#34; class=&#34;save problem-action-btn btn-link btn-small&#34; data-value=&#34;Save&#34;&gt;
+              &lt;span aria-hidden=&#34;true&#34;&gt;Save&lt;/span&gt;
+              &lt;span class=&#34;sr&#34;&gt;Save your answer&lt;/span&gt;
+          &lt;/button&gt;
+      &lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class=&#34;submit-attempt-container&#34;&gt;
+      &lt;button type=&#34;button&#34; class=&#34;submit btn-brand&#34; data-submitting=&#34;Submitting&#34; data-value=&#34;Submit&#34; data-should-enable-submit-button=&#34;True&#34; aria-describedby=&#34;submission_feedback_0cb57bdf28ffc731097f&#34; &gt;
+          &lt;span class=&#34;submit-label&#34;&gt;Submit&lt;/span&gt;
+      &lt;/button&gt;
+
+      &lt;div class=&#34;submission-feedback &#34; id=&#34;submission_feedback_0cb57bdf28ffc731097f&#34;&gt;
+          You have used 0 of 2 attempts
+        &lt;span class=&#34;sr&#34;&gt;Some problems have options such as save, reset, hints, or show answer. These options follow the Submit button.&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+    
+
+
+&lt;div class=&#34;notification warning notification-gentle-alert
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-exclamation-circle&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;0cb57bdf28ffc731097f-problem-title&#34;&gt;
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Review&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+    
+
+
+&lt;div class=&#34;notification warning notification-save
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-save&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;0cb57bdf28ffc731097f-problem-title&#34;&gt;None
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Review&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+    
+    
+
+
+&lt;div class=&#34;notification general notification-show-answer
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-info-circle&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;0cb57bdf28ffc731097f-problem-title&#34;&gt;Answers are displayed within the problem
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Review&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;script&gt;
+    function emit_event(message) {
+        parent.postMessage(message, &#39;*&#39;);
+    }
+&lt;/script&gt;
+"
+     data-graded="True">
+    <p class="loading-spinner">
+        <i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
+        <span class="sr">Loading&hellip;</span>
+    </p>
+</div>
+
+</div>
+
+    </div>
+    <div class="vert vert-13" data-id="block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@549545fcac0d0a4bc495">
+        
+<div class="xblock xblock-student_view xblock-student_view-problem xmodule_display xmodule_ProblemBlock" data-course-id="course-v1:spbstu+RUSHIS+spring_2025" data-init="XBlockToXModuleShim" data-runtime-class="LmsRuntime" data-runtime-version="1" data-block-type="problem" data-usage-id="block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@549545fcac0d0a4bc495" data-request-token="b56d6ea613b811f08a482ec5b8b31def" data-graded="True" data-has-score="True">
+  <script type="json/xblock-args" class="xblock-json-init-args">
+    {"xmodule-type": "Problem"}
+  </script>
+  <div id="problem_549545fcac0d0a4bc495" class="problems-wrapper" role="group"
+     aria-labelledby="549545fcac0d0a4bc495-problem-title"
+     data-problem-id="block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@549545fcac0d0a4bc495" data-url="/courses/course-v1:spbstu+RUSHIS+spring_2025/xblock/block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@549545fcac0d0a4bc495/handler/xmodule_handler"
+     data-problem-score="0.0"
+     data-problem-total-possible="1.0"
+     data-attempts-used="0"
+     data-content="
+
+
+
+&lt;h3 class=&#34;hd hd-3 problem-header&#34; id=&#34;549545fcac0d0a4bc495-problem-title&#34; aria-describedby=&#34;block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@549545fcac0d0a4bc495-problem-progress&#34; tabindex=&#34;-1&#34;&gt;
+  Укажите название движения, возникшего в 1820-х гг. в Дагестане и Чечне, признаками которого было сочетание религиозного учения суфизма (мистического направления в исламе) с политическими действиями. Важной частью его политической программы стала «священная война» против «неверных» (ответ запишите, одним словом, с маленькой буквы в именительном падеже в формате: суфизм без каких-либо дополнительных символов или знаков).
+&lt;/h3&gt;
+
+&lt;div class=&#34;problem-progress&#34; id=&#34;block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@549545fcac0d0a4bc495-problem-progress&#34;&gt;&lt;/div&gt;
+
+&lt;div class=&#34;problem&#34;&gt;
+  &lt;div&gt;
+  &lt;div class=&#34;wrapper-problem-response&#34; tabindex=&#34;-1&#34; aria-label=&#34;Question 1&#34; role=&#34;group&#34;&gt;&lt;div id=&#34;inputtype_549545fcac0d0a4bc495_2_1&#34; class=&#34; capa_inputtype  textline&#34;&gt;
+
+    &lt;div class=&#34;unanswered &#34;&gt;
+
+
+
+&lt;input type=&#34;text&#34; name=&#34;input_549545fcac0d0a4bc495_2_1&#34; id=&#34;input_549545fcac0d0a4bc495_2_1&#34; aria-describedby=&#34;status_549545fcac0d0a4bc495_2_1&#34; value=&#34;&#34; autocomplete=&#34;off&#34; size=&#34;20&#34;/&gt;
+&lt;span class=&#34;trailing_text&#34; id=&#34;trailing_text_549545fcac0d0a4bc495_2_1&#34;/&gt;
+
+
+
+&lt;span class=&#34;status unanswered&#34; id=&#34;status_549545fcac0d0a4bc495_2_1&#34; data-tooltip=&#34;Not yet answered.&#34;&gt;
+  &lt;span class=&#34;sr&#34;&gt;unanswered&lt;/span&gt;&lt;span class=&#34;status-icon&#34; aria-hidden=&#34;true&#34;/&gt;
+&lt;/span&gt;
+
+
+&lt;p id=&#34;answer_549545fcac0d0a4bc495_2_1&#34; class=&#34;answer&#34;/&gt;
+
+
+    &lt;/div&gt;
+
+
+&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+  &lt;div class=&#34;action&#34;&gt;
+    &lt;input type=&#34;hidden&#34; name=&#34;problem_id&#34; value=&#34;Укажите название движения, возникшего в 1820-х гг. в Дагестане и Чечне, признаками которого было сочетание религиозного учения суфизма (мистического направления в исламе) с политическими действиями. Важной частью его политической программы стала «священная война» против «неверных» (ответ запишите, одним словом, с маленькой буквы в именительном падеже в формате: суфизм без каких-либо дополнительных символов или знаков).&#34; /&gt;
+
+    &lt;div class=&#34;problem-action-buttons-wrapper&#34;&gt;
+      &lt;span class=&#34;problem-action-button-wrapper&#34;&gt;
+          &lt;button type=&#34;button&#34; class=&#34;save problem-action-btn btn-link btn-small&#34; data-value=&#34;Save&#34;&gt;
+              &lt;span aria-hidden=&#34;true&#34;&gt;Save&lt;/span&gt;
+              &lt;span class=&#34;sr&#34;&gt;Save your answer&lt;/span&gt;
+          &lt;/button&gt;
+      &lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class=&#34;submit-attempt-container&#34;&gt;
+      &lt;button type=&#34;button&#34; class=&#34;submit btn-brand&#34; data-submitting=&#34;Submitting&#34; data-value=&#34;Submit&#34; data-should-enable-submit-button=&#34;True&#34; aria-describedby=&#34;submission_feedback_549545fcac0d0a4bc495&#34; &gt;
+          &lt;span class=&#34;submit-label&#34;&gt;Submit&lt;/span&gt;
+      &lt;/button&gt;
+
+      &lt;div class=&#34;submission-feedback &#34; id=&#34;submission_feedback_549545fcac0d0a4bc495&#34;&gt;
+          You have used 0 of 2 attempts
+        &lt;span class=&#34;sr&#34;&gt;Some problems have options such as save, reset, hints, or show answer. These options follow the Submit button.&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+    
+
+
+&lt;div class=&#34;notification warning notification-gentle-alert
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-exclamation-circle&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;549545fcac0d0a4bc495-problem-title&#34;&gt;
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Review&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+    
+
+
+&lt;div class=&#34;notification warning notification-save
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-save&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;549545fcac0d0a4bc495-problem-title&#34;&gt;None
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Review&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+    
+    
+
+
+&lt;div class=&#34;notification general notification-show-answer
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-info-circle&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;549545fcac0d0a4bc495-problem-title&#34;&gt;Answers are displayed within the problem
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Review&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;script&gt;
+    function emit_event(message) {
+        parent.postMessage(message, &#39;*&#39;);
+    }
+&lt;/script&gt;
+"
+     data-graded="True">
+    <p class="loading-spinner">
+        <i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
+        <span class="sr">Loading&hellip;</span>
+    </p>
+</div>
+
+</div>
+
+    </div>
+    <div class="vert vert-14" data-id="block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@903f09aeadc4de344006">
+        
+<div class="xblock xblock-student_view xblock-student_view-problem xmodule_display xmodule_ProblemBlock" data-course-id="course-v1:spbstu+RUSHIS+spring_2025" data-init="XBlockToXModuleShim" data-runtime-class="LmsRuntime" data-runtime-version="1" data-block-type="problem" data-usage-id="block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@903f09aeadc4de344006" data-request-token="b56d6ea613b811f08a482ec5b8b31def" data-graded="True" data-has-score="True">
+  <script type="json/xblock-args" class="xblock-json-init-args">
+    {"xmodule-type": "Problem"}
+  </script>
+  <div id="problem_903f09aeadc4de344006" class="problems-wrapper" role="group"
+     aria-labelledby="903f09aeadc4de344006-problem-title"
+     data-problem-id="block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@903f09aeadc4de344006" data-url="/courses/course-v1:spbstu+RUSHIS+spring_2025/xblock/block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@903f09aeadc4de344006/handler/xmodule_handler"
+     data-problem-score="0.0"
+     data-problem-total-possible="1.0"
+     data-attempts-used="0"
+     data-content="
+
+
+
+&lt;h3 class=&#34;hd hd-3 problem-header&#34; id=&#34;903f09aeadc4de344006-problem-title&#34; aria-describedby=&#34;block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@903f09aeadc4de344006-problem-progress&#34; tabindex=&#34;-1&#34;&gt;
+  К итогам русско-турецкой войны 1877-1878 гг. относятся (выберите несколько вариантов ответа):
+&lt;/h3&gt;
+
+&lt;div class=&#34;problem-progress&#34; id=&#34;block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@903f09aeadc4de344006-problem-progress&#34;&gt;&lt;/div&gt;
+
+&lt;div class=&#34;problem&#34;&gt;
+  &lt;div&gt;
+  &lt;div class=&#34;wrapper-problem-response&#34; tabindex=&#34;-1&#34; aria-label=&#34;Question 1&#34; role=&#34;group&#34;&gt;&lt;div class=&#34;choicegroup capa_inputtype&#34; id=&#34;inputtype_903f09aeadc4de344006_2_1&#34;&gt;
+    &lt;fieldset aria-describedby=&#34;status_903f09aeadc4de344006_2_1&#34;&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;checkbox&#34; name=&#34;input_903f09aeadc4de344006_2_1[]&#34; id=&#34;input_903f09aeadc4de344006_2_1_choice_0&#34; class=&#34;field-input input-checkbox&#34; value=&#34;choice_0&#34;/&gt;&lt;label id=&#34;903f09aeadc4de344006_2_1-choice_0-label&#34; for=&#34;input_903f09aeadc4de344006_2_1_choice_0&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_903f09aeadc4de344006_2_1&#34;&gt; Установление контроля России над Черноморскими проливами;
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;checkbox&#34; name=&#34;input_903f09aeadc4de344006_2_1[]&#34; id=&#34;input_903f09aeadc4de344006_2_1_choice_1&#34; class=&#34;field-input input-checkbox&#34; value=&#34;choice_1&#34;/&gt;&lt;label id=&#34;903f09aeadc4de344006_2_1-choice_1-label&#34; for=&#34;input_903f09aeadc4de344006_2_1_choice_1&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_903f09aeadc4de344006_2_1&#34;&gt; Обретение независимости Болгарией;
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;checkbox&#34; name=&#34;input_903f09aeadc4de344006_2_1[]&#34; id=&#34;input_903f09aeadc4de344006_2_1_choice_2&#34; class=&#34;field-input input-checkbox&#34; value=&#34;choice_2&#34;/&gt;&lt;label id=&#34;903f09aeadc4de344006_2_1-choice_2-label&#34; for=&#34;input_903f09aeadc4de344006_2_1_choice_2&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_903f09aeadc4de344006_2_1&#34;&gt; Утверждение Австро-Венгрии в Боснии и Герцеговине;
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;checkbox&#34; name=&#34;input_903f09aeadc4de344006_2_1[]&#34; id=&#34;input_903f09aeadc4de344006_2_1_choice_3&#34; class=&#34;field-input input-checkbox&#34; value=&#34;choice_3&#34;/&gt;&lt;label id=&#34;903f09aeadc4de344006_2_1-choice_3-label&#34; for=&#34;input_903f09aeadc4de344006_2_1_choice_3&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_903f09aeadc4de344006_2_1&#34;&gt; Присоединение к России земель в дельте Дуная и в районе Батуми;
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;checkbox&#34; name=&#34;input_903f09aeadc4de344006_2_1[]&#34; id=&#34;input_903f09aeadc4de344006_2_1_choice_4&#34; class=&#34;field-input input-checkbox&#34; value=&#34;choice_4&#34;/&gt;&lt;label id=&#34;903f09aeadc4de344006_2_1-choice_4-label&#34; for=&#34;input_903f09aeadc4de344006_2_1_choice_4&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_903f09aeadc4de344006_2_1&#34;&gt; Полная ликвидация Османской империи.
+            &lt;/label&gt;
+          &lt;/div&gt;
+        &lt;span id=&#34;answer_903f09aeadc4de344006_2_1&#34;/&gt;
+    &lt;/fieldset&gt;
+    &lt;div class=&#34;indicator-container&#34;&gt;
+          
+
+&lt;span class=&#34;status unanswered&#34; id=&#34;status_903f09aeadc4de344006_2_1&#34; data-tooltip=&#34;Not yet answered.&#34;&gt;
+  &lt;span class=&#34;sr&#34;&gt;unanswered&lt;/span&gt;&lt;span class=&#34;status-icon&#34; aria-hidden=&#34;true&#34;/&gt;
+&lt;/span&gt;
+
+    &lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+  &lt;div class=&#34;action&#34;&gt;
+    &lt;input type=&#34;hidden&#34; name=&#34;problem_id&#34; value=&#34;К итогам русско-турецкой войны 1877-1878 гг. относятся (выберите несколько вариантов ответа):&#34; /&gt;
+
+    &lt;div class=&#34;problem-action-buttons-wrapper&#34;&gt;
+      &lt;span class=&#34;problem-action-button-wrapper&#34;&gt;
+          &lt;button type=&#34;button&#34; class=&#34;save problem-action-btn btn-link btn-small&#34; data-value=&#34;Save&#34;&gt;
+              &lt;span aria-hidden=&#34;true&#34;&gt;Save&lt;/span&gt;
+              &lt;span class=&#34;sr&#34;&gt;Save your answer&lt;/span&gt;
+          &lt;/button&gt;
+      &lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class=&#34;submit-attempt-container&#34;&gt;
+      &lt;button type=&#34;button&#34; class=&#34;submit btn-brand&#34; data-submitting=&#34;Submitting&#34; data-value=&#34;Submit&#34; data-should-enable-submit-button=&#34;True&#34; aria-describedby=&#34;submission_feedback_903f09aeadc4de344006&#34; &gt;
+          &lt;span class=&#34;submit-label&#34;&gt;Submit&lt;/span&gt;
+      &lt;/button&gt;
+
+      &lt;div class=&#34;submission-feedback &#34; id=&#34;submission_feedback_903f09aeadc4de344006&#34;&gt;
+          You have used 0 of 2 attempts
+        &lt;span class=&#34;sr&#34;&gt;Some problems have options such as save, reset, hints, or show answer. These options follow the Submit button.&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+    
+
+
+&lt;div class=&#34;notification warning notification-gentle-alert
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-exclamation-circle&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;903f09aeadc4de344006-problem-title&#34;&gt;
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Review&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+    
+
+
+&lt;div class=&#34;notification warning notification-save
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-save&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;903f09aeadc4de344006-problem-title&#34;&gt;None
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Review&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+    
+    
+
+
+&lt;div class=&#34;notification general notification-show-answer
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-info-circle&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;903f09aeadc4de344006-problem-title&#34;&gt;Answers are displayed within the problem
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Review&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;script&gt;
+    function emit_event(message) {
+        parent.postMessage(message, &#39;*&#39;);
+    }
+&lt;/script&gt;
+"
+     data-graded="True">
+    <p class="loading-spinner">
+        <i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
+        <span class="sr">Loading&hellip;</span>
+    </p>
+</div>
+
+</div>
+
+    </div>
+    <div class="vert vert-15" data-id="block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@c7ff9b3711874f3fd0c7">
+        
+<div class="xblock xblock-student_view xblock-student_view-problem xmodule_display xmodule_ProblemBlock" data-course-id="course-v1:spbstu+RUSHIS+spring_2025" data-init="XBlockToXModuleShim" data-runtime-class="LmsRuntime" data-runtime-version="1" data-block-type="problem" data-usage-id="block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@c7ff9b3711874f3fd0c7" data-request-token="b56d6ea613b811f08a482ec5b8b31def" data-graded="True" data-has-score="True">
+  <script type="json/xblock-args" class="xblock-json-init-args">
+    {"xmodule-type": "Problem"}
+  </script>
+  <div id="problem_c7ff9b3711874f3fd0c7" class="problems-wrapper" role="group"
+     aria-labelledby="c7ff9b3711874f3fd0c7-problem-title"
+     data-problem-id="block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@c7ff9b3711874f3fd0c7" data-url="/courses/course-v1:spbstu+RUSHIS+spring_2025/xblock/block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@c7ff9b3711874f3fd0c7/handler/xmodule_handler"
+     data-problem-score="0.0"
+     data-problem-total-possible="1.0"
+     data-attempts-used="0"
+     data-content="
+
+
+
+&lt;h3 class=&#34;hd hd-3 problem-header&#34; id=&#34;c7ff9b3711874f3fd0c7-problem-title&#34; aria-describedby=&#34;block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@c7ff9b3711874f3fd0c7-problem-progress&#34; tabindex=&#34;-1&#34;&gt;
+  Расположите события в хронологической последовательности (Ответ запишите в формате: 321, без каких-либо дополнительных символов или знаков):
+&lt;/h3&gt;
+
+&lt;div class=&#34;problem-progress&#34; id=&#34;block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@c7ff9b3711874f3fd0c7-problem-progress&#34;&gt;&lt;/div&gt;
+
+&lt;div class=&#34;problem&#34;&gt;
+  &lt;div&gt;
+  &lt;div class=&#34;wrapper-problem-response&#34; tabindex=&#34;-1&#34; aria-label=&#34;Question 1&#34; role=&#34;group&#34;&gt;&lt;p&gt;1. Венский конгресс&lt;/p&gt;
+    &lt;p&gt;2. Лондонская конференция о проливах;&lt;/p&gt;
+    &lt;p&gt;3. Начало заграничного похода русской армии.&lt;/p&gt;
+    &lt;div id=&#34;formulaequationinput_c7ff9b3711874f3fd0c7_2_1&#34; class=&#34;inputtype formulaequationinput&#34;&gt;
+    &lt;div class=&#34;unanswered&#34;&gt;
+        &lt;input type=&#34;text&#34; name=&#34;input_c7ff9b3711874f3fd0c7_2_1&#34; id=&#34;input_c7ff9b3711874f3fd0c7_2_1&#34; autocomplete=&#34;off&#34; data-input-id=&#34;c7ff9b3711874f3fd0c7_2_1&#34; value=&#34;&#34; aria-describedby=&#34;status_c7ff9b3711874f3fd0c7_2_1&#34; size=&#34;20&#34;/&gt;
+        &lt;span class=&#34;trailing_text&#34; id=&#34;trailing_text_c7ff9b3711874f3fd0c7_2_1&#34;/&gt;
+
+        
+
+&lt;span class=&#34;status unanswered&#34; id=&#34;status_c7ff9b3711874f3fd0c7_2_1&#34; data-tooltip=&#34;Not yet answered.&#34;&gt;
+  &lt;span class=&#34;sr&#34;&gt;unanswered&lt;/span&gt;&lt;span class=&#34;status-icon&#34; aria-hidden=&#34;true&#34;/&gt;
+&lt;/span&gt;
+
+
+        &lt;p id=&#34;answer_c7ff9b3711874f3fd0c7_2_1&#34; class=&#34;answer&#34;/&gt;
+
+        &lt;div id=&#34;input_c7ff9b3711874f3fd0c7_2_1_preview&#34; class=&#34;equation&#34;&gt;
+            \(\)
+            &lt;img src=&#34;https://cdn2.openedu.ru/static/images/spinner.bc34f953403f.gif&#34; class=&#34;loading&#34; alt=&#34;Loading&#34;/&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&#34;script_placeholder&#34; data-src=&#34;https://cdn2.openedu.ru/static/js/capa/src/formula_equation_preview.b038868b7a98.js&#34;/&gt;
+
+&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+  &lt;div class=&#34;action&#34;&gt;
+    &lt;input type=&#34;hidden&#34; name=&#34;problem_id&#34; value=&#34;Расположите события в хронологической последовательности (Ответ запишите в формате: 321, без каких-либо дополнительных символов или знаков):&#34; /&gt;
+
+    &lt;div class=&#34;problem-action-buttons-wrapper&#34;&gt;
+      &lt;span class=&#34;problem-action-button-wrapper&#34;&gt;
+          &lt;button type=&#34;button&#34; class=&#34;save problem-action-btn btn-link btn-small&#34; data-value=&#34;Save&#34;&gt;
+              &lt;span aria-hidden=&#34;true&#34;&gt;Save&lt;/span&gt;
+              &lt;span class=&#34;sr&#34;&gt;Save your answer&lt;/span&gt;
+          &lt;/button&gt;
+      &lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class=&#34;submit-attempt-container&#34;&gt;
+      &lt;button type=&#34;button&#34; class=&#34;submit btn-brand&#34; data-submitting=&#34;Submitting&#34; data-value=&#34;Submit&#34; data-should-enable-submit-button=&#34;True&#34; aria-describedby=&#34;submission_feedback_c7ff9b3711874f3fd0c7&#34; &gt;
+          &lt;span class=&#34;submit-label&#34;&gt;Submit&lt;/span&gt;
+      &lt;/button&gt;
+
+      &lt;div class=&#34;submission-feedback &#34; id=&#34;submission_feedback_c7ff9b3711874f3fd0c7&#34;&gt;
+          You have used 0 of 2 attempts
+        &lt;span class=&#34;sr&#34;&gt;Some problems have options such as save, reset, hints, or show answer. These options follow the Submit button.&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+    
+
+
+&lt;div class=&#34;notification warning notification-gentle-alert
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-exclamation-circle&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;c7ff9b3711874f3fd0c7-problem-title&#34;&gt;
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Review&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+    
+
+
+&lt;div class=&#34;notification warning notification-save
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-save&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;c7ff9b3711874f3fd0c7-problem-title&#34;&gt;None
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Review&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+    
+    
+
+
+&lt;div class=&#34;notification general notification-show-answer
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-info-circle&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;c7ff9b3711874f3fd0c7-problem-title&#34;&gt;Answers are displayed within the problem
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Review&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;script&gt;
+    function emit_event(message) {
+        parent.postMessage(message, &#39;*&#39;);
+    }
+&lt;/script&gt;
+"
+     data-graded="True">
+    <p class="loading-spinner">
+        <i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
+        <span class="sr">Loading&hellip;</span>
+    </p>
+</div>
+
+</div>
+
+    </div>
+    <div class="vert vert-16" data-id="block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@3eab924d9e1140889890">
+        
+<div class="xblock xblock-student_view xblock-student_view-problem xmodule_display xmodule_ProblemBlock" data-course-id="course-v1:spbstu+RUSHIS+spring_2025" data-init="XBlockToXModuleShim" data-runtime-class="LmsRuntime" data-runtime-version="1" data-block-type="problem" data-usage-id="block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@3eab924d9e1140889890" data-request-token="b56d6ea613b811f08a482ec5b8b31def" data-graded="True" data-has-score="True">
+  <script type="json/xblock-args" class="xblock-json-init-args">
+    {"xmodule-type": "Problem"}
+  </script>
+  <div id="problem_3eab924d9e1140889890" class="problems-wrapper" role="group"
+     aria-labelledby="3eab924d9e1140889890-problem-title"
+     data-problem-id="block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@3eab924d9e1140889890" data-url="/courses/course-v1:spbstu+RUSHIS+spring_2025/xblock/block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@3eab924d9e1140889890/handler/xmodule_handler"
+     data-problem-score="0.0"
+     data-problem-total-possible="1.0"
+     data-attempts-used="0"
+     data-content="
+
+
+
+&lt;h3 class=&#34;hd hd-3 problem-header&#34; id=&#34;3eab924d9e1140889890-problem-title&#34; aria-describedby=&#34;block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@3eab924d9e1140889890-problem-progress&#34; tabindex=&#34;-1&#34;&gt;
+  Отметьте страны, которые вели боевые действия против России в ходе Крымской войны (выберите несколько вариантов ответа): 
+&lt;/h3&gt;
+
+&lt;div class=&#34;problem-progress&#34; id=&#34;block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@3eab924d9e1140889890-problem-progress&#34;&gt;&lt;/div&gt;
+
+&lt;div class=&#34;problem&#34;&gt;
+  &lt;div&gt;
+  &lt;div class=&#34;wrapper-problem-response&#34; tabindex=&#34;-1&#34; aria-label=&#34;Question 1&#34; role=&#34;group&#34;&gt;&lt;div class=&#34;choicegroup capa_inputtype&#34; id=&#34;inputtype_3eab924d9e1140889890_2_1&#34;&gt;
+    &lt;fieldset aria-describedby=&#34;status_3eab924d9e1140889890_2_1&#34;&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;checkbox&#34; name=&#34;input_3eab924d9e1140889890_2_1[]&#34; id=&#34;input_3eab924d9e1140889890_2_1_choice_0&#34; class=&#34;field-input input-checkbox&#34; value=&#34;choice_0&#34;/&gt;&lt;label id=&#34;3eab924d9e1140889890_2_1-choice_0-label&#34; for=&#34;input_3eab924d9e1140889890_2_1_choice_0&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_3eab924d9e1140889890_2_1&#34;&gt; Великобритания
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;checkbox&#34; name=&#34;input_3eab924d9e1140889890_2_1[]&#34; id=&#34;input_3eab924d9e1140889890_2_1_choice_1&#34; class=&#34;field-input input-checkbox&#34; value=&#34;choice_1&#34;/&gt;&lt;label id=&#34;3eab924d9e1140889890_2_1-choice_1-label&#34; for=&#34;input_3eab924d9e1140889890_2_1_choice_1&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_3eab924d9e1140889890_2_1&#34;&gt; Австрия
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;checkbox&#34; name=&#34;input_3eab924d9e1140889890_2_1[]&#34; id=&#34;input_3eab924d9e1140889890_2_1_choice_2&#34; class=&#34;field-input input-checkbox&#34; value=&#34;choice_2&#34;/&gt;&lt;label id=&#34;3eab924d9e1140889890_2_1-choice_2-label&#34; for=&#34;input_3eab924d9e1140889890_2_1_choice_2&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_3eab924d9e1140889890_2_1&#34;&gt; Пруссия
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;checkbox&#34; name=&#34;input_3eab924d9e1140889890_2_1[]&#34; id=&#34;input_3eab924d9e1140889890_2_1_choice_3&#34; class=&#34;field-input input-checkbox&#34; value=&#34;choice_3&#34;/&gt;&lt;label id=&#34;3eab924d9e1140889890_2_1-choice_3-label&#34; for=&#34;input_3eab924d9e1140889890_2_1_choice_3&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_3eab924d9e1140889890_2_1&#34;&gt; Франция
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;checkbox&#34; name=&#34;input_3eab924d9e1140889890_2_1[]&#34; id=&#34;input_3eab924d9e1140889890_2_1_choice_4&#34; class=&#34;field-input input-checkbox&#34; value=&#34;choice_4&#34;/&gt;&lt;label id=&#34;3eab924d9e1140889890_2_1-choice_4-label&#34; for=&#34;input_3eab924d9e1140889890_2_1_choice_4&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_3eab924d9e1140889890_2_1&#34;&gt; Турция
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;checkbox&#34; name=&#34;input_3eab924d9e1140889890_2_1[]&#34; id=&#34;input_3eab924d9e1140889890_2_1_choice_5&#34; class=&#34;field-input input-checkbox&#34; value=&#34;choice_5&#34;/&gt;&lt;label id=&#34;3eab924d9e1140889890_2_1-choice_5-label&#34; for=&#34;input_3eab924d9e1140889890_2_1_choice_5&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_3eab924d9e1140889890_2_1&#34;&gt; Сардиния
+            &lt;/label&gt;
+          &lt;/div&gt;
+        &lt;span id=&#34;answer_3eab924d9e1140889890_2_1&#34;/&gt;
+    &lt;/fieldset&gt;
+    &lt;div class=&#34;indicator-container&#34;&gt;
+          
+
+&lt;span class=&#34;status unanswered&#34; id=&#34;status_3eab924d9e1140889890_2_1&#34; data-tooltip=&#34;Not yet answered.&#34;&gt;
+  &lt;span class=&#34;sr&#34;&gt;unanswered&lt;/span&gt;&lt;span class=&#34;status-icon&#34; aria-hidden=&#34;true&#34;/&gt;
+&lt;/span&gt;
+
+    &lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+  &lt;div class=&#34;action&#34;&gt;
+    &lt;input type=&#34;hidden&#34; name=&#34;problem_id&#34; value=&#34;Отметьте страны, которые вели боевые действия против России в ходе Крымской войны (выберите несколько вариантов ответа): &#34; /&gt;
+
+    &lt;div class=&#34;problem-action-buttons-wrapper&#34;&gt;
+      &lt;span class=&#34;problem-action-button-wrapper&#34;&gt;
+          &lt;button type=&#34;button&#34; class=&#34;save problem-action-btn btn-link btn-small&#34; data-value=&#34;Save&#34;&gt;
+              &lt;span aria-hidden=&#34;true&#34;&gt;Save&lt;/span&gt;
+              &lt;span class=&#34;sr&#34;&gt;Save your answer&lt;/span&gt;
+          &lt;/button&gt;
+      &lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class=&#34;submit-attempt-container&#34;&gt;
+      &lt;button type=&#34;button&#34; class=&#34;submit btn-brand&#34; data-submitting=&#34;Submitting&#34; data-value=&#34;Submit&#34; data-should-enable-submit-button=&#34;True&#34; aria-describedby=&#34;submission_feedback_3eab924d9e1140889890&#34; &gt;
+          &lt;span class=&#34;submit-label&#34;&gt;Submit&lt;/span&gt;
+      &lt;/button&gt;
+
+      &lt;div class=&#34;submission-feedback &#34; id=&#34;submission_feedback_3eab924d9e1140889890&#34;&gt;
+          You have used 0 of 2 attempts
+        &lt;span class=&#34;sr&#34;&gt;Some problems have options such as save, reset, hints, or show answer. These options follow the Submit button.&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+    
+
+
+&lt;div class=&#34;notification warning notification-gentle-alert
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-exclamation-circle&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;3eab924d9e1140889890-problem-title&#34;&gt;
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Review&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+    
+
+
+&lt;div class=&#34;notification warning notification-save
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-save&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;3eab924d9e1140889890-problem-title&#34;&gt;None
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Review&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+    
+    
+
+
+&lt;div class=&#34;notification general notification-show-answer
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-info-circle&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;3eab924d9e1140889890-problem-title&#34;&gt;Answers are displayed within the problem
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Review&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;script&gt;
+    function emit_event(message) {
+        parent.postMessage(message, &#39;*&#39;);
+    }
+&lt;/script&gt;
+"
+     data-graded="True">
+    <p class="loading-spinner">
+        <i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
+        <span class="sr">Loading&hellip;</span>
+    </p>
+</div>
+
+</div>
+
+    </div>
+    <div class="vert vert-17" data-id="block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@c5ef10e087f6ebf9493d">
+        
+<div class="xblock xblock-student_view xblock-student_view-problem xmodule_display xmodule_ProblemBlock" data-course-id="course-v1:spbstu+RUSHIS+spring_2025" data-init="XBlockToXModuleShim" data-runtime-class="LmsRuntime" data-runtime-version="1" data-block-type="problem" data-usage-id="block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@c5ef10e087f6ebf9493d" data-request-token="b56d6ea613b811f08a482ec5b8b31def" data-graded="True" data-has-score="True">
+  <script type="json/xblock-args" class="xblock-json-init-args">
+    {"xmodule-type": "Problem"}
+  </script>
+  <div id="problem_c5ef10e087f6ebf9493d" class="problems-wrapper" role="group"
+     aria-labelledby="c5ef10e087f6ebf9493d-problem-title"
+     data-problem-id="block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@c5ef10e087f6ebf9493d" data-url="/courses/course-v1:spbstu+RUSHIS+spring_2025/xblock/block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@c5ef10e087f6ebf9493d/handler/xmodule_handler"
+     data-problem-score="0.0"
+     data-problem-total-possible="1.0"
+     data-attempts-used="0"
+     data-content="
+
+
+
+&lt;h3 class=&#34;hd hd-3 problem-header&#34; id=&#34;c5ef10e087f6ebf9493d-problem-title&#34; aria-describedby=&#34;block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@c5ef10e087f6ebf9493d-problem-progress&#34; tabindex=&#34;-1&#34;&gt;
+  В 1871 г. было провозглашено:
+&lt;/h3&gt;
+
+&lt;div class=&#34;problem-progress&#34; id=&#34;block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@c5ef10e087f6ebf9493d-problem-progress&#34;&gt;&lt;/div&gt;
+
+&lt;div class=&#34;problem&#34;&gt;
+  &lt;div&gt;
+  &lt;div class=&#34;wrapper-problem-response&#34; tabindex=&#34;-1&#34; aria-label=&#34;Question 1&#34; role=&#34;group&#34;&gt;&lt;div class=&#34;choicegroup capa_inputtype&#34; id=&#34;inputtype_c5ef10e087f6ebf9493d_2_1&#34;&gt;
+    &lt;fieldset aria-describedby=&#34;status_c5ef10e087f6ebf9493d_2_1&#34;&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;radio&#34; name=&#34;input_c5ef10e087f6ebf9493d_2_1&#34; id=&#34;input_c5ef10e087f6ebf9493d_2_1_choice_0&#34; class=&#34;field-input input-radio&#34; value=&#34;choice_0&#34;/&gt;&lt;label id=&#34;c5ef10e087f6ebf9493d_2_1-choice_0-label&#34; for=&#34;input_c5ef10e087f6ebf9493d_2_1_choice_0&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_c5ef10e087f6ebf9493d_2_1&#34;&gt; Создание Германской империи;
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;radio&#34; name=&#34;input_c5ef10e087f6ebf9493d_2_1&#34; id=&#34;input_c5ef10e087f6ebf9493d_2_1_choice_1&#34; class=&#34;field-input input-radio&#34; value=&#34;choice_1&#34;/&gt;&lt;label id=&#34;c5ef10e087f6ebf9493d_2_1-choice_1-label&#34; for=&#34;input_c5ef10e087f6ebf9493d_2_1_choice_1&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_c5ef10e087f6ebf9493d_2_1&#34;&gt; Восстановление Речи Посполитой;
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;radio&#34; name=&#34;input_c5ef10e087f6ebf9493d_2_1&#34; id=&#34;input_c5ef10e087f6ebf9493d_2_1_choice_2&#34; class=&#34;field-input input-radio&#34; value=&#34;choice_2&#34;/&gt;&lt;label id=&#34;c5ef10e087f6ebf9493d_2_1-choice_2-label&#34; for=&#34;input_c5ef10e087f6ebf9493d_2_1_choice_2&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_c5ef10e087f6ebf9493d_2_1&#34;&gt; Создание единого итальянского государства;
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;radio&#34; name=&#34;input_c5ef10e087f6ebf9493d_2_1&#34; id=&#34;input_c5ef10e087f6ebf9493d_2_1_choice_3&#34; class=&#34;field-input input-radio&#34; value=&#34;choice_3&#34;/&gt;&lt;label id=&#34;c5ef10e087f6ebf9493d_2_1-choice_3-label&#34; for=&#34;input_c5ef10e087f6ebf9493d_2_1_choice_3&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_c5ef10e087f6ebf9493d_2_1&#34;&gt; Создание Австро-Венгерской империи.
+            &lt;/label&gt;
+          &lt;/div&gt;
+        &lt;span id=&#34;answer_c5ef10e087f6ebf9493d_2_1&#34;/&gt;
+    &lt;/fieldset&gt;
+    &lt;div class=&#34;indicator-container&#34;&gt;
+          
+
+&lt;span class=&#34;status unanswered&#34; id=&#34;status_c5ef10e087f6ebf9493d_2_1&#34; data-tooltip=&#34;Not yet answered.&#34;&gt;
+  &lt;span class=&#34;sr&#34;&gt;unanswered&lt;/span&gt;&lt;span class=&#34;status-icon&#34; aria-hidden=&#34;true&#34;/&gt;
+&lt;/span&gt;
+
+    &lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+  &lt;div class=&#34;action&#34;&gt;
+    &lt;input type=&#34;hidden&#34; name=&#34;problem_id&#34; value=&#34;В 1871 г. было провозглашено:&#34; /&gt;
+
+    &lt;div class=&#34;problem-action-buttons-wrapper&#34;&gt;
+      &lt;span class=&#34;problem-action-button-wrapper&#34;&gt;
+          &lt;button type=&#34;button&#34; class=&#34;save problem-action-btn btn-link btn-small&#34; data-value=&#34;Save&#34;&gt;
+              &lt;span aria-hidden=&#34;true&#34;&gt;Save&lt;/span&gt;
+              &lt;span class=&#34;sr&#34;&gt;Save your answer&lt;/span&gt;
+          &lt;/button&gt;
+      &lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class=&#34;submit-attempt-container&#34;&gt;
+      &lt;button type=&#34;button&#34; class=&#34;submit btn-brand&#34; data-submitting=&#34;Submitting&#34; data-value=&#34;Submit&#34; data-should-enable-submit-button=&#34;True&#34; aria-describedby=&#34;submission_feedback_c5ef10e087f6ebf9493d&#34; &gt;
+          &lt;span class=&#34;submit-label&#34;&gt;Submit&lt;/span&gt;
+      &lt;/button&gt;
+
+      &lt;div class=&#34;submission-feedback &#34; id=&#34;submission_feedback_c5ef10e087f6ebf9493d&#34;&gt;
+          You have used 0 of 2 attempts
+        &lt;span class=&#34;sr&#34;&gt;Some problems have options such as save, reset, hints, or show answer. These options follow the Submit button.&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+    
+
+
+&lt;div class=&#34;notification warning notification-gentle-alert
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-exclamation-circle&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;c5ef10e087f6ebf9493d-problem-title&#34;&gt;
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Review&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+    
+
+
+&lt;div class=&#34;notification warning notification-save
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-save&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;c5ef10e087f6ebf9493d-problem-title&#34;&gt;None
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Review&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+    
+    
+
+
+&lt;div class=&#34;notification general notification-show-answer
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-info-circle&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;c5ef10e087f6ebf9493d-problem-title&#34;&gt;Answers are displayed within the problem
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Review&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;script&gt;
+    function emit_event(message) {
+        parent.postMessage(message, &#39;*&#39;);
+    }
+&lt;/script&gt;
+"
+     data-graded="True">
+    <p class="loading-spinner">
+        <i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
+        <span class="sr">Loading&hellip;</span>
+    </p>
+</div>
+
+</div>
+
+    </div>
+    <div class="vert vert-18" data-id="block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@203ee7858c85d98dcf82">
+        
+<div class="xblock xblock-student_view xblock-student_view-problem xmodule_display xmodule_ProblemBlock" data-course-id="course-v1:spbstu+RUSHIS+spring_2025" data-init="XBlockToXModuleShim" data-runtime-class="LmsRuntime" data-runtime-version="1" data-block-type="problem" data-usage-id="block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@203ee7858c85d98dcf82" data-request-token="b56d6ea613b811f08a482ec5b8b31def" data-graded="True" data-has-score="True">
+  <script type="json/xblock-args" class="xblock-json-init-args">
+    {"xmodule-type": "Problem"}
+  </script>
+  <div id="problem_203ee7858c85d98dcf82" class="problems-wrapper" role="group"
+     aria-labelledby="203ee7858c85d98dcf82-problem-title"
+     data-problem-id="block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@203ee7858c85d98dcf82" data-url="/courses/course-v1:spbstu+RUSHIS+spring_2025/xblock/block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@203ee7858c85d98dcf82/handler/xmodule_handler"
+     data-problem-score="0.0"
+     data-problem-total-possible="1.0"
+     data-attempts-used="0"
+     data-content="
+
+
+
+&lt;h3 class=&#34;hd hd-3 problem-header&#34; id=&#34;203ee7858c85d98dcf82-problem-title&#34; aria-describedby=&#34;block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@203ee7858c85d98dcf82-problem-progress&#34; tabindex=&#34;-1&#34;&gt;
+  Первый русско-японский договор был заключен в: 
+&lt;/h3&gt;
+
+&lt;div class=&#34;problem-progress&#34; id=&#34;block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@203ee7858c85d98dcf82-problem-progress&#34;&gt;&lt;/div&gt;
+
+&lt;div class=&#34;problem&#34;&gt;
+  &lt;div&gt;
+  &lt;div class=&#34;wrapper-problem-response&#34; tabindex=&#34;-1&#34; aria-label=&#34;Question 1&#34; role=&#34;group&#34;&gt;&lt;div class=&#34;choicegroup capa_inputtype&#34; id=&#34;inputtype_203ee7858c85d98dcf82_2_1&#34;&gt;
+    &lt;fieldset aria-describedby=&#34;status_203ee7858c85d98dcf82_2_1&#34;&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;radio&#34; name=&#34;input_203ee7858c85d98dcf82_2_1&#34; id=&#34;input_203ee7858c85d98dcf82_2_1_choice_0&#34; class=&#34;field-input input-radio&#34; value=&#34;choice_0&#34;/&gt;&lt;label id=&#34;203ee7858c85d98dcf82_2_1-choice_0-label&#34; for=&#34;input_203ee7858c85d98dcf82_2_1_choice_0&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_203ee7858c85d98dcf82_2_1&#34;&gt; 1855 г.
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;radio&#34; name=&#34;input_203ee7858c85d98dcf82_2_1&#34; id=&#34;input_203ee7858c85d98dcf82_2_1_choice_1&#34; class=&#34;field-input input-radio&#34; value=&#34;choice_1&#34;/&gt;&lt;label id=&#34;203ee7858c85d98dcf82_2_1-choice_1-label&#34; for=&#34;input_203ee7858c85d98dcf82_2_1_choice_1&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_203ee7858c85d98dcf82_2_1&#34;&gt; 1858 г.
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;radio&#34; name=&#34;input_203ee7858c85d98dcf82_2_1&#34; id=&#34;input_203ee7858c85d98dcf82_2_1_choice_2&#34; class=&#34;field-input input-radio&#34; value=&#34;choice_2&#34;/&gt;&lt;label id=&#34;203ee7858c85d98dcf82_2_1-choice_2-label&#34; for=&#34;input_203ee7858c85d98dcf82_2_1_choice_2&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_203ee7858c85d98dcf82_2_1&#34;&gt; 1863 г.
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;radio&#34; name=&#34;input_203ee7858c85d98dcf82_2_1&#34; id=&#34;input_203ee7858c85d98dcf82_2_1_choice_3&#34; class=&#34;field-input input-radio&#34; value=&#34;choice_3&#34;/&gt;&lt;label id=&#34;203ee7858c85d98dcf82_2_1-choice_3-label&#34; for=&#34;input_203ee7858c85d98dcf82_2_1_choice_3&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_203ee7858c85d98dcf82_2_1&#34;&gt; 1895 г.
+            &lt;/label&gt;
+          &lt;/div&gt;
+        &lt;span id=&#34;answer_203ee7858c85d98dcf82_2_1&#34;/&gt;
+    &lt;/fieldset&gt;
+    &lt;div class=&#34;indicator-container&#34;&gt;
+          
+
+&lt;span class=&#34;status unanswered&#34; id=&#34;status_203ee7858c85d98dcf82_2_1&#34; data-tooltip=&#34;Not yet answered.&#34;&gt;
+  &lt;span class=&#34;sr&#34;&gt;unanswered&lt;/span&gt;&lt;span class=&#34;status-icon&#34; aria-hidden=&#34;true&#34;/&gt;
+&lt;/span&gt;
+
+    &lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+  &lt;div class=&#34;action&#34;&gt;
+    &lt;input type=&#34;hidden&#34; name=&#34;problem_id&#34; value=&#34;Первый русско-японский договор был заключен в: &#34; /&gt;
+
+    &lt;div class=&#34;problem-action-buttons-wrapper&#34;&gt;
+      &lt;span class=&#34;problem-action-button-wrapper&#34;&gt;
+          &lt;button type=&#34;button&#34; class=&#34;save problem-action-btn btn-link btn-small&#34; data-value=&#34;Save&#34;&gt;
+              &lt;span aria-hidden=&#34;true&#34;&gt;Save&lt;/span&gt;
+              &lt;span class=&#34;sr&#34;&gt;Save your answer&lt;/span&gt;
+          &lt;/button&gt;
+      &lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class=&#34;submit-attempt-container&#34;&gt;
+      &lt;button type=&#34;button&#34; class=&#34;submit btn-brand&#34; data-submitting=&#34;Submitting&#34; data-value=&#34;Submit&#34; data-should-enable-submit-button=&#34;True&#34; aria-describedby=&#34;submission_feedback_203ee7858c85d98dcf82&#34; &gt;
+          &lt;span class=&#34;submit-label&#34;&gt;Submit&lt;/span&gt;
+      &lt;/button&gt;
+
+      &lt;div class=&#34;submission-feedback &#34; id=&#34;submission_feedback_203ee7858c85d98dcf82&#34;&gt;
+          You have used 0 of 2 attempts
+        &lt;span class=&#34;sr&#34;&gt;Some problems have options such as save, reset, hints, or show answer. These options follow the Submit button.&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+    
+
+
+&lt;div class=&#34;notification warning notification-gentle-alert
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-exclamation-circle&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;203ee7858c85d98dcf82-problem-title&#34;&gt;
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Review&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+    
+
+
+&lt;div class=&#34;notification warning notification-save
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-save&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;203ee7858c85d98dcf82-problem-title&#34;&gt;None
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Review&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+    
+    
+
+
+&lt;div class=&#34;notification general notification-show-answer
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-info-circle&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;203ee7858c85d98dcf82-problem-title&#34;&gt;Answers are displayed within the problem
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Review&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;script&gt;
+    function emit_event(message) {
+        parent.postMessage(message, &#39;*&#39;);
+    }
+&lt;/script&gt;
+"
+     data-graded="True">
+    <p class="loading-spinner">
+        <i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
+        <span class="sr">Loading&hellip;</span>
+    </p>
+</div>
+
+</div>
+
+    </div>
+    <div class="vert vert-19" data-id="block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@c46c2df6885e6e8ad6bf">
+        
+<div class="xblock xblock-student_view xblock-student_view-problem xmodule_display xmodule_ProblemBlock" data-course-id="course-v1:spbstu+RUSHIS+spring_2025" data-init="XBlockToXModuleShim" data-runtime-class="LmsRuntime" data-runtime-version="1" data-block-type="problem" data-usage-id="block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@c46c2df6885e6e8ad6bf" data-request-token="b56d6ea613b811f08a482ec5b8b31def" data-graded="True" data-has-score="True">
+  <script type="json/xblock-args" class="xblock-json-init-args">
+    {"xmodule-type": "Problem"}
+  </script>
+  <div id="problem_c46c2df6885e6e8ad6bf" class="problems-wrapper" role="group"
+     aria-labelledby="c46c2df6885e6e8ad6bf-problem-title"
+     data-problem-id="block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@c46c2df6885e6e8ad6bf" data-url="/courses/course-v1:spbstu+RUSHIS+spring_2025/xblock/block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@c46c2df6885e6e8ad6bf/handler/xmodule_handler"
+     data-problem-score="0.0"
+     data-problem-total-possible="1.0"
+     data-attempts-used="0"
+     data-content="
+
+
+
+&lt;h3 class=&#34;hd hd-3 problem-header&#34; id=&#34;c46c2df6885e6e8ad6bf-problem-title&#34; aria-describedby=&#34;block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@c46c2df6885e6e8ad6bf-problem-progress&#34; tabindex=&#34;-1&#34;&gt;
+  Кружок приближенных Александра I, действовавший с 1801 по 1803 гг., получил название:
+&lt;/h3&gt;
+
+&lt;div class=&#34;problem-progress&#34; id=&#34;block-v1:spbstu+RUSHIS+spring_2025+type@problem+block@c46c2df6885e6e8ad6bf-problem-progress&#34;&gt;&lt;/div&gt;
+
+&lt;div class=&#34;problem&#34;&gt;
+  &lt;div&gt;
+  &lt;div class=&#34;wrapper-problem-response&#34; tabindex=&#34;-1&#34; aria-label=&#34;Question 1&#34; role=&#34;group&#34;&gt;&lt;div class=&#34;choicegroup capa_inputtype&#34; id=&#34;inputtype_c46c2df6885e6e8ad6bf_2_1&#34;&gt;
+    &lt;fieldset aria-describedby=&#34;status_c46c2df6885e6e8ad6bf_2_1&#34;&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;radio&#34; name=&#34;input_c46c2df6885e6e8ad6bf_2_1&#34; id=&#34;input_c46c2df6885e6e8ad6bf_2_1_choice_0&#34; class=&#34;field-input input-radio&#34; value=&#34;choice_0&#34;/&gt;&lt;label id=&#34;c46c2df6885e6e8ad6bf_2_1-choice_0-label&#34; for=&#34;input_c46c2df6885e6e8ad6bf_2_1_choice_0&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_c46c2df6885e6e8ad6bf_2_1&#34;&gt; Избранная рада;
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;radio&#34; name=&#34;input_c46c2df6885e6e8ad6bf_2_1&#34; id=&#34;input_c46c2df6885e6e8ad6bf_2_1_choice_1&#34; class=&#34;field-input input-radio&#34; value=&#34;choice_1&#34;/&gt;&lt;label id=&#34;c46c2df6885e6e8ad6bf_2_1-choice_1-label&#34; for=&#34;input_c46c2df6885e6e8ad6bf_2_1_choice_1&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_c46c2df6885e6e8ad6bf_2_1&#34;&gt; Негласный комитет;
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;radio&#34; name=&#34;input_c46c2df6885e6e8ad6bf_2_1&#34; id=&#34;input_c46c2df6885e6e8ad6bf_2_1_choice_2&#34; class=&#34;field-input input-radio&#34; value=&#34;choice_2&#34;/&gt;&lt;label id=&#34;c46c2df6885e6e8ad6bf_2_1-choice_2-label&#34; for=&#34;input_c46c2df6885e6e8ad6bf_2_1_choice_2&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_c46c2df6885e6e8ad6bf_2_1&#34;&gt; Ближняя канцелярия;
+            &lt;/label&gt;
+          &lt;/div&gt;
+          
+          &lt;div class=&#34;field&#34;&gt;
+            &lt;input type=&#34;radio&#34; name=&#34;input_c46c2df6885e6e8ad6bf_2_1&#34; id=&#34;input_c46c2df6885e6e8ad6bf_2_1_choice_3&#34; class=&#34;field-input input-radio&#34; value=&#34;choice_3&#34;/&gt;&lt;label id=&#34;c46c2df6885e6e8ad6bf_2_1-choice_3-label&#34; for=&#34;input_c46c2df6885e6e8ad6bf_2_1_choice_3&#34; class=&#34;response-label field-label label-inline&#34; aria-describedby=&#34;status_c46c2df6885e6e8ad6bf_2_1&#34;&gt; Союз спасения.
+            &lt;/label&gt;
+          &lt;/div&gt;
+        &lt;span id=&#34;answer_c46c2df6885e6e8ad6bf_2_1&#34;/&gt;
+    &lt;/fieldset&gt;
+    &lt;div class=&#34;indicator-container&#34;&gt;
+          
+
+&lt;span class=&#34;status unanswered&#34; id=&#34;status_c46c2df6885e6e8ad6bf_2_1&#34; data-tooltip=&#34;Not yet answered.&#34;&gt;
+  &lt;span class=&#34;sr&#34;&gt;unanswered&lt;/span&gt;&lt;span class=&#34;status-icon&#34; aria-hidden=&#34;true&#34;/&gt;
+&lt;/span&gt;
+
+    &lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+  &lt;div class=&#34;action&#34;&gt;
+    &lt;input type=&#34;hidden&#34; name=&#34;problem_id&#34; value=&#34;Кружок приближенных Александра I, действовавший с 1801 по 1803 гг., получил название:&#34; /&gt;
+
+    &lt;div class=&#34;problem-action-buttons-wrapper&#34;&gt;
+      &lt;span class=&#34;problem-action-button-wrapper&#34;&gt;
+          &lt;button type=&#34;button&#34; class=&#34;save problem-action-btn btn-link btn-small&#34; data-value=&#34;Save&#34;&gt;
+              &lt;span aria-hidden=&#34;true&#34;&gt;Save&lt;/span&gt;
+              &lt;span class=&#34;sr&#34;&gt;Save your answer&lt;/span&gt;
+          &lt;/button&gt;
+      &lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class=&#34;submit-attempt-container&#34;&gt;
+      &lt;button type=&#34;button&#34; class=&#34;submit btn-brand&#34; data-submitting=&#34;Submitting&#34; data-value=&#34;Submit&#34; data-should-enable-submit-button=&#34;True&#34; aria-describedby=&#34;submission_feedback_c46c2df6885e6e8ad6bf&#34; &gt;
+          &lt;span class=&#34;submit-label&#34;&gt;Submit&lt;/span&gt;
+      &lt;/button&gt;
+
+      &lt;div class=&#34;submission-feedback &#34; id=&#34;submission_feedback_c46c2df6885e6e8ad6bf&#34;&gt;
+          You have used 0 of 2 attempts
+        &lt;span class=&#34;sr&#34;&gt;Some problems have options such as save, reset, hints, or show answer. These options follow the Submit button.&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+    
+
+
+&lt;div class=&#34;notification warning notification-gentle-alert
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-exclamation-circle&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;c46c2df6885e6e8ad6bf-problem-title&#34;&gt;
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Review&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+    
+
+
+&lt;div class=&#34;notification warning notification-save
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-save&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;c46c2df6885e6e8ad6bf-problem-title&#34;&gt;None
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Review&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+    
+    
+
+
+&lt;div class=&#34;notification general notification-show-answer
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-info-circle&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;c46c2df6885e6e8ad6bf-problem-title&#34;&gt;Answers are displayed within the problem
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Review&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;script&gt;
+    function emit_event(message) {
+        parent.postMessage(message, &#39;*&#39;);
+    }
+&lt;/script&gt;
+"
+     data-graded="True">
+    <p class="loading-spinner">
+        <i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
+        <span class="sr">Loading&hellip;</span>
+    </p>
+</div>
+
+</div>
+
+    </div>
+</div>
+
+
+  
+  <script type="text/javascript">
+    (function (require) {
+        require(['https://cdn2.openedu.ru/static/js/dateutil_factory.a28baef97506.js?raw'], function () {
+          require(['js/dateutil_factory'], function (DateUtilFactory) {
+            
+    DateUtilFactory.transform('.localized-datetime');
+
+          });
+        });
+    }).call(this, require || RequireJS.require);
+  </script>
+
+
+<script>
+    function emit_event(message) {
+        parent.postMessage(message, '*');
+    }
+</script>
+
+</div>
+
+    </div>
+</div>
+
+
+  
+  <script type="text/javascript">
+    (function (require) {
+        require(['https://cdn2.openedu.ru/static/js/dateutil_factory.a28baef97506.js?raw'], function () {
+          require(['js/dateutil_factory'], function (DateUtilFactory) {
+            
+    DateUtilFactory.transform('.localized-datetime');
+
+          });
+        });
+    }).call(this, require || RequireJS.require);
+  </script>
+
+
+<script>
+    function emit_event(message) {
+        parent.postMessage(message, '*');
+    }
+</script>
+
+</div>
+
+      </main>
+  </section>
+</div>
+
+<script type="text/javascript">
+  (function() {
+    // If this view is rendered in an iframe within the learning microfrontend app
+    // it will report the height of its contents to the parent window when the
+    // document loads, window resizes, or DOM mutates.
+    if (window !== window.parent) {
+      document.body.className += ' view-in-mfe';
+      var lastHeight = window.offsetHeight;
+      var lastWidth = window.offsetWidth;
+      var contentElement = document.getElementById('content');
+
+      function dispatchResizeMessage(event) {
+        // Note: event is actually an Array of MutationRecord objects
+        // when fired from the MutationObserver
+        var eventType = event.type || 'mutate';
+        var newHeight = contentElement.offsetHeight;
+        var newWidth = contentElement.offsetWidth;
+        if (eventType !== 'load' && newWidth === lastWidth && newHeight === lastHeight) {
+            // Monitor when any anchor tag is clicked, it is checked to make sure
+            // it is referencing an element's id or name (not an external website). If
+            // the href attribute is an id or name, the location of the selected focus
+            // element is sent through its offset attribute. The offset will
+            // allow the page to scroll to the location of the focus element so
+            // that it is at the top of the page. Unique ids and names are
+            // required for proper scrolling.
+            $('a').on("click", function(event){
+              if ($(this).attr('href')[0] === "#") {
+                var targetId = $(this).attr('href');
+                var targetName = $(this).attr('href').slice(1);
+                // Checks if the target uses an id or name to focus and gets offset.
+                var targetOffset = $(targetId).offset() || $(document.getElementsByName(targetName)[0]).offset();
+                if (targetOffset) {
+                  event.preventDefault();
+                  window.parent.postMessage({"offset": targetOffset.top}, document.referrer);
+                }
+              }
+            })
+          return;
+        }
+        // Monitor for messages and checks if the message contains an id. If
+        // there is an id, then the location of the selected focus element
+        // is sent through its offset attribute. The offset will allow the
+        // page to scroll to the location of the focus element so that it is
+        // at the top of the page. Unique ids and names are required for
+        // proper scrolling.
+        window.addEventListener('message', function (event) {
+          if (event.data.hashName) {
+            var targetId = event.data.hashName;
+            var targetName = event.data.hashName.slice(1);
+            // Checks if the target uses an id or name to focus and gets offset.
+            var targetOffset = $(targetId).offset() || $(document.getElementsByName(targetName)[0]).offset();
+            window.parent.postMessage({ 'offset': targetOffset.top }, document.referrer);
+          }
+        })
+
+        window.parent.postMessage({
+            type: 'plugin.resize',
+            payload: {
+              width: newWidth,
+              height: newHeight,
+            }
+          }, document.referrer
+        );
+
+        lastHeight = newHeight;
+        lastWidth = newWidth;
+
+        // Within the learning microfrontend the iframe resizes to match the
+        // height of this document and it should never scroll. It does scroll
+        // ocassionally when javascript is used to focus elements on the page
+        // before the parent iframe has been resized to match the content
+        // height. This window.scrollTo is an attempt to keep the content at the
+        // top of the page. See TNL-7094
+        window.scrollTo(0, 0);
+      }
+
+      // Create an observer instance linked to the callback function
+      const observer = new MutationObserver(dispatchResizeMessage);
+
+      // Start observing the target node for configured mutations
+      observer.observe(document.body, { attributes: true, childList: true, subtree: true });
+
+      window.addEventListener('load', dispatchResizeMessage);
+      const resizeObserver = new ResizeObserver(dispatchResizeMessage);
+      resizeObserver.observe(document.body);
+    }
+  }());
+</script>
+
+      
+    </div>
+
+
+
+  
+  
+  <script type="text/javascript" src="https://cdn2.openedu.ru/static/common/js/vendor/jquery.scrollTo.525edcc52fe8.js" async></script>
+  <script type="text/javascript" src="https://cdn2.openedu.ru/static/js/vendor/flot/jquery.flot.d3d45ff0c6a8.js" async></script>
+
+  
+    
+<script type="text/javascript" src="https://cdn2.openedu.ru/static/js/lms-courseware.9517dcd2081d.js" charset="utf-8"></script>
+
+
+
+    
+
+
+
+
+<script type="text/javascript">
+    // Fast Preview was introduced in 2.5. However, it
+    // causes undesirable flashing/font size changes when
+    // MathJax is used for interactive preview (equation editor).
+    // Setting processSectionDelay to 0 (see below) fully eliminates
+    // fast preview, but to reduce confusion, we are also setting
+    // the option as displayed in the context menu to false.
+    // When upgrading to 2.6, check if this variable name changed.
+    window.MathJax = {
+      menuSettings: {CHTMLpreview: false}
+    };
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    messageStyle: "none",
+    tex2jax: {
+      inlineMath: [
+        ["\\(","\\)"],
+        ['[mathjaxinline]','[/mathjaxinline]']
+      ],
+      displayMath: [
+        ["\\[","\\]"],
+        ['[mathjax]','[/mathjax]']
+      ]
+    }
+  });
+</script>
+<script type="text/x-mathjax-config">
+
+  // In order to eliminate all flashing during interactive
+  // preview, it is necessary to set processSectionDelay to 0
+  // (remove delay between input and output phases). This
+  // effectively disables fast preview, regardless of
+  // the fast preview setting as shown in the context menu.
+  MathJax.Hub.processSectionDelay = 0;
+
+  MathJax.Hub.signal.Interest(function(message) {
+    if(message[0] === "End Math") {
+        set_mathjax_display_div_settings();
+    }
+  });
+  function set_mathjax_display_div_settings() {
+    $('.MathJax_Display').each(function( index ) {
+      this.setAttribute('tabindex', '0');
+      this.setAttribute('aria-live', 'off');
+      this.removeAttribute('role');
+      this.removeAttribute('aria-readonly');
+    });
+  }
+</script>
+
+<script type="text/javascript">
+    // Activating Mathjax accessibility files
+    window.MathJax = {
+        menuSettings: {
+            collapsible: true,
+            autocollapse: false,
+            explorer: true
+        }
+    };
+</script>
+
+<!-- This must appear after all mathjax-config blocks, so it is after the imports from the other templates.
+     It can't be run through static.url because MathJax uses crazy url introspection to do lazy loading of
+     MathJax extension libraries -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_SVG"></script>
+
+
+<script src='https://cdn2.openedu.ru/static/bundles/HtmlBlockPreview.47dfb3a011d61e073bb9.68644e9f6662.js' type='application/javascript'></script>
+<script src='https://cdn2.openedu.ru/static/bundles/XModuleShim.b0a0bcfa4bfc116299b0.0021dbb8621f.js' type='application/javascript'></script>
+<script src='https://cdn2.openedu.ru/static/bundles/ProblemBlockPreview.3c293987029be310b69a.40765775f6c6.js' type='application/javascript'></script>
+<script src='https://cdn2.openedu.ru/static/bundles/VerticalStudentView.218999454019487e3bbe.50411955078b.js' type='application/javascript'></script>
+
+
+
+  
+
+
+
+  <script type="text/javascript" src="https://cdn2.openedu.ru/static/js/vendor/noreferrer.aa62a3e70ffa.js" charset="utf-8"></script>
+  <script type="text/javascript" src="https://cdn2.openedu.ru/static/js/utils/navigation.08930e16ab3d.js" charset="utf-8"></script>
+  <script type="text/javascript" src="https://cdn2.openedu.ru/static/js/header/header.309a1243e175.js"></script>
+  
+  <script type="text/javascript" src="https://cdn2.openedu.ru/static/js/src/jquery_extend_patch.54dddef28d15.js"></script>
+  <div id="lean_overlay"></div>
+
+</body>
+</html>
+
+

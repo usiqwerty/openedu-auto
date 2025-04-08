@@ -54,7 +54,7 @@ class MatchQuestion(BaseModel, Question):
         return self.id, str({"answer": choices}).replace("'", '"')
 
 
-def parse_match_question(problem: Tag):
+def parse_match_question(problem: Tag, prepend_lines: list[str] = None):
     questions = []
     answers = []
     q_text = problem.find('p').text

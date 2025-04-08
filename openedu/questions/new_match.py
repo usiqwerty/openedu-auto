@@ -62,7 +62,7 @@ class NewMatchQuestion(BaseModel, Question):
         return self.id, str({'answer': answers}).replace("'", '"')
 
 
-def parse_new_match(tag: Tag) -> NewMatchQuestion:
+def parse_new_match(tag: Tag, prepend_lines: list[str] = None) -> NewMatchQuestion:
     json_data = json.loads(tag.select_one('.adv-app')['data-initial-data'].replace("'", '"'))
     text = json_data['content']['body']
     qid = tag.find('input')['id']
