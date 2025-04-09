@@ -66,6 +66,7 @@ def get_solution_filepath(course_id):
     solutions_dir = os.path.join("userdata", "solutions")
     files = os.listdir(solutions_dir)
     filepath = None
+    # TODO: то ли filepath, то ли solution_path
     for i, fn in enumerate(files):
         filepath = os.path.join(solutions_dir, fn)
         with open(filepath, encoding='utf-8') as f:

@@ -1,11 +1,10 @@
 import hashlib
 import json
 import os
-from idlelib.iomenu import encoding
 from typing import Any
 
 import config
-from errors import WrongAnswer, HashMismatch, NoSolutionFoundError
+from errors import HashMismatch, NoSolutionFoundError
 from openedu.questions.choice import ChoiceQuestion
 from openedu.questions.fill import FillQuestion
 from openedu.questions.freematch import FreeMatchQuestion

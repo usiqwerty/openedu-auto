@@ -30,10 +30,8 @@ class SelectQuestion(BaseModel, Question):
     @staticmethod
     def parse(tag: Tag, prepend_lines: list[str] = None) -> "SelectQuestion":
         lines = prepend_lines + []
-        q_id = None
         answers = []
         for child in tag.children:
-
             if child.name == "p":
                 lines.append(child.text)
 

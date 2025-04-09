@@ -56,8 +56,6 @@ class OpenEduAuth:
         self.session = Session()
         self.session.cookies = requests.utils.cookiejar_from_dict(jar_json)
 
-        # self.session.cookies['edx-user-info'] = str(userinfo)
-
     def save(self):
         jar_json = requests.utils.dict_from_cookiejar(self.session.cookies)
         with open(self.jar_path, 'w', encoding='utf-8') as f:
@@ -74,7 +72,7 @@ class OpenEduAuth:
             "Sec-Fetch-Mode": "cors",
             "Sec-Fetch-Site": "same-site"
         }
-        rr = self.session.get('https://openedu.ru/', headers=headers)
+        self.session.get('https://openedu.ru/', headers=headers)
         rd = self.session.get('https://openedu.ru/login/npoedsso/', params={"next": "/"}, headers=headers, allow_redirects=False)
         assert rd.status_code == 302
         r = self.session.get(rd.headers['Location'], headers=headers)
@@ -112,12 +110,6 @@ class OpenEduAuth:
         # with CookieContext(self.session, COURSES_COOKIES):
         r = self.session.post("https://courses.openedu.ru/login_refresh", headers=headers)
         return r
-        if r.status_code == 200:
-            return
-        elif r.status_code != 401:
-            raise Exception(f"login_refresh returned {r.status_code}")
-        logging.debug(f"Login refresh: {r.status_code}")
-        return r.status_code
 
     def login_keycloak(self):
         """Touch /auth/login/keycloak"""
@@ -138,7 +130,6 @@ class OpenEduAuth:
             "Priority": 'u=0, i'
         }
         url = 'https://courses.openedu.ru/auth/login/keycloak/'
-        # with CookieContext(self.session, COURSES_COOKIES):
         r = self.session.get(url, headers=h, params=params)
         return r
 
@@ -163,7 +154,6 @@ class OpenEduAuth:
             "nonce": "ax6kW7bTQLtcNxeWK5HWzDxjnIiK9NOT6HR9KwjsciDgDMI7JUwlcRKKAh99oum4",
             "scope": "openid profile email"
         }
-        # with CookieContext(self.session, SSO_COOKIES):
         return self.session.get(url, params=params, headers=h)
 
     def refresh(self):
@@ -176,13 +166,6 @@ class OpenEduAuth:
         lk = self.login_keycloak()
         if lk.status_code != 200:
             raise Exception(f"login-keycloak returned code {lk.status_code}")
-        # oiar = self.openid_auth()
-        # if oiar.status_code != 200:
-        #     raise Exception(f"OpenID-auth returned code {oiar.status_code}")
-        # kr = self.login_keycloak()
-        # if oiar.status_code == 200 and len(oiar.history) == 1:
-        #     logn = self.post_login_data(config.config['username'], config.config['password'], oiar.text)
-        pass
 
     def drop(self):
         self.session.cookies = RequestsCookieJar()

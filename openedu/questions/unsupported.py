@@ -1,5 +1,3 @@
-from typing import Any
-
 from bs4 import Tag
 from pydantic import BaseModel
 

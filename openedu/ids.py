@@ -1,5 +1,5 @@
 import re
-from typing import Literal, Any
+from typing import Literal
 
 from pydantic import BaseModel
 

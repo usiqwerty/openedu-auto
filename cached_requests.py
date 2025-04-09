@@ -2,10 +2,9 @@ import json
 import logging
 import os
 
-import requests
 from requests import Session
 
-from config import get_cookies, get_headers
+from config import get_headers
 
 cache_fn = os.path.join("userdata", "cache.json")
 
