@@ -15,19 +15,19 @@ class FillQuestion(BaseModel, Question):
     def compose(self, answer: str):
         return self.id, answer
 
+    @staticmethod
+    def parse(tag: Tag, prepend_lines: list[str] = None) -> "FillQuestion":
+        lines = prepend_lines + []
+        for p in tag.find_all("p"):
+            lines.append(p.text.strip())
+        label = tag.find('label')
+        if label:
+            lines.append(label.text.strip())
 
-def parse_fill_question(tag: Tag, prepend_lines: list[str] = None) -> FillQuestion:
-    lines = prepend_lines + []
-    for p in tag.find_all("p"):
-        lines.append(p.text.strip())
-    label = tag.find('label')
-    if label:
-        lines.append(label.text.strip())
+        input_tag = tag.find("input")
+        q_id = input_tag['id']
+        correct_answer = input_tag['value']
 
-    input_tag = tag.find("input")
-    q_id = input_tag['id']
-    correct_answer = input_tag['value']
-
-    question_text = '\n'.join(filter(lambda x: x, lines))
-    return FillQuestion(id=q_id, text=question_text, correct_answer=correct_answer)
+        question_text = '\n'.join(filter(lambda x: x, lines))
+        return FillQuestion(id=q_id, text=question_text, correct_answer=correct_answer)
 

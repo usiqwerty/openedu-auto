@@ -5,13 +5,13 @@ from pydantic import BaseModel
 
 from errors import UnsupportedProblemType
 from images.image_describer import ImageDescriber
-from openedu.questions.choice import parse_choice_question
-from openedu.questions.fill import parse_fill_question
-from openedu.questions.freematch import parse_freematch_question
-from openedu.questions.match import parse_match_question
-from openedu.questions.new_match import parse_new_match
+from openedu.questions.choice import ChoiceQuestion
+from openedu.questions.fill import FillQuestion
+from openedu.questions.freematch import FreeMatchQuestion
+from openedu.questions.match import MatchQuestion
+from openedu.questions.new_match import NewMatchQuestion
 from openedu.questions.question import Question
-from openedu.questions.select import parse_select_question
+from openedu.questions.select import SelectQuestion
 from openedu.questions.unsupported import UnsupportedQuestion
 
 
@@ -117,20 +117,20 @@ class OpenEduParser:
     def parse_question(self, question_tag: Tag, prepend_lines: list[str] = None) -> Question:
         if question_tag.select_one('div.matching_table, div.adv-app') is not None:
             if question_tag.select_one('.adv-app'):
-                question = parse_new_match(question_tag, prepend_lines)
+                question = NewMatchQuestion.parse(question_tag, prepend_lines)
             elif question_tag.select_one('div.matching_table').select("td.conf-text"):
                 problem_type = "match"
-                question = parse_match_question(question_tag, prepend_lines)
+                question = MatchQuestion.parse(question_tag, prepend_lines)
             else:
                 problem_type = "freematch"
-                question = parse_freematch_question(question_tag, self.describer, prepend_lines)
+                question = FreeMatchQuestion.parse(question_tag, prepend_lines, self.describer)
         elif question_tag.find('select'):
-            question = parse_select_question(question_tag, prepend_lines)
+            question = SelectQuestion.parse(question_tag, prepend_lines)
         elif question_tag.select_one('input[type=text]'):
-            question = parse_fill_question(question_tag, prepend_lines)
+            question = FillQuestion.parse(question_tag, prepend_lines)
         elif question_tag.select_one('input.input-radio, input.input-checkbox'):
             problem_type = "choice"
-            question = parse_choice_question(question_tag, prepend_lines)
+            question = ChoiceQuestion.parse(question_tag, prepend_lines)
         else:
             raise UnsupportedProblemType
         return question

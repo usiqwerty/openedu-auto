@@ -54,54 +54,55 @@ class FreeMatchQuestion(BaseModel, Question):
         return self.id, str({'answer': answer})
 
 
-def parse_freematch_question(problem: Tag, describer: ImageDescriber, prepend_lines: list[str] = None):
-    questions = []
-    answers = []
-    q_text = '\n'.join(p.text for p in problem.select('.matching_table > p'))
-    table_div = problem.select_one("div.matching_table")
-    table = table_div.find('table')
+    @staticmethod
+    def parse(problem: Tag, prepend_lines: list[str] = None, describer: ImageDescriber = None):
+        questions = []
+        answers = []
+        q_text = '\n'.join(p.text for p in problem.select('.matching_table > p'))
+        table_div = problem.select_one("div.matching_table")
+        table = table_div.find('table')
 
-    column_headers = []
-    columns = []
+        column_headers = []
+        columns = []
 
-    for tr in table.select("tr"):
-        for th in tr.find_all("th"):
-            column_headers.append(th.text.strip())
-            columns.append([])
+        for tr in table.select("tr"):
+            for th in tr.find_all("th"):
+                column_headers.append(th.text.strip())
+                columns.append([])
 
-        for i, td in enumerate(tr.select("td")):
-            if "conf-answers-place" in td.get('class', ""):
-                columns[i].append(td['id'])
-            else:
-                print(f"strange, conf-answers-place is not in td.class: {td}")
+            for i, td in enumerate(tr.select("td")):
+                if "conf-answers-place" in td.get('class', ""):
+                    columns[i].append(td['id'])
+                else:
+                    print(f"strange, conf-answers-place is not in td.class: {td}")
 
-    all_col_answers = []
-    for ans_place in table_div.select("div.conf-answers-place"):
-        column_answers = []
-        for answer in ans_place.select("div.conf-item"):
-            if answer.text:
-                column_answers.append((answer.text, answer['id']))
-            else:
-                img = answer.find("img")
-                img_url = urllib.parse.urljoin("https://courses.openedu.ru/", img['src'])
-                img_content = describer.describe(img_url)
-                column_answers.append((img_content, answer['id']))
-            # answers.append((answer.text, answer['id']))
-        column_answers.sort(key=lambda x: x[1])
-        all_col_answers.append(column_answers)
+        all_col_answers = []
+        for ans_place in table_div.select("div.conf-answers-place"):
+            column_answers = []
+            for answer in ans_place.select("div.conf-item"):
+                if answer.text:
+                    column_answers.append((answer.text, answer['id']))
+                else:
+                    img = answer.find("img")
+                    img_url = urllib.parse.urljoin("https://courses.openedu.ru/", img['src'])
+                    img_content = describer.describe(img_url)
+                    column_answers.append((img_content, answer['id']))
+                # answers.append((answer.text, answer['id']))
+            column_answers.sort(key=lambda x: x[1])
+            all_col_answers.append(column_answers)
 
-    response_div = problem.select_one("div.wrapper-problem-response")
-    answer_input = response_div.find("input")
-    q_id = answer_input['id']
+        response_div = problem.select_one("div.wrapper-problem-response")
+        answer_input = response_div.find("input")
+        q_id = answer_input['id']
 
-    answer_json_string = answer_input.get("value", "").replace("'", '"')
-    if answer_json_string:
-        correct_answer = json.loads(answer_json_string)['answer']
-    else:
-        correct_answer = None
-    return FreeMatchQuestion(text=q_text,
-                          id=q_id,
-                          column_headers=column_headers,
-                          field_columns=columns,
-                          option_columns=all_col_answers,
-                          correct_answer=correct_answer)
+        answer_json_string = answer_input.get("value", "").replace("'", '"')
+        if answer_json_string:
+            correct_answer = json.loads(answer_json_string)['answer']
+        else:
+            correct_answer = None
+        return FreeMatchQuestion(text=q_text,
+                              id=q_id,
+                              column_headers=column_headers,
+                              field_columns=columns,
+                              option_columns=all_col_answers,
+                              correct_answer=correct_answer)

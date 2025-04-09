@@ -24,33 +24,33 @@ class ChoiceQuestion(BaseModel, Question):
         else:
             return plural_choice(answer, self.ids, self.options)
 
+    @staticmethod
+    def parse(questions: Tag, prepend_lines: list[str] = None) -> "ChoiceQuestion":
+        lines = prepend_lines + []
+        for child in questions.children:
+            if child.name in ["p", "pre"]:
+                lines.append(child.text.strip())
+            elif child.name == "div":
+                legend = child.find('legend')
+                if legend:
+                    lines.append(legend.text)
+                qs = [question.text.strip() for question in child.find_all('label')]
+                ids = [qid['id'] for qid in child.find_all('input')]
 
-def parse_choice_question(questions: Tag, prepend_lines: list[str] = None):
-    lines = prepend_lines + []
-    for child in questions.children:
-        if child.name in ["p", "pre"]:
-            lines.append(child.text.strip())
-        elif child.name == "div":
-            legend = child.find('legend')
-            if legend:
-                lines.append(legend.text)
-            qs = [question.text.strip() for question in child.find_all('label')]
-            ids = [qid['id'] for qid in child.find_all('input')]
+                ans_labels = [label for label in child.select("label.field-label")]
+                corrects = [label['for'] for label in ans_labels if "choicegroup_correct" in label.get('class', '')]
+                if ids:
+                    ensure_ids_same(ids)
+                    correct_answers = [extract_choice_from_id(ans)[1]  for ans in corrects]
+                    if len(correct_answers) > 1:
+                        correct_answer = correct_answers
+                    elif len(correct_answers) == 1:
+                        correct_answer = correct_answers[0]
+                    else:
+                        correct_answer = None
+                    quest_id, choice_id = extract_choice_from_id(ids[0])
 
-            ans_labels = [label for label in child.select("label.field-label")]
-            corrects = [label['for'] for label in ans_labels if "choicegroup_correct" in label.get('class', '')]
-            if ids:
-                ensure_ids_same(ids)
-                correct_answers = [extract_choice_from_id(ans)[1]  for ans in corrects]
-                if len(correct_answers) > 1:
-                    correct_answer = correct_answers
-                elif len(correct_answers) == 1:
-                    correct_answer = correct_answers[0]
-                else:
-                    correct_answer = None
-                quest_id, choice_id = extract_choice_from_id(ids[0])
-
-                return ChoiceQuestion(id=quest_id, text='\n'.join(lines), options=qs, ids=ids, correct_answer=correct_answer)
+                    return ChoiceQuestion(id=quest_id, text='\n'.join(lines), options=qs, ids=ids, correct_answer=correct_answer)
 
 
 def plural_choice(answer: list, ids: list[str], options: list[str]) -> tuple[str, str | list[str]]:
