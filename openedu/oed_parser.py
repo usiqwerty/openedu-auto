@@ -87,31 +87,32 @@ class OpenEduParser:
             questions.append(UnsupportedQuestion(id=map_input['id'], correct_answer=map_input['value'], text=''))
             return questions
             # raise UnsupportedProblemType("historical-path-container")
+
+        if problem_header is not None and len(problem_header.strip()) > 1:
+            default_prepend = [problem_header]
+        else:
+            default_prepend = []
         # а здесь мы делаем очень смелое предположение, что если matching table есть в задаче,
         # то ничего другого там не встречается
         if mt:
-            q = self.parse_question(problem)
+            q = self.parse_question(problem, default_prepend)
             questions.append(q)
         else:
             wrappers = problem.find_all("div", attrs={"class": "wrapper-problem-response"})
             # if len(wrappers) > 1:
             #     self.prepare_non_separated_questions(problem)
-            prepend = []
+            prepend = default_prepend.copy()
             #find_all("div", attrs={"class": "wrapper-problem-response"})
             for question_tag in problem.select("div.wrapper-problem-response, .problem > div > p"):
                 if question_tag.name == 'div':
                     q = self.parse_question(question_tag, prepend)
                     questions.append(q)
-                    prepend = []
+                    prepend = default_prepend.copy()
                 elif question_tag.name == 'p':
                     p_text = question_tag.text.strip()
                     if p_text:
                         prepend.append(p_text)
 
-        if problem_header is not None and len(problem_header.strip()) > 1:
-            for i in range(len(questions)):
-                q = questions[i]
-                q.text = (problem_header + "\n" + q.text).strip()
         return questions
 
     def parse_question(self, question_tag: Tag, prepend_lines: list[str] = None) -> Question:

@@ -56,9 +56,9 @@ class FreeMatchQuestion(BaseModel, Question):
 
     @staticmethod
     def parse(problem: Tag, prepend_lines: list[str] = None, describer: ImageDescriber = None):
-        questions = []
-        answers = []
-        q_text = '\n'.join(p.text for p in problem.select('.matching_table > p'))
+        lines = prepend_lines or []
+        lines += [p.text for p in problem.select('.matching_table > p')]
+
         table_div = problem.select_one("div.matching_table")
         table = table_div.find('table')
 
@@ -100,7 +100,7 @@ class FreeMatchQuestion(BaseModel, Question):
             correct_answer = json.loads(answer_json_string)['answer']
         else:
             correct_answer = None
-        return FreeMatchQuestion(text=q_text,
+        return FreeMatchQuestion(text='\n'.join(lines),
                               id=q_id,
                               column_headers=column_headers,
                               field_columns=columns,

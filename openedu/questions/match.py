@@ -57,7 +57,9 @@ class MatchQuestion(BaseModel, Question):
     def parse(problem: Tag, prepend_lines: list[str] = None):
         questions = []
         answers = []
-        q_text = problem.find('p').text
+        lines = prepend_lines or []
+        lines += [problem.find('p').text]
+
         table_div = problem.select_one("div.matching_table")
         table = table_div.find('table')
         for tr in table.find_all("tr"):
@@ -87,4 +89,4 @@ class MatchQuestion(BaseModel, Question):
 
         questions.sort(key=lambda x: x[1])
         answers.sort(key=lambda x: x[1])
-        return MatchQuestion(text=q_text, id=q_id, fields=questions, options=answers, correct_answer=correct_answer)
+        return MatchQuestion(text='\n'.join(lines), id=q_id, fields=questions, options=answers, correct_answer=correct_answer)
