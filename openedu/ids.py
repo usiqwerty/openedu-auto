@@ -50,7 +50,7 @@ class BlockID:
 
     @staticmethod
     def parse(rich_id: str):
-        course_id, block_type, block_id = re.search(r"block-v1:([\w+_]+)\+type@(\w+)\+block@([\w\W]+)",
+        course_id, block_type, block_id = re.search(r"block-v1:([\w+_]+)\+type@([\w-]+)\+block@([\w\W]+)",
                                                     rich_id).groups()
         if block_type == 'sequential':
             return SequentialBlockID(course_id, block_id, block_type)
