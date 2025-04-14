@@ -7,7 +7,7 @@ from typing import Any
 from requests import Session
 
 import config
-from cached_requests import cache_fn
+from cache import cache_fn
 from errors import Unauthorized
 from openedu.auth import OpenEduAuth
 from openedu.course import Course, Chapter
@@ -103,11 +103,12 @@ class OpenEduAPI:
         cccc = self.session.cookies.get('csrftoken', domain='')
         if cccc is None:
             raise Exception
-        hdrs = config.get_headers(
-            csrf=cccc,
-            referer=f"https://courses.openedu.ru/xblock/{blk}?" + referer_params,
-            origin="https://courses.openedu.ru"
-        )
+        hdrs = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/113.0",
+            'X-CSRFToken': cccc,
+            "Referer": f"https://courses.openedu.ru/xblock/{blk}?" + referer_params,
+            "Origin": "https://courses.openedu.ru"
+        }
 
         if not config.config.get('restrict-actions'):
             print(f"[POST] {answers}")

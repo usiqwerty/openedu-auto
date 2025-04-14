@@ -1,7 +1,7 @@
 import logging
 import traceback
 
-from cached_requests import CacheContext
+from cache import CacheContext
 from errors import WrongAnswer, UnsupportedProblemType
 from images.image_describer import ImageDescriber
 from openedu.openeduapp import OpenEduApp, extract_quest_id
