@@ -1,9 +1,7 @@
-import json
 import re
 
 import logging
 
-from config import ignored_fn
 from images.image_describer import ImageDescriber
 from openedu.api import OpenEduAPI
 from openedu.ids import CourseID
@@ -61,12 +59,5 @@ class OpenEduApp:
         return self.api.api_storage.blocks.get(block_id)
 
     def skip_forever(self, block_id):
-        try:
-            with open(ignored_fn, encoding='utf-8') as f:
-                skipped = json.load(f)
-        except FileNotFoundError:
-            skipped = []
-        skipped.append(block_id)
-
-        with open(ignored_fn, 'w', encoding='utf-8') as f:
-            json.dump(skipped, f)
+        self.api.api_storage.skipped.append(block_id)
+        self.api.api_storage.save()

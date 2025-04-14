@@ -1,13 +1,10 @@
-import json
 import logging
 import urllib.parse
 from json import JSONDecodeError
-from typing import Any
 
 from requests import Session
 
 import config
-from cache import cache_fn
 from errors import Unauthorized
 from openedu.auth import OpenEduAuth
 from openedu.course import Course, Chapter
@@ -26,18 +23,11 @@ referer_params = urllib.parse.urlencode({
 class OpenEduAPI:
     api_storage: LocalApiStorage
     session: Session
-    cache: dict[str, Any]
 
     def __init__(self):
         self.api_storage = LocalApiStorage()
         self.auth = OpenEduAuth()
         self.session = self.auth.session
-
-        try:
-            with open(cache_fn, encoding='utf-8') as f:
-                self.cache = json.load(f)
-        except FileNotFoundError:
-            self.cache = {}
 
     def get_sequential_block(self, course_id: str, block_id: str):
         url = (f"https://courses.openedu.ru/api/courseware/sequence/"
@@ -167,18 +157,14 @@ class OpenEduAPI:
         return self.get(url)
 
     def get(self, url, is_json=False):
-        if url not in self.cache:
+        if url not in self.api_storage.cache:
             r = self.session.get(url)
             if is_json:
-                self.cache[url] = r.json()
+                self.api_storage.cache[url] = r.json()
             else:
-                self.cache[url] = r.text
-            self.save()
-        return self.cache[url]
-
-    def save(self):
-        with open(config.cache_fn, 'w', encoding='utf-8') as f:
-            json.dump(self.cache, f)
+                self.api_storage.cache[url] = r.text
+            self.api_storage.save()
+        return self.api_storage.cache[url]
 
     def status(self):
         r = self.session.get("https://openedu.ru/auth/status?url=/")
