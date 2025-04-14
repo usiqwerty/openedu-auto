@@ -1,11 +1,10 @@
 import hashlib
 import json
 import os
-from idlelib.iomenu import encoding
 from typing import Any
 
 import config
-from errors import WrongAnswer, HashMismatch, NoSolutionFoundError
+from errors import HashMismatch, NoSolutionFoundError
 from openedu.questions.choice import ChoiceQuestion
 from openedu.questions.fill import FillQuestion
 from openedu.questions.freematch import FreeMatchQuestion
@@ -30,7 +29,7 @@ class LocalSolver(AbstractSolver):
 
     def solve(self, question: Question):
         ans = self.answers.get(question.id)
-        if ans is None:
+        if ans is None or ans == "":
             raise NoSolutionFoundError(f"question: {question.id}, answer: {ans}")
         question_id = question.id
         if isinstance(ans, list) and len(ans) > 1:

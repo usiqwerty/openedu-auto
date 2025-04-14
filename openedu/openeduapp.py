@@ -3,7 +3,7 @@ import re
 
 import logging
 
-from config import blocks_fn, ignored_fn
+from config import ignored_fn
 from images.image_describer import ImageDescriber
 from openedu.api import OpenEduAPI
 from openedu.ids import CourseID

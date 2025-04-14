@@ -10,13 +10,6 @@ from openedu.questions.select import SelectQuestion
 
 class AbstractSolver(ABC):
     def solve(self, question: ChoiceQuestion | MatchQuestion | FreeMatchQuestion) -> tuple[str, str | list[str]]:
-        """
-
-        :param question: question text
-        :param options: answers
-        :param ids: input tags IDs
-        :return:
-        """
         if isinstance(question, ChoiceQuestion):
             return self.solve_choice(question)
         elif isinstance(question, MatchQuestion):

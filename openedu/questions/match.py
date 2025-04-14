@@ -53,38 +53,40 @@ class MatchQuestion(BaseModel, Question):
             choices[field_id] = [get_ans_id(self.options, ans)]
         return self.id, str({"answer": choices}).replace("'", '"')
 
+    @staticmethod
+    def parse(problem: Tag, prepend_lines: list[str] = None):
+        questions = []
+        answers = []
+        lines = prepend_lines or []
+        lines += [problem.find('p').text]
 
-def parse_match_question(problem: Tag, prepend_lines: list[str] = None):
-    questions = []
-    answers = []
-    q_text = problem.find('p').text
-    table_div = problem.select_one("div.matching_table")
-    table = table_div.find('table')
-    for tr in table.find_all("tr"):
-        field_id = ""
-        field_text = ""
-        for td in tr.find_all("td"):
-            if "conf-answers-place" in td.get('class', ""):
-                field_id = td['id']
-            else:
-                field_text = td.text
-        if field_id and field_text:
-            questions.append((field_text, field_id))
+        table_div = problem.select_one("div.matching_table")
+        table = table_div.find('table')
+        for tr in table.find_all("tr"):
+            field_id = ""
+            field_text = ""
+            for td in tr.find_all("td"):
+                if "conf-answers-place" in td.get('class', ""):
+                    field_id = td['id']
+                else:
+                    field_text = td.text
+            if field_id and field_text:
+                questions.append((field_text, field_id))
 
-    ans_place = table_div.select_one("div.conf-answers-place")
-    for answer in ans_place.find_all():
-        answers.append((answer.text.strip(), answer['id']))
+        ans_place = table_div.select_one("div.conf-answers-place")
+        for answer in ans_place.find_all():
+            answers.append((answer.text.strip(), answer['id']))
 
-    response_div = problem.select_one("div.wrapper-problem-response")
-    answer_input = response_div.find("input")
-    q_id = answer_input['id']
+        response_div = problem.select_one("div.wrapper-problem-response")
+        answer_input = response_div.find("input")
+        q_id = answer_input['id']
 
-    answer_json_string = answer_input.get("value", "").replace("'", '"')
-    if answer_json_string:
-        correct_answer = json.loads(answer_json_string)['answer']
-    else:
-        correct_answer = None
+        answer_json_string = answer_input.get("value", "").replace("'", '"')
+        if answer_json_string:
+            correct_answer = json.loads(answer_json_string)['answer']
+        else:
+            correct_answer = None
 
-    questions.sort(key=lambda x: x[1])
-    answers.sort(key=lambda x: x[1])
-    return MatchQuestion(text=q_text, id=q_id, fields=questions, options=answers, correct_answer=correct_answer)
+        questions.sort(key=lambda x: x[1])
+        answers.sort(key=lambda x: x[1])
+        return MatchQuestion(text='\n'.join(lines), id=q_id, fields=questions, options=answers, correct_answer=correct_answer)
