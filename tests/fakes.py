@@ -1,3 +1,5 @@
+import re
+
 from requests import Response
 from requests.cookies import RequestsCookieJar
 
@@ -46,7 +48,9 @@ class DummySolver(AbstractSolver):
         pass
 
     def solve_choice(self, question: ChoiceQuestion):
-        return "input_bibaboba_0_0", "choice_0"
+        r = re.search(r"input_([\w\W]+)_(\d+)_(\d+)", question.id)
+
+        return question.id, "choice_0"
 
     def solve_match(self, question: MatchQuestion):
         return "input_id", ["value1", "value2"]

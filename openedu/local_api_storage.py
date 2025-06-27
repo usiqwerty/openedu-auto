@@ -66,3 +66,26 @@ class LocalApiStorage:
             json.dump(self.skipped, f)
         with open(config.cache_fn, 'w', encoding='utf-8') as f:
             json.dump(self.cache, f)
+
+
+class DummyApiStorage:
+    blocks: dict[str, VerticalBlock]
+    courses: dict[str, Course]
+    solved: set[str]
+    skipped: list[str]
+    cache: dict[str, Any]
+
+    def __init__(self):
+        self.blocks = {}
+        self.courses = {}
+        self.solved = set()
+        self.skipped = []
+        self.cache = {}
+
+    def mark_block_as_completed(self, block_id: str):
+        if not config.config.get('restrict-actions'):
+            self.solved.add(block_id)
+            logging.info(f"Added to solved: {block_id}")
+
+    def save(self):
+        pass
