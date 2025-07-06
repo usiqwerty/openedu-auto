@@ -1,0 +1,41 @@
+{
+  "items": [
+    {
+      "content": "",
+      "page_title": "Правила обучения на курсе",
+      "type": "other",
+      "id": "block-v1:test_course+type@vertical+block@987",
+      "bookmarked": false,
+      "path": "Правила обучения на курсе > Правила обучения на курсе > Правила обучения на курсе",
+      "graded": false,
+      "contains_content_type_gated_content": false,
+      "href": "",
+      "complete": false
+    }
+  ],
+  "element_id": "123",
+  "item_id": "block-v1:test_course+type@sequential+block@123",
+  "is_time_limited": false,
+  "is_proctored": false,
+  "position": 1,
+  "tag": "sequential",
+  "next_url": null,
+  "prev_url": null,
+  "banner_text": null,
+  "save_position": true,
+  "show_completion": true,
+  "gated_content": {
+    "prereq_id": null,
+    "prereq_url": null,
+    "prereq_section_name": null,
+    "gated": false,
+    "gated_section_name": "Правила обучения на курсе"
+  },
+  "sequence_name": "Правила обучения на курсе",
+  "exclude_units": true,
+  "gated_sequence_paywall": null,
+  "is_gated_milestone_passed": true,
+  "display_name": "Правила обучения на курсе",
+  "format": null,
+  "is_hidden_after_due": false
+}

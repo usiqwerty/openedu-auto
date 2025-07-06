@@ -1,0 +1,753 @@
+<!DOCTYPE html><html lang="en"><head>
+<style>
+:root {
+    --url60ab4074e1a01a8: url(/resources/mcxmy/login/npoed-keycloak-theme/build/static/media/fontawesome-webfont.8b43027f47b20503057d.eot);
+    --url83a7b2419bc6196: url(/resources/mcxmy/login/npoed-keycloak-theme/build/static/media/fontawesome-webfont.8b43027f47b20503057d.eot?#iefix&v=4.7.0) format("embedded-opentype"),url(/resources/mcxmy/login/npoed-keycloak-theme/build/static/media/fontawesome-webfont.20fd1704ea223900efa9.woff2) format("woff2"),url(/resources/mcxmy/login/npoed-keycloak-theme/build/static/media/fontawesome-webfont.f691f37e57f04c152e23.woff) format("woff"),url(/resources/mcxmy/login/npoed-keycloak-theme/build/static/media/fontawesome-webfont.1e59d2330b4c6deb84b3.ttf) format("truetype"),url(/resources/mcxmy/login/npoed-keycloak-theme/build/media/fontawesome-webfont.svg#fontawesomeregular) format("svg");
+    --url866425e5b95ea5a: url(/resources/mcxmy/login/npoed-keycloak-theme/build/static/media/glyphicons-halflings-regular.5be1347c682810f199c7.eot);
+    --url75f4b9e4c7b05f9: url(/resources/mcxmy/login/npoed-keycloak-theme/build/static/media/glyphicons-halflings-regular.5be1347c682810f199c7.eot?#iefix) format("embedded-opentype"),url(/resources/mcxmy/login/npoed-keycloak-theme/build/static/media/glyphicons-halflings-regular.82b1212e45a2bc35dd73.woff) format("woff"),url(/resources/mcxmy/login/npoed-keycloak-theme/build/static/media/glyphicons-halflings-regular.4692b9ec53fd5972caa2.ttf) format("truetype"),url(/resources/mcxmy/login/npoed-keycloak-theme/build/media/glyphicons-halflings-regular.svg#glyphicons-halflingsregular) format("svg");
+    --url76870025b26bc5f: url(/resources/mcxmy/login/npoed-keycloak-theme/build/static/media/glyphicons-halflings-regular.5be1347c682810f199c7.eot?#iefix) format("embedded-opentype"),url(/resources/mcxmy/login/npoed-keycloak-theme/build/static/media/glyphicons-halflings-regular.be810be3a3e14c682a25.woff2) format("woff2"),url(/resources/mcxmy/login/npoed-keycloak-theme/build/static/media/glyphicons-halflings-regular.82b1212e45a2bc35dd73.woff) format("woff"),url(/resources/mcxmy/login/npoed-keycloak-theme/build/static/media/glyphicons-halflings-regular.4692b9ec53fd5972caa2.ttf) format("truetype"),url(/resources/mcxmy/login/npoed-keycloak-theme/build/media/glyphicons-halflings-regular.svg#glyphicons_halflingsregular) format("svg");
+    --url8dc28a112925a26: url(/resources/mcxmy/login/npoed-keycloak-theme/build/static/media/PFBeauSansPro-Regular.198d3d7c677df2479f96.ttf);
+    --url32bb61376d6a2d6: url(/resources/mcxmy/login/npoed-keycloak-theme/build/static/media/PFBeauSansPro-SemiBold.d6ab77ee9524f11b05af.ttf);
+    --urlea4626d26104700: url(/resources/mcxmy/login/npoed-keycloak-theme/build/static/media/PFBeauSansPro-Bold.1584a6d90718a7d287c7.ttf);
+}
+</style>
+
+<script>
+    window.kcContext=
+(()=>{
+
+    const out =
+{
+    "execution": "268f8c1b-34e5-4303-9ca7-f655361ae590",
+    "social": {
+        "displayInfo": true,
+        "providers": [
+            {
+                "displayName": "Vkontakte",
+                "providerId": "vk",
+                "loginUrl": "\/realms/openedu/broker/vk/login?client_id=plp&tab_id=5VMoPD1aJZc&session_code=4XNotAkKMzm4z46VKDQWKisem1PHPlZZs3n7QJqLT5M",
+                "iconClasses": "",
+                "alias": "vk",
+                "guiOrder": "1",
+            },
+            {
+                "displayName": "Google",
+                "providerId": "google",
+                "loginUrl": "\/realms/openedu/broker/google/login?client_id=plp&tab_id=5VMoPD1aJZc&session_code=4XNotAkKMzm4z46VKDQWKisem1PHPlZZs3n7QJqLT5M",
+                "iconClasses": "fa fa-google",
+                "alias": "google",
+                "guiOrder": "3",
+            },
+            {
+                "displayName": "Mail.ru",
+                "providerId": "mailru",
+                "loginUrl": "\/realms/openedu/broker/mailru/login?client_id=plp&tab_id=5VMoPD1aJZc&session_code=4XNotAkKMzm4z46VKDQWKisem1PHPlZZs3n7QJqLT5M",
+                "iconClasses": "",
+                "alias": "mailru",
+                "guiOrder": "4",
+            },
+            {
+                "displayName": "Политех",
+                "providerId": "spbstu",
+                "loginUrl": "\/realms/openedu/broker/spbstu/login?client_id=plp&tab_id=5VMoPD1aJZc&session_code=4XNotAkKMzm4z46VKDQWKisem1PHPlZZs3n7QJqLT5M",
+                "iconClasses": "",
+                "alias": "spbstu",
+                "guiOrder": "5",
+            },
+            {
+                "displayName": "НИТУ МИСИС",
+                "providerId": "misis",
+                "loginUrl": "\/realms/openedu/broker/misis/login?client_id=plp&tab_id=5VMoPD1aJZc&session_code=4XNotAkKMzm4z46VKDQWKisem1PHPlZZs3n7QJqLT5M",
+                "iconClasses": "",
+                "alias": "misis",
+                "guiOrder": "6",
+            },
+            {
+                "displayName": "МГУ",
+                "providerId": "msu",
+                "loginUrl": "\/realms/openedu/broker/msu/login?client_id=plp&tab_id=5VMoPD1aJZc&session_code=4XNotAkKMzm4z46VKDQWKisem1PHPlZZs3n7QJqLT5M",
+                "iconClasses": "",
+                "alias": "msu",
+                "guiOrder": "7",
+            },
+            {
+                "displayName": "УрФУ",
+                "providerId": "urfu",
+                "loginUrl": "\/realms/openedu/broker/urfu/login?client_id=plp&tab_id=5VMoPD1aJZc&session_code=4XNotAkKMzm4z46VKDQWKisem1PHPlZZs3n7QJqLT5M",
+                "iconClasses": "",
+                "alias": "urfu",
+                "guiOrder": "8",
+            },
+            {
+                "displayName": "СЦОС",
+                "providerId": "scos",
+                "loginUrl": "\/realms/openedu/broker/scos/login?client_id=plp&tab_id=5VMoPD1aJZc&session_code=4XNotAkKMzm4z46VKDQWKisem1PHPlZZs3n7QJqLT5M",
+                "iconClasses": "",
+                "alias": "scos",
+                "guiOrder": "9",
+            },
+            {
+                "displayName": "ИТМО",
+                "providerId": "itmo",
+                "loginUrl": "\/realms/openedu/broker/itmo/login?client_id=plp&tab_id=5VMoPD1aJZc&session_code=4XNotAkKMzm4z46VKDQWKisem1PHPlZZs3n7QJqLT5M",
+                "iconClasses": "",
+                "alias": "itmo",
+                "guiOrder": "10",
+            },
+            {
+                "displayName": "Университет 2035",
+                "providerId": "uni2035",
+                "loginUrl": "\/realms/openedu/broker/uni2035/login?client_id=plp&tab_id=5VMoPD1aJZc&session_code=4XNotAkKMzm4z46VKDQWKisem1PHPlZZs3n7QJqLT5M",
+                "iconClasses": "",
+                "alias": "uni2035",
+                "guiOrder": "11",
+            },
+        ],
+    },
+    "auth": {
+        "showResetCredentials": false,
+        "authenticationSelections": [
+            {
+                "helpText": "auth-username-password-form-help-text",
+                "displayName": "auth-username-password-form-display-name",
+                "iconCssClass": "kcAuthenticatorDefaultClass",
+                "authExecId": "268f8c1b-34e5-4303-9ca7-f655361ae590",
+                "authenticationExecution": {
+                    "authenticatorFlow": false,
+                    "conditional": false,
+                    "required": true,
+                    "enabled": true,
+                    "disabled": false,
+                    "id": "268f8c1b-34e5-4303-9ca7-f655361ae590",
+                    "parentFlow": "67ac3c83-54f4-424f-8418-0b76bbfa0343",
+                    "authenticator": "auth-username-password-form",
+                    "alternative": false,
+                    "requirement": {
+                    },
+                    "priority": "10",
+                },
+            },
+        ],
+        "showUsername": false,
+        "showTryAnotherWayLink": false,
+    },
+    "locale": {
+        "current": "Русский",
+        "supported": [
+            {
+                "languageTag": "ru",
+                "label": "Русский",
+                "url": "\/realms/openedu/login-actions/authenticate?client_id=plp&tab_id=5VMoPD1aJZc&execution=268f8c1b-34e5-4303-9ca7-f655361ae590&kc_locale=ru",
+            },
+            {
+                "languageTag": "en",
+                "label": "English",
+                "url": "\/realms/openedu/login-actions/authenticate?client_id=plp&tab_id=5VMoPD1aJZc&execution=268f8c1b-34e5-4303-9ca7-f655361ae590&kc_locale=en",
+            },
+        ],
+        "currentLanguageTag": "ru",
+    },
+    "login": {
+    },
+    "url": {
+        "oauthAction": "\/realms/openedu/login-actions/authenticate",
+        "resourcesPath": "\/resources/mcxmy/login/npoed-keycloak-theme",
+        "loginAction": "https://sso.openedu.ru/realms/openedu/login-actions/authenticate?session_code=4XNotAkKMzm4z46VKDQWKisem1PHPlZZs3n7QJqLT5M&execution=268f8c1b-34e5-4303-9ca7-f655361ae590&client_id=plp&tab_id=5VMoPD1aJZc",
+        /*If you need 'loginUpdatePasswordUrl' on login.ftl, please submit an issue to the Keycloakify repo*/
+        "loginUrl": "\/realms/openedu/login-actions/authenticate?client_id=plp&tab_id=5VMoPD1aJZc",
+        "resourcesCommonPath": "\/resources/mcxmy/common/keycloak",
+        "firstBrokerLoginUrl": "\/realms/openedu/login-actions/first-broker-login?client_id=plp&tab_id=5VMoPD1aJZc",
+        "registrationUrl": "\/realms/openedu/login-actions/registration?client_id=plp&tab_id=5VMoPD1aJZc",
+        "logoutConfirmAction": "\/realms/openedu/protocol/openid-connect/logout/logout-confirm?client_id=plp&tab_id=5VMoPD1aJZc",
+        /*If you need 'loginUpdateProfileUrl' on login.ftl, please submit an issue to the Keycloakify repo*/
+        "registrationAction": "https://sso.openedu.ru/realms/openedu/login-actions/authenticate?session_code=4XNotAkKMzm4z46VKDQWKisem1PHPlZZs3n7QJqLT5M&execution=268f8c1b-34e5-4303-9ca7-f655361ae590&client_id=plp&tab_id=5VMoPD1aJZc",
+        "loginResetCredentialsUrl": "\/realms/openedu/login-actions/reset-credentials?client_id=plp&tab_id=5VMoPD1aJZc",
+        /*If you need 'loginUsernameReminderUrl' on login.ftl, please submit an issue to the Keycloakify repo*/
+        "resourcesUrl": "\/resources/mcxmy?client_id=plp&tab_id=5VMoPD1aJZc/login/npoed-keycloak-theme",
+        /*If you need 'loginUpdateTotpUrl' on login.ftl, please submit an issue to the Keycloakify repo*/
+        "loginRestartFlowUrl": "\/realms/openedu/login-actions/restart?client_id=plp&tab_id=5VMoPD1aJZc",
+        "oauth2DeviceVerificationAction": "\/realms/openedu/login-actions/authenticate",
+    },
+    "messagesPerField": {
+    },
+    "client": {
+        "clientId": "plp",
+        "description": "plp",
+        "attributes": {
+            "backchannel.logout.session.required": "true",
+            "backchannel.logout.url": "https://openedu.ru/api/keycloak/logout",
+        },
+    },
+    "realm": {
+        "displayName": "Открытое образование",
+        "registrationAllowed": true,
+        "displayNameHtml": "Открытое образование",
+        "resetPasswordAllowed": true,
+        "resetCredentialsActionTokenLifespanMinutes": "5",
+        "password": true,
+        "actionTokenGeneratedByUserLifespanMinutes": "5",
+        "internationalizationEnabled": true,
+        "idpVerifyAccountLinkActionTokenLifespanMinutes": "5",
+        "verifyEmailActionTokenLifespanMinutes": "5",
+        "loginWithEmailAllowed": true,
+        "duplicateEmailsAllowed": false,
+        "editUsernameAllowed": false,
+        "name": "openedu",
+        "rememberMe": true,
+        "registrationEmailAsUsername": false,
+        "identityFederationEnabled": true,
+    },
+    "scripts": [
+    ],
+    "properties": {
+        "kcLogoIdP-facebook": "fa fa-facebook",
+        "parent": "keycloak",
+        "kcAuthenticatorOTPClass": "fa fa-mobile list-view-pf-icon-lg",
+        "kcLogoIdP-bitbucket": "fa fa-bitbucket",
+        "kcAuthenticatorWebAuthnClass": "fa fa-key list-view-pf-icon-lg",
+        "kcWebAuthnDefaultIcon": "pficon pficon-key",
+        "kcLogoIdP-stackoverflow": "fa fa-stack-overflow",
+        "kcSelectAuthListItemClass": "pf-l-stack__item select-auth-box-parent pf-l-split",
+        "kcLogoIdP-microsoft": "fa fa-windows",
+        "kcLocaleItemClass": "pf-c-dropdown__menu-item",
+        "kcLoginOTPListItemHeaderClass": "pf-c-tile__header",
+        "kcLoginOTPListItemIconBodyClass": "pf-c-tile__icon",
+        "kcInputHelperTextAfterClass": "pf-c-form__helper-text pf-c-form__helper-text-after",
+        "kcFormClass": "form-horizontal",
+        "kcSelectAuthListClass": "pf-l-stack select-auth-container",
+        "kcInputClassRadioCheckboxLabelDisabled": "pf-m-disabled",
+        "kcSelectAuthListItemIconClass": "pf-l-split__item select-auth-box-icon",
+        "kcRecoveryCodesWarning": "kc-recovery-codes-warning",
+        "kcFormSettingClass": "login-pf-settings",
+        "kcWebAuthnBLE": "fa fa-bluetooth-b",
+        "kcInputWrapperClass": "col-xs-12 col-sm-12 col-md-12 col-lg-12",
+        "kcSelectAuthListItemArrowIconClass": "fa fa-angle-right fa-lg",
+        "meta": "viewport==width=device-width,initial-scale=1",
+        "styles": "css/login.css css/tile.css",
+        "kcFeedbackAreaClass": "col-md-12",
+        "kcLogoIdP-google": "fa fa-google",
+        "kcCheckLabelClass": "pf-c-check__label",
+        "kcSelectAuthListItemFillClass": "pf-l-split__item pf-m-fill",
+        "kcAuthenticatorDefaultClass": "fa fa-list list-view-pf-icon-lg",
+        "kcLogoIdP-gitlab": "fa fa-gitlab",
+        "kcFormAreaClass": "col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2",
+        "kcFormButtonsClass": "col-xs-12 col-sm-12 col-md-12 col-lg-12",
+        "kcInputClassRadioLabel": "pf-c-radio__label",
+        "kcAuthenticatorWebAuthnPasswordlessClass": "fa fa-key list-view-pf-icon-lg",
+        "kcSelectAuthListItemHeadingClass": "pf-l-stack__item select-auth-box-headline pf-c-title",
+        "kcInfoAreaClass": "col-xs-12 col-sm-4 col-md-4 col-lg-5 details",
+        "kcLogoLink": "http://www.keycloak.org",
+        "kcContainerClass": "container-fluid",
+        "kcSelectAuthListItemTitle": "select-auth-box-paragraph",
+        "kcHtmlClass": "login-pf",
+        "kcLoginOTPListItemTitleClass": "pf-c-tile__title",
+        "locales": "ca,cs,da,de,en,es,fr,fi,hu,it,ja,lt,nl,no,pl,pt-BR,ru,sk,sv,tr,zh-CN",
+        "kcLogoIdP-openshift-v4": "pf-icon pf-icon-openshift",
+        "kcWebAuthnUnknownIcon": "pficon pficon-key unknown-transport-class",
+        "kcFormSocialAccountNameClass": "kc-social-provider-name",
+        "kcLogoIdP-openshift-v3": "pf-icon pf-icon-openshift",
+        "kcLoginOTPListInputClass": "pf-c-tile__input",
+        "kcWebAuthnUSB": "fa fa-usb",
+        "kcInputClassRadio": "pf-c-radio",
+        "kcWebAuthnKeyIcon": "pficon pficon-key",
+        "kcFeedbackInfoIcon": "fa fa-fw fa-info-circle",
+        "kcCommonLogoIdP": "kc-social-provider-logo kc-social-gray",
+        "stylesCommon": "web_modules/@patternfly/react-core/dist/styles/base.css web_modules/@patternfly/react-core/dist/styles/app.css node_modules/patternfly/dist/css/patternfly.min.css node_modules/patternfly/dist/css/patternfly-additions.min.css lib/pficon/pficon.css",
+        "kcRecoveryCodesActions": "kc-recovery-codes-actions",
+        "kcFormGroupHeader": "pf-c-form__group",
+        "kcFormSocialAccountSectionClass": "kc-social-section kc-social-gray",
+        "kcLogoIdP-instagram": "fa fa-instagram",
+        "kcAlertClass": "pf-c-alert pf-m-inline",
+        "kcHeaderClass": "login-pf-page-header",
+        "kcLabelWrapperClass": "col-xs-12 col-sm-12 col-md-12 col-lg-12",
+        "kcFormSocialAccountLinkClass": "pf-c-login__main-footer-links-item-link",
+        "kcLocaleMainClass": "pf-c-dropdown",
+        "kcTextareaClass": "form-control",
+        "kcButtonBlockClass": "pf-m-block",
+        "kcButtonClass": "pf-c-button",
+        "kcWebAuthnNFC": "fa fa-wifi",
+        "kcLocaleClass": "col-xs-12 col-sm-1",
+        "kcInputClassCheckboxInput": "pf-c-check__input",
+        "kcFeedbackErrorIcon": "fa fa-fw fa-exclamation-circle",
+        "kcInputLargeClass": "input-lg",
+        "kcInputErrorMessageClass": "pf-c-form__helper-text pf-m-error required kc-feedback-text",
+        "kcRecoveryCodesList": "kc-recovery-codes-list",
+        "kcFormSocialAccountListClass": "pf-c-login__main-footer-links kc-social-links",
+        "kcAlertTitleClass": "pf-c-alert__title kc-feedback-text",
+        "kcAuthenticatorPasswordClass": "fa fa-unlock list-view-pf-icon-lg",
+        "kcCheckInputClass": "pf-c-check__input",
+        "kcLogoIdP-linkedin": "fa fa-linkedin",
+        "kcLogoIdP-twitter": "fa fa-twitter",
+        "kcFeedbackWarningIcon": "fa fa-fw fa-exclamation-triangle",
+        "kcResetFlowIcon": "pficon pficon-arrow fa",
+        "kcSelectAuthListItemIconPropertyClass": "fa-2x select-auth-box-icon-properties",
+        "frontendEnvironment": "{ ACCESS_TOKEN_COOKIE_NAME: \'edx-jwt-cookie-header-payload\', LANGUAGE_PREFERENCE_COOKIE_NAME: \'openedx-language-preference\', USER_INFO_COOKIE_NAME: \'user-info\', BASE_URL: \'apps.openedu.ru\', PLP_BASE_URL: \'https://openedu.ru\', LMS_BASE_URL: \'https://courses.openedu.ru\', STUDIO_BASE_URL: \'https://studio.openedu.ru\', MARKETING_SITE_BASE_URL: \'https://courses.openedu.ru\', CREDENTIALS_BASE_URL: \'\', ECOMMERCE_BASE_URL: \'\', LOGIN_URL: \'https://courses.openedu.ru/login\', LOGOUT_URL: \'https://sso.openedu.ru/realms/openedu/protocol/openid-connect/logout?redirect_uri=https://openedu.ru/\', REGISTER_URL: \'\', REFRESH_ACCESS_TOKEN_ENDPOINT: \'https://courses.openedu.ru/login_refresh\', ORDER_HISTORY_URL: \'\', CSRF_TOKEN_API_PATH: \'/csrf/api/v1/token\', SSO_SWITCH_LOCALE_URL: \'https://sso.openedu.ru/realms/openedu/switch-locale\', FAVICON_URL: \'https://courses.openedu.ru/favicon.ico\', LOGO_URL: \'https://courses.openedu.ru/theming/asset/images/logo.png\', LOGO_TRADEMARK_URL: \'https://courses.openedu.ru/theming/asset/images/logo.png\', LOGO_WHITE_URL: \'\', SEGMENT_KEY: \'\', SITE_NAME: \'Открытое Образование\', TELEGRAM_URL: \'https://t.me/openeduru\', VK_URL: \'\', OK_URL: \'\', TWITTER_URL: \'\', COURSES_URL: \'https://openedu.ru/course\', PROGRAMS_URL: \'https://openedu.ru/program\', SPECIALIZE_URL: \'https://openedu.ru/specialize\', PARTNERSHIP_URL: \'https://openedu.ru/partners/apply\', CATALOG_URL: \'https://openedu.ru/catalog\', FEEDBACK_URL: \'https://openedu.ru/feedback\', REQUIREMENTS_URL: \'https://openedu.ru/requirements\', TERMS_URL: \'https://openedu.ru/terms\', CONTACTS_URL: \'https://openedu.ru/contacts\', FOR_MEDIA_URL: \'https://openedu.ru/for-media\', PDPOLICY_URL: \'https://openedu.ru/pdpolicy\', MY_COURSES_URL: \'https://openedu.ru/my\', MY_PROGRAMS_URL: \'https://openedu.ru/my-programs\', FAQ_URL: \'https://openedu.ru/faq\', ACCOUNT_URL: \'https://sso.openedu.ru/realms/openedu/account/\', ABOUT_URL: \'https://npoed.ru/about\', NEWS_SUBSCRIPTION_URL: \'https://openedu.ru/news-massmail-subscription\', REALM_NAME: \'openedu\' }",
+        "kcFeedbackSuccessIcon": "fa fa-fw fa-check-circle",
+        "kcLoginOTPListClass": "pf-c-tile",
+        "kcSrOnlyClass": "sr-only",
+        "kcFormSocialAccountListGridClass": "pf-l-grid kc-social-grid",
+        "kcButtonDefaultClass": "btn-default",
+        "kcFormGroupErrorClass": "has-error",
+        "kcSelectAuthListItemDescriptionClass": "pf-l-stack__item select-auth-box-desc",
+        "kcSelectAuthListItemBodyClass": "pf-l-split__item pf-l-stack",
+        "import": "common/keycloak",
+        "kcWebAuthnInternal": "pficon pficon-key",
+        "kcSelectAuthListItemArrowClass": "pf-l-split__item select-auth-box-arrow",
+        "kcCheckClass": "pf-c-check",
+        "kcContentClass": "col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3",
+        "kcLogoClass": "login-pf-brand",
+        "kcLoginOTPListItemIconClass": "fa fa-mobile",
+        "kcLoginClass": "login-pf-page",
+        "kcSignUpClass": "login-pf-signup",
+        "kcButtonLargeClass": "btn-lg",
+        "kcFormCardClass": "card-pf",
+        "kcLocaleListClass": "pf-c-dropdown__menu pf-m-align-right",
+        "kcInputClass": "pf-c-form-control",
+        "kcFormGroupClass": "form-group",
+        "kcLogoIdP-paypal": "fa fa-paypal",
+        "kcInputClassCheckbox": "pf-c-check",
+        "kcRecoveryCodesConfirmation": "kc-recovery-codes-confirmation",
+        "kcInputClassRadioInput": "pf-c-radio__input",
+        "kcFormSocialAccountListButtonClass": "pf-c-button pf-m-control pf-m-block kc-social-item kc-social-gray",
+        "kcInputClassCheckboxLabel": "pf-c-check__label",
+        "kcFormOptionsClass": "col-xs-12 col-sm-12 col-md-12 col-lg-12",
+        "kcFormHeaderClass": "login-pf-header",
+        "kcFormSocialAccountGridItem": "pf-l-grid__item",
+        "kcButtonPrimaryClass": "pf-m-primary",
+        "kcInputHelperTextBeforeClass": "pf-c-form__helper-text pf-c-form__helper-text-before",
+        "kcLogoIdP-github": "fa fa-github",
+        "kcLabelClass": "pf-c-form__label pf-c-form__label-text",
+    },
+};
+
+    out["msg"]= function(){ throw new Error("use import { useKcMessage } from 'keycloakify'"); };
+    out["advancedMsg"]= function(){ throw new Error("use import { useKcMessage } from 'keycloakify'"); };
+
+    out["messagesPerField"]= {
+
+
+        "printIfExists": function (fieldName, x) {
+                if(fieldName === "global" ){
+                        return "" ? x : undefined;
+                }
+                if(fieldName === "userLabel" ){
+                        return "" ? x : undefined;
+                }
+                if(fieldName === "username" ){
+                        return "" ? x : undefined;
+                }
+                if(fieldName === "email" ){
+                        return "" ? x : undefined;
+                }
+                if(fieldName === "firstName" ){
+                        return "" ? x : undefined;
+                }
+                if(fieldName === "lastName" ){
+                        return "" ? x : undefined;
+                }
+                if(fieldName === "password" ){
+                        return "" ? x : undefined;
+                }
+                if(fieldName === "password-confirm" ){
+                        return "" ? x : undefined;
+                }
+                if(fieldName === "totp" ){
+                        return "" ? x : undefined;
+                }
+                if(fieldName === "totpSecret" ){
+                        return "" ? x : undefined;
+                }
+                if(fieldName === "SAMLRequest" ){
+                        return "" ? x : undefined;
+                }
+                if(fieldName === "SAMLResponse" ){
+                        return "" ? x : undefined;
+                }
+                if(fieldName === "relayState" ){
+                        return "" ? x : undefined;
+                }
+                if(fieldName === "device_user_code" ){
+                        return "" ? x : undefined;
+                }
+                if(fieldName === "code" ){
+                        return "" ? x : undefined;
+                }
+                if(fieldName === "password-new" ){
+                        return "" ? x : undefined;
+                }
+                if(fieldName === "rememberMe" ){
+                        return "" ? x : undefined;
+                }
+                if(fieldName === "login" ){
+                        return "" ? x : undefined;
+                }
+                if(fieldName === "authenticationExecution" ){
+                        return "" ? x : undefined;
+                }
+                if(fieldName === "cancel-aia" ){
+                        return "" ? x : undefined;
+                }
+                if(fieldName === "clientDataJSON" ){
+                        return "" ? x : undefined;
+                }
+                if(fieldName === "authenticatorData" ){
+                        return "" ? x : undefined;
+                }
+                if(fieldName === "signature" ){
+                        return "" ? x : undefined;
+                }
+                if(fieldName === "credentialId" ){
+                        return "" ? x : undefined;
+                }
+                if(fieldName === "userHandle" ){
+                        return "" ? x : undefined;
+                }
+                if(fieldName === "error" ){
+                        return "" ? x : undefined;
+                }
+                if(fieldName === "authn_use_chk" ){
+                        return "" ? x : undefined;
+                }
+                if(fieldName === "authenticationExecution" ){
+                        return "" ? x : undefined;
+                }
+                if(fieldName === "isSetRetry" ){
+                        return "" ? x : undefined;
+                }
+                if(fieldName === "try-again" ){
+                        return "" ? x : undefined;
+                }
+                if(fieldName === "attestationObject" ){
+                        return "" ? x : undefined;
+                }
+                if(fieldName === "publicKeyCredentialId" ){
+                        return "" ? x : undefined;
+                }
+                if(fieldName === "authenticatorLabel" ){
+                        return "" ? x : undefined;
+                }
+                if(fieldName === "user.attributes.dateOfBirth" ){
+                        return "" ? x : undefined;
+                }
+                if(fieldName === "user.attributes.country" ){
+                        return "" ? x : undefined;
+                }
+                if(fieldName === "user.attributes.acceptedTermsAndConditions" ){
+                        return "" ? x : undefined;
+                }
+            throw new Error("There is no " + fieldName + " field");
+        },
+        "existsError": function (fieldName) {
+                if(fieldName === "global" ){
+                        return false;
+                }
+                if(fieldName === "userLabel" ){
+                        return false;
+                }
+                if(fieldName === "username" ){
+                        return false;
+                }
+                if(fieldName === "email" ){
+                        return false;
+                }
+                if(fieldName === "firstName" ){
+                        return false;
+                }
+                if(fieldName === "lastName" ){
+                        return false;
+                }
+                if(fieldName === "password" ){
+                        return false;
+                }
+                if(fieldName === "password-confirm" ){
+                        return false;
+                }
+                if(fieldName === "totp" ){
+                        return false;
+                }
+                if(fieldName === "totpSecret" ){
+                        return false;
+                }
+                if(fieldName === "SAMLRequest" ){
+                        return false;
+                }
+                if(fieldName === "SAMLResponse" ){
+                        return false;
+                }
+                if(fieldName === "relayState" ){
+                        return false;
+                }
+                if(fieldName === "device_user_code" ){
+                        return false;
+                }
+                if(fieldName === "code" ){
+                        return false;
+                }
+                if(fieldName === "password-new" ){
+                        return false;
+                }
+                if(fieldName === "rememberMe" ){
+                        return false;
+                }
+                if(fieldName === "login" ){
+                        return false;
+                }
+                if(fieldName === "authenticationExecution" ){
+                        return false;
+                }
+                if(fieldName === "cancel-aia" ){
+                        return false;
+                }
+                if(fieldName === "clientDataJSON" ){
+                        return false;
+                }
+                if(fieldName === "authenticatorData" ){
+                        return false;
+                }
+                if(fieldName === "signature" ){
+                        return false;
+                }
+                if(fieldName === "credentialId" ){
+                        return false;
+                }
+                if(fieldName === "userHandle" ){
+                        return false;
+                }
+                if(fieldName === "error" ){
+                        return false;
+                }
+                if(fieldName === "authn_use_chk" ){
+                        return false;
+                }
+                if(fieldName === "authenticationExecution" ){
+                        return false;
+                }
+                if(fieldName === "isSetRetry" ){
+                        return false;
+                }
+                if(fieldName === "try-again" ){
+                        return false;
+                }
+                if(fieldName === "attestationObject" ){
+                        return false;
+                }
+                if(fieldName === "publicKeyCredentialId" ){
+                        return false;
+                }
+                if(fieldName === "authenticatorLabel" ){
+                        return false;
+                }
+                if(fieldName === "user.attributes.dateOfBirth" ){
+                        return false;
+                }
+                if(fieldName === "user.attributes.country" ){
+                        return false;
+                }
+                if(fieldName === "user.attributes.acceptedTermsAndConditions" ){
+                        return false;
+                }
+            throw new Error("There is no " + fieldName + " field");
+        },
+        "get": function (fieldName) {
+                if(fieldName === "global" ){
+                }
+                if(fieldName === "userLabel" ){
+                }
+                if(fieldName === "username" ){
+                }
+                if(fieldName === "email" ){
+                }
+                if(fieldName === "firstName" ){
+                }
+                if(fieldName === "lastName" ){
+                }
+                if(fieldName === "password" ){
+                }
+                if(fieldName === "password-confirm" ){
+                }
+                if(fieldName === "totp" ){
+                }
+                if(fieldName === "totpSecret" ){
+                }
+                if(fieldName === "SAMLRequest" ){
+                }
+                if(fieldName === "SAMLResponse" ){
+                }
+                if(fieldName === "relayState" ){
+                }
+                if(fieldName === "device_user_code" ){
+                }
+                if(fieldName === "code" ){
+                }
+                if(fieldName === "password-new" ){
+                }
+                if(fieldName === "rememberMe" ){
+                }
+                if(fieldName === "login" ){
+                }
+                if(fieldName === "authenticationExecution" ){
+                }
+                if(fieldName === "cancel-aia" ){
+                }
+                if(fieldName === "clientDataJSON" ){
+                }
+                if(fieldName === "authenticatorData" ){
+                }
+                if(fieldName === "signature" ){
+                }
+                if(fieldName === "credentialId" ){
+                }
+                if(fieldName === "userHandle" ){
+                }
+                if(fieldName === "error" ){
+                }
+                if(fieldName === "authn_use_chk" ){
+                }
+                if(fieldName === "authenticationExecution" ){
+                }
+                if(fieldName === "isSetRetry" ){
+                }
+                if(fieldName === "try-again" ){
+                }
+                if(fieldName === "attestationObject" ){
+                }
+                if(fieldName === "publicKeyCredentialId" ){
+                }
+                if(fieldName === "authenticatorLabel" ){
+                }
+                if(fieldName === "user.attributes.dateOfBirth" ){
+                }
+                if(fieldName === "user.attributes.country" ){
+                }
+                if(fieldName === "user.attributes.acceptedTermsAndConditions" ){
+                }
+            throw new Error("There is no " + fieldName + " field");
+        },
+        "exists": function (fieldName) {
+                if(fieldName === "global" ){
+                        return false;
+                }
+                if(fieldName === "userLabel" ){
+                        return false;
+                }
+                if(fieldName === "username" ){
+                        return false;
+                }
+                if(fieldName === "email" ){
+                        return false;
+                }
+                if(fieldName === "firstName" ){
+                        return false;
+                }
+                if(fieldName === "lastName" ){
+                        return false;
+                }
+                if(fieldName === "password" ){
+                        return false;
+                }
+                if(fieldName === "password-confirm" ){
+                        return false;
+                }
+                if(fieldName === "totp" ){
+                        return false;
+                }
+                if(fieldName === "totpSecret" ){
+                        return false;
+                }
+                if(fieldName === "SAMLRequest" ){
+                        return false;
+                }
+                if(fieldName === "SAMLResponse" ){
+                        return false;
+                }
+                if(fieldName === "relayState" ){
+                        return false;
+                }
+                if(fieldName === "device_user_code" ){
+                        return false;
+                }
+                if(fieldName === "code" ){
+                        return false;
+                }
+                if(fieldName === "password-new" ){
+                        return false;
+                }
+                if(fieldName === "rememberMe" ){
+                        return false;
+                }
+                if(fieldName === "login" ){
+                        return false;
+                }
+                if(fieldName === "authenticationExecution" ){
+                        return false;
+                }
+                if(fieldName === "cancel-aia" ){
+                        return false;
+                }
+                if(fieldName === "clientDataJSON" ){
+                        return false;
+                }
+                if(fieldName === "authenticatorData" ){
+                        return false;
+                }
+                if(fieldName === "signature" ){
+                        return false;
+                }
+                if(fieldName === "credentialId" ){
+                        return false;
+                }
+                if(fieldName === "userHandle" ){
+                        return false;
+                }
+                if(fieldName === "error" ){
+                        return false;
+                }
+                if(fieldName === "authn_use_chk" ){
+                        return false;
+                }
+                if(fieldName === "authenticationExecution" ){
+                        return false;
+                }
+                if(fieldName === "isSetRetry" ){
+                        return false;
+                }
+                if(fieldName === "try-again" ){
+                        return false;
+                }
+                if(fieldName === "attestationObject" ){
+                        return false;
+                }
+                if(fieldName === "publicKeyCredentialId" ){
+                        return false;
+                }
+                if(fieldName === "authenticatorLabel" ){
+                        return false;
+                }
+                if(fieldName === "user.attributes.dateOfBirth" ){
+                        return false;
+                }
+                if(fieldName === "user.attributes.country" ){
+                        return false;
+                }
+                if(fieldName === "user.attributes.acceptedTermsAndConditions" ){
+                        return false;
+                }
+            throw new Error("There is no " + fieldName + " field");
+        }
+    };
+
+    out["pageId"] = "login.ftl";
+
+    return out;
+
+})()
+;
+</script>
+
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="/resources/mcxmy/login/npoed-keycloak-theme/build/static/favicons/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/resources/mcxmy/login/npoed-keycloak-theme/build/static/favicons/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/resources/mcxmy/login/npoed-keycloak-theme/build/static/favicons/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/resources/mcxmy/login/npoed-keycloak-theme/build/static/favicons/favicon-16x16.png"><link rel="mask-icon" href="/resources/mcxmy/login/npoed-keycloak-theme/build/static/favicons/safari-pinned-tab.svg"><link rel="shortcut icon" href="/resources/mcxmy/login/npoed-keycloak-theme/build/static/favicons/favicon.ico"><link rel="manifest" href="/resources/mcxmy/login/npoed-keycloak-theme/build/static/favicons/manifest.json"><title>Открытое образование - Вход</title><script>window.env = { ACCESS_TOKEN_COOKIE_NAME: 'edx-jwt-cookie-header-payload', LANGUAGE_PREFERENCE_COOKIE_NAME: 'openedx-language-preference', USER_INFO_COOKIE_NAME: 'user-info', BASE_URL: 'apps.openedu.ru', PLP_BASE_URL: 'https://openedu.ru', LMS_BASE_URL: 'https://courses.openedu.ru', STUDIO_BASE_URL: 'https://studio.openedu.ru', MARKETING_SITE_BASE_URL: 'https://courses.openedu.ru', CREDENTIALS_BASE_URL: '', ECOMMERCE_BASE_URL: '', LOGIN_URL: 'https://courses.openedu.ru/login', LOGOUT_URL: 'https://sso.openedu.ru/realms/openedu/protocol/openid-connect/logout?redirect_uri=https://openedu.ru/', REGISTER_URL: '', REFRESH_ACCESS_TOKEN_ENDPOINT: 'https://courses.openedu.ru/login_refresh', ORDER_HISTORY_URL: '', CSRF_TOKEN_API_PATH: '/csrf/api/v1/token', SSO_SWITCH_LOCALE_URL: 'https://sso.openedu.ru/realms/openedu/switch-locale', FAVICON_URL: 'https://courses.openedu.ru/favicon.ico', LOGO_URL: 'https://courses.openedu.ru/theming/asset/images/logo.png', LOGO_TRADEMARK_URL: 'https://courses.openedu.ru/theming/asset/images/logo.png', LOGO_WHITE_URL: '', SEGMENT_KEY: '', SITE_NAME: 'Открытое Образование', TELEGRAM_URL: 'https://t.me/openeduru', VK_URL: '', OK_URL: '', TWITTER_URL: '', COURSES_URL: 'https://openedu.ru/course', PROGRAMS_URL: 'https://openedu.ru/program', SPECIALIZE_URL: 'https://openedu.ru/specialize', PARTNERSHIP_URL: 'https://openedu.ru/partners/apply', CATALOG_URL: 'https://openedu.ru/catalog', FEEDBACK_URL: 'https://openedu.ru/feedback', REQUIREMENTS_URL: 'https://openedu.ru/requirements', TERMS_URL: 'https://openedu.ru/terms', CONTACTS_URL: 'https://openedu.ru/contacts', FOR_MEDIA_URL: 'https://openedu.ru/for-media', PDPOLICY_URL: 'https://openedu.ru/pdpolicy', MY_COURSES_URL: 'https://openedu.ru/my', MY_PROGRAMS_URL: 'https://openedu.ru/my-programs', FAQ_URL: 'https://openedu.ru/faq', ACCOUNT_URL: 'https://sso.openedu.ru/realms/openedu/account/', ABOUT_URL: 'https://npoed.ru/about', NEWS_SUBSCRIPTION_URL: 'https://openedu.ru/news-massmail-subscription', REALM_NAME: 'openedu' }
+
+      for (const key in window.env) {
+        if (window.env[key] === '') {
+          delete window.env[key];
+        }
+      }</script><script defer="defer" src="/resources/mcxmy/login/npoed-keycloak-theme/build/static/js/main.77e9326b.js"></script><link href="/resources/mcxmy/login/npoed-keycloak-theme/build/static/css/main.faca4273.css" rel="stylesheet"></head><body><noscript>You need to enable JavaScript to run this app.</noscript><div id="root"></div></body></html>

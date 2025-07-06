@@ -1,0 +1,48 @@
+{
+  "can_show_upgrade_sock": false,
+  "verified_mode": {
+    "access_expiration_date": null,
+    "currency": "RUB",
+    "currency_symbol": "RUB",
+    "price": 2800,
+    "sku": null,
+    "upgrade_url": "/dashboard"
+  },
+  "can_load_courseware": true,
+  "celebrations": {
+    "first_section": false,
+    "streak_length_to_celebrate": null,
+    "streak_discount_enabled": false
+  },
+  "course_access": {
+    "has_access": true,
+    "error_code": null,
+    "developer_message": null,
+    "user_message": null,
+    "additional_context_user_message": null,
+    "user_fragment": null
+  },
+  "course_id": "test_course",
+  "is_enrolled": true,
+  "is_self_paced": false,
+  "is_completion_displayed": true,
+  "is_content_banner_displayed": true,
+  "is_dates_page_displayed": true,
+  "no_content_text_placeholder": null,
+  "no_content_text_placeholder_en": null,
+  "is_staff": false,
+  "number": "HIST",
+  "org": "urfu",
+  "original_user_is_staff": false,
+  "start": "2025-02-09T19:00:00Z",
+  "tabs": [
+    {
+      "tab_id": "courseware",
+      "title": "Курс",
+      "url": "https://apps.openedu.ru/learning/course/course-v1:test_course/home"
+    }
+  ],
+  "title": "История России",
+  "username": "test_user",
+  "user_timezone": null
+}

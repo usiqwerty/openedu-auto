@@ -1,0 +1,121 @@
+{
+  "dates_banner_info": {
+    "missed_deadlines": false,
+    "content_type_gating_enabled": false,
+    "missed_gated_content": false,
+    "verified_upgrade_link": "/dashboard"
+  },
+  "can_show_upgrade_sock": false,
+  "verified_mode": {
+    "access_expiration_date": null,
+    "currency": "RUB",
+    "currency_symbol": "RUB",
+    "price": 2800,
+    "sku": null,
+    "upgrade_url": "/dashboard"
+  },
+  "access_expiration": null,
+  "cert_data": null,
+  "course_blocks": {
+    "blocks": {
+      "block-v1:test_course+type@course+block@course": {
+        "children": [
+          "block-v1:test_course+type@chapter+block@test_chapter"
+        ],
+        "complete": false,
+        "description": null,
+        "display_name": "История России",
+        "due": null,
+        "effort_activities": 55,
+        "effort_time": 19029,
+        "icon": null,
+        "id": "block-v1:test_course+type@course+block@course",
+        "lms_web_url": "https://courses.openedu.ru/courses/course-v1:test_course/jump_to/block-v1:test_course+type@course+block@course",
+        "legacy_web_url": "https://courses.openedu.ru/courses/course-v1:test_course/jump_to/block-v1:test_course+type@course+block@course?experience=legacy",
+        "resume_block": true,
+        "type": "course",
+        "has_scheduled_content": false
+      },
+      "block-v1:test_course+type@chapter+block@test_chapter": {
+        "children": [
+          "block-v1:test_course+type@sequential+block@123"
+        ],
+        "complete": false,
+        "description": null,
+        "display_name": "Введение в курс",
+        "due": null,
+        "effort_activities": 0,
+        "effort_time": 158,
+        "icon": null,
+        "id": "block-v1:test_course+type@chapter+block@test_chapter",
+        "lms_web_url": "https://courses.openedu.ru/courses/course-v1:test_course/jump_to/block-v1:test_course+type@chapter+block@02aff552b2984aaf8df2dff032180df1",
+        "legacy_web_url": "https://courses.openedu.ru/courses/course-v1:test_course/jump_to/block-v1:test_course+type@chapter+block@02aff552b2984aaf8df2dff032180df1?experience=legacy",
+        "resume_block": false,
+        "type": "chapter",
+        "has_scheduled_content": null
+      }
+    }
+  },
+  "course_goals": {
+    "goal_options": [],
+    "selected_goal": null
+  },
+  "course_tools": [
+    {
+      "analytics_id": "edx.bookmarks",
+      "title": "Закладки",
+      "url": "https://courses.openedu.ru/courses/course-v1:test_course/bookmarks/"
+    },
+    {
+      "analytics_id": "edx.updates",
+      "title": "Обновления",
+      "url": "https://courses.openedu.ru/courses/course-v1:test_course/course/updates"
+    }
+  ],
+  "dates_widget": {
+    "course_date_blocks": [
+      {
+        "assignment_type": null,
+        "complete": null,
+        "date": "2025-06-30T13:59:00Z",
+        "date_type": "course-end-date",
+        "description": "After this date, the course will be archived, which means you can review the course content but can no longer participate in graded assignments or work towards earning a certificate.",
+        "learner_has_access": true,
+        "link": "",
+        "link_text": "",
+        "title": "Course ends",
+        "extra_info": null,
+        "first_component_block_id": ""
+      },
+      {
+        "assignment_type": null,
+        "complete": null,
+        "date": "2030-01-01T00:00:00Z",
+        "date_type": "verified-upgrade-deadline",
+        "description": "Вы всё ещё можете получить подтверждённый сертификат! Продолжайте, чтобы показать знания и навыки, полученные в этом курсе.",
+        "learner_has_access": true,
+        "link": "https://courses.openedu.ru/dashboard",
+        "link_text": "Повысить до уровня «Подтверждённый сертификат»",
+        "title": "Срок окончания приёма заявок на подтверждение данных",
+        "extra_info": null,
+        "first_component_block_id": ""
+      }
+    ],
+    "dates_tab_link": "https://apps.openedu.ru/learning/course/course-v1:test_course/dates",
+    "user_timezone": null
+  },
+  "enroll_alert": {
+    "can_enroll": true,
+    "extra_text": null
+  },
+  "enrollment_mode": "honor",
+  "handouts_html": "<ol></ol>",
+  "has_ended": false,
+  "offer": null,
+  "resume_course": {
+    "has_visited_course": true,
+    "url": "https://courses.openedu.ru/courses/course-v1:test_course/jump_to/block-v1:test_course+type@videoxblock+block@videoxblock53"
+  },
+  "welcome_message_html": "<h3><b>Уважаемый слушатель!</b></h3>\n\n<p>Вы приступаете к изучению курса «История России».</p>\n\n<p>Полные материалы курса доступны студентам УрФУ и физическим лицам, оплатившим обучение на курсе. Студенты вузов-партнёров обучаются на скрытой версии курса.</p>\n\n<p><em>В случае возникновения вопросов по предоставлению доступа к материалам курса, обращайтесь на почту openedu@urfu.ru</em></p>\n\n<p><b>Крайний срок выполнения контрольно-оценочных заданий — 2 июня 2025 г. </b><a style=\"text-decoration: none;\" href=\"https://courses.openedu.ru/courses/course-v1:test_course/43aed6618f2c4d489ae1f5b119cd5538/\">Подробнее о важных датах на курсе</a>.</p>\n\n<p><b>На вкладках размещена вся необходимая информация для успешного освоения курса.</b></p>\n\n<p>Студентам, изучающим курс впервые, обязательна к прочтению вкладка <a style=\"text-decoration: none;\" href=\"https://courses.openedu.ru/courses/course-v1:test_course/0edd498e08a640e28da2cb8db1f343ea/\">«Студенту УрФУ»</a>.\nА те, кто изучают курс повторно, должны ознакомиться с информацией на вкладке <a style=\"text-decoration: none;\" href=\"https://courses.openedu.ru/courses/course-v1:test_course/72c0e00eeccf48ffbdea757154254e22/\">«Должникам»</a>.</p>\n\n<p>По итогам курса Вы имеете возможность получить сертификат, подтверждающий прохождение курса. <a style=\"text-decoration: none;\" href=\"https://courses.openedu.ru/courses/course-v1:test_course/9a113b44d26046d0988044d0821fe71e/\">Получить подробную информацию</a>.</p>\n\n<p>Помните, что на курсе Вы не одиноки, и если возникают какие-то сложности, можно всегда задать вопрос на форуме курса: вкладка «Обсуждение» или раздел «Обсуждение» в структуре самого курса.\n<a style=\"text-decoration: none;\" href=\"https://courses.openedu.ru/courses/course-v1:test_course/discussion/forum/\">Перейти на форум курса</a>.</p>\n\n<p>Удачи в освоении новых материалов!</p>\n<p>С уважением,</p>\n<p>Команда курса</p>",
+  "user_has_passing_grade": true
+}

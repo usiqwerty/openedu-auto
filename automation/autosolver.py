@@ -1,21 +1,22 @@
 import logging
 import traceback
 
-from cached_requests import CacheContext
+from cache import CacheContext
 from errors import WrongAnswer, UnsupportedProblemType
 from images.image_describer import ImageDescriber
-from openedu.openeduapp import OpenEduApp, extract_quest_id
+from openedu.openedu import OpenEdu
 from openedu.questions.freematch import FreeMatchQuestion
 from openedu.questions.question import Question
-from openedu.utils import parse_page_url
-from openedu_processor import OpenEduProcessor
+from openedu.utils import parse_page_url, extract_quest_id
+from automation.openedu_processor import OpenEduProcessor
 from solvers.abstract_solver import AbstractSolver
 
 
 class OpenEduAutoSolver(OpenEduProcessor):
+    """OpenEduProcessor that solves problems"""
     solver: AbstractSolver
     describer: ImageDescriber
-    app: OpenEduApp
+    app: OpenEdu
     cache_context: CacheContext
 
     require_incomplete = True
@@ -41,9 +42,9 @@ class OpenEduAutoSolver(OpenEduProcessor):
             return
         print(f"{answers=}")
 
-        got, total = self.app.api.problem_check(course_id, new_block_id, answers)
+        got, total = self.app.submit_answers(course_id, new_block_id, answers)
         logging.info(f"Solved ({got}/{total})")
-        self.app.api.api_storage.mark_block_as_completed(new_block_id)
+        self.app.mark_block_as_completed(new_block_id)
         if got < total:
             raise WrongAnswer(quest_id, answers)
 
@@ -53,7 +54,7 @@ class OpenEduAutoSolver(OpenEduProcessor):
         logging.debug(f"Starting at block {seq}")
 
         with self.cache_context:
-            self.app.api.auth.refresh()
+            self.app.__api.auth.refresh()
             for vert in self.app.get_sequential_block(course_id, seq.block_id):
                 print(vert)
                 self.process_vertical(vert.id, vert, course_id)

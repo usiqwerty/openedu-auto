@@ -30,3 +30,8 @@ def ensure_ids_same(ids, selector=lambda x: x):
         else:
             if id_ != prev:
                 raise FormatError(f"IDs differ: {ids}")
+
+
+def extract_quest_id(qfield: str) -> str:
+    r = re.search(r"input_([\w\d]+)_\d+_\d+", qfield)
+    return r.group(1)

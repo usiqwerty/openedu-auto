@@ -1,65 +1,68 @@
 import logging
-from abc import abstractmethod
+from abc import abstractmethod, ABC
 
 from bs4 import BeautifulSoup
 
-from cached_requests import CacheContext
+from cache import CacheContext
 from errors import UnsupportedProblemType, NoSolutionFoundError
 from images.image_describer import ImageDescriber
 from openedu.ids import SequentialBlockID, BlockID
 from openedu.oed_parser import VerticalBlock
-from openedu.openeduapp import OpenEduApp
+from openedu.openedu import OpenEdu
 from openedu.questions.question import Question
 
 from solvers.abstract_solver import AbstractSolver
 
 
-class OpenEduProcessor:
+class OpenEduProcessor(ABC):
+    """Abstract automated OpenEdu processor"""
     require_incomplete: bool
 
     def __init__(self, solver: AbstractSolver, describer: ImageDescriber):
         self.solver = solver
-        self.cache_context = CacheContext([lambda: self.app.api.auth.save(), lambda: self.app.api.api_storage.save()])
+        self.cache_context = CacheContext([lambda: self.app.save()])
         self.describer = describer
-        self.app = OpenEduApp(self.describer)
+        self.app = OpenEdu(self.describer)
 
-    def is_block_solved(self, block_id: str):
-        return self.require_incomplete and self.app.is_block_solved(block_id)
+    def should_process(self, block_id: str):
+        return not (self.require_incomplete and self.app.is_block_solved(block_id))
 
     def process_course(self, course_id: str):
         with self.cache_context:
             course = self.app.get_course_info(course_id)
-            self.app.api.auth.refresh()
+            # self.app.__api.auth.refresh()
             for ch in course.chapters:
                 print(f"Chapter: {ch.name}")
                 for seq in ch.sequentials:
                     seq_id = SequentialBlockID.parse(seq)
 
-                    if self.is_block_solved(seq_id.block_id):
+                    if not self.should_process(seq_id.block_id):
                         continue
 
                     for vertical in self.app.get_sequential_block(course_id, seq_id.block_id):
                         print(vertical.title)
                         blk = self.app.get_vertical_block(vertical.id)
-                        if self.is_block_solved(blk.id) and not blk.complete:
+                        # TODO: too many places where completion might be marked
+                        #  should be only should_process()
+                        if (not self.should_process(blk.id)) and not blk.complete:
                             continue
                         self.process_vertical(blk.id, vertical, course_id)
 
-                    self.app.api.api_storage.mark_block_as_completed(seq_id.block_id)
+                    self.app.mark_block_as_completed(seq_id.block_id)
 
     def process_vertical(self, blkid: str, block: VerticalBlock, course_id: str):
         logging.debug(blkid)
         logging.debug(f"Block '{block.title}' (complete={block.complete}) of type '{block.type}'")
-
-        r = self.app.api.get_vertical_html(blkid)
+        print('openeduprocessor(process_vertical)', self.app.storage.cache.keys())
+        r = self.app.get_vertical_page_html(blkid)
         soup = BeautifulSoup(r, 'html.parser')
-        if not self.is_block_solved(blkid):
+        if self.should_process(blkid):
             for xblock_vert in soup.select("div.xblock div.vert"):
                 block_id_str = xblock_vert['data-id']
 
                 rich_block_id = BlockID.parse(block_id_str)
                 if rich_block_id.type in {"html", "xvideoblock"}:
-                    self.app.api.publish_completion(course_id, block_id_str)
+                    self.app.publish_completion(course_id, block_id_str)
         # if block.type == 'other' and not block.graded:
         #     # return
         #     # print(blkid, block)
@@ -77,7 +80,7 @@ class OpenEduProcessor:
                 except NoSolutionFoundError as e:
                     logging.error(f"No solution found: {e}")
                     return # do not mark as complete, so we can come back later
-        self.app.api.api_storage.mark_block_as_completed(blkid)
+        self.app.mark_block_as_completed(blkid)
 
     @abstractmethod
     def process_problem(self, course_id: str, problem: list[Question]):

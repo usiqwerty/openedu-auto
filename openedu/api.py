@@ -1,13 +1,10 @@
-import json
 import logging
 import urllib.parse
 from json import JSONDecodeError
-from typing import Any
 
 from requests import Session
 
 import config
-from cached_requests import cache_fn
 from errors import Unauthorized
 from openedu.auth import OpenEduAuth
 from openedu.course import Course, Chapter
@@ -26,18 +23,11 @@ referer_params = urllib.parse.urlencode({
 class OpenEduAPI:
     api_storage: LocalApiStorage
     session: Session
-    cache: dict[str, Any]
 
-    def __init__(self):
-        self.api_storage = LocalApiStorage()
+    def __init__(self, api_storage: LocalApiStorage):
+        self.api_storage = api_storage
         self.auth = OpenEduAuth()
         self.session = self.auth.session
-
-        try:
-            with open(cache_fn, encoding='utf-8') as f:
-                self.cache = json.load(f)
-        except FileNotFoundError:
-            self.cache = {}
 
     def get_sequential_block(self, course_id: str, block_id: str):
         url = (f"https://courses.openedu.ru/api/courseware/sequence/"
@@ -103,11 +93,12 @@ class OpenEduAPI:
         cccc = self.session.cookies.get('csrftoken', domain='')
         if cccc is None:
             raise Exception
-        hdrs = config.get_headers(
-            csrf=cccc,
-            referer=f"https://courses.openedu.ru/xblock/{blk}?" + referer_params,
-            origin="https://courses.openedu.ru"
-        )
+        hdrs = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/113.0",
+            'X-CSRFToken': cccc,
+            "Referer": f"https://courses.openedu.ru/xblock/{blk}?" + referer_params,
+            "Origin": "https://courses.openedu.ru"
+        }
 
         if not config.config.get('restrict-actions'):
             print(f"[POST] {answers}")
@@ -161,23 +152,18 @@ class OpenEduAPI:
     def get_vertical_html(self, blk: str) -> str:
         logging.debug("Requesting xblock")
         url = f"https://courses.openedu.ru/xblock/{blk}"
-        # r = self.session.get(url)
-        # return r.text
         return self.get(url)
 
     def get(self, url, is_json=False):
-        if url not in self.cache:
+        print("openeduapi(get):", self.api_storage.cache.keys())
+        if url not in self.api_storage.cache:
             r = self.session.get(url)
             if is_json:
-                self.cache[url] = r.json()
+                self.api_storage.cache[url] = r.json()
             else:
-                self.cache[url] = r.text
-            self.save()
-        return self.cache[url]
-
-    def save(self):
-        with open(config.cache_fn, 'w', encoding='utf-8') as f:
-            json.dump(self.cache, f)
+                self.api_storage.cache[url] = r.text
+            self.api_storage.save()
+        return self.api_storage.cache[url]
 
     def status(self):
         r = self.session.get("https://openedu.ru/auth/status?url=/")

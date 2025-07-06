@@ -2,8 +2,8 @@ import logging
 import os
 
 import config
-from ans_saver import AnswersSaver
-from autosolver import OpenEduAutoSolver
+from automation.ans_saver import AnswersSaver
+from automation.autosolver import OpenEduAutoSolver
 from cli_tools import get_course_id, solve, get_solution_filepath
 from config import set_config
 from errors import Unauthorized
@@ -62,9 +62,9 @@ def save_answers(empty_app: OpenEduAutoSolver):
 
 
 def main():
-    empty_app = OpenEduAutoSolver(None, None)
+    app = OpenEduAutoSolver(None, None)
     try:
-        require_login(empty_app)
+        require_login(app)
     except Unauthorized:
         print("Не удалось войти")
         exit(1)
@@ -77,17 +77,17 @@ def main():
         print("6. По ссылке")
         cmd = input("Ввод: ")
         if cmd == "1":
-            solve_with_llm(empty_app)
+            solve_with_llm(app)
             continue
         elif cmd == '2':
-            solve_with_file(empty_app)
+            solve_with_file(app)
             continue
         elif cmd == '3':
-            save_answers(empty_app)
+            save_answers(app)
             continue
         elif cmd == '4':
-            with empty_app.cache_context:
-                empty_app.app.api.auth.drop()
+            with app.cache_context:
+                app.app.__api.auth.drop()
         elif cmd == '5':
             if os.path.exists(config.cache_fn):
                 os.remove(config.cache_fn)
@@ -103,13 +103,13 @@ def main():
 
 
 def require_login(empty_app: OpenEduAutoSolver):
-    if not empty_app.app.api.session.cookies:
+    if not empty_app.app.__api.session.cookies:
         print("Нужно ввести данные формы, чтобы авторизоваться")
         username = input("Имя пользователя: ").strip()
         password = input("Пароль: ").strip()
         status = empty_app.app.login(username, password)
         if status.get("auth"):
-            empty_app.app.api.auth.save()
+            empty_app.app.__api.auth.save()
         else:
             raise Unauthorized("Could not log in")
 
