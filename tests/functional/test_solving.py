@@ -25,7 +25,7 @@ def test_solve_correct_answer(empty_auto_solver, problem_check_result):
         f"https://courses.openedu.ru/courses/course-v1:{test_course}/xblock/block-v1:{test_course}+type@problem+block@test_problem/handler/xmodule_handler/problem_check",
         json=problem_check_result
     )
-    empty_auto_solver.app.api.session.cookies['csrftoken'] = 'thetoken'
+    empty_auto_solver.app.inject_csrf('thetoken')
     empty_auto_solver.process_course(test_course)
     assert_calls_counts_except_login(1)
 
@@ -37,7 +37,7 @@ def test_solve_wrong_answer(empty_auto_solver, problem_check_bad_result):
         f"https://courses.openedu.ru/courses/course-v1:{test_course}/xblock/block-v1:{test_course}+type@problem+block@test_problem/handler/xmodule_handler/problem_check",
         json=problem_check_bad_result
     )
-    empty_auto_solver.app.api.session.cookies['csrftoken'] = 'thetoken'
+    empty_auto_solver.app.inject_csrf('thetoken')
     with pytest.raises(WrongAnswer):
         empty_auto_solver.process_course(test_course)
     assert_calls_counts_except_login(1)

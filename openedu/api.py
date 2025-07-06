@@ -24,8 +24,8 @@ class OpenEduAPI:
     api_storage: LocalApiStorage
     session: Session
 
-    def __init__(self):
-        self.api_storage = LocalApiStorage()
+    def __init__(self, api_storage: LocalApiStorage):
+        self.api_storage = api_storage
         self.auth = OpenEduAuth()
         self.session = self.auth.session
 
@@ -152,11 +152,10 @@ class OpenEduAPI:
     def get_vertical_html(self, blk: str) -> str:
         logging.debug("Requesting xblock")
         url = f"https://courses.openedu.ru/xblock/{blk}"
-        # r = self.session.get(url)
-        # return r.text
         return self.get(url)
 
     def get(self, url, is_json=False):
+        print("openeduapi(get):", self.api_storage.cache.keys())
         if url not in self.api_storage.cache:
             r = self.session.get(url)
             if is_json:

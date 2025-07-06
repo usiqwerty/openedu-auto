@@ -20,7 +20,7 @@ class AnswersSaver(OpenEduProcessor):
         super().__init__(None, DummyDescriber())
 
     def pull_answers(self, course_id: str):
-        self.app.api.auth.refresh()
+        self.app._api.auth.refresh()
         self.answers = {}
         os.makedirs(solutions_dir, exist_ok=True)
         self.process_course(course_id)

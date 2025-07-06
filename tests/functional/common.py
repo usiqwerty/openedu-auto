@@ -7,8 +7,11 @@ import pytest
 import responses
 
 import config
-from autosolver import OpenEduAutoSolver
+from automation.autosolver import OpenEduAutoSolver
+from images.image_describer import ImageDescriber
+from openedu.api import OpenEduAPI
 from openedu.local_api_storage import DummyApiStorage
+from openedu.openedu import OpenEdu
 from tests.fakes import DummySolver, DummyDescriber
 
 test_course = "test_course"
@@ -73,14 +76,27 @@ def cleanup_userdata_in_testdir():
         shutil.rmtree(config.userdata_dir)
 
 
-@pytest.fixture
+class TestingOpenEdu(OpenEdu):
+    def __init__(self, describer: ImageDescriber):
+        super().__init__(describer)
+
+        self.storage = DummyApiStorage()
+        self._api = OpenEduAPI(self.storage)
+
+
+@pytest.fixture(scope='function')
 def empty_auto_solver():
     solver = DummySolver()
     describer = DummyDescriber()
     aslv = OpenEduAutoSolver(solver, describer)
-    aslv.app.api.api_storage = DummyApiStorage()
-    aslv.app.api.auth.drop()
-    return aslv
+    aslv.app = TestingOpenEdu(aslv.describer)
+
+    # aslv.app.storage = DummyApiStorage()
+    # aslv.app.api.api_storage = aslv.app.storage
+    aslv.app.logout()
+    # print(aslv.app.storage.cache)
+    yield aslv
+    print('teardown')
 
 
 def assert_calls_counts_except_login(count: int):

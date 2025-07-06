@@ -3,7 +3,7 @@ import os
 import re
 
 import config
-from autosolver import OpenEduAutoSolver
+from automation.autosolver import OpenEduAutoSolver
 from config import set_config
 from errors import WrongAnswer
 from images.image_describer import ImageDescriber
