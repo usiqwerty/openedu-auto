@@ -15,6 +15,9 @@ class LocalApiStorage:
     cache: dict[str, Any]
 
     def __init__(self):
+        self.load_from_disk()
+
+    def load_from_disk(self):
         try:
             with open(config.blocks_fn, encoding='utf-8') as f:
                 self.blocks = {k: VerticalBlock(**json.loads(v)) for k, v in json.load(f).items()}
@@ -37,13 +40,11 @@ class LocalApiStorage:
                 self.solved = set(json.load(f))
         except FileNotFoundError:
             self.solved = set()
-
         try:
             with open(config.ignored_fn, encoding='utf-8') as f:
                 self.skipped = json.load(f)
         except FileNotFoundError:
             self.skipped = []
-
         try:
             with open(config.cache_fn, encoding='utf-8') as f:
                 self.cache = json.load(f)
@@ -68,14 +69,8 @@ class LocalApiStorage:
             json.dump(self.cache, f)
 
 
-class DummyApiStorage:
-    blocks: dict[str, VerticalBlock]
-    courses: dict[str, Course]
-    solved: set[str]
-    skipped: list[str]
-    cache: dict[str, Any]
-
-    def __init__(self):
+class DummyApiStorage(LocalApiStorage):
+    def load_from_disk(self):
         self.blocks = {}
         self.courses = {}
         self.solved = set()

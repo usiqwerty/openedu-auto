@@ -8,6 +8,7 @@ import responses
 
 import config
 from autosolver import OpenEduAutoSolver
+from openedu.local_api_storage import DummyApiStorage
 from tests.fakes import DummySolver, DummyDescriber
 
 test_course = "test_course"
@@ -64,6 +65,7 @@ def register_api_endpoints():
     )
 
 
+# still need this, because of userdata/solutions
 @pytest.fixture(scope='session', autouse=True)
 def cleanup_userdata_in_testdir():
     yield
@@ -76,12 +78,7 @@ def empty_auto_solver():
     solver = DummySolver()
     describer = DummyDescriber()
     aslv = OpenEduAutoSolver(solver, describer)
-    aslv.app.api.api_storage.blocks.clear()
-    aslv.app.api.api_storage.courses.clear()
-    aslv.app.api.api_storage.solved.clear()
-    aslv.app.api.api_storage.skipped.clear()
-    aslv.app.api.api_storage.cache.clear()
-
+    aslv.app.api.api_storage = DummyApiStorage()
     aslv.app.api.auth.drop()
     return aslv
 
