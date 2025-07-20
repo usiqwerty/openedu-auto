@@ -19,6 +19,10 @@ class OpenEdu:
         self._api = OpenEduAPI(self.storage)
         self.parser = OpenEduParser(describer)
 
+    @property
+    def has_login_data(self):
+        return len(self._api.session.cookies) > 0
+
     def get_sequential_block(self, course_id: str, block_id: str):
         r = self._api.get_sequential_block(course_id, block_id)
         for blk in self.parser.parse_sequential_block_(r):

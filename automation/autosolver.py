@@ -14,11 +14,6 @@ from solvers.abstract_solver import AbstractSolver
 
 class OpenEduAutoSolver(OpenEduProcessor):
     """OpenEduProcessor that solves problems"""
-    solver: AbstractSolver
-    describer: ImageDescriber
-    app: OpenEdu
-    cache_context: CacheContext
-
     require_incomplete = True
 
     def process_problem(self, course_id: str, problem: list[Question]):
@@ -54,7 +49,6 @@ class OpenEduAutoSolver(OpenEduProcessor):
         logging.debug(f"Starting at block {seq}")
 
         with self.cache_context:
-            self.app.__api.auth.refresh()
             for vert in self.app.get_sequential_block(course_id, seq.block_id):
                 print(vert)
                 self.process_vertical(vert.id, vert, course_id)

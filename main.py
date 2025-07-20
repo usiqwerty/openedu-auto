@@ -87,7 +87,7 @@ def main():
             continue
         elif cmd == '4':
             with app.cache_context:
-                app.app.__api.auth.drop()
+                app.app.logout()
         elif cmd == '5':
             if os.path.exists(config.cache_fn):
                 os.remove(config.cache_fn)
@@ -103,13 +103,13 @@ def main():
 
 
 def require_login(empty_app: OpenEduAutoSolver):
-    if not empty_app.app.__api.session.cookies:
+    if not empty_app.app.has_login_data:
         print("Нужно ввести данные формы, чтобы авторизоваться")
         username = input("Имя пользователя: ").strip()
         password = input("Пароль: ").strip()
         status = empty_app.app.login(username, password)
         if status.get("auth"):
-            empty_app.app.__api.auth.save()
+            empty_app.app.save()
         else:
             raise Unauthorized("Could not log in")
 

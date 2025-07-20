@@ -5,7 +5,7 @@ import os.path
 
 import config
 from openedu.questions.question import Question
-from openedu_processor import OpenEduProcessor
+from automation.openedu_processor import OpenEduProcessor
 from tests.fakes import DummyDescriber
 
 solutions_dir = os.path.join(config.userdata_dir, 'solutions')
@@ -20,7 +20,6 @@ class AnswersSaver(OpenEduProcessor):
         super().__init__(None, DummyDescriber())
 
     def pull_answers(self, course_id: str):
-        self.app._api.auth.refresh()
         self.answers = {}
         os.makedirs(solutions_dir, exist_ok=True)
         self.process_course(course_id)

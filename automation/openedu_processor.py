@@ -17,6 +17,10 @@ from solvers.abstract_solver import AbstractSolver
 class OpenEduProcessor(ABC):
     """Abstract automated OpenEdu processor"""
     require_incomplete: bool
+    solver: AbstractSolver
+    describer: ImageDescriber
+    app: OpenEdu
+    cache_context: CacheContext
 
     def __init__(self, solver: AbstractSolver, describer: ImageDescriber):
         self.solver = solver
@@ -30,7 +34,6 @@ class OpenEduProcessor(ABC):
     def process_course(self, course_id: str):
         with self.cache_context:
             course = self.app.get_course_info(course_id)
-            # self.app.__api.auth.refresh()
             for ch in course.chapters:
                 print(f"Chapter: {ch.name}")
                 for seq in ch.sequentials:
