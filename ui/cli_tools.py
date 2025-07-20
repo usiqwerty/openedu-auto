@@ -63,7 +63,7 @@ def solve(solver: AbstractSolver, describer: ImageDescriber, course: Course):
 
 
 def get_solution_filepath(course_id):
-    solutions_dir = os.path.join("userdata", "solutions")
+    solutions_dir = os.path.join("../userdata", "solutions")
     files = os.listdir(solutions_dir)
     filepath = None
     # TODO: то ли filepath, то ли solution_path
