@@ -50,7 +50,6 @@ class OpenEdu:
 
     def get_course_info(self, course_id: CourseID):
         if course_id not in self.storage.courses:
-            self._api.auth.refresh()
             course = self._api.course_info(course_id)
             self.storage.courses[str(course_id)] = course
         return self.storage.courses[str(course_id)]
