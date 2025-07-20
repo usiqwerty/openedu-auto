@@ -5,7 +5,7 @@ import re
 import config
 from automation.autosolver import OpenEduAutoSolver
 from config import set_config
-from errors import WrongAnswer
+from errors import WrongAnswer, GenericOpenEduError
 from images.image_describer import ImageDescriber
 from openedu.course import Course
 from openedu.ids import CourseID
@@ -36,9 +36,16 @@ def input_course_id():
 def get_course_id(app: OpenEduAutoSolver) -> CourseID:
     last_course = config.config.get("last-course")
     if last_course is not None:
-        course = app.app.get_course_info(last_course)
-        print(f"Продолжаем решать курс {course.name}?")
-        continue_course = input("y/n: ") == "y"
+        try:
+            course = app.app.get_course_info(last_course)
+            print(f"Продолжаем решать курс {course.name}?")
+            continue_course = input("y/n: ") == "y"
+        except GenericOpenEduError as e:
+            if e.error_code == 'enrollment_required':
+                continue_course = False
+            else:
+                raise e from None
+
         if continue_course:
             course_id = last_course
         else:
@@ -63,10 +70,10 @@ def solve(solver: AbstractSolver, describer: ImageDescriber, course: Course):
 
 
 def get_solution_filepath(course_id):
-    solutions_dir = os.path.join("../userdata", "solutions")
+    solutions_dir = os.path.join("userdata", "solutions")
     files = os.listdir(solutions_dir)
-    filepath = None
-    # TODO: то ли filepath, то ли solution_path
+    solution_path = None
+
     for i, fn in enumerate(files):
         filepath = os.path.join(solutions_dir, fn)
         with open(filepath, encoding='utf-8') as f:
@@ -75,4 +82,4 @@ def get_solution_filepath(course_id):
             if CourseID.parse(file_course_id).same_course(course_id):
                 solution_path = filepath
                 break
-    return filepath
+    return solution_path

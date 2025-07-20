@@ -27,5 +27,15 @@ class ConfigError(Exception):
 class HashMismatch(Exception):
     pass
 
+
 class Unauthorized(Exception):
     pass
+
+
+class GenericOpenEduError(Exception):
+    error_code: str
+    message: str
+
+    def __init__(self, error_code: str, message: str):
+        self.error_code = error_code
+        self.message = message
