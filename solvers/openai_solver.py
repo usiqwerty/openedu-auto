@@ -1,18 +1,31 @@
+import logging
+
 from openai import OpenAI
 
 import config
+from solvers.llm_solver import LLMSolver
 
 
-def a():
-    client = OpenAI(api_key=config.config["openai-key"], base_url=config.config["openai-base-url"])
+class GenericOpenAISolver(LLMSolver):
+    client: OpenAI
+    model = config.config["openai-model"]
 
-    response = client.chat.completions.create(
-        model="deepseek-chat",
-        messages=[
-            {"role": "system", "content": "You are a helpful assistant"},
-            {"role": "user", "content": "Hello"},
-        ],
-        stream=False
-    )
+    def __init__(self):
+        super().__init__()
+        self.client = OpenAI(api_key=config.config["openai-key"], base_url=config.config["openai-base-url"])
 
-    print(response.choices[0].message.content)
+    def make_gpt_request(self, query) -> str:
+        response = self.client.chat.completions.create(
+            model=self.model,
+            messages=[
+                {"role": "user", "content": query},
+            ],
+            stream=False
+        )
+        if response.choices is None:
+            error = response.model_extra['error']
+            logging.critical(f"Error solving")
+            logging.critical(f"Code {error['code']}: {error['message']}")
+            logging.critical(error['metadata'])
+            raise Exception
+        return response.choices[0].message.content

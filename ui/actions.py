@@ -5,7 +5,7 @@ from automation.autosolver import OpenEduAutoSolver
 from config import set_config
 from images.openrouter.qwen_describer import QwenImageDescriber
 from solvers.localsolver import LocalSolver
-from solvers.openrouter.gemini_solver import GeminiSolver
+from solvers.openai_solver import GenericOpenAISolver
 from tests.fakes import DummyDescriber
 from ui.cli_tools import get_course_id, solve, get_solution_filepath
 
@@ -19,7 +19,7 @@ def solve_with_llm(empty_app: OpenEduAutoSolver):
     course = empty_app.app.get_course_info(course_id)
     set_config("last-course", str(course_id))
 
-    solver = GeminiSolver()
+    solver = GenericOpenAISolver()
     describer = QwenImageDescriber()
     solve(solver, describer, course)
 
