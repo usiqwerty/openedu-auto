@@ -26,6 +26,8 @@ def ensure_login(method):
             logging.debug("Refreshing login")
             self.auth.refresh()
             self.refreshed = True
+            if not int(self.status()['auth']):
+                raise Unauthorized('Auth is 0 after login refresh')
         return method(self, *args, **kwargs)
     return wrapper
 

@@ -21,6 +21,7 @@ def problem_check_bad_result():
 @responses.activate
 def test_solve_correct_answer(empty_auto_solver, problem_check_result):
     register_api_endpoints()
+    responses.get('https://openedu.ru/auth/status?url=/', json={'auth': 1})
     responses.post(
         f"https://courses.openedu.ru/courses/course-v1:{test_course}/xblock/block-v1:{test_course}+type@problem+block@test_problem/handler/xmodule_handler/problem_check",
         json=problem_check_result
@@ -33,6 +34,7 @@ def test_solve_correct_answer(empty_auto_solver, problem_check_result):
 @responses.activate
 def test_solve_wrong_answer(empty_auto_solver, problem_check_bad_result):
     register_api_endpoints()
+    responses.get('https://openedu.ru/auth/status?url=/', json={'auth': 1})
     responses.post(
         f"https://courses.openedu.ru/courses/course-v1:{test_course}/xblock/block-v1:{test_course}+type@problem+block@test_problem/handler/xmodule_handler/problem_check",
         json=problem_check_bad_result
