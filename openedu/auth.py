@@ -9,6 +9,7 @@ from requests import Session
 from requests.cookies import RequestsCookieJar
 
 import config
+from errors import ReloginReceived
 
 
 def try_pop(mapping, key):
@@ -131,6 +132,8 @@ class OpenEduAuth:
         }
         url = 'https://courses.openedu.ru/auth/login/keycloak/'
         r = self.session.get(url, headers=h, params=params)
+        if re.match(r'^https://sso.openedu.ru/realms/openedu/protocol/openid-connect/auth', r.url):
+            raise ReloginReceived
         return r
 
     def openid_auth(self):

@@ -4,7 +4,7 @@ import os
 import config
 from automation.autosolver import OpenEduAutoSolver
 from ui.actions import solve_with_llm, solve_with_file, save_answers
-from errors import Unauthorized, GenericOpenEduError
+from errors import Unauthorized, GenericOpenEduError, ReloginReceived
 from solvers.mistral_solver import MistralSolver
 from tests.fakes import DummyDescriber
 
@@ -73,6 +73,12 @@ def main():
             return
         except Unauthorized as e:
             print(e)
+            return
+        except ReloginReceived:
+            print("Сервер сбросил авторизацию")
+            with app.cache_context:
+                app.app.logout()
+            print("Введите пароль заново")
             return
         break
 
