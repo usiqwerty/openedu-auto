@@ -133,6 +133,7 @@ class OpenEduAuth:
         url = 'https://courses.openedu.ru/auth/login/keycloak/'
         r = self.session.get(url, headers=h, params=params)
         if re.match(r'^https://sso.openedu.ru/realms/openedu/protocol/openid-connect/auth', r.url):
+            logging.critical("Received relogin page during keycloak request")
             raise ReloginReceived
         return r
 
