@@ -56,7 +56,6 @@ class OpenEduProcessor(ABC):
     def process_vertical(self, blkid: str, block: VerticalBlock, course_id: str):
         logging.debug(blkid)
         logging.debug(f"Block '{block.title}' (complete={block.complete}) of type '{block.type}'")
-        print('openeduprocessor(process_vertical)', self.app.storage.cache.keys())
         r = self.app.get_vertical_page_html(blkid)
         soup = BeautifulSoup(r, 'html.parser')
         if self.should_process(blkid):

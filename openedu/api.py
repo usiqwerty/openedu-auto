@@ -177,7 +177,6 @@ class OpenEduAPI:
 
     @ensure_login
     def get(self, url, is_json=False):
-        print("openeduapi(get):", self.api_storage.cache.keys())
         if url not in self.api_storage.cache:
             r = self.session.get(url)
             if is_json:

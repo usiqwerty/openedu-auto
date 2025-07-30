@@ -40,7 +40,6 @@ class OpenEdu:
         return block_id in self.storage.solved or complete_in_blocks
 
     def get_problems_for_vertical(self, blk: str) -> list[list[Question]]:
-        print('openedu(get_problems_for_vertical):', self.storage.cache.keys())
         r = self._api.get_vertical_html(blk)
         return self.parser.parse_vertical_block_html(r)
 
