@@ -3,12 +3,14 @@ import os
 
 import config
 from automation.autosolver import OpenEduAutoSolver
+from log import setup_logging
 from ui.actions import solve_with_llm, solve_with_file, save_answers
 from errors import Unauthorized, GenericOpenEduError, ReloginReceived
 from solvers.mistral_solver import MistralSolver
 from tests.fakes import DummyDescriber
 
-logging.getLogger().setLevel(logging.DEBUG)
+setup_logging()
+logging.debug("openedu-auto v1.1")
 
 
 def menu_iteration(app: OpenEduAutoSolver):
