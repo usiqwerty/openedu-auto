@@ -60,6 +60,7 @@ def require_login(empty_app: OpenEduAutoSolver):
 
 
 def main():
+    print("openedu-auto v1.1")
     app = OpenEduAutoSolver(None, None)
     try:
         require_login(app)
