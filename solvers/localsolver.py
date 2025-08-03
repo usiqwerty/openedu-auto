@@ -8,7 +8,7 @@ from errors import HashMismatch, NoSolutionFoundError
 from openedu.questions.choice import ChoiceQuestion
 from openedu.questions.fill import FillQuestion
 from openedu.questions.freematch import FreeMatchQuestion
-from openedu.questions.match import MatchQuestion
+from openedu.questions.fixed_match import FixedMatchQuestion
 from openedu.questions.new_match import NewMatchQuestion
 from openedu.questions.question import Question
 from openedu.questions.select import SelectQuestion
@@ -39,7 +39,7 @@ class LocalSolver(AbstractSolver):
     def solve_choice(self, question: ChoiceQuestion) -> tuple[str, str | list[str]]:
         ...
 
-    def solve_match(self, question: MatchQuestion) -> tuple[str, str | list[str]]:
+    def solve_match(self, question: FixedMatchQuestion) -> tuple[str, str | list[str]]:
         ...
 
     def solve_freematch(self, question: FreeMatchQuestion) -> tuple[str, str | list[str]]:

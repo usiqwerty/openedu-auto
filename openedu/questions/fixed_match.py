@@ -7,8 +7,8 @@ from openedu.questions.question import Question
 from solvers.utils import get_ans_id
 
 
-class MatchQuestion(BaseModel, Question):
-    type: str = "match"
+class FixedMatchQuestion(BaseModel, Question):
+    type: str = "fixed-match"
     text: str
     id: str
     fields: list[tuple[str, str]]
@@ -89,4 +89,4 @@ class MatchQuestion(BaseModel, Question):
 
         questions.sort(key=lambda x: x[1])
         answers.sort(key=lambda x: x[1])
-        return MatchQuestion(text='\n'.join(lines), id=q_id, fields=questions, options=answers, correct_answer=correct_answer)
+        return FixedMatchQuestion(text='\n'.join(lines), id=q_id, fields=questions, options=answers, correct_answer=correct_answer)

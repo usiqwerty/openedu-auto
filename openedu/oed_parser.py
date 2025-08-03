@@ -8,7 +8,7 @@ from images.image_describer import ImageDescriber
 from openedu.questions.choice import ChoiceQuestion
 from openedu.questions.fill import FillQuestion
 from openedu.questions.freematch import FreeMatchQuestion
-from openedu.questions.match import MatchQuestion
+from openedu.questions.fixed_match import FixedMatchQuestion
 from openedu.questions.new_match import NewMatchQuestion
 from openedu.questions.question import Question
 from openedu.questions.select import SelectQuestion
@@ -116,7 +116,7 @@ class OpenEduParser:
             if question_tag.select_one('.adv-app'):
                 return NewMatchQuestion.parse(question_tag, prepend_lines)
             elif question_tag.select_one('div.matching_table').select("td.conf-text"):
-                return  MatchQuestion.parse(question_tag, prepend_lines)
+                return  FixedMatchQuestion.parse(question_tag, prepend_lines)
             else:
                 return FreeMatchQuestion.parse(question_tag, prepend_lines, self.describer)
         elif question_tag.find('select'):

@@ -7,7 +7,7 @@ from images.image_describer import ImageDescriber
 from openedu.questions.choice import ChoiceQuestion
 from openedu.questions.fill import FillQuestion
 from openedu.questions.freematch import FreeMatchQuestion
-from openedu.questions.match import MatchQuestion
+from openedu.questions.fixed_match import FixedMatchQuestion
 from openedu.questions.new_match import NewMatchQuestion
 from openedu.questions.select import SelectQuestion
 from solvers.abstract_solver import AbstractSolver
@@ -52,7 +52,7 @@ class DummySolver(AbstractSolver):
 
         return question.id, "choice_0"
 
-    def solve_match(self, question: MatchQuestion):
+    def solve_match(self, question: FixedMatchQuestion):
         return "input_id", ["value1", "value2"]
 
     def solve_freematch(self, question: FreeMatchQuestion):

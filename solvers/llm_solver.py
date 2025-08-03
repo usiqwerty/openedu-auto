@@ -9,7 +9,7 @@ import logging
 from openedu.questions.fill import FillQuestion
 from openedu.questions.freematch import FreeMatchQuestion
 from openedu.questions.choice import ChoiceQuestion
-from openedu.questions.match import MatchQuestion
+from openedu.questions.fixed_match import FixedMatchQuestion
 from openedu.questions.new_match import NewMatchQuestion
 from openedu.questions.select import SelectQuestion
 from solvers.abstract_solver import AbstractSolver
@@ -76,7 +76,7 @@ class LLMSolver(AbstractSolver, ABC):
             res = raw
         return question.compose(res)
 
-    def solve_match(self, question: MatchQuestion):
+    def solve_match(self, question: FixedMatchQuestion):
         res = self.get_answer(question.query()).split('\n')
         return question.compose(res)
 
