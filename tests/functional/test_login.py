@@ -41,7 +41,7 @@ def respond_login_data(req: PreparedRequest):
 def test_login(empty_auto_solver, correct: bool):
     responses.get("https://openedu.ru/", body=home)
 
-    responses.get("https://openedu.ru/login/npoedsso/?next=%2F", status=302, headers={'location': login_redir_url})
+    responses.get("https://openedu.ru/auth/login/npoedsso/", status=302, headers={'location': login_redir_url})
     responses.get(login_redir_url, body=login)
 
     responses.add_callback(
@@ -64,6 +64,6 @@ def test_login(empty_auto_solver, correct: bool):
     assert bool(status.get("auth")) == correct
 
     responses.assert_call_count("https://openedu.ru/auth/status?url=/", 1)
-    responses.assert_call_count("https://openedu.ru/login/npoedsso/?next=%2F", 1)
+    responses.assert_call_count("https://openedu.ru/auth/login/npoedsso/", 1)
     responses.assert_call_count(login_redir_url, 1)
     responses.assert_call_count(login_action_url, 1)

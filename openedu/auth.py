@@ -74,7 +74,7 @@ class OpenEduAuth:
             "Sec-Fetch-Site": "same-site"
         }
         self.session.get('https://openedu.ru/', headers=headers)
-        rd = self.session.get('https://openedu.ru/login/npoedsso/', params={"next": "/"}, headers=headers, allow_redirects=False)
+        rd = self.session.get('https://openedu.ru/auth/login/npoedsso/', headers=headers, allow_redirects=False)
         assert rd.status_code == 302
         r = self.session.get(rd.headers['Location'], headers=headers)
         return self.post_login_data(username, password, r.text)
