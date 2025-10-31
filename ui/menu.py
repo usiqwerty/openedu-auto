@@ -1,7 +1,7 @@
 import os
 
 import config
-from auth_providers.urfu.a import login_urfu
+from auth_providers.urfu import login_urfu
 from automation.autosolver import OpenEduAutoSolver
 from errors import Unauthorized
 from solvers.mistral_solver import MistralSolver
