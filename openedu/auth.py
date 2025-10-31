@@ -3,6 +3,7 @@ import logging
 import os.path
 import re
 import urllib.parse
+from http.cookiejar import Cookie
 
 import requests.utils
 from requests import Session
@@ -15,6 +16,40 @@ from errors import ReloginReceived
 def try_pop(mapping, key):
     if key in mapping:
         mapping.pop(key)
+
+
+def dict_to_cookiejar(cookies_dict: list):
+    cookiejar = RequestsCookieJar()
+
+    for cookie in cookies_dict:
+        cookiejar.set_cookie(Cookie(
+            **cookie,
+            version=0,
+            port=None,
+            port_specified=False,
+            domain_specified=True,
+            domain_initial_dot=False,
+            path_specified=True,
+            discard=False,
+            comment=None,
+            comment_url=None,
+            rest={},
+        ))
+    return cookiejar
+
+
+def cookiejar_to_dict(cookiejar: RequestsCookieJar):
+    r = []
+    for cookie in cookiejar:
+        r.append({
+            "domain": cookie.domain,
+            "path": cookie.path,
+            "name": cookie.name,
+            "value": cookie.value,
+            "secure": cookie.secure,
+            "expires": cookie.expires,
+        })
+    return r
 
 
 login_action_regex = r'"loginAction": "(https://sso.openedu.ru/realms/openedu/login-actions/authenticate\?session_code=[\w_-]+&execution=[\w_-]+&client_id=\w+&tab_id=[\w_-]+)'
@@ -52,13 +87,13 @@ class OpenEduAuth:
                 jar_json = json.load(f)
                 logging.debug(f"Loaded {len(jar_json)} cookies from file")
         except FileNotFoundError:
-            jar_json = {}
+            jar_json = []
 
         self.session = Session()
-        self.session.cookies = requests.utils.cookiejar_from_dict(jar_json)
+        self.session.cookies = dict_to_cookiejar(jar_json) # requests.utils.cookiejar_from_dict(jar_json)
 
     def save(self):
-        jar_json = requests.utils.dict_from_cookiejar(self.session.cookies)
+        jar_json = cookiejar_to_dict(self.session.cookies) #requests.utils.dict_from_cookiejar(self.session.cookies)
         with open(self.jar_path, 'w', encoding='utf-8') as f:
             json.dump(jar_json, f)
             logging.debug("Cookie jar saved")
