@@ -80,7 +80,7 @@ class DummyApiStorage(LocalApiStorage):
     def mark_block_as_completed(self, block_id: str):
         if not config.config.get('restrict-actions'):
             self.solved.add(block_id)
-            logging.info(f"Added to solved: {block_id}")
+            logging.info(f"Added to solved (dummy): {block_id}")
 
     def save(self):
         pass

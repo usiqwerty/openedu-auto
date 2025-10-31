@@ -16,6 +16,7 @@ from solvers.abstract_solver import AbstractSolver
 
 class OpenEduProcessor(ABC):
     """Abstract automated OpenEdu processor"""
+    mark_completion: bool = True
     require_incomplete: bool
     solver: AbstractSolver
     describer: ImageDescriber
@@ -50,8 +51,8 @@ class OpenEduProcessor(ABC):
                         if (not self.should_process(blk.id)) and not blk.complete:
                             continue
                         self.process_vertical(blk.id, vertical, course_id)
-
-                    self.app.mark_block_as_completed(seq_id.block_id)
+                    if self.mark_completion:
+                        self.app.mark_block_as_completed(seq_id.block_id)
 
     def process_vertical(self, blkid: str, block: VerticalBlock, course_id: str):
         logging.debug(blkid)
@@ -63,7 +64,7 @@ class OpenEduProcessor(ABC):
                 block_id_str = xblock_vert['data-id']
 
                 rich_block_id = BlockID.parse(block_id_str)
-                if rich_block_id.type in {"html", "xvideoblock"}:
+                if rich_block_id.type in {"html", "xvideoblock"} and self.mark_completion:
                     self.app.publish_completion(course_id, block_id_str)
         # if block.type == 'other' and not block.graded:
         #     # return
@@ -82,7 +83,8 @@ class OpenEduProcessor(ABC):
                 except NoSolutionFoundError as e:
                     logging.error(f"No solution found: {e}")
                     return # do not mark as complete, so we can come back later
-        self.app.mark_block_as_completed(blkid)
+        if self.mark_completion:
+            self.app.mark_block_as_completed(blkid)
 
     @abstractmethod
     def process_problem(self, course_id: str, problem: list[Question]):
