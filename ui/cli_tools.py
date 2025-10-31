@@ -4,6 +4,8 @@ import re
 
 import config
 from automation.autosolver import OpenEduAutoSolver
+from automation.openedu_processor import OpenEduProcessor
+from automation.pseudosolver import OpenEduPseudoSolver
 from config import set_config
 from errors import WrongAnswer, GenericOpenEduError
 from images.image_describer import ImageDescriber
@@ -33,7 +35,7 @@ def input_course_id():
     return parse_course_by_any_link(link)
 
 
-def get_course_id(app: OpenEduAutoSolver) -> CourseID:
+def get_course_id(app: OpenEduProcessor) -> CourseID:
     last_course = config.config.get("last-course")
     if last_course is not None:
         try:
@@ -67,6 +69,14 @@ def solve(solver: AbstractSolver, describer: ImageDescriber, course: Course):
     except WrongAnswer as e:
         print(f"Неправильный ответ на задачу {e.id}: {e.answer}")
         exit(1)
+
+
+def parse_only_presudosolve(solver: AbstractSolver, describer: ImageDescriber):
+    app = OpenEduPseudoSolver(solver, describer)
+    course_id = get_course_id(app)
+    course = app.app.get_course_info(course_id)
+    print(f"Парсинг курса: {course.name}")
+    app.process_course(course.id)
 
 
 def get_solution_filepath(course_id):

@@ -33,12 +33,14 @@ class OpenEduParser:
         if sequential_block['is_proctored']:
             logging.info("Skipped proctoring block")
             return
+        if sequential_block['gated_content']['prereq_id']:
+            logging.info("Prerequisite found")
         for item in sequential_block['items']:
             title = item['page_title']
             blk_type = item['type']
             block_id = item['id']
             graded = item['graded']
-            try:
+            try:  # why not get()
                 complete = item['complete']
             except KeyError:
                 raise Exception("Block doesn't have 'complete' field, maybe you are not authorized")

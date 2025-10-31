@@ -8,6 +8,7 @@ from ui.actions import solve_with_llm, solve_with_file, save_answers
 from errors import Unauthorized, GenericOpenEduError, ReloginReceived
 from solvers.mistral_solver import MistralSolver
 from tests.fakes import DummyDescriber
+from ui.cli_tools import parse_only_presudosolve
 
 setup_logging()
 logging.debug("openedu-auto v1.1")
@@ -45,7 +46,10 @@ def menu_iteration(app: OpenEduAutoSolver):
         url = input("Ссылка: ")
         app.solve_by_url(url)
         return True
-
+    elif cmd == '-1':
+        solver = MistralSolver()
+        describer = DummyDescriber()
+        parse_only_presudosolve(solver, describer)
 
 def require_login(empty_app: OpenEduAutoSolver):
     if not empty_app.app.has_login_data:
