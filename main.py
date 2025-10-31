@@ -2,12 +2,13 @@ import logging
 import os
 
 import config
+from auth_providers.urfu.a import login_urfu
 from automation.autosolver import OpenEduAutoSolver
-from log import setup_logging
-from ui.actions import solve_with_llm, solve_with_file, save_answers
 from errors import Unauthorized, GenericOpenEduError, ReloginReceived
+from log import setup_logging
 from solvers.mistral_solver import MistralSolver
 from tests.fakes import DummyDescriber
+from ui.actions import solve_with_llm, solve_with_file, save_answers
 from ui.cli_tools import parse_only_presudosolve
 
 setup_logging()
@@ -51,12 +52,33 @@ def menu_iteration(app: OpenEduAutoSolver):
         describer = DummyDescriber()
         parse_only_presudosolve(solver, describer)
 
+
+def choose_login_method():
+    method = None
+    while method is None:
+        print("Выберите метод авторизации")
+        print("1. Парооль Openedu")
+        print("2. Парооль Urfu")
+        m = input("Выбор: ")
+        if m in {"1", "2"}:
+            method = int(m)
+
+    return ["openedu", "urfu"][method-1]
+
+
 def require_login(empty_app: OpenEduAutoSolver):
     if not empty_app.app.has_login_data:
+        login_method = choose_login_method()
         print("Нужно ввести данные формы, чтобы авторизоваться")
         username = input("Имя пользователя: ").strip()
         password = input("Пароль: ").strip()
-        status = empty_app.app.login(username, password)
+
+        if login_method == "openedu":
+            status = empty_app.app.login(username, password)
+        elif login_method == "urfu":
+            login_urfu(empty_app.app._api.session, username, password)
+            status = empty_app.app._api.status()
+
         if status.get("auth"):
             empty_app.app.save()
         else:
