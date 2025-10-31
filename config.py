@@ -26,7 +26,7 @@ blocks_fn = os.path.join(userdata_dir, "blocks.json")
 courses_fn = os.path.join(userdata_dir, "courses.json")
 solved_fn = os.path.join(userdata_dir, "solved.json")
 ignored_fn = os.path.join(userdata_dir, "ignored.json")
-
+cookies_fn = os.path.join(userdata_dir, "cookies.json")
 os.makedirs(solutions_dir, exist_ok=True)
 
 try:

@@ -1,9 +1,25 @@
+import os
 import urllib.parse
 
 import pytest
 import responses
 from requests import PreparedRequest
 
+import config
+
+config.userdata_dir = "test_userdata"
+config.solutions_dir = os.path.join(config.userdata_dir, "solutions")
+config.config_fn = os.path.join(config.userdata_dir, "config.json")
+config.cache_fn = os.path.join(config.userdata_dir, "cache.json")
+config.blocks_fn = os.path.join(config.userdata_dir, "blocks.json")
+config.courses_fn = os.path.join(config.userdata_dir, "courses.json")
+config.solved_fn = os.path.join(config.userdata_dir, "solved.json")
+config.ignored_fn = os.path.join(config.userdata_dir, "ignored.json")
+config.cookies_fn = os.path.join(config.userdata_dir, "cookies.json")
+os.makedirs(config.solutions_dir, exist_ok=True)
+
+# patch config before importing autosolver,
+# so it will use already modified directory
 from automation.autosolver import OpenEduAutoSolver
 from tests.functional.common import empty_auto_solver
 

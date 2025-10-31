@@ -78,7 +78,7 @@ class CookieContext:
 
 class OpenEduAuth:
     session: Session
-    jar_path = os.path.join(config.userdata_dir, "cookies.json")
+    jar_path = config.cookies_fn
     user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:135.0) Gecko/20100101 Firefox/135.0'
 
     def __init__(self):
