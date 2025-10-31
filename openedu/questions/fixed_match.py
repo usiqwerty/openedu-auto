@@ -55,6 +55,9 @@ class FixedMatchQuestion(BaseModel, Question):
 
     @staticmethod
     def parse(problem: Tag, prepend_lines: list[str] = None):
+        # TODO: field and options may have escaped characters
+        #  for now this is expected (and so in tests), but maybe LLMs
+        #  would feel better without redundant backslashes
         questions = []
         answers = []
         lines = prepend_lines or []
@@ -71,10 +74,10 @@ class FixedMatchQuestion(BaseModel, Question):
                 else:
                     field_text = td.text
             if field_id and field_text:
-                questions.append((field_text, field_id))
+                questions.append((field_text.strip(), field_id))
 
         ans_place = table_div.select_one("div.conf-answers-place")
-        for answer in ans_place.find_all():
+        for answer in ans_place.find_all(attrs={"class": "conf-item conf-draggable"}):
             answers.append((answer.text.strip(), answer['id']))
 
         response_div = problem.select_one("div.wrapper-problem-response")
