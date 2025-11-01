@@ -9,6 +9,7 @@ from solvers.llm_solver import LLMSolver
 class GenericOpenAISolver(LLMSolver):
     client: OpenAI
     model = config.config["openai-model"]
+    cache_fn = "openai-cache.json"
 
     def __init__(self):
         super().__init__()

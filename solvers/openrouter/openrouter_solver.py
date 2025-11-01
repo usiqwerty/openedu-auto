@@ -37,3 +37,11 @@ class OpenRouterSolver(LLMSolver, ABC):
             logging.critical(error['metadata'])
             raise Exception
         return completion.choices[0].message.content
+
+
+def openrouter_solver(model_: str):
+    class Solver(OpenRouterSolver):
+        model = model_
+        cache_fn = "generic-openrouter-cache.json"
+
+    return Solver()
