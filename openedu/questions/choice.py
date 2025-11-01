@@ -27,7 +27,7 @@ class ChoiceQuestion(BaseModel, Question):
     @staticmethod
     def parse(questions: Tag, prepend_lines: list[str] = None) -> "ChoiceQuestion":
         lines = prepend_lines + []
-        for child in questions.children:
+        for child in questions.select("div, p, pre"): #.children:
             if child.name in ["p", "pre"]:
                 lines.append(child.text.strip())
             elif child.name == "div":

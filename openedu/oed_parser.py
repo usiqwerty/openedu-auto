@@ -101,7 +101,7 @@ class OpenEduParser:
         else:
             prepend = default_prepend.copy()
 
-            for question_tag in problem.select("div.wrapper-problem-response, .problem > div > p"):
+            for question_tag in problem.select("div.wrapper-problem-response, .problem p"):
                 if question_tag.name == 'div':
                     q = self.parse_question(question_tag, prepend)
                     questions.append(q)

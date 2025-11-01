@@ -1,0 +1,260 @@
+[
+  [
+    {
+      "correct_answer": null,
+      "id": "input_2fd17f61a0e84e29a87b0cc2d7c61327_2_1",
+      "ids": [
+        "input_2fd17f61a0e84e29a87b0cc2d7c61327_2_1_choice_0",
+        "input_2fd17f61a0e84e29a87b0cc2d7c61327_2_1_choice_1",
+        "input_2fd17f61a0e84e29a87b0cc2d7c61327_2_1_choice_3",
+        "input_2fd17f61a0e84e29a87b0cc2d7c61327_2_1_choice_2"
+      ],
+      "options": [
+        "доказываются",
+        "принимаются безоговорочно",
+        "являются результатом чувственного восприятия",
+        "истолковываются"
+      ],
+      "text": "Задание 1\nИстины в философии",
+      "type": "choice"
+    }
+  ],
+  [
+    {
+      "correct_answer": null,
+      "id": "input_1929aa025f174ab0adbc2c53a2a3f516_2_1",
+      "ids": [
+        "input_1929aa025f174ab0adbc2c53a2a3f516_2_1_choice_3",
+        "input_1929aa025f174ab0adbc2c53a2a3f516_2_1_choice_0",
+        "input_1929aa025f174ab0adbc2c53a2a3f516_2_1_choice_1",
+        "input_1929aa025f174ab0adbc2c53a2a3f516_2_1_choice_2"
+      ],
+      "options": [
+        "рассуждение",
+        "исследование",
+        "вера",
+        "творчество"
+      ],
+      "text": "Задание 2\nОсновное понятие, характеризующее искусство",
+      "type": "choice"
+    }
+  ],
+  [
+    {
+      "correct_answer": null,
+      "id": "input_eeb2bf10a9034fadbc2a95ed49b819b7_2_1",
+      "ids": [
+        "input_eeb2bf10a9034fadbc2a95ed49b819b7_2_1_choice_3",
+        "input_eeb2bf10a9034fadbc2a95ed49b819b7_2_1_choice_1",
+        "input_eeb2bf10a9034fadbc2a95ed49b819b7_2_1_choice_2",
+        "input_eeb2bf10a9034fadbc2a95ed49b819b7_2_1_choice_0"
+      ],
+      "options": [
+        "субъективность",
+        "достоверность",
+        "системность",
+        "точность"
+      ],
+      "text": "Задание 3\nПризнак, НЕ относящийся к научному познанию",
+      "type": "choice"
+    }
+  ],
+  [
+    {
+      "correct_answer": null,
+      "id": "input_a37d082858c64e0c9911df20ad73f9b5_2_1",
+      "ids": [
+        "input_a37d082858c64e0c9911df20ad73f9b5_2_1_choice_0",
+        "input_a37d082858c64e0c9911df20ad73f9b5_2_1_choice_3",
+        "input_a37d082858c64e0c9911df20ad73f9b5_2_1_choice_1",
+        "input_a37d082858c64e0c9911df20ad73f9b5_2_1_choice_2"
+      ],
+      "options": [
+        "теории",
+        "эксперименты",
+        "модели",
+        "формулировки"
+      ],
+      "text": "Задание 4\nОдной из форм научного познания являются:",
+      "type": "choice"
+    }
+  ],
+  [
+    {
+      "correct_answer": null,
+      "id": "input_cc8c756c1aac44ea814abb955937bcc3_2_1",
+      "ids": [
+        "input_cc8c756c1aac44ea814abb955937bcc3_2_1_choice_2",
+        "input_cc8c756c1aac44ea814abb955937bcc3_2_1_choice_3",
+        "input_cc8c756c1aac44ea814abb955937bcc3_2_1_choice_1",
+        "input_cc8c756c1aac44ea814abb955937bcc3_2_1_choice_0"
+      ],
+      "options": [
+        "объективность",
+        "системность",
+        "точность",
+        "достоверность"
+      ],
+      "text": "Задание 5\nСуждение, эмпирически (то есть на практике) подтверждённое какими-либо специальными экспериментами или общественной практикой",
+      "type": "choice"
+    }
+  ],
+  [
+    {
+      "correct_answer": null,
+      "id": "input_ffae286fb81d415fa6de993876e4d59f_2_1",
+      "ids": [
+        "input_ffae286fb81d415fa6de993876e4d59f_2_1_choice_3",
+        "input_ffae286fb81d415fa6de993876e4d59f_2_1_choice_1",
+        "input_ffae286fb81d415fa6de993876e4d59f_2_1_choice_0",
+        "input_ffae286fb81d415fa6de993876e4d59f_2_1_choice_2"
+      ],
+      "options": [
+        "найти абсолютную истину",
+        "создание эстетических ценностей",
+        "получение знаний о реальности",
+        "разработка новых технологий"
+      ],
+      "text": "Задание 6\nГлавная цель искусства",
+      "type": "choice"
+    }
+  ],
+  [
+    {
+      "correct_answer": null,
+      "id": "input_2abff81383e744948d816151ff8b3cce_2_1",
+      "ids": [
+        "input_2abff81383e744948d816151ff8b3cce_2_1_choice_0",
+        "input_2abff81383e744948d816151ff8b3cce_2_1_choice_1",
+        "input_2abff81383e744948d816151ff8b3cce_2_1_choice_2",
+        "input_2abff81383e744948d816151ff8b3cce_2_1_choice_3"
+      ],
+      "options": [
+        "верно только А",
+        "верно только Б",
+        "верны оба суждения",
+        "оба суждения НЕ верны"
+      ],
+      "text": "Задание 7\nВыберите верное(-ые) суждение(-я):\nА. Псевдонауку от науки отличает не восприимчивость к критике.\nБ. Псевдонаука НЕ подлежит верификации.",
+      "type": "choice"
+    }
+  ],
+  [
+    {
+      "correct_answer": null,
+      "id": "input_8c3346208fe844b8b13aaa91c0794c30_2_1",
+      "ids": [
+        "input_8c3346208fe844b8b13aaa91c0794c30_2_1_choice_0",
+        "input_8c3346208fe844b8b13aaa91c0794c30_2_1_choice_2",
+        "input_8c3346208fe844b8b13aaa91c0794c30_2_1_choice_1",
+        "input_8c3346208fe844b8b13aaa91c0794c30_2_1_choice_3"
+      ],
+      "options": [
+        "объяснительная",
+        "мировоззренческая",
+        "прогностическая",
+        "описательная"
+      ],
+      "text": "Задание 8\nФункция науки, нацеленная на построение системы объективных знаний о свойствах отношений и процессов объективной реальности",
+      "type": "choice"
+    }
+  ],
+  [
+    {
+      "correct_answer": null,
+      "id": "input_a2cf417a80154c6688a105a5b9b3ecdf_2_1",
+      "ids": [
+        "input_a2cf417a80154c6688a105a5b9b3ecdf_2_1_choice_3",
+        "input_a2cf417a80154c6688a105a5b9b3ecdf_2_1_choice_0",
+        "input_a2cf417a80154c6688a105a5b9b3ecdf_2_1_choice_2",
+        "input_a2cf417a80154c6688a105a5b9b3ecdf_2_1_choice_1"
+      ],
+      "options": [
+        "системность",
+        "общезначимость",
+        "достоверность",
+        "рациональность"
+      ],
+      "text": "Задание 9\nСвойство науки объяснять полученные знания с помощью разума",
+      "type": "choice"
+    }
+  ],
+  [
+    {
+      "correct_answer": null,
+      "id": "input_60b5e0b77ff94ed790f691d2572b4957_2_1",
+      "ids": [
+        "input_60b5e0b77ff94ed790f691d2572b4957_2_1_choice_0",
+        "input_60b5e0b77ff94ed790f691d2572b4957_2_1_choice_1",
+        "input_60b5e0b77ff94ed790f691d2572b4957_2_1_choice_2",
+        "input_60b5e0b77ff94ed790f691d2572b4957_2_1_choice_3"
+      ],
+      "options": [
+        "верно только А",
+        "верно только Б",
+        "верны оба суждения",
+        "оба суждения НЕ верны"
+      ],
+      "text": "Задание 10\nВыберите верные(-ое) суждения(-е):\nА. Научная картина мира ‒ это система научных теорий, описывающая реальность.\nБ. Научные принципы ‒ это систематизированные знания в их совокупности.",
+      "type": "choice"
+    }
+  ],
+  [
+    {
+      "correct_answer": null,
+      "id": "input_3ead5d56163545ed97314c993142cd5e_2_1",
+      "ids": [
+        "input_3ead5d56163545ed97314c993142cd5e_2_1_choice_0",
+        "input_3ead5d56163545ed97314c993142cd5e_2_1_choice_3",
+        "input_3ead5d56163545ed97314c993142cd5e_2_1_choice_1",
+        "input_3ead5d56163545ed97314c993142cd5e_2_1_choice_2"
+      ],
+      "options": [
+        "Физика",
+        "Астрономия",
+        "Химия",
+        "Биология"
+      ],
+      "text": "Задание 11\nНаука, изучающая строение живых организмов",
+      "type": "choice"
+    }
+  ],
+  [
+    {
+      "correct_answer": null,
+      "id": "input_75a7078780d04a5d944f962e296d5c57_2_1",
+      "ids": [
+        "input_75a7078780d04a5d944f962e296d5c57_2_1_choice_0",
+        "input_75a7078780d04a5d944f962e296d5c57_2_1_choice_1",
+        "input_75a7078780d04a5d944f962e296d5c57_2_1_choice_2"
+      ],
+      "options": [
+        "Космогония",
+        "Химия",
+        "Психология"
+      ],
+      "text": "Задание 12\nИзучением очень сложного занимается",
+      "type": "choice"
+    }
+  ],
+  [
+    {
+      "correct_answer": null,
+      "id": "input_4d5928216c7549938d8dbbfedc75a850_2_1",
+      "ids": [
+        "input_4d5928216c7549938d8dbbfedc75a850_2_1_choice_0",
+        "input_4d5928216c7549938d8dbbfedc75a850_2_1_choice_1",
+        "input_4d5928216c7549938d8dbbfedc75a850_2_1_choice_2",
+        "input_4d5928216c7549938d8dbbfedc75a850_2_1_choice_3"
+      ],
+      "options": [
+        "объективность",
+        "не строгий образный язык",
+        "изучает уникальные процессы",
+        "выделение общих свойств"
+      ],
+      "text": "Задание 13\nПризнаки, характеризующие естественные науки, в сравнении с гуманитарными",
+      "type": "choice"
+    }
+  ]
+]

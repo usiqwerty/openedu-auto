@@ -22,7 +22,7 @@ def test_parse_sequential_block(inp):
 
 @pytest.mark.parametrize(
     "testname",
-    ["test", "free_match_whole_page", "multiple_questions_in_prob", "new_mt_and_fill" , "outer_question_text"]
+    ["test", "free_match_whole_page", "multiple_questions_in_prob", "new_mt_and_fill" , "outer_question_text", "i_dont_know"]
 )
 def test_parse_vertical_block_html(testname: str):
     filename_input = f"tests/data/pages/{testname}.html"
