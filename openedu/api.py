@@ -80,9 +80,12 @@ class OpenEduAPI:
             logging.debug(f"[COMPLETE] {url}")
 
             referer = f"https://courses.openedu.ru/xblock/{html_block_id}?show_title=0&show_bookmark_button=0&recheck_access=1&view=student_view"
+            csrf = self.session.cookies.get('csrftoken', domain='courses.openedu.ru')
+            if csrf is None:
+                raise Exception("csrf not found")
             hdrs = {
                 "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/113.0",
-                'X-CSRFToken': self.session.cookies.get('csrftoken', domain=''),
+                'X-CSRFToken': csrf,
                 "Referer": referer
             }
             if not config.config.get('restrict-actions'):
@@ -107,7 +110,7 @@ class OpenEduAPI:
         logging.info(f"Checking answer: {answers}")
         url = f"https://courses.openedu.ru/courses/course-v1:{course_id}/xblock/{blk}/handler/xmodule_handler/problem_check"
 
-        cccc = self.session.cookies.get('csrftoken', domain='')
+        cccc = self.session.cookies.get('csrftoken', domain='courses.openedu.ru')
         if cccc is None:
             raise Exception
         hdrs = {
