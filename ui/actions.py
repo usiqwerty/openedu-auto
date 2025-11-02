@@ -25,7 +25,7 @@ def solve_with_llm(empty_app: OpenEduAutoSolver):
         GenericOpenAISolver(model='gpt-4.1-nano'),
         GenericOpenAISolver(model='gemini-2.5-flash'),
         GenericOpenAISolver(model='qwen3-235b-a22b-2507'),
-    ])
+    ], negotiation="most-common")
     describer = QwenImageDescriber()
     solve(solver, describer, course)
 
