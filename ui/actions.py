@@ -4,6 +4,7 @@ from automation.ans_saver import AnswersSaver
 from automation.autosolver import OpenEduAutoSolver
 from config import set_config
 from images.openrouter.qwen_describer import QwenImageDescriber
+from solvers.consensus import ConsensusSolver
 from solvers.localsolver import LocalSolver
 from solvers.openai_solver import GenericOpenAISolver
 from tests.fakes import DummyDescriber
@@ -19,7 +20,12 @@ def solve_with_llm(empty_app: OpenEduAutoSolver):
     course = empty_app.app.get_course_info(course_id)
     set_config("last-course", str(course_id))
 
-    solver = GenericOpenAISolver()
+    solver = ConsensusSolver([
+        GenericOpenAISolver(),
+        GenericOpenAISolver(model='gpt-4.1-nano'),
+        GenericOpenAISolver(model='gemini-2.5-flash'),
+        GenericOpenAISolver(model='qwen3-235b-a22b-2507'),
+    ])
     describer = QwenImageDescriber()
     solve(solver, describer, course)
 

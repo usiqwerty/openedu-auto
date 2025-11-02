@@ -1,4 +1,5 @@
 import logging
+import re
 
 from openai import OpenAI
 
@@ -11,8 +12,12 @@ class GenericOpenAISolver(LLMSolver):
     model = config.config["openai-model"]
     cache_fn = "openai-cache.json"
 
-    def __init__(self):
+    def __init__(self, model: str | None = None):
         super().__init__()
+        if model is not None:
+            logging.info(f"Model overriden: {model}")
+            self.model = model
+            self.cache_fn = re.sub(r"\W", "_", model) + self.cache_fn
         self.client = OpenAI(api_key=config.config["openai-key"], base_url=config.config["openai-base-url"])
 
     def make_gpt_request(self, query) -> str:
