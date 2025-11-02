@@ -48,7 +48,9 @@ class LLMSolver(AbstractSolver, ABC):
             delta = now - self.last_described
             if delta < self.interval_sec:
                 time.sleep(delta)
-            self.cache_set(query, self.make_gpt_request(query).strip())
+            raw_result = self.make_gpt_request(query).strip()
+            result = '\n'.join([result_line.strip() for result_line in raw_result.split('\n')])
+            self.cache_set(query, result)
             self.last_described = now
         else:
             logging.debug("Picking LLM answer from cache")
