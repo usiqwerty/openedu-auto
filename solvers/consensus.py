@@ -58,6 +58,8 @@ class ConsensusSolver(AbstractSolver):
             if not ans:
                 raise NoSolutionFoundError("No answer was in majority")
             if len(ans) == 1:
+                if id.endswith('[]'):
+                    id = id[:-2]
                 ans = ans[0]
             assert isinstance(ans, str) or isinstance(ans, list)
             return id, ans
