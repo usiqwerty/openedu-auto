@@ -1,0 +1,659 @@
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<!--[if lte IE 9]><html class="ie ie9 lte9" lang="en"><![endif]-->
+<!--[if !IE]><!--><html lang="en"><!--<![endif]-->
+<head dir="ltr">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="origin-trial" content="ArNBN7d1AkvMhJTGWXlJ8td/AN4lOokzOnqKRNkTnLqaqx0HpfYvmx8JePPs/emKh6O5fckx14LeZIGJ1AQYjgAAAABzeyJvcmlnaW4iOiJodHRwOi8vbG9jYWxob3N0OjE4MDAwIiwiZmVhdHVyZSI6IkRpc2FibGVEaWZmZXJlbnRPcmlnaW5TdWJmcmFtZURpYWxvZ1N1cHByZXNzaW9uIiwiZXhwaXJ5IjoxNjM5NTI2Mzk5fQ==">
+
+
+
+
+  <title>
+
+ MCS Courseware | Открытое образование
+</title>
+
+
+  
+
+  <script type="text/javascript" src="https://cdn2.openedu.ru/static/js/i18n/en/djangojs.705ead69114e.js"></script>
+  <script type="text/javascript" src="https://cdn2.openedu.ru/static/js/ie11_find_array.bd1c6dc7a133.js"></script>
+  
+  <link rel="icon" type="image/x-icon" href="https://cdn2.openedu.ru/static/edx-theme/images/favicon.bd3d272022e9.ico"/>
+
+
+
+  
+  
+
+    <link href="https://cdn2.openedu.ru/static/edx-theme/css/lms-style-vendor.68e48093f5dd.css" rel="stylesheet" type="text/css" />
+
+
+
+    
+  
+
+    <link href="https://cdn2.openedu.ru/static/edx-theme/css/lms-main-v1.4fcbf1c0bdb5.css" rel="stylesheet" type="text/css" />
+
+
+
+
+    
+    
+<script type="text/javascript" src="https://cdn2.openedu.ru/static/js/lms-main_vendor.3c3c9a2604d6.js" charset="utf-8"></script>
+
+
+    
+    
+<script type="text/javascript" src="https://cdn2.openedu.ru/static/js/lms-application.5ba2aca48790.js" charset="utf-8"></script>
+
+
+
+  
+    
+    
+    <script type="text/javascript" src="https://cdn2.openedu.ru/static/bundles/commons.18ca13fd3a36eedcddd3.6ddbb79b7234.js" ></script>
+
+
+
+  <script>
+    window.baseUrl = "https://cdn2.openedu.ru/static/";
+    (function (require) {
+      require.config({
+          baseUrl: window.baseUrl
+      });
+    }).call(this, require || RequireJS.require);
+  </script>
+  <script type="text/javascript" src="https://cdn2.openedu.ru/static/lms/js/require-config.38226099c6ad.js"></script>
+  
+    <script type="text/javascript">
+        (function (require) {
+          require.config({
+              paths: {
+                'course_bookmarks/js/views/bookmark_button': 'course_bookmarks/js/views/bookmark_button.d4cfaf3361fa',
+'js/views/message_banner': 'js/views/message_banner.141974fd4f5d',
+'moment': 'common/js/vendor/moment-with-locales.e3cc27d412a1',
+'moment-timezone': 'common/js/vendor/moment-timezone-with-data.60142e6c4416',
+'js/courseware/course_info_events': 'js/courseware/course_info_events.2fc35b57627f',
+'js/courseware/accordion_events': 'js/courseware/accordion_events.6064c7809de5',
+'js/dateutil_factory': 'js/dateutil_factory.a28baef97506',
+'js/courseware/link_clicked_events': 'js/courseware/link_clicked_events',
+'js/courseware/toggle_element_visibility': 'js/courseware/toggle_element_visibility.474ff5ba9de3',
+'js/student_account/logistration_factory': 'js/student_account/logistration_factory.5e55252d0ace',
+'js/courseware/courseware_factory': 'js/courseware/courseware_factory.1504fc10caef',
+'js/groups/views/cohorts_dashboard_factory': 'js/groups/views/cohorts_dashboard_factory.abc7c817c498',
+'js/groups/discussions_management/discussions_dashboard_factory': 'js/discussions_management/views/discussions_dashboard_factory.2e10d9097343',
+'draggabilly': 'js/vendor/draggabilly.26caba6f7187',
+'hls': 'common/js/vendor/hls.5e0c7e1b3bfd'
+            }
+          });
+        }).call(this, require || RequireJS.require);
+    </script>
+  
+
+  
+
+  
+
+    <link href="https://cdn2.openedu.ru/static/edx-theme/css/lms-style-course-vendor.cc467ea1c47d.css" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+
+    <link href="https://cdn2.openedu.ru/static/edx-theme/css/lms-course.d3e35273eae9.css" rel="stylesheet" type="text/css" />
+
+
+
+
+<script type="text/javascript" src="https://cdn2.openedu.ru/static/js/jquery.autocomplete.964a0bfb4fd2.js" async></script>
+<script type="text/javascript" src="https://cdn2.openedu.ru/static/js/src/tooltip_manager.b8fa94d4cefc.js" async></script>
+
+<link href="https://cdn2.openedu.ru/static/css/vendor/jquery.autocomplete.css" rel="preload" type="text/css">
+  
+
+  <base target="_parent">
+
+<script type="text/javascript">
+  var $$course_id = "course\u002Dv1:urfu+MCS+fall_2025";
+</script>
+
+
+  
+
+  
+
+
+  
+
+
+<script type="application/json" id="user-metadata">
+    null
+</script>
+
+  
+
+  
+
+
+  
+
+
+<!-- dummy Segment -->
+<script type="text/javascript">
+  var analytics = {
+    track: function() { return; },
+    trackLink: function() { return; },
+    pageview: function() { return; },
+    page: function() { return; }
+  };
+</script>
+<!-- end dummy Segment -->
+
+
+  <meta name="path_prefix" content="">
+  
+
+  <meta name="openedx-release-line" content="maple" />
+
+
+
+
+
+</head>
+
+<body class="ltr view-in-course view-courseware courseware  lang_en">
+
+
+
+<div id="page-prompt"></div>
+    
+    <a class="nav-skip sr-only sr-only-focusable" href="#main">Skip to main content</a>
+
+
+    
+
+
+
+
+
+
+
+
+
+
+    <div class="marketing-hero"></div>
+
+    <div class="content-wrapper main-container" id="content" dir="ltr">
+      
+
+
+
+
+
+
+
+
+<script type="text/template" id="image-modal-tpl">
+    <div class="wrapper-modal wrapper-modal-image">
+  <section class="image-link">
+    <%= smallHTML%> <% // xss-lint: disable=underscore-not-escaped %>
+    <a href="#" class="modal-ui-icon action-fullscreen" role="button">
+      <span class="label">
+        <span class="icon fa fa-arrows-alt fa-large" aria-hidden="true"></span> <%- gettext("Fullscreen") %>
+      </span>
+    </a>
+  </section>
+
+  <section class="image-modal">
+    <section class="image-content">
+      <div class="image-wrapper">
+        <img alt="<%- largeALT %>, <%- gettext('Large') %>" src="<%- largeSRC %>" />
+      </div>
+
+      <a href="#" class="modal-ui-icon action-close" role="button">
+        <span class="label">
+          <span class="icon fa fa-remove fa-large" aria-hidden="true"></span> <%- gettext("Close") %>
+        </span>
+      </a>
+
+      <ul class="image-controls">
+        <li class="image-control">
+          <a href="#" class="modal-ui-icon action-zoom-in" role="button">
+            <span class="label">
+              <span class="icon fa fa fa-search-plus fa-large" aria-hidden="true"></span> <%- gettext("Zoom In") %>
+            </span>
+          </a>
+        </li>
+
+        <li class="image-control">
+          <a href="#" class="modal-ui-icon action-zoom-out is-disabled" aria-disabled="true" role="button">
+            <span class="label">
+              <span class="icon fa fa fa-search-minus fa-large" aria-hidden="true"></span> <%- gettext("Zoom Out") %>
+            </span>
+          </a>
+        </li>
+      </ul>
+    </section>
+  </section>
+</div>
+
+</script>
+
+
+
+
+
+
+
+<div class="course-wrapper chromeless">
+  <section class="course-content" id="course-content"      data-enable-completion-on-view-service="false"     style="display: block; width: auto; margin: 0;"
+  >
+      <main id="main" aria-label="Content">
+        
+<div class="xblock xblock-student_view xblock-student_view-vertical" data-course-id="course-v1:urfu+MCS+fall_2025" data-init="VerticalStudentView" data-runtime-class="LmsRuntime" data-runtime-version="1" data-block-type="vertical" data-usage-id="block-v1:urfu+MCS+fall_2025+type@vertical+block@ef3ea259702548ee9157110fed19a46a" data-request-token="c8508350bae811f0bad766eb167f2cb3" data-graded="True" data-has-score="False">
+  
+
+
+
+
+
+    <h4 class="hd-8 de-emphasized">This content is graded
+        as <td>'Основы методологии наук о природе'</td><br>
+        weight:&nbsp;2.0
+    </h4>
+
+
+<div class="vert-mod">
+    <div class="vert vert-0" data-id="block-v1:urfu+MCS+fall_2025+type@problem+block@d44ae069359443599c59bf972f5523c6">
+        
+<div class="xblock xblock-student_view xblock-student_view-problem xmodule_display xmodule_ProblemBlock" data-course-id="course-v1:urfu+MCS+fall_2025" data-init="XBlockToXModuleShim" data-runtime-class="LmsRuntime" data-runtime-version="1" data-block-type="problem" data-usage-id="block-v1:urfu+MCS+fall_2025+type@problem+block@d44ae069359443599c59bf972f5523c6" data-request-token="c8508350bae811f0bad766eb167f2cb3" data-graded="True" data-has-score="True">
+  <script type="json/xblock-args" class="xblock-json-init-args">
+    {"xmodule-type": "Problem"}
+  </script>
+  <div id="problem_d44ae069359443599c59bf972f5523c6" class="problems-wrapper" role="group"
+     aria-labelledby="d44ae069359443599c59bf972f5523c6-problem-title"
+     data-problem-id="block-v1:urfu+MCS+fall_2025+type@problem+block@d44ae069359443599c59bf972f5523c6" data-url="/courses/course-v1:urfu+MCS+fall_2025/xblock/block-v1:urfu+MCS+fall_2025+type@problem+block@d44ae069359443599c59bf972f5523c6/handler/xmodule_handler"
+     data-problem-score="0.0"
+     data-problem-total-possible="19.0"
+     data-attempts-used="0"
+     data-content="
+
+
+
+&lt;h3 class=&#34;hd hd-3 problem-header&#34; id=&#34;d44ae069359443599c59bf972f5523c6-problem-title&#34; aria-describedby=&#34;block-v1:urfu+MCS+fall_2025+type@problem+block@d44ae069359443599c59bf972f5523c6-problem-progress&#34; tabindex=&#34;-1&#34;&gt;
+  Кроссворд
+&lt;/h3&gt;
+
+&lt;div class=&#34;problem-progress&#34; id=&#34;block-v1:urfu+MCS+fall_2025+type@problem+block@d44ae069359443599c59bf972f5523c6-problem-progress&#34;&gt;&lt;/div&gt;
+
+&lt;div class=&#34;problem&#34;&gt;
+  &lt;div&gt;
+    &lt;link rel=&#34;stylesheet&#34; type=&#34;text/css&#34; href=&#34;/assets/courseware/v1/447a5e90aeec759c19bcf6786df46869/asset-v1:urfu+MCS+fall_2025+type@asset+block/crossword.css&#34;/&gt;
+    &lt;script type=&#34;text/javascript&#34; src=&#34;/assets/courseware/v1/df47cf0ccfa4cadea9261b34da61d2dd/asset-v1:urfu+MCS+fall_2025+type@asset+block/crossword.js&#34;/&gt;
+
+    &lt;div class=&#34;task-description&#34;&gt;
+        &lt;p&gt;Заполните поля кроссворда&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;div id=&#34;crossword_container&#34;/&gt;
+
+    &lt;div id=&#34;crossword_input&#34; style=&#34;/*display: none!important;*/&#34;&gt;
+        &lt;div class=&#34;wrapper-problem-response&#34; tabindex=&#34;-1&#34; aria-label=&#34;Question 1&#34; role=&#34;group&#34;&gt;&lt;div id=&#34;inputtype_d44ae069359443599c59bf972f5523c6_2_1&#34; class=&#34; capa_inputtype  textline&#34;&gt;
+
+    &lt;div class=&#34;unanswered &#34;&gt;
+
+
+
+&lt;input type=&#34;text&#34; name=&#34;input_d44ae069359443599c59bf972f5523c6_2_1&#34; id=&#34;input_d44ae069359443599c59bf972f5523c6_2_1&#34; aria-describedby=&#34;status_d44ae069359443599c59bf972f5523c6_2_1&#34; value=&#34;&#34; autocomplete=&#34;off&#34; size=&#34;40&#34;/&gt;
+&lt;span class=&#34;trailing_text&#34; id=&#34;trailing_text_d44ae069359443599c59bf972f5523c6_2_1&#34;/&gt;
+
+
+
+&lt;span class=&#34;status unanswered&#34; id=&#34;status_d44ae069359443599c59bf972f5523c6_2_1&#34; data-tooltip=&#34;Not yet answered.&#34;&gt;
+  &lt;span class=&#34;sr&#34;&gt;unanswered&lt;/span&gt;&lt;span class=&#34;status-icon&#34; aria-hidden=&#34;true&#34;/&gt;
+&lt;/span&gt;
+
+
+&lt;p id=&#34;answer_d44ae069359443599c59bf972f5523c6_2_1&#34; class=&#34;answer&#34;/&gt;
+
+
+    &lt;/div&gt;
+
+
+&lt;/div&gt;&lt;br/&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;script type=&#34;text/javascript&#34;&gt;
+
+        let data = {&#39;student_data&#39;: [{&#39;orientation&#39;: &#39;across&#39;, &#39;unique_position&#39;: 0, &#39;hint&#39;: &#39;Этот ученый Средневековья, наряду с Дж. Бруно, превратили в сознании людей Землю в крошечную частицу Вселенной&#39;, &#39;clue&#39;: &#39;Польский ученый, создавший гелиоцентрическую модель строения Солнечной системы и достаточно точно определивший относительные расстояния от Солнца до планет&#39;, &#39;start_x&#39;: 1, &#39;start_y&#39;: 3, &#39;answer&#39;: &#39;коперник&#39;, &#39;position&#39;: 1}, {&#39;orientation&#39;: &#39;across&#39;, &#39;unique_position&#39;: 1, &#39;hint&#39;: &#39;Древнегреческий астроном, впервые определивший угол наклона земной оси&#39;, &#39;clue&#39;: &#39;Греческий ученый и поэт, благодаря своим астрономическим наблюдениям достаточно точно вычисливший расстояние от экватора до тропика&#39;, &#39;start_x&#39;: 1, &#39;start_y&#39;: 6, &#39;answer&#39;: &#39;эратосфен&#39;, &#39;position&#39;: 2}, {&#39;orientation&#39;: &#39;across&#39;, &#39;unique_position&#39;: 2, &#39;hint&#39;: &#39;Это имя носит межпланетная станция, названная в честь итальяно-французского ученого&#39;, &#39;clue&#39;: &#39;Итальянский и французский ученый-астроном, внесший значительный вклад в исследование Луны и планет Солнечной системы и их спутников, определивший расстояние от Солнца до Земли по параллаксу Марса&#39;, &#39;start_x&#39;: 6, &#39;start_y&#39;: 9, &#39;answer&#39;: &#39;кассини&#39;, &#39;position&#39;: 7}, {&#39;orientation&#39;: &#39;across&#39;, &#39;unique_position&#39;: 3, &#39;hint&#39;: &#39;Выдающийся физик, один из отцов квантовой механики&#39;, &#39;clue&#39;: &#39;Немецкий физик, лауреат Нобелевской премии, один из создателей квантовой механики, известен широкой публике благодаря мысленному эксперименту, демонстрирующему неполноту квантовой механики при переходе от субатомных систем к макроскопическим&#39;, &#39;start_x&#39;: 1, &#39;start_y&#39;: 15, &#39;answer&#39;: &#39;шредингер&#39;, &#39;position&#39;: 9}, {&#39;orientation&#39;: &#39;across&#39;, &#39;unique_position&#39;: 4, &#39;hint&#39;: &#39;Ученый, предложивший планетарную модель атома&#39;, &#39;clue&#39;: &#39;Датский физик, один из создателей квантовой механики, создатель первой квантовой теории атома&#39;, &#39;start_x&#39;: 12, &#39;start_y&#39;: 5, &#39;answer&#39;: &#39;бор&#39;, &#39;position&#39;: 11}, {&#39;orientation&#39;: &#39;across&#39;, &#39;unique_position&#39;: 5, &#39;hint&#39;: &#39;Древнегреческий философ, своим учением о природе на многие столетия опередивший время&#39;, &#39;clue&#39;: &#39;Древнегреческий философ, развивал атомистические идеи Демокрита, рассматривал Вселенную как бесконечность&#39;, &#39;start_x&#39;: 11, &#39;start_y&#39;: 7, &#39;answer&#39;: &#39;эпикур&#39;, &#39;position&#39;: 14}, {&#39;orientation&#39;: &#39;across&#39;, &#39;unique_position&#39;: 6, &#39;hint&#39;: &#39;С этим ученым связана легенда об упавшем ему на голову яблоке&#39;, &#39;clue&#39;: &#39;Английский ученый, заложивший основы классической механики, в том числе закон всемирного тяготения и законы механики&#39;, &#39;start_x&#39;: 11, &#39;start_y&#39;: 14, &#39;answer&#39;: &#39;ньютон&#39;, &#39;position&#39;: 15}, {&#39;orientation&#39;: &#39;across&#39;, &#39;unique_position&#39;: 7, &#39;hint&#39;: &#39;Именем этого ученого названа основная константа квантовой теории&#39;, &#39;clue&#39;: &#39;Немецкий физик, лауреат Нобелевской премии, основоположник квантовой физики, сформулировал второе начало термодинамики в виде принципа возрастания энтропии&#39;, &#39;start_x&#39;: 15, &#39;start_y&#39;: 12, &#39;answer&#39;: &#39;планк&#39;, &#39;position&#39;: 16}, {&#39;orientation&#39;: &#39;across&#39;, &#39;unique_position&#39;: 8, &#39;hint&#39;: &#39;Этому ученому принадлежит крылатое высказывание «И всё-таки она вертится!» (итал. E pur si muove! [ɛ ˈpur si muˈovɛ])&#39;, &#39;clue&#39;: &#39;Итальянский ученый, гелиоцентрист, основатель экспериментальной физики, одним из первых стал использовать телескоп для исследования небесных тел&#39;, &#39;start_x&#39;: 10, &#39;start_y&#39;: 18, &#39;answer&#39;: &#39;галилей&#39;, &#39;position&#39;: 17}, {&#39;orientation&#39;: &#39;down&#39;, &#39;unique_position&#39;: 9, &#39;hint&#39;: &#39;Итальянский философ эпохи Ренессанса, говорил о множественности обитаемых миров&#39;, &#39;clue&#39;: &#39;Итальянский философ, гелиоцентрист, рассматривающий звезды как далекие солнца, за свои убеждения пал жертвой римской инквизиции&#39;, &#39;start_x&#39;: 5, &#39;start_y&#39;: 2, &#39;answer&#39;: &#39;бруно&#39;, &#39;position&#39;: 3}, {&#39;orientation&#39;: &#39;down&#39;, &#39;unique_position&#39;: 10, &#39;hint&#39;: &#39;Ученый, открывший электромагнитную индукцию&#39;, &#39;clue&#39;: &#39;Английский физик, основоположник учения об электромагнитном поле&#39;, &#39;start_x&#39;: 3, &#39;start_y&#39;: 5, &#39;answer&#39;: &#39;фарадей&#39;, &#39;position&#39;: 4}, {&#39;orientation&#39;: &#39;down&#39;, &#39;unique_position&#39;: 11, &#39;hint&#39;: &#39;Древнегреческий философ, считал, что Космос подобен живым существам, которые рождаются, достигают зрелости, стареют и должны погибнуть&#39;, &#39;clue&#39;: &#39;Древнегреческий философ, предполагавший, что Земля имеет форму цилиндра, парящего в центре мира, а звезды и Луна – это «окошки» в  кольцах-торах, окружающих Землю&#39;, &#39;start_x&#39;: 9, &#39;start_y&#39;: 5, &#39;answer&#39;: &#39;анаксимандр&#39;, &#39;position&#39;: 5}, {&#39;orientation&#39;: &#39;down&#39;, &#39;unique_position&#39;: 12, &#39;hint&#39;: &#39;Именем этого американского астронома назван орбитальный космический телескоп&#39;, &#39;clue&#39;: &#39;Американский астроном, внес значительный вклад в современные представления о Вселенной, существовании других галактик, а также применил эффект Доплера к космическим объектам (открыл красное смещение)&#39;, &#39;start_x&#39;: 7, &#39;start_y&#39;: 8, &#39;answer&#39;: &#39;хаббл&#39;, &#39;position&#39;: 6}, {&#39;orientation&#39;: &#39;down&#39;, &#39;unique_position&#39;: 13, &#39;hint&#39;: &#39;Древнегореченский философ, который внес значительный вклад в развитие идей Демокрита по атомистической космологии&#39;, &#39;clue&#39;: &#39;Древнегреческий философ, основоположник атомистики, внес значительный вклад в формирование идей Демокрита&#39;, &#39;start_x&#39;: 5, &#39;start_y&#39;: 11, &#39;answer&#39;: &#39;левкипп&#39;, &#39;position&#39;: 8}, {&#39;orientation&#39;: &#39;down&#39;, &#39;unique_position&#39;: 14, &#39;hint&#39;: &#39;Считается, что этому ученому принадлежит открытие одной из основополагающих теорем евклидовой геометрии&#39;, &#39;clue&#39;: &#39;Древнегреческий ученый и философ, соратники приписывают ему открытие шарообразности  Земли&#39;, &#39;start_x&#39;: 16, &#39;start_y&#39;: 1, &#39;answer&#39;: &#39;пифагор&#39;, &#39;position&#39;: 10}, {&#39;orientation&#39;: &#39;down&#39;, &#39;unique_position&#39;: 15, &#39;hint&#39;: &#39;Именем этого немецкого ученого назван орбитальный телескоп, занимающийся поиском планет в других планетных системах&#39;, &#39;clue&#39;: &#39;Немецкий ученый, первым сформулировал три закона движения планет в Солнечной ситсеме&#39;, &#39;start_x&#39;: 3, &#39;start_y&#39;: 14, &#39;answer&#39;: &#39;кеплер&#39;, &#39;position&#39;: 12}, {&#39;orientation&#39;: &#39;down&#39;, &#39;unique_position&#39;: 16, &#39;hint&#39;: &#39;Древнегреческий философ, создал концепцию непрерывного изменения и в качестве сравнения использовал образ реки, в которую невозможно войти дважды&#39;, &#39;clue&#39;: &#39;Древнегреческий философ, ввел положение о всеобщей изменчивости и предложил геоцентрическую модель мира&#39;, &#39;start_x&#39;: 14, &#39;start_y&#39;: 3, &#39;answer&#39;: &#39;гераклит&#39;, &#39;position&#39;: 13}, {&#39;orientation&#39;: &#39;down&#39;, &#39;unique_position&#39;: 17, &#39;hint&#39;: &#39;Известный физик, для доказательства своих теорий использовавший мысленные эксперименты – с лифтом, с поездом, с близнецами и другие&#39;, &#39;clue&#39;: &#39;Немецкий физик-теоретик, один из основателей  современной теоретической физики, автор теории относительности&#39;, &#39;start_x&#39;: 11, &#39;start_y&#39;: 7, &#39;answer&#39;: &#39;эйнштейн&#39;, &#39;position&#39;: 14}, {&#39;orientation&#39;: &#39;down&#39;, &#39;unique_position&#39;: 18, &#39;hint&#39;: &#39;Труды этого ученого многие столетия, вплоть до Коперника, были основополагающими в астрономии&#39;, &#39;clue&#39;: &#39;Создал геоцентрическую модель мира, предсказывающую движение планет, по предполагаемым траекториям – деферентам и эпициклам&#39;, &#39;start_x&#39;: 15, &#39;start_y&#39;: 12, &#39;answer&#39;: &#39;птолемей&#39;, &#39;position&#39;: 16}], &#39;client_check&#39;: true, &#39;language&#39;: &#39;ru&#39;};
+
+        new Crossword({
+            element: document.getElementById(&#39;crossword_container&#39;),
+            input:  document.getElementById(&#39;crossword_input&#39;),
+            data: data[&#34;student_data&#34;],
+            client_check: data.client_check,
+            language: data.language
+        });
+    &lt;/script&gt;
+    &lt;div class=&#34;solution-span&#34;&gt;
+ &lt;span id=&#34;solution_d44ae069359443599c59bf972f5523c6_solution_1&#34;/&gt;
+&lt;/div&gt;&lt;/div&gt;
+  &lt;div class=&#34;action&#34;&gt;
+    &lt;input type=&#34;hidden&#34; name=&#34;problem_id&#34; value=&#34;Кроссворд&#34; /&gt;
+
+    &lt;div class=&#34;problem-action-buttons-wrapper&#34;&gt;
+    &lt;/div&gt;
+    &lt;div class=&#34;submit-attempt-container&#34;&gt;
+      &lt;button type=&#34;button&#34; class=&#34;submit btn-brand&#34; data-submitting=&#34;Submitting&#34; data-value=&#34;Submit&#34; data-should-enable-submit-button=&#34;True&#34; aria-describedby=&#34;submission_feedback_d44ae069359443599c59bf972f5523c6&#34; &gt;
+          &lt;span class=&#34;submit-label&#34;&gt;Submit&lt;/span&gt;
+      &lt;/button&gt;
+
+      &lt;div class=&#34;submission-feedback &#34; id=&#34;submission_feedback_d44ae069359443599c59bf972f5523c6&#34;&gt;
+        &lt;span class=&#34;sr&#34;&gt;Some problems have options such as save, reset, hints, or show answer. These options follow the Submit button.&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+    
+
+
+&lt;div class=&#34;notification warning notification-gentle-alert
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-exclamation-circle&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;d44ae069359443599c59bf972f5523c6-problem-title&#34;&gt;
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Review&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+    
+
+
+&lt;div class=&#34;notification warning notification-save
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-save&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;d44ae069359443599c59bf972f5523c6-problem-title&#34;&gt;None
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Review&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+    
+    
+
+
+&lt;div class=&#34;notification general notification-show-answer
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-info-circle&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;d44ae069359443599c59bf972f5523c6-problem-title&#34;&gt;Answers are displayed within the problem
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Review&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;script&gt;
+    function emit_event(message) {
+        parent.postMessage(message, &#39;*&#39;);
+    }
+&lt;/script&gt;
+"
+     data-graded="True">
+    <p class="loading-spinner">
+        <i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
+        <span class="sr">Loading&hellip;</span>
+    </p>
+</div>
+
+</div>
+
+    </div>
+</div>
+
+
+  
+  <script type="text/javascript">
+    (function (require) {
+        require(['https://cdn2.openedu.ru/static/js/dateutil_factory.a28baef97506.js?raw'], function () {
+          require(['js/dateutil_factory'], function (DateUtilFactory) {
+            
+    DateUtilFactory.transform('.localized-datetime');
+
+          });
+        });
+    }).call(this, require || RequireJS.require);
+  </script>
+
+
+<script>
+    function emit_event(message) {
+        parent.postMessage(message, '*');
+    }
+</script>
+
+</div>
+
+      </main>
+  </section>
+</div>
+
+<script type="text/javascript">
+  (function() {
+    // If this view is rendered in an iframe within the learning microfrontend app
+    // it will report the height of its contents to the parent window when the
+    // document loads, window resizes, or DOM mutates.
+    if (window !== window.parent) {
+      document.body.className += ' view-in-mfe';
+      var lastHeight = window.offsetHeight;
+      var lastWidth = window.offsetWidth;
+      var contentElement = document.getElementById('content');
+
+      function dispatchResizeMessage(event) {
+        // Note: event is actually an Array of MutationRecord objects
+        // when fired from the MutationObserver
+        var eventType = event.type || 'mutate';
+        var newHeight = contentElement.offsetHeight;
+        var newWidth = contentElement.offsetWidth;
+        if (eventType !== 'load' && newWidth === lastWidth && newHeight === lastHeight) {
+            // Monitor when any anchor tag is clicked, it is checked to make sure
+            // it is referencing an element's id or name (not an external website). If
+            // the href attribute is an id or name, the location of the selected focus
+            // element is sent through its offset attribute. The offset will
+            // allow the page to scroll to the location of the focus element so
+            // that it is at the top of the page. Unique ids and names are
+            // required for proper scrolling.
+            $('a').on("click", function(event){
+              if ($(this).attr('href')[0] === "#") {
+                var targetId = $(this).attr('href');
+                var targetName = $(this).attr('href').slice(1);
+                // Checks if the target uses an id or name to focus and gets offset.
+                var targetOffset = $(targetId).offset() || $(document.getElementsByName(targetName)[0]).offset();
+                if (targetOffset) {
+                  event.preventDefault();
+                  window.parent.postMessage({"offset": targetOffset.top}, document.referrer);
+                }
+              }
+            })
+          return;
+        }
+        // Monitor for messages and checks if the message contains an id. If
+        // there is an id, then the location of the selected focus element
+        // is sent through its offset attribute. The offset will allow the
+        // page to scroll to the location of the focus element so that it is
+        // at the top of the page. Unique ids and names are required for
+        // proper scrolling.
+        window.addEventListener('message', function (event) {
+          if (event.data.hashName) {
+            var targetId = event.data.hashName;
+            var targetName = event.data.hashName.slice(1);
+            // Checks if the target uses an id or name to focus and gets offset.
+            var targetOffset = $(targetId).offset() || $(document.getElementsByName(targetName)[0]).offset();
+            window.parent.postMessage({ 'offset': targetOffset.top }, document.referrer);
+          }
+        })
+
+        window.parent.postMessage({
+            type: 'plugin.resize',
+            payload: {
+              width: newWidth,
+              height: newHeight,
+            }
+          }, document.referrer
+        );
+
+        lastHeight = newHeight;
+        lastWidth = newWidth;
+
+        // Within the learning microfrontend the iframe resizes to match the
+        // height of this document and it should never scroll. It does scroll
+        // ocassionally when javascript is used to focus elements on the page
+        // before the parent iframe has been resized to match the content
+        // height. This window.scrollTo is an attempt to keep the content at the
+        // top of the page. See TNL-7094
+        window.scrollTo(0, 0);
+      }
+
+      // Create an observer instance linked to the callback function
+      const observer = new MutationObserver(dispatchResizeMessage);
+
+      // Start observing the target node for configured mutations
+      observer.observe(document.body, { attributes: true, childList: true, subtree: true });
+
+      window.addEventListener('load', dispatchResizeMessage);
+      const resizeObserver = new ResizeObserver(dispatchResizeMessage);
+      resizeObserver.observe(document.body);
+    }
+  }());
+</script>
+
+      
+    </div>
+
+
+
+  
+  
+  <script type="text/javascript" src="https://cdn2.openedu.ru/static/common/js/vendor/jquery.scrollTo.525edcc52fe8.js" async></script>
+  <script type="text/javascript" src="https://cdn2.openedu.ru/static/js/vendor/flot/jquery.flot.d3d45ff0c6a8.js" async></script>
+
+  
+    
+<script type="text/javascript" src="https://cdn2.openedu.ru/static/js/lms-courseware.9517dcd2081d.js" charset="utf-8"></script>
+
+
+
+    
+
+
+
+
+<script type="text/javascript">
+    // Fast Preview was introduced in 2.5. However, it
+    // causes undesirable flashing/font size changes when
+    // MathJax is used for interactive preview (equation editor).
+    // Setting processSectionDelay to 0 (see below) fully eliminates
+    // fast preview, but to reduce confusion, we are also setting
+    // the option as displayed in the context menu to false.
+    // When upgrading to 2.6, check if this variable name changed.
+    window.MathJax = {
+      menuSettings: {CHTMLpreview: false}
+    };
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    messageStyle: "none",
+    tex2jax: {
+      inlineMath: [
+        ["\\(","\\)"],
+        ['[mathjaxinline]','[/mathjaxinline]']
+      ],
+      displayMath: [
+        ["\\[","\\]"],
+        ['[mathjax]','[/mathjax]']
+      ]
+    }
+  });
+</script>
+<script type="text/x-mathjax-config">
+
+  // In order to eliminate all flashing during interactive
+  // preview, it is necessary to set processSectionDelay to 0
+  // (remove delay between input and output phases). This
+  // effectively disables fast preview, regardless of
+  // the fast preview setting as shown in the context menu.
+  MathJax.Hub.processSectionDelay = 0;
+
+  MathJax.Hub.signal.Interest(function(message) {
+    if(message[0] === "End Math") {
+        set_mathjax_display_div_settings();
+    }
+  });
+  function set_mathjax_display_div_settings() {
+    $('.MathJax_Display').each(function( index ) {
+      this.setAttribute('tabindex', '0');
+      this.setAttribute('aria-live', 'off');
+      this.removeAttribute('role');
+      this.removeAttribute('aria-readonly');
+    });
+  }
+</script>
+
+<script type="text/javascript">
+    // Activating Mathjax accessibility files
+    window.MathJax = {
+        menuSettings: {
+            collapsible: true,
+            autocollapse: false,
+            explorer: true
+        }
+    };
+</script>
+
+<!-- This must appear after all mathjax-config blocks, so it is after the imports from the other templates.
+     It can't be run through static.url because MathJax uses crazy url introspection to do lazy loading of
+     MathJax extension libraries -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_SVG"></script>
+
+
+<script src='https://cdn2.openedu.ru/static/bundles/ProblemBlockPreview.3c293987029be310b69a.40765775f6c6.js' type='application/javascript'></script>
+<script src='https://cdn2.openedu.ru/static/bundles/XModuleShim.b0a0bcfa4bfc116299b0.0021dbb8621f.js' type='application/javascript'></script>
+<script src='https://cdn2.openedu.ru/static/bundles/VerticalStudentView.218999454019487e3bbe.50411955078b.js' type='application/javascript'></script>
+
+
+
+  
+
+
+
+  <script type="text/javascript" src="https://cdn2.openedu.ru/static/js/vendor/noreferrer.aa62a3e70ffa.js" charset="utf-8"></script>
+  <script type="text/javascript" src="https://cdn2.openedu.ru/static/js/utils/navigation.08930e16ab3d.js" charset="utf-8"></script>
+  <script type="text/javascript" src="https://cdn2.openedu.ru/static/js/header/header.309a1243e175.js"></script>
+  
+  <script type="text/javascript" src="https://cdn2.openedu.ru/static/js/src/jquery_extend_patch.54dddef28d15.js"></script>
+  <div id="lean_overlay"></div>
+
+</body>
+</html>
+
+

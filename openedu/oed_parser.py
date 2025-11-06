@@ -82,6 +82,8 @@ class OpenEduParser:
     def parse_problem(self, problem: BeautifulSoup, problem_header: str = None) -> list[Question]:
         questions = []
         mt = problem.select_one('div.matching_table, div.adv-app')
+        is_crossword = problem.select_one("#crossword_container")
+
         map = problem.find("div", class_="historical-path-container")
         if map:
             map_input = map.parent.find('input')
@@ -98,6 +100,8 @@ class OpenEduParser:
         if mt:
             q = self.parse_question(problem, default_prepend)
             questions.append(q)
+        elif is_crossword:
+            raise UnsupportedProblemType("Crossword")
         else:
             prepend = default_prepend.copy()
 
