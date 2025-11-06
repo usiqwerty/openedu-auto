@@ -17,13 +17,20 @@ def get_ans_id(answers: list[tuple[str, str]], answer: str):
 
 def get_similar_index(ans: str, options: list[str]):
     for i, opt in enumerate(options):
-        threshold = 90
+        if len(opt) == len(ans):
+            ratio = fuzz.ratio(opt, ans)
 
-        if max(len(opt), len(ans)) <= 7:
-            threshold = 85
+            similar_characters = len(opt) * ratio / 100
+            if similar_characters >= len(ans) - 1:
+                return i
+        else:
+            threshold = 90
 
-        if fuzz.ratio(opt, ans) > threshold:
-            return i
+            if max(len(opt), len(ans)) <= 7:
+                threshold = 85
+
+            if fuzz.ratio(opt, ans) > threshold:
+                return i
 
 
 def lookup_option_id_in_columns(answer, option_columns: list[list[tuple[str, str]]]):

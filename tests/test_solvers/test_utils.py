@@ -1,6 +1,8 @@
+import json
+
 import pytest
 
-from solvers.utils import extract_choice_from_id
+from solvers.utils import extract_choice_from_id, get_similar_index
 from openedu.questions.choice import ChoiceQuestion
 
 
@@ -18,3 +20,10 @@ def test_compose_answer(answer, ids, options, expected):
 
 def test_extract_choice_from_id():
     assert extract_choice_from_id("input_e0fe1d42a264ff27ca9c_2_1_choice_2") == ("input_e0fe1d42a264ff27ca9c_2_1", "choice_2")
+
+
+def test_get_similar_index():
+    with open("tests/data/choice_options.json", encoding='utf-8') as f:
+        chopts = json.load(f)
+    for ans, options, correct in chopts:
+        assert get_similar_index(ans, options) == correct
