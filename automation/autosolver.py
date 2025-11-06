@@ -20,6 +20,9 @@ class OpenEduAutoSolver(OpenEduProcessor):
         answers = {}
         input_id = None
         for question in problem:
+            if question.correct_answer is not None and question.correct_answer != "":
+                print("problem has solved question, skipping")
+                return
             if isinstance(question, FreeMatchQuestion):
                 raise UnsupportedProblemType("freematch")
             try:
