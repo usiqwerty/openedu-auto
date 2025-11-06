@@ -22,7 +22,7 @@ def setup_logging():
     console_handler.setLevel(logging.WARNING)
     console_handler.setFormatter(simple_formatter)
 
-    file_handler = logging.FileHandler(filename="userdata/last.log", mode='w')
+    file_handler = logging.FileHandler(filename="userdata/last.log", mode='w', encoding='utf-8')
     file_handler.setLevel(logging.DEBUG)
     file_handler.setFormatter(named_formatter)
 
