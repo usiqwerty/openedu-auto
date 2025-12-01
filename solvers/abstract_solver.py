@@ -1,6 +1,8 @@
 from abc import abstractmethod, ABC
 
+from errors import NoSolutionFoundError
 from openedu.questions.choice import ChoiceQuestion
+from openedu.questions.crossword import Crossword
 from openedu.questions.fill import FillQuestion
 from openedu.questions.freematch import FreeMatchQuestion
 from openedu.questions.fixed_match import FixedMatchQuestion
@@ -22,6 +24,8 @@ class AbstractSolver(ABC):
             return self.solve_fill(question)
         elif isinstance(question, NewMatchQuestion):
             return self.solve_new_match(question)
+        elif isinstance(question, Crossword):
+            return self.solve_crossword(question)
 
     @abstractmethod
     def solve_choice(self, question: ChoiceQuestion) -> tuple[str, str | list[str]]:
@@ -46,3 +50,13 @@ class AbstractSolver(ABC):
     @abstractmethod
     def solve_new_match(self, question: NewMatchQuestion) -> tuple[str, str | list[str]]:
         pass
+
+    def solve_crossword(self, question: Crossword):
+        ans = []
+        for item in question.questions:
+            if item.answer is None:
+                raise NoSolutionFoundError("Answers were not inserted into crossword data")
+            ans.append((item.unique_position, item.answer))
+        ans.sort(key=lambda x: x[0])
+
+        return question.compose([answer for _, answer in ans])

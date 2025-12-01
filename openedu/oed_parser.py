@@ -6,6 +6,7 @@ from pydantic import BaseModel
 from errors import UnsupportedProblemType
 from images.image_describer import ImageDescriber
 from openedu.questions.choice import ChoiceQuestion
+from openedu.questions.crossword import Crossword
 from openedu.questions.fill import FillQuestion
 from openedu.questions.freematch import FreeMatchQuestion
 from openedu.questions.fixed_match import FixedMatchQuestion
@@ -101,7 +102,8 @@ class OpenEduParser:
             q = self.parse_question(problem, default_prepend)
             questions.append(q)
         elif is_crossword:
-            raise UnsupportedProblemType("Crossword")
+            q = Crossword.parse(problem)
+            questions.append(q)
         else:
             prepend = default_prepend.copy()
 
