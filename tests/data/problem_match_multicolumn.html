@@ -1,0 +1,823 @@
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<!--[if lte IE 9]><html class="ie ie9 lte9" lang="en"><![endif]-->
+<!--[if !IE]><!--><html lang="en"><!--<![endif]-->
+<head dir="ltr">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="origin-trial" content="ArNBN7d1AkvMhJTGWXlJ8td/AN4lOokzOnqKRNkTnLqaqx0HpfYvmx8JePPs/emKh6O5fckx14LeZIGJ1AQYjgAAAABzeyJvcmlnaW4iOiJodHRwOi8vbG9jYWxob3N0OjE4MDAwIiwiZmVhdHVyZSI6IkRpc2FibGVEaWZmZXJlbnRPcmlnaW5TdWJmcmFtZURpYWxvZ1N1cHByZXNzaW9uIiwiZXhwaXJ5IjoxNjM5NTI2Mzk5fQ==">
+
+
+
+
+  <title>
+
+ MCS Courseware | Открытое образование
+</title>
+
+
+
+
+  <script type="text/javascript" src="https://cdn2.openedu.ru/static/js/i18n/en/djangojs.705ead69114e.js"></script>
+  <script type="text/javascript" src="https://cdn2.openedu.ru/static/js/ie11_find_array.bd1c6dc7a133.js"></script>
+
+  <link rel="icon" type="image/x-icon" href="https://cdn2.openedu.ru/static/edx-theme/images/favicon.bd3d272022e9.ico"/>
+
+
+
+
+
+
+    <link href="https://cdn2.openedu.ru/static/edx-theme/css/lms-style-vendor.68e48093f5dd.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+    <link href="https://cdn2.openedu.ru/static/edx-theme/css/lms-main-v1.4fcbf1c0bdb5.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+<script type="text/javascript" src="https://cdn2.openedu.ru/static/js/lms-main_vendor.3c3c9a2604d6.js" charset="utf-8"></script>
+
+
+
+
+<script type="text/javascript" src="https://cdn2.openedu.ru/static/js/lms-application.5ba2aca48790.js" charset="utf-8"></script>
+
+
+
+
+
+
+    <script type="text/javascript" src="https://cdn2.openedu.ru/static/bundles/commons.18ca13fd3a36eedcddd3.6ddbb79b7234.js" ></script>
+
+
+
+  <script>
+    window.baseUrl = "https://cdn2.openedu.ru/static/";
+    (function (require) {
+      require.config({
+          baseUrl: window.baseUrl
+      });
+    }).call(this, require || RequireJS.require);
+  </script>
+  <script type="text/javascript" src="https://cdn2.openedu.ru/static/lms/js/require-config.38226099c6ad.js"></script>
+
+    <script type="text/javascript">
+        (function (require) {
+          require.config({
+              paths: {
+                'course_bookmarks/js/views/bookmark_button': 'course_bookmarks/js/views/bookmark_button.d4cfaf3361fa',
+'js/views/message_banner': 'js/views/message_banner.141974fd4f5d',
+'moment': 'common/js/vendor/moment-with-locales.e3cc27d412a1',
+'moment-timezone': 'common/js/vendor/moment-timezone-with-data.60142e6c4416',
+'js/courseware/course_info_events': 'js/courseware/course_info_events.2fc35b57627f',
+'js/courseware/accordion_events': 'js/courseware/accordion_events.6064c7809de5',
+'js/dateutil_factory': 'js/dateutil_factory.a28baef97506',
+'js/courseware/link_clicked_events': 'js/courseware/link_clicked_events',
+'js/courseware/toggle_element_visibility': 'js/courseware/toggle_element_visibility.474ff5ba9de3',
+'js/student_account/logistration_factory': 'js/student_account/logistration_factory.5e55252d0ace',
+'js/courseware/courseware_factory': 'js/courseware/courseware_factory.1504fc10caef',
+'js/groups/views/cohorts_dashboard_factory': 'js/groups/views/cohorts_dashboard_factory.abc7c817c498',
+'js/groups/discussions_management/discussions_dashboard_factory': 'js/discussions_management/views/discussions_dashboard_factory.2e10d9097343',
+'draggabilly': 'js/vendor/draggabilly.26caba6f7187',
+'hls': 'common/js/vendor/hls.5e0c7e1b3bfd'
+            }
+          });
+        }).call(this, require || RequireJS.require);
+    </script>
+
+
+
+
+
+
+    <link href="https://cdn2.openedu.ru/static/edx-theme/css/lms-style-course-vendor.cc467ea1c47d.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+    <link href="https://cdn2.openedu.ru/static/edx-theme/css/lms-course.d3e35273eae9.css" rel="stylesheet" type="text/css" />
+
+
+
+
+<script type="text/javascript" src="https://cdn2.openedu.ru/static/js/jquery.autocomplete.964a0bfb4fd2.js" async></script>
+<script type="text/javascript" src="https://cdn2.openedu.ru/static/js/src/tooltip_manager.b8fa94d4cefc.js" async></script>
+
+<link href="https://cdn2.openedu.ru/static/css/vendor/jquery.autocomplete.css" rel="preload" type="text/css">
+
+
+  <base target="_parent">
+
+<script type="text/javascript">
+  var $$course_id = "course\u002Dv1:urfu+MCS+fall_2025";
+</script>
+
+
+
+
+
+
+
+
+
+
+<script type="application/json" id="user-metadata">
+    null
+</script>
+
+
+
+
+
+
+
+
+
+<!-- dummy Segment -->
+<script type="text/javascript">
+  var analytics = {
+    track: function() { return; },
+    trackLink: function() { return; },
+    pageview: function() { return; },
+    page: function() { return; }
+  };
+</script>
+<!-- end dummy Segment -->
+
+
+  <meta name="path_prefix" content="">
+
+
+  <meta name="openedx-release-line" content="maple" />
+
+
+
+
+
+</head>
+
+<body class="ltr view-in-course view-courseware courseware  lang_en">
+
+
+
+<div id="page-prompt"></div>
+
+    <a class="nav-skip sr-only sr-only-focusable" href="#main">Skip to main content</a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="marketing-hero"></div>
+
+    <div class="content-wrapper main-container" id="content" dir="ltr">
+
+
+
+
+
+
+
+
+
+<script type="text/template" id="image-modal-tpl">
+    <div class="wrapper-modal wrapper-modal-image">
+  <section class="image-link">
+    <%= smallHTML%> <% // xss-lint: disable=underscore-not-escaped %>
+    <a href="#" class="modal-ui-icon action-fullscreen" role="button">
+      <span class="label">
+        <span class="icon fa fa-arrows-alt fa-large" aria-hidden="true"></span> <%- gettext("Fullscreen") %>
+      </span>
+    </a>
+  </section>
+
+  <section class="image-modal">
+    <section class="image-content">
+      <div class="image-wrapper">
+        <img alt="<%- largeALT %>, <%- gettext('Large') %>" src="<%- largeSRC %>" />
+      </div>
+
+      <a href="#" class="modal-ui-icon action-close" role="button">
+        <span class="label">
+          <span class="icon fa fa-remove fa-large" aria-hidden="true"></span> <%- gettext("Close") %>
+        </span>
+      </a>
+
+      <ul class="image-controls">
+        <li class="image-control">
+          <a href="#" class="modal-ui-icon action-zoom-in" role="button">
+            <span class="label">
+              <span class="icon fa fa fa-search-plus fa-large" aria-hidden="true"></span> <%- gettext("Zoom In") %>
+            </span>
+          </a>
+        </li>
+
+        <li class="image-control">
+          <a href="#" class="modal-ui-icon action-zoom-out is-disabled" aria-disabled="true" role="button">
+            <span class="label">
+              <span class="icon fa fa fa-search-minus fa-large" aria-hidden="true"></span> <%- gettext("Zoom Out") %>
+            </span>
+          </a>
+        </li>
+      </ul>
+    </section>
+  </section>
+</div>
+
+</script>
+
+
+
+
+
+
+
+<div class="course-wrapper chromeless">
+  <section class="course-content" id="course-content"      data-enable-completion-on-view-service="false"     style="display: block; width: auto; margin: 0;"
+  >
+      <main id="main" aria-label="Content">
+
+<div class="xblock xblock-student_view xblock-student_view-vertical" data-course-id="course-v1:urfu+MCS+fall_2025" data-init="VerticalStudentView" data-runtime-class="LmsRuntime" data-runtime-version="1" data-block-type="vertical" data-usage-id="block-v1:urfu+MCS+fall_2025+type@vertical+block@be7b688da14f4f71982b3ca8d2d66e89" data-request-token="3834b372ceb111f09c3ab291175ff82f" data-graded="True" data-has-score="False">
+
+
+
+
+
+
+    <h4 class="hd-8 de-emphasized">This content is graded
+        as <td>'Космос'</td><br>
+        weight:&nbsp;1.0
+    </h4>
+
+
+<div class="vert-mod">
+    <div class="vert vert-0" data-id="block-v1:urfu+MCS+fall_2025+type@html+block@57edcf0f52524356aa8ce70929bae3e3">
+
+<div class="xblock xblock-student_view xblock-student_view-html xmodule_display xmodule_HtmlBlock" data-course-id="course-v1:urfu+MCS+fall_2025" data-init="XBlockToXModuleShim" data-runtime-class="LmsRuntime" data-runtime-version="1" data-block-type="html" data-usage-id="block-v1:urfu+MCS+fall_2025+type@html+block@57edcf0f52524356aa8ce70929bae3e3" data-request-token="3834b372ceb111f09c3ab291175ff82f" data-graded="True" data-has-score="False">
+  <script type="json/xblock-args" class="xblock-json-init-args">
+    {"xmodule-type": "HTMLModule"}
+  </script>
+  <h2>Строение внутренних оболочек Земли</h2>
+
+<p><strong>Цель работы</strong> – понять, строение внутренних оболочек Земли.</p>
+<p><strong>Объект исследований</strong> –  характеристики внутренних оболочек Земли.</p>
+
+
+<h2>Теория</h2>
+<p>Земля, как и другие планеты земной группы, имеет слоистое внутреннее строение. Она состоит из твёрдых силикатных оболочек (коры, крайне вязкой мантии), и металлического ядра (рис. 1). Внешняя часть ядра жидкая (значительно менее вязкая, чем мантия), а внутренняя – твёрдая.</p>
+
+<h2>Земная кора</h2>
+
+<p><strong>Земная кора</strong> – это верхняя часть твёрдой Земли. Есть два типа коры – континентальная и океаническая. Толщина коры колеблется от \(6\) км под океаном до \(30–70\) км на континентах. В континентальной коре выделяют три слоя: осадочный, гранитный и базальтовый. Океаническая кора сложена преимущественно породами основного состава (базальт) и осадочными. Земная кора разделена на различные по величине литосферные плиты, двигающиеся относительно друг друга. Кинематику этих движений описывает тектоника плит. </p>
+<p>Верхняя часть континентальной земной коры представляет собой прерывистый слой, состоящий из осадочных и вулканических горных пород. Слои могут быть смяты в складки, смещены по разрыву. На щитах осадочная оболочка отсутствует. Ниже расположен гранитный слой, состоящий из гнейсов и гранитов (скорость продольных волн в этом слое – до \(6.4\) км/с). Ещё ниже находится базальтовый слой (\(6.4–7.6\) км/с), сложенный метаморфическими горными породами, базальтами и габбро. </p>
+<p>В океанической коре сначала расположен верхний слой, состоящий из донных осадков, толщиной менее километра. Ниже лежит второй слой, сложенный главным образом из серпентинита, базальта и из прослоев осадков. Скорость продольных сейсмических волн в данном слое доходит до \(4–6\) км/с, а его толщина \(1–2.5\) км. Нижний, «океанический» слой сложен габбро. Этот слой имеет толщину в среднем около \(5\) км и скорость прохождения сейсмических волн \(6.4–7\) км/с. Основной химический состав коры: оксиды кремния (кремнезем) и алюминия, но с глубиной в составе земной коры увеличивается содержание оксидов магния и железа, уменьшается содержание кремнезёма, причём эта тенденция в большей степени имеет место при переходе к верхней мантии.</p>
+
+
+<h2>Мантия Земли</h2>
+
+<p><strong>Мантия</strong> – это силикатная оболочка Земли, расположенная между земной корой и ядром Земли. Мантия составляет \(67 \%\) массы Земли и около \(83 \%\) её объёма (без учёта атмосферы). Она простирается от границы с земной корой (на глубине \(5–70\) километров) до границы с ядром на глубине около \(2900\) км. От земной коры разделена поверхностью Мохоровичича, где скорость сейсмических волн при переходе из коры в мантию быстро увеличивается с \(6.7\) до \(8.2\) км/с. Мантия занимает огромный диапазон глубин, и с увеличением давления в веществе происходят фазовые переходы, при которых минералы приобретают всё более плотную структуру. Мантия Земли подразделяется на верхнюю мантию и нижнюю мантию.</p>
+<p>Согласно современным научным представлениям, состав земной мантии считается похожим на состав каменных метеоритов, в частности хондритов. В состав мантии преимущественно входят химические элементы, находившиеся в твёрдом состоянии или в твёрдых химических соединениях во время формирования Земли: кремний, железо, кислород, магний и др. Эти элементы образуют с диоксидом кремния силикаты. В верхней мантии (субстрате), скорее всего, больше форстерита \(MgSiO_4\), глубже несколько увеличивается содержание фаялита \(Fe_2 SiO_4\). В нижней мантии под воздействием очень высокого давления эти минералы разложились на оксиды \( (SiO_2, \ MgO, \ FeO) \).</p>
+<p>Агрегатное состояние мантии обуславливается воздействием температур и сверхвысокого давления. Из-за давления вещество почти всей мантии находится в твёрдом кристаллическом состоянии, несмотря на высокую температуру. </p>
+
+<h2>Ядро Земли</h2>
+
+<p><strong>Ядро</strong> – центральная, наиболее глубокая часть Земли, сфера, находящаяся под мантией и, предположительно, состоящая из железо-никелевого сплава с примесью других элементов. Глубина залегания – \(2900\) км. Средний радиус сферы – \(3485\) км. Разделяется на твёрдое внутреннее ядро радиусом около \(1300\) км и жидкое внешнее ядро толщиной около \(2200\) км, между которыми иногда выделяют переходную зону. Поэтому распространение упругих волн во внешней и внутренней части ядра происходит по разному (см. текст лекции). Температура в центре ядра Земли достигает \(6000 ^{\circ}C\), плотность около \(12.5 \ т/м^3\), давление до \(360\) ГПа (\(3.5\) млн атмосфер). Масса ядра – \(1.9 \times 10^{24}\) кг. За счет ядра Земли: его металлического состава и большой скорости вращения образуется мощное электромагнитное поле Земли, которое окружая планету образует щит от смертоносного для органической жизни солнечного излучения.</p>
+
+<figure style="margin: 20px 0;">
+<p style="text-align: center;">
+	<img style="width:680px;" src="//cdn2.openedu.ru/assets/courseware/v1/7b75bd9c3bf915dbee914f0836e34daf/asset-v1:urfu+MCS+fall_2025+type@asset+block/MSC_uz_02_01.png" alt="Рис.1.  Строение оболочек Земли (внутренних и внешних). Не в масштабе." />
+	<figcaption style="text-align: center;">Рис.1.  Строение оболочек Земли (внутренних и внешних). Не в масштабе.</figcaption>
+</p>
+</figure>
+</div>
+
+    </div>
+    <div class="vert vert-1" data-id="block-v1:urfu+MCS+fall_2025+type@problem+block@4c64e017be7a4f388b031faad72bfc19">
+
+<div class="xblock xblock-student_view xblock-student_view-problem xmodule_display xmodule_ProblemBlock" data-course-id="course-v1:urfu+MCS+fall_2025" data-init="XBlockToXModuleShim" data-runtime-class="LmsRuntime" data-runtime-version="1" data-block-type="problem" data-usage-id="block-v1:urfu+MCS+fall_2025+type@problem+block@4c64e017be7a4f388b031faad72bfc19" data-request-token="3834b372ceb111f09c3ab291175ff82f" data-graded="True" data-has-score="True">
+  <script type="json/xblock-args" class="xblock-json-init-args">
+    {"xmodule-type": "Problem"}
+  </script>
+  <div id="problem_4c64e017be7a4f388b031faad72bfc19" class="problems-wrapper" role="group"
+     aria-labelledby="4c64e017be7a4f388b031faad72bfc19-problem-title"
+     data-problem-id="block-v1:urfu+MCS+fall_2025+type@problem+block@4c64e017be7a4f388b031faad72bfc19" data-url="/courses/course-v1:urfu+MCS+fall_2025/xblock/block-v1:urfu+MCS+fall_2025+type@problem+block@4c64e017be7a4f388b031faad72bfc19/handler/xmodule_handler"
+     data-problem-score="0.0"
+     data-problem-total-possible="18.0"
+     data-attempts-used="0"
+     data-content="
+
+
+
+&lt;h3 class=&#34;hd hd-3 problem-header&#34; id=&#34;4c64e017be7a4f388b031faad72bfc19-problem-title&#34; aria-describedby=&#34;block-v1:urfu+MCS+fall_2025+type@problem+block@4c64e017be7a4f388b031faad72bfc19-problem-progress&#34; tabindex=&#34;-1&#34;&gt;
+  Ход работы
+&lt;/h3&gt;
+
+&lt;div class=&#34;problem-progress&#34; id=&#34;block-v1:urfu+MCS+fall_2025+type@problem+block@4c64e017be7a4f388b031faad72bfc19-problem-progress&#34;&gt;&lt;/div&gt;
+
+&lt;div class=&#34;problem&#34;&gt;
+  &lt;div&gt;
+&lt;script type=&#34;text/javascript&#34;&gt;
+    window.__define = window.define;
+    window.__require = window.require;
+    window.define = undefined;
+    window.require = undefined;
+&lt;/script&gt;
+
+&lt;script type=&#34;text/javascript&#34; src=&#34;/asset-v1:urfu+MCS+fall_2025+type@asset+block/sortable.js&#34;/&gt;
+
+&lt;script type=&#34;text/javascript&#34;&gt;
+  //window.define = window.__define;
+  //window.require = window.__require;
+  //window.__define = undefined;
+  //window.__require = undefined;
+ &lt;/script&gt;
+&lt;style&gt;
+    #task_HHthjer3f .text-fixed-width{
+        width: 25%;
+    }
+
+    #task_HHthjer3f .text-fixed-height{
+        height: 52px;
+    }
+
+    #task_HHthjer3f .conf-item{
+        padding: 2px;
+        margin: 5px;
+        font-size:80%;
+    }
+    &lt;/style&gt;
+
+&lt;script type=&#34;text/javascript&#34; src=&#34;/asset-v1:urfu+MCS+fall_2025+type@asset+block/matching_table_mobile.js&#34;/&gt;
+
+&lt;div class=&#34;matching_table disable-marker&#34; id=&#34;task_HHthjer3f&#34;&gt;
+
+&lt;p/&gt;
+
+&lt;table class=&#34;conf-table&#34;&gt;
+    &lt;tr&gt;
+        &lt;th class=&#34;conf-text conf-header text-fixed-width&#34;&gt;
+        	Показатель
+        &lt;/th&gt;
+        &lt;th class=&#34;conf-text conf-header text-fixed-width&#34;&gt;
+            Ядро
+        &lt;/th&gt;
+                &lt;th class=&#34;conf-text conf-header text-fixed-width&#34;&gt;
+            Мантия
+        &lt;/th&gt;
+                &lt;th class=&#34;conf-text conf-header text-fixed-width&#34;&gt;
+            Земная кора
+        &lt;/th&gt;
+    &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td class=&#34;conf-text conf-header text-fixed-height&#34;&gt;Глубина залегания&lt;/td&gt;
+            &lt;td id=&#34;a1&#34; capacity=&#34;1&#34; class=&#34;conf-answers-place conf-inputable input-place&#34;/&gt;
+            &lt;td id=&#34;a2&#34; capacity=&#34;1&#34; class=&#34;conf-answers-place conf-inputable input-place&#34;/&gt;
+            &lt;td id=&#34;a3&#34; capacity=&#34;1&#34; class=&#34;conf-answers-place conf-inputable input-place&#34;/&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td class=&#34;conf-text conf-header text-fixed-height&#34;&gt;Структура&lt;/td&gt;
+            &lt;td id=&#34;a4&#34; capacity=&#34;1&#34; class=&#34;conf-answers-place conf-inputable input-place&#34;/&gt;
+            &lt;td id=&#34;a5&#34; capacity=&#34;1&#34; class=&#34;conf-answers-place conf-inputable input-place&#34;/&gt;
+            &lt;td id=&#34;a6&#34; capacity=&#34;1&#34; class=&#34;conf-answers-place conf-inputable input-place&#34;/&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td class=&#34;conf-text conf-header text-fixed-height&#34;&gt;Особенности&lt;/td&gt;
+            &lt;td id=&#34;a7&#34; capacity=&#34;1&#34; class=&#34;conf-answers-place conf-inputable input-place&#34;/&gt;
+            &lt;td id=&#34;a8&#34; capacity=&#34;1&#34; class=&#34;conf-answers-place conf-inputable input-place&#34;/&gt;
+            &lt;td id=&#34;a9&#34; capacity=&#34;1&#34; class=&#34;conf-answers-place conf-inputable input-place&#34;/&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td class=&#34;conf-text conf-header text-fixed-height&#34;&gt;Распространение упругих волн&lt;/td&gt;
+            &lt;td id=&#34;a10&#34; capacity=&#34;1&#34; class=&#34;conf-answers-place conf-inputable input-place&#34;/&gt;
+            &lt;td id=&#34;a11&#34; capacity=&#34;1&#34; class=&#34;conf-answers-place conf-inputable input-place&#34;/&gt;
+            &lt;td id=&#34;a12&#34; capacity=&#34;1&#34; class=&#34;conf-answers-place conf-inputable input-place&#34;/&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td class=&#34;conf-text conf-header text-fixed-height&#34;&gt;Плотность&lt;/td&gt;
+            &lt;td id=&#34;a13&#34; capacity=&#34;1&#34; class=&#34;conf-answers-place conf-inputable input-place&#34;/&gt;
+            &lt;td id=&#34;a14&#34; capacity=&#34;1&#34; class=&#34;conf-answers-place conf-inputable input-place&#34;/&gt;
+            &lt;td id=&#34;a15&#34; capacity=&#34;1&#34; class=&#34;conf-answers-place conf-inputable input-place&#34;/&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td class=&#34;conf-text conf-header text-fixed-height&#34;&gt;Химический состав&lt;/td&gt;
+            &lt;td id=&#34;a16&#34; capacity=&#34;1&#34; class=&#34;conf-answers-place conf-inputable input-place&#34;/&gt;
+            &lt;td id=&#34;a17&#34; capacity=&#34;1&#34; class=&#34;conf-answers-place conf-inputable input-place&#34;/&gt;
+            &lt;td id=&#34;a18&#34; capacity=&#34;1&#34; class=&#34;conf-answers-place conf-inputable input-place&#34;/&gt;
+        &lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;p/&gt;
+
+    	&lt;div class=&#34;conf-answers-place conf-inputable conf-all-answers thirds&#34;&gt;
+
+			&lt;div id=&#34;b1&#34; class=&#34;conf-item conf-draggable&#34;&gt;&lt;div&gt;Глубина залегания от \(2890\) до \(6378\) км.&lt;/div&gt;&lt;/div&gt;
+			&lt;div id=&#34;b2&#34; class=&#34;conf-item conf-draggable&#34;&gt;&lt;div&gt;Глубина залегания от \(35\) до \(2890\) км&lt;/div&gt;&lt;/div&gt;
+			&lt;div id=&#34;b3&#34; class=&#34;conf-item conf-draggable&#34;&gt;&lt;div&gt;Глубина залегания от \(0\) до \(70\) км.&lt;/div&gt;&lt;/div&gt;
+
+			&lt;div id=&#34;b4&#34; class=&#34;conf-item conf-draggable&#34;&gt;&lt;div&gt;Имеет отличающуюся по физическим свойствам внешнюю и внутреннюю часть&lt;/div&gt;&lt;/div&gt;
+			&lt;div id=&#34;b5&#34; class=&#34;conf-item conf-draggable&#34;&gt;&lt;div&gt;Сверху отделена поверхностью Мохоровичича&lt;/div&gt;&lt;/div&gt;
+			&lt;div id=&#34;b6&#34; class=&#34;conf-item conf-draggable&#34;&gt;&lt;div&gt;Делится на континентальную и океаническую&lt;/div&gt;&lt;/div&gt;
+
+			&lt;div id=&#34;b7&#34; class=&#34;conf-item conf-draggable&#34;&gt;&lt;div&gt;Температура достигает \(6000 \ ^{\circ} C\)&lt;/div&gt;&lt;/div&gt;
+			&lt;div id=&#34;b8&#34; class=&#34;conf-item conf-draggable&#34;&gt;&lt;div&gt;Составляет \(67 \%\) массы Земли и около \(83 \%\) её объёма (без учёта атмосферы).&lt;/div&gt;&lt;/div&gt;
+			&lt;div id=&#34;b9&#34; class=&#34;conf-item conf-draggable&#34;&gt;&lt;div&gt;Континентальная содержит осадочный, гранитный и базальтовый; океаническая содержит осадочный и базальтовый слои&lt;/div&gt;&lt;/div&gt;
+
+			&lt;div id=&#34;b10&#34; class=&#34;conf-item conf-draggable&#34;&gt;&lt;div&gt;Во внешней части распространяются только продольные, а во внутренней части и поперечные упругие волны&lt;/div&gt;&lt;/div&gt;
+			&lt;div id=&#34;b11&#34; class=&#34;conf-item conf-draggable&#34;&gt;&lt;div&gt;Распространяются и продольные и поперечные упругие волны&lt;/div&gt;&lt;/div&gt;
+			&lt;div id=&#34;b12&#34; class=&#34;conf-item conf-draggable&#34;&gt;&lt;div&gt;Распространяются и продольные и поперечные упругие волны&lt;/div&gt;&lt;/div&gt;
+
+			&lt;div id=&#34;b13&#34; class=&#34;conf-item conf-draggable&#34;&gt;&lt;div&gt;Плотность \(= 9.9–13.1 \ г/м^3\) &lt;/div&gt;&lt;/div&gt;
+			&lt;div id=&#34;b14&#34; class=&#34;conf-item conf-draggable&#34;&gt;&lt;div&gt;Плотность \(= 3.4–5.6 \ г/м^3\). Скорость распространения упругих волн \(=  6.7–8.2\) км/с&lt;/div&gt;&lt;/div&gt;
+			&lt;div id=&#34;b15&#34; class=&#34;conf-item conf-draggable&#34;&gt;&lt;div&gt;Плотность \(= 2.2–2.9 \ г/м^3\). Скорость распространения упругих волн \(= 4.0 – 7.5\) км/с&lt;/div&gt;&lt;/div&gt;
+
+			&lt;div id=&#34;b16&#34; class=&#34;conf-item conf-draggable&#34;&gt;&lt;div&gt;Основные химические элементы: \(Fe\) и \(Ni\), образующие сплав.  &lt;/div&gt;&lt;/div&gt;
+			&lt;div id=&#34;b17&#34; class=&#34;conf-item conf-draggable&#34;&gt;&lt;div&gt;В химическом составе преобладают элементы \(O\), \(Fe\), \(Mg\), \(Si\), образующие соли кремневой кислоты и оксиды.&lt;/div&gt;&lt;/div&gt;
+			&lt;div id=&#34;b18&#34; class=&#34;conf-item conf-draggable&#34;&gt;&lt;div&gt;Основные химические элементы \(O\), \(Si\), \(Al\), \(Fe\), образующие оксиды, соли и комплексные соединения.&lt;/div&gt;&lt;/div&gt;
+
+
+		&lt;/div&gt;
+
+    &lt;div id=&#34;matching_table_input&#34; style=&#34;display: none !important;&#34;&gt;
+        &lt;div class=&#34;wrapper-problem-response&#34; tabindex=&#34;-1&#34; aria-label=&#34;Question 1&#34; role=&#34;group&#34;&gt;&lt;div id=&#34;inputtype_4c64e017be7a4f388b031faad72bfc19_2_1&#34; class=&#34; capa_inputtype  textline&#34;&gt;
+
+    &lt;div class=&#34;unanswered &#34;&gt;
+
+
+
+&lt;input type=&#34;text&#34; name=&#34;input_4c64e017be7a4f388b031faad72bfc19_2_1&#34; id=&#34;input_4c64e017be7a4f388b031faad72bfc19_2_1&#34; aria-describedby=&#34;status_4c64e017be7a4f388b031faad72bfc19_2_1&#34; value=&#34;&#34; autocomplete=&#34;off&#34; size=&#34;40&#34;/&gt;
+&lt;span class=&#34;trailing_text&#34; id=&#34;trailing_text_4c64e017be7a4f388b031faad72bfc19_2_1&#34;/&gt;
+
+
+
+&lt;span class=&#34;status unanswered&#34; id=&#34;status_4c64e017be7a4f388b031faad72bfc19_2_1&#34; data-tooltip=&#34;Not yet answered.&#34;&gt;
+  &lt;span class=&#34;sr&#34;&gt;unanswered&lt;/span&gt;&lt;span class=&#34;status-icon&#34; aria-hidden=&#34;true&#34;/&gt;
+&lt;/span&gt;
+
+
+&lt;p id=&#34;answer_4c64e017be7a4f388b031faad72bfc19_2_1&#34; class=&#34;answer&#34;/&gt;
+
+
+    &lt;/div&gt;
+
+
+&lt;/div&gt;&lt;br/&gt;
+        &lt;/div&gt;
+
+         &lt;div class=&#34;message-about-grade&#34;/&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&#34;solution-span&#34;&gt;
+ &lt;span id=&#34;solution_4c64e017be7a4f388b031faad72bfc19_solution_1&#34;/&gt;
+&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+  &lt;div class=&#34;action&#34;&gt;
+    &lt;input type=&#34;hidden&#34; name=&#34;problem_id&#34; value=&#34;Ход работы&#34; /&gt;
+
+    &lt;div class=&#34;problem-action-buttons-wrapper&#34;&gt;
+    &lt;/div&gt;
+    &lt;div class=&#34;submit-attempt-container&#34;&gt;
+      &lt;button type=&#34;button&#34; class=&#34;submit btn-brand&#34; data-submitting=&#34;Submitting&#34; data-value=&#34;Submit&#34; data-should-enable-submit-button=&#34;True&#34; aria-describedby=&#34;submission_feedback_4c64e017be7a4f388b031faad72bfc19&#34; &gt;
+          &lt;span class=&#34;submit-label&#34;&gt;Submit&lt;/span&gt;
+      &lt;/button&gt;
+
+      &lt;div class=&#34;submission-feedback &#34; id=&#34;submission_feedback_4c64e017be7a4f388b031faad72bfc19&#34;&gt;
+        &lt;span class=&#34;sr&#34;&gt;Some problems have options such as save, reset, hints, or show answer. These options follow the Submit button.&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+
+
+&lt;div class=&#34;notification warning notification-gentle-alert
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-exclamation-circle&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;4c64e017be7a4f388b031faad72bfc19-problem-title&#34;&gt;
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Review&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+
+
+
+&lt;div class=&#34;notification warning notification-save
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-save&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;4c64e017be7a4f388b031faad72bfc19-problem-title&#34;&gt;None
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Review&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+
+
+
+
+&lt;div class=&#34;notification general notification-show-answer
+      is-hidden&#34;
+     tabindex=&#34;-1&#34;&gt;
+    &lt;span class=&#34;icon fa fa-info-circle&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;notification-message&#34; aria-describedby=&#34;4c64e017be7a4f388b031faad72bfc19-problem-title&#34;&gt;Answers are displayed within the problem
+    &lt;/span&gt;
+    &lt;div class=&#34;notification-btn-wrapper&#34;&gt;
+        &lt;button type=&#34;button&#34; class=&#34;btn btn-default btn-small notification-btn review-btn sr&#34;&gt;Review&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;script&gt;
+    function emit_event(message) {
+        parent.postMessage(message, &#39;*&#39;);
+    }
+&lt;/script&gt;
+"
+     data-graded="True">
+    <p class="loading-spinner">
+        <i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
+        <span class="sr">Loading&hellip;</span>
+    </p>
+</div>
+
+</div>
+
+    </div>
+    <div class="vert vert-2" data-id="block-v1:urfu+MCS+fall_2025+type@html+block@db9459744bbe4bdd88297fbd75c2317d">
+
+<div class="xblock xblock-student_view xblock-student_view-html xmodule_display xmodule_HtmlBlock" data-course-id="course-v1:urfu+MCS+fall_2025" data-init="XBlockToXModuleShim" data-runtime-class="LmsRuntime" data-runtime-version="1" data-block-type="html" data-usage-id="block-v1:urfu+MCS+fall_2025+type@html+block@db9459744bbe4bdd88297fbd75c2317d" data-request-token="3834b372ceb111f09c3ab291175ff82f" data-graded="True" data-has-score="False">
+  <script type="json/xblock-args" class="xblock-json-init-args">
+    {"xmodule-type": "HTMLModule"}
+  </script>
+  <h2>Вывод</h2>
+<p>Попробуйте самостоятельно сформулировать вывод о закономерности агрегатного и химического состава внутренних оболочек Земли.</p>
+
+<h2>Вопросы для самоконтроля</h2>
+<ol>
+    <li>Какие внутренние оболочки выделяют в строении Земли, какие глубины их залегания?</li>
+    <li>Какие особенности строения имеет каждая из внутренних оболочек Земли?</li>
+    <li>Как во внутреннем строении Земли распространяются упругие волны? Как это использует человек? (Для ответа на вопрос пользуйтесь текстом лекций).</li>
+    <li>Какие химические элементы и соединения преобладают во внутренних оболочках Земли?</li>
+</ol>
+</div>
+
+    </div>
+</div>
+
+
+
+  <script type="text/javascript">
+    (function (require) {
+        require(['https://cdn2.openedu.ru/static/js/dateutil_factory.a28baef97506.js?raw'], function () {
+          require(['js/dateutil_factory'], function (DateUtilFactory) {
+
+    DateUtilFactory.transform('.localized-datetime');
+
+          });
+        });
+    }).call(this, require || RequireJS.require);
+  </script>
+
+
+<script>
+    function emit_event(message) {
+        parent.postMessage(message, '*');
+    }
+</script>
+
+</div>
+
+      </main>
+  </section>
+</div>
+
+<script type="text/javascript">
+  (function() {
+    // If this view is rendered in an iframe within the learning microfrontend app
+    // it will report the height of its contents to the parent window when the
+    // document loads, window resizes, or DOM mutates.
+    if (window !== window.parent) {
+      document.body.className += ' view-in-mfe';
+      var lastHeight = window.offsetHeight;
+      var lastWidth = window.offsetWidth;
+      var contentElement = document.getElementById('content');
+
+      function dispatchResizeMessage(event) {
+        // Note: event is actually an Array of MutationRecord objects
+        // when fired from the MutationObserver
+        var eventType = event.type || 'mutate';
+        var newHeight = contentElement.offsetHeight;
+        var newWidth = contentElement.offsetWidth;
+        if (eventType !== 'load' && newWidth === lastWidth && newHeight === lastHeight) {
+            // Monitor when any anchor tag is clicked, it is checked to make sure
+            // it is referencing an element's id or name (not an external website). If
+            // the href attribute is an id or name, the location of the selected focus
+            // element is sent through its offset attribute. The offset will
+            // allow the page to scroll to the location of the focus element so
+            // that it is at the top of the page. Unique ids and names are
+            // required for proper scrolling.
+            $('a').on("click", function(event){
+              if ($(this).attr('href')[0] === "#") {
+                var targetId = $(this).attr('href');
+                var targetName = $(this).attr('href').slice(1);
+                // Checks if the target uses an id or name to focus and gets offset.
+                var targetOffset = $(targetId).offset() || $(document.getElementsByName(targetName)[0]).offset();
+                if (targetOffset) {
+                  event.preventDefault();
+                  window.parent.postMessage({"offset": targetOffset.top}, document.referrer);
+                }
+              }
+            })
+          return;
+        }
+        // Monitor for messages and checks if the message contains an id. If
+        // there is an id, then the location of the selected focus element
+        // is sent through its offset attribute. The offset will allow the
+        // page to scroll to the location of the focus element so that it is
+        // at the top of the page. Unique ids and names are required for
+        // proper scrolling.
+        window.addEventListener('message', function (event) {
+          if (event.data.hashName) {
+            var targetId = event.data.hashName;
+            var targetName = event.data.hashName.slice(1);
+            // Checks if the target uses an id or name to focus and gets offset.
+            var targetOffset = $(targetId).offset() || $(document.getElementsByName(targetName)[0]).offset();
+            window.parent.postMessage({ 'offset': targetOffset.top }, document.referrer);
+          }
+        })
+
+        window.parent.postMessage({
+            type: 'plugin.resize',
+            payload: {
+              width: newWidth,
+              height: newHeight,
+            }
+          }, document.referrer
+        );
+
+        lastHeight = newHeight;
+        lastWidth = newWidth;
+
+        // Within the learning microfrontend the iframe resizes to match the
+        // height of this document and it should never scroll. It does scroll
+        // ocassionally when javascript is used to focus elements on the page
+        // before the parent iframe has been resized to match the content
+        // height. This window.scrollTo is an attempt to keep the content at the
+        // top of the page. See TNL-7094
+        window.scrollTo(0, 0);
+      }
+
+      // Create an observer instance linked to the callback function
+      const observer = new MutationObserver(dispatchResizeMessage);
+
+      // Start observing the target node for configured mutations
+      observer.observe(document.body, { attributes: true, childList: true, subtree: true });
+
+      window.addEventListener('load', dispatchResizeMessage);
+      const resizeObserver = new ResizeObserver(dispatchResizeMessage);
+      resizeObserver.observe(document.body);
+    }
+  }());
+</script>
+
+
+    </div>
+
+
+
+
+
+  <script type="text/javascript" src="https://cdn2.openedu.ru/static/common/js/vendor/jquery.scrollTo.525edcc52fe8.js" async></script>
+  <script type="text/javascript" src="https://cdn2.openedu.ru/static/js/vendor/flot/jquery.flot.d3d45ff0c6a8.js" async></script>
+
+
+
+<script type="text/javascript" src="https://cdn2.openedu.ru/static/js/lms-courseware.9517dcd2081d.js" charset="utf-8"></script>
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+    // Fast Preview was introduced in 2.5. However, it
+    // causes undesirable flashing/font size changes when
+    // MathJax is used for interactive preview (equation editor).
+    // Setting processSectionDelay to 0 (see below) fully eliminates
+    // fast preview, but to reduce confusion, we are also setting
+    // the option as displayed in the context menu to false.
+    // When upgrading to 2.6, check if this variable name changed.
+    window.MathJax = {
+      menuSettings: {CHTMLpreview: false}
+    };
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    messageStyle: "none",
+    tex2jax: {
+      inlineMath: [
+        ["\\(","\\)"],
+        ['[mathjaxinline]','[/mathjaxinline]']
+      ],
+      displayMath: [
+        ["\\[","\\]"],
+        ['[mathjax]','[/mathjax]']
+      ]
+    }
+  });
+</script>
+<script type="text/x-mathjax-config">
+
+  // In order to eliminate all flashing during interactive
+  // preview, it is necessary to set processSectionDelay to 0
+  // (remove delay between input and output phases). This
+  // effectively disables fast preview, regardless of
+  // the fast preview setting as shown in the context menu.
+  MathJax.Hub.processSectionDelay = 0;
+
+  MathJax.Hub.signal.Interest(function(message) {
+    if(message[0] === "End Math") {
+        set_mathjax_display_div_settings();
+    }
+  });
+  function set_mathjax_display_div_settings() {
+    $('.MathJax_Display').each(function( index ) {
+      this.setAttribute('tabindex', '0');
+      this.setAttribute('aria-live', 'off');
+      this.removeAttribute('role');
+      this.removeAttribute('aria-readonly');
+    });
+  }
+</script>
+
+<script type="text/javascript">
+    // Activating Mathjax accessibility files
+    window.MathJax = {
+        menuSettings: {
+            collapsible: true,
+            autocollapse: false,
+            explorer: true
+        }
+    };
+</script>
+
+<!-- This must appear after all mathjax-config blocks, so it is after the imports from the other templates.
+     It can't be run through static.url because MathJax uses crazy url introspection to do lazy loading of
+     MathJax extension libraries -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_SVG"></script>
+
+
+<script src='https://cdn2.openedu.ru/static/bundles/HtmlBlockPreview.47dfb3a011d61e073bb9.68644e9f6662.js' type='application/javascript'></script>
+<script src='https://cdn2.openedu.ru/static/bundles/XModuleShim.b0a0bcfa4bfc116299b0.0021dbb8621f.js' type='application/javascript'></script>
+<script src='https://cdn2.openedu.ru/static/bundles/ProblemBlockPreview.3c293987029be310b69a.40765775f6c6.js' type='application/javascript'></script>
+<script src='https://cdn2.openedu.ru/static/bundles/VerticalStudentView.218999454019487e3bbe.50411955078b.js' type='application/javascript'></script>
+
+
+
+
+
+
+
+  <script type="text/javascript" src="https://cdn2.openedu.ru/static/js/vendor/noreferrer.aa62a3e70ffa.js" charset="utf-8"></script>
+  <script type="text/javascript" src="https://cdn2.openedu.ru/static/js/utils/navigation.08930e16ab3d.js" charset="utf-8"></script>
+  <script type="text/javascript" src="https://cdn2.openedu.ru/static/js/header/header.309a1243e175.js"></script>
+
+  <script type="text/javascript" src="https://cdn2.openedu.ru/static/js/src/jquery_extend_patch.54dddef28d15.js"></script>
+  <div id="lean_overlay"></div>
+
+</body>
+</html>
+
+

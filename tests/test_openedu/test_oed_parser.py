@@ -66,7 +66,7 @@ def test_parse_vertical_block_html_(testname: str):
 
 
 
-@pytest.mark.parametrize("testname", ["problem_choice_single", "problem_choice_multiple", "problem_match", "problem_fixed_match"])
+@pytest.mark.parametrize("testname", ["problem_choice_single", "problem_choice_multiple", "problem_match", "problem_fixed_match", "problem_match_multicolumn"])
 def test_parse_problem(testname):
     filename_input = f"tests/data/{testname}.html"
     filename_result = f"tests/data/{testname}.json"
