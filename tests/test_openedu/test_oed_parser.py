@@ -68,8 +68,8 @@ def test_parse_vertical_block_html_(testname: str):
 
 @pytest.mark.parametrize("testname", ["problem_choice_single", "problem_choice_multiple", "problem_match", "problem_fixed_match", "problem_match_multicolumn"])
 def test_parse_problem(testname):
-    filename_input = f"tests/data/{testname}.html"
-    filename_result = f"tests/data/{testname}.json"
+    filename_input = f"tests/data/problems/{testname}.html"
+    filename_result = f"tests/data/problems/{testname}.json"
     with open(filename_input, encoding='utf-8') as f:
         html = f.read()
 
@@ -80,7 +80,7 @@ def test_parse_problem(testname):
     assert [json.loads(x.json()) for x in parser.parse_problem(BeautifulSoup(html, "html.parser"))] == expected
 
 def test_parse_choice_different_ids():
-    filename_input = f"tests/data/problem_choice_diff_ids.html"
+    filename_input = f"tests/data/problems/problem_choice_diff_ids.html"
     with open(filename_input, encoding='utf-8') as f:
         html = f.read()
 
