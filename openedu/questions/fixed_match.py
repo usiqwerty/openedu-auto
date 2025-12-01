@@ -1,4 +1,5 @@
 import json
+import re
 
 from bs4 import Tag
 from pydantic import BaseModel
@@ -46,6 +47,7 @@ class FixedMatchQuestion(BaseModel, Question):
 """
 
     def compose(self, answers: list[str]):
+        answers = [re.sub(r"\s+", ' ', opt) for opt in answers]
         choices = {}
         # {"a1": [], "a2": [], "a3": [], "a4": [], "a5": ["b1"]}
         for field, ans in zip(self.fields, answers):

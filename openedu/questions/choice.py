@@ -1,3 +1,5 @@
+import re
+
 from bs4 import Tag
 from pydantic import BaseModel
 
@@ -54,6 +56,7 @@ class ChoiceQuestion(BaseModel, Question):
 
 
 def plural_choice(answer: list, ids: list[str], options: list[str]) -> tuple[str, str | list[str]]:
+    options = [re.sub(r"\s+", ' ', opt) for opt in options]
     choices = []
     for ans in answer:
         try:
@@ -70,6 +73,7 @@ def plural_choice(answer: list, ids: list[str], options: list[str]) -> tuple[str
 
 
 def singular_choice(answer: str, ids: list[str], options: list[str]) -> tuple[str, str | list[str]]:
+    options = [re.sub(r"\s+", ' ', opt) for opt in options]
     if answer in options:
         index = options.index(answer)
         ans_input_id = ids[index]

@@ -1,4 +1,5 @@
 import json
+import re
 import urllib.parse
 
 from bs4 import Tag
@@ -39,6 +40,7 @@ class FreeMatchQuestion(BaseModel, Question):
 """
 
     def compose(self, flat_answers: list[str]):
+        flat_answers = [re.sub(r"\s+", ' ', opt) for opt in flat_answers]
         col_num = 2
         answer = {}
 

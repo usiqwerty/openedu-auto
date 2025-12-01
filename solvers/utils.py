@@ -10,6 +10,7 @@ def extract_choice_from_id(choid_id: str):
 
 def get_ans_id(answers: list[tuple[str, str]], answer: str):
     for ans, aid in answers:
+        ans = re.sub(r"\s+", ' ', ans)
         if answer == ans:
             return aid
     raise NoSolutionFoundError(f"'{answer}' was not present in options {answers}")
