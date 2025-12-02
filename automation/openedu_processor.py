@@ -46,9 +46,7 @@ class OpenEduProcessor(ABC):
                     for vertical in self.app.get_sequential_block(course_id, seq_id.block_id):
                         print(vertical.title)
                         blk = self.app.get_vertical_block(vertical.id)
-                        # TODO: too many places where completion might be marked
-                        #  should be only should_process()
-                        if (not self.should_process(blk.id)) and not blk.complete:
+                        if not self.should_process(blk.id):
                             continue
                         self.process_vertical(blk.id, vertical, course_id)
                     if self.mark_completion:
@@ -57,32 +55,24 @@ class OpenEduProcessor(ABC):
     def process_vertical(self, blkid: str, block: VerticalBlock, course_id: str):
         logging.debug(blkid)
         logging.debug(f"Block '{block.title}' (complete={block.complete}) of type '{block.type}'")
-        r = self.app.get_vertical_page_html(blkid)
-        soup = BeautifulSoup(r, 'html.parser')
-        if self.should_process(blkid):
-            for xblock_vert in soup.select("div.xblock div.vert"):
-                block_id_str = xblock_vert['data-id']
+        html = self.app.get_vertical_page_html(blkid)
+        soup = BeautifulSoup(html, 'html.parser')
+        for xblock_vert in soup.select("div.xblock div.vert"):
+            block_id_str = xblock_vert['data-id']
 
-                rich_block_id = BlockID.parse(block_id_str)
-                if rich_block_id.type in {"html", "xvideoblock"} and self.mark_completion:
-                    self.app.publish_completion(course_id, block_id_str)
-        # if block.type == 'other' and not block.graded:
-        #     # return
-        #     # print(blkid, block)
-        #     # api.tick_page(blkid)
-        #     # time.sleep(5)
-        #
-        #     app.api.publish_completion(course_id, block_id_str)
-            if 1 or block.type == "problem" or (block.type == 'other' and block.graded):
-                try:
-                    for problem in self.app.get_problems_for_vertical(blkid):
-                        self.process_problem(course_id, problem)
-                except UnsupportedProblemType as e:
-                    logging.error(f"Unsupported problem type: {e}")
-                    self.app.skip_forever(blkid)
-                except NoSolutionFoundError as e:
-                    logging.error(f"No solution found: {e}")
-                    return # do not mark as complete, so we can come back later
+            rich_block_id = BlockID.parse(block_id_str)
+            if rich_block_id.type in {"html", "xvideoblock"} and self.mark_completion:
+                self.app.publish_completion(course_id, block_id_str)
+
+        try:
+            for problem in self.app.get_problems_for_vertical(blkid):
+                self.process_problem(course_id, problem)
+        except UnsupportedProblemType as e:
+            logging.error(f"Unsupported problem type: {e}")
+            self.app.skip_forever(blkid)
+        except NoSolutionFoundError as e:
+            logging.error(f"No solution found: {e}")
+            return  # do not mark as complete, so we can come back later
         if self.mark_completion:
             self.app.mark_block_as_completed(blkid)
 
