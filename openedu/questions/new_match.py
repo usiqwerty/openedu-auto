@@ -9,13 +9,11 @@ from solvers.utils import get_ans_id
 
 
 def parse_custom_markdown(text):
-    pattern = re.compile(r"[*~]{0,2}([\w\s]+)[*~]{0,2}(\s*\.\{[\w\W]+})", re.UNICODE)
+    pattern = re.compile(r"[*~]{0,2}([\w\s]*\w)[*~]{0,2}\s*(\.\{[\w\W]+})", re.UNICODE)
     match = re.search(pattern, text)
     if not match:
         return text
-
-    # TODO: i think we can deal without strip
-    return match.group(1).strip()
+    return match.group(1)
 
 
 class NewMatchField(BaseModel):
