@@ -19,4 +19,4 @@ def test_choice_both(testname):
 
     parser = OpenEduParser(DummyDescriber())
     problems_got = parser.parse_vertical_block_html(html)
-    assert [[json.loads(q.json())for q in prob] for prob in problems_got] == expected
+    assert [[json.loads(q.json()) for q in prob] for prob in problems_got] == expected

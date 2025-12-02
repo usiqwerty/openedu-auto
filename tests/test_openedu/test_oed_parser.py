@@ -5,8 +5,8 @@ import pytest
 from bs4 import BeautifulSoup
 
 from errors import FormatError
-from tests.fakes import DummyDescriber
 from openedu.oed_parser import OpenEduParser, VerticalBlock
+from tests.fakes import DummyDescriber
 
 
 @pytest.mark.parametrize('inp', ['sequential'])
@@ -22,18 +22,13 @@ def test_parse_sequential_block(inp):
 
 @pytest.mark.parametrize(
     "testname",
-    ["test", "free_match_whole_page", "multiple_questions_in_prob", "new_mt_and_fill" , "outer_question_text", "i_dont_know"]
+    ["test", "free_match_whole_page", "multiple_questions_in_prob", "new_mt_and_fill", "outer_question_text",
+     "i_dont_know", "with_video", "map_problem", "problem_crossword"]
 )
 def test_parse_vertical_block_html(testname: str):
     filename_input = f"tests/data/pages/{testname}.html"
     filename_result = f"tests/data/pages/{testname}.json"
-    # TODO: use utf-8
-
-    if testname not in ['test', 'free_match_whole_page']:
-        enc='utf-8'
-    else:
-        enc = 'cp1251'
-    with open(filename_input, encoding=enc) as f:
+    with open(filename_input, encoding='utf-8') as f:
         html = f.read()
 
     with open(filename_result, encoding='utf-8') as f:
@@ -41,35 +36,16 @@ def test_parse_vertical_block_html(testname: str):
 
     parser = OpenEduParser(DummyDescriber())
     problems_got = parser.parse_vertical_block_html(html)
-    assert [[json.loads(q.json())for q in prob] for prob in problems_got] == expected
+    assert [[json.loads(q.json()) for q in prob] for prob in problems_got] == expected
 
 
-@pytest.mark.parametrize('testname', ["with_video", "map_problem", "problem_crossword"])
-def test_parse_vertical_block_html_(testname: str):
-    filename_input = f"tests/data/pages/{testname}.html"
-    filename_result = f"tests/data/pages/{testname}.json"
-    # TODO: use utf-8
-
-    if testname not in ['test', 'free_match_whole_page']:
-        enc='utf-8'
-    else:
-        enc = 'cp1251'
-    with open(filename_input, encoding=enc) as f:
-        html = f.read()
-
-    with open(filename_result, encoding='utf-8') as f:
-        expected = json.load(f)
-
-    parser = OpenEduParser(DummyDescriber())
-    problems_got = parser.parse_vertical_block_html(html)
-    assert [[json.loads(q.json())for q in prob] for prob in problems_got] == expected
-
-
-
-@pytest.mark.parametrize("testname", ["problem_choice_single", "problem_choice_multiple", "problem_match", "problem_fixed_match", "problem_match_multicolumn"])
+@pytest.mark.parametrize("testname",
+                         ["problem_choice_single", "problem_choice_multiple", "problem_match", "problem_fixed_match",
+                          "problem_match_multicolumn"])
 def test_parse_problem(testname):
     filename_input = f"tests/data/problems/{testname}.html"
     filename_result = f"tests/data/problems/{testname}.json"
+
     with open(filename_input, encoding='utf-8') as f:
         html = f.read()
 
@@ -78,6 +54,7 @@ def test_parse_problem(testname):
 
     parser = OpenEduParser(DummyDescriber())
     assert [json.loads(x.json()) for x in parser.parse_problem(BeautifulSoup(html, "html.parser"))] == expected
+
 
 def test_parse_choice_different_ids():
     filename_input = f"tests/data/problems/problem_choice_diff_ids.html"
