@@ -23,7 +23,7 @@ def test_parse_sequential_block(inp):
 @pytest.mark.parametrize(
     "testname",
     ["test", "free_match_whole_page", "multiple_questions_in_prob", "new_mt_and_fill", "outer_question_text",
-     "i_dont_know", "with_video", "map_problem", "problem_crossword"]
+     "i_dont_know", "with_video", "map_problem", "problem_crossword", "problem_match_multicolumn"]
 )
 def test_parse_vertical_block_html(testname: str):
     filename_input = f"tests/data/pages/{testname}.html"
@@ -40,8 +40,7 @@ def test_parse_vertical_block_html(testname: str):
 
 
 @pytest.mark.parametrize("testname",
-                         ["problem_choice_single", "problem_choice_multiple", "problem_match", "problem_fixed_match",
-                          "problem_match_multicolumn"])
+                         ["problem_choice_single", "problem_choice_multiple", "problem_match", "problem_fixed_match"])
 def test_parse_problem(testname):
     filename_input = f"tests/data/problems/{testname}.html"
     filename_result = f"tests/data/problems/{testname}.json"
