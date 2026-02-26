@@ -1,15 +1,6 @@
 [
   {
     "correct_answer": null,
-    "fields": [
-      ["Глубина залегания", ["a1", "a2","a3"]],
-      ["Распространение упругих волн", ["a10", "a11","a12"]],
-      ["Плотность", ["a13", "a14","a15"]],
-      ["Химический состав", ["a16", "a17", "a18"]],
-      ["Структура", ["a4", "a5", "a6"]],
-      ["Особенности", ["a7", "a8","a9"]]
-    ],
-    "headers": ["Показатель", "Ядро", "Мантия", "Земная кора"],
     "id": "input_4c64e017be7a4f388b031faad72bfc19_2_1",
     "options": [
       ["Глубина залегания от \\(2890\\) до \\(6378\\) км.", "b1"],
@@ -56,6 +47,50 @@
       ]
     ],
     "text": "\n",
-    "type": "fixed-match"
+    "type": "fixed-match",
+    "table": [
+      [
+        {"id": null, "value": "Показатель"},
+        {"id": null, "value": "Ядро"},
+        {"id": null, "value": "Мантия"},
+        {"id": null, "value": "Земная кора"}
+      ],
+      [
+        {"id": null, "value": "Глубина залегания"},
+        {"id": "a1", "value": null},
+        {"id": "a2", "value": null},
+        {"id": "a3", "value": null}
+      ],
+      [
+        {"id": null, "value": "Структура"},
+        {"id": "a4", "value": null},
+        {"id": "a5", "value": null},
+        {"id": "a6", "value": null}
+      ],
+      [
+        {"id": null, "value": "Особенности"},
+        {"id": "a7", "value": null},
+        {"id": "a8", "value": null},
+        {"id": "a9", "value": null}
+      ],
+      [
+        {"id": null, "value": "Распространение упругих волн"},
+        {"id": "a10", "value": null},
+        {"id": "a11", "value": null},
+        {"id": "a12", "value": null}
+      ],
+      [
+        {"id": null, "value": "Плотность"},
+        {"id": "a13", "value": null},
+        {"id": "a14", "value": null},
+        {"id": "a15", "value": null}
+      ],
+      [
+        {"id": null, "value": "Химический состав"},
+        {"id": "a16", "value": null},
+        {"id": "a17", "value": null},
+        {"id": "a18", "value": null}
+      ]
+    ]
   }
 ]

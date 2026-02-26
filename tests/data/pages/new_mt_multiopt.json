@@ -1,0 +1,44 @@
+[
+  [
+    {"correct_answer": null,
+    "fields": [
+      [
+        {"id": null, "is_fixed": true, "value": [""]},
+        {"id": null, "is_fixed": true, "value": ["__Критерии оценки физического здоровья__"]},
+        {"id": null, "is_fixed": true, "value": ["__Показатели физического здоровья__"]}
+      ],
+      [
+        {"id": null, "is_fixed": true, "value": ["1"]},
+        {"id": null, "is_fixed": true, "value": ["Физическое развитие"]},
+        {"id": "id_iZTpCzKR", "is_fixed": false, "value": null}
+      ],
+      [
+        {"id": null, "is_fixed": true, "value": ["2"]},
+        {"id": null, "is_fixed": true, "value": ["Физическая подготовленность"]},
+        {"id": "id_nzb98C6m", "is_fixed": false, "value": null}
+      ],
+      [
+        {"id": null, "is_fixed": true, "value": ["3"]},
+        {"id": null, "is_fixed": true, "value": ["Функциональное состояние"]},
+        {"id": "id_xAET7wBb", "is_fixed": false, "value": null}
+      ]
+    ],
+   "id": "input_377281bc4bda44468b3532c39c23e818_2_1",
+   "options": [
+     ["координационные способности", "id_nCrbWFJk"],
+     ["артериальное давление", "id_bokIXTS3"],
+     ["выносливость", "id_coVykFNL"],
+     ["пробы с задержкой дыхания", "id_FDvu9JIz"],
+     ["весо-ростовой индекс", "id_o52b6E0u"],
+     ["сила кисти", "id_ZOsI9WCG"],
+     ["12-минутный тест Купера", "id_VGZnD28z"],
+     ["ЧСС в покое и после нагрузки", "id_qH5aTUXO"],
+     ["вес", "id_fbYzSayN"],
+     ["количество воды в организме", "id_cQ6IwjC2"],
+     ["электрокардиограмма", "id_YFHzdX8k"],
+     ["становая сила", "id_90htPO8x"]
+   ],
+   "text": "",
+   "type": "new-match"}
+  ]
+]
