@@ -4,6 +4,7 @@ import traceback
 from cache import CacheContext
 from errors import WrongAnswer, UnsupportedProblemType
 from images.image_describer import ImageDescriber
+from openedu.ids import VerticalBlockID
 from openedu.openedu import OpenEdu
 from openedu.questions.freematch import FreeMatchQuestion
 from openedu.questions.question import Question
@@ -16,11 +17,11 @@ class OpenEduAutoSolver(OpenEduProcessor):
     """OpenEduProcessor that solves problems"""
     require_incomplete = True
 
-    def process_problem(self, course_id: str, problem: list[Question]):
+    def process_problem(self, course_id: str, problem: list[Question], *, process_solved=False):
         answers = {}
         input_id = None
         for question in problem:
-            if question.correct_answer is not None and question.correct_answer != "":
+            if not process_solved and question.correct_answer is not None and question.correct_answer != "":
                 print("problem has solved question, skipping")
                 return
             if isinstance(question, FreeMatchQuestion):
@@ -36,9 +37,9 @@ class OpenEduAutoSolver(OpenEduProcessor):
             return
         quest_id = extract_quest_id(input_id)
         new_block_id = f"block-v1:{course_id}+type@problem+block@{quest_id}"
+        print(f"{answers=}")
         if self.app.is_block_solved(new_block_id):
             return
-        print(f"{answers=}")
 
         got, total = self.app.submit_answers(course_id, new_block_id, answers)
         logging.info(f"Solved ({got}/{total})")
@@ -53,5 +54,7 @@ class OpenEduAutoSolver(OpenEduProcessor):
 
         with self.cache_context:
             for vert in self.app.get_sequential_block(course_id, seq.block_id):
-                print(vert)
-                self.process_vertical(vert.id, vert, course_id)
+                cur_vert_id = VerticalBlockID.parse(vert.id).block_id
+                if cur_vert_id != ver.block_id:
+                    continue
+                self.process_vertical(vert.id, vert, course_id, process_solved=True)
