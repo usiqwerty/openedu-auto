@@ -3,7 +3,7 @@ from collections import defaultdict
 from dataclasses import dataclass
 
 from openedu.questions.question import Question
-from solvers.utils import get_ans_id
+from solvers.utils import get_ans_id, get_ans_id_best
 
 AnswerType = list[str]
 
@@ -32,7 +32,7 @@ class AbstractMatchQuestion(Question):
             for answer_col, table_col in zip(answer_row, table_row):
                 if table_col.value is not None:
                     continue
-                answers_ids = [get_ans_id(self.options, ans) for ans in answer_col]
+                answers_ids = [get_ans_id_best(self.options, ans) for ans in answer_col]
                 _answer[table_col.id].extend(answers_ids)
 
         return self.id, json.dumps({"answer": _answer}, sort_keys=True)

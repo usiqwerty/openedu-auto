@@ -1,7 +1,9 @@
 import re
 
+from fuzzywuzzy import process
+
 from errors import NoSolutionFoundError
-from fuzzywuzzy import fuzz, process
+
 
 def extract_choice_from_id(choid_id: str):
     r = re.search(r"(input_[\w\d]+_\d+_\d+)_(choice_\d+)", choid_id)
@@ -14,6 +16,12 @@ def get_ans_id(answers: list[tuple[str, str]], answer: str):
         if answer == ans:
             return aid
     raise NoSolutionFoundError(f"'{answer}' was not present in options {answers}")
+
+
+def get_ans_id_best(answers: list[tuple[str, str]], answer: str):
+    idx = get_similar_index(answer, [ans for ans, aid in answers])
+    ans, aid = answers[idx]
+    return aid
 
 
 def get_similar_index(ans: str, options: list[str]):
