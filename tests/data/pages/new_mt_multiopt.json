@@ -3,24 +3,24 @@
     {"correct_answer": null,
     "fields": [
       [
-        {"id": null, "is_fixed": true, "value": [""]},
-        {"id": null, "is_fixed": true, "value": ["__Критерии оценки физического здоровья__"]},
-        {"id": null, "is_fixed": true, "value": ["__Показатели физического здоровья__"]}
+        {"id": null, "value": [""]},
+        {"id": null, "value": ["__Критерии оценки физического здоровья__"]},
+        {"id": null, "value": ["__Показатели физического здоровья__"]}
       ],
       [
-        {"id": null, "is_fixed": true, "value": ["1"]},
-        {"id": null, "is_fixed": true, "value": ["Физическое развитие"]},
-        {"id": "id_iZTpCzKR", "is_fixed": false, "value": null}
+        {"id": null, "value": ["1"]},
+        {"id": null, "value": ["Физическое развитие"]},
+        {"id": "id_iZTpCzKR", "value": null}
       ],
       [
-        {"id": null, "is_fixed": true, "value": ["2"]},
-        {"id": null, "is_fixed": true, "value": ["Физическая подготовленность"]},
-        {"id": "id_nzb98C6m", "is_fixed": false, "value": null}
+        {"id": null, "value": ["2"]},
+        {"id": null, "value": ["Физическая подготовленность"]},
+        {"id": "id_nzb98C6m", "value": null}
       ],
       [
-        {"id": null, "is_fixed": true, "value": ["3"]},
-        {"id": null, "is_fixed": true, "value": ["Функциональное состояние"]},
-        {"id": "id_xAET7wBb", "is_fixed": false, "value": null}
+        {"id": null, "value": ["3"]},
+        {"id": null, "value": ["Функциональное состояние"]},
+        {"id": "id_xAET7wBb", "value": null}
       ]
     ],
    "id": "input_377281bc4bda44468b3532c39c23e818_2_1",

@@ -1,15 +1,14 @@
 import datetime
 import json
+import logging
 import os.path
 import time
 from abc import abstractmethod, ABC
 
-import logging
-
-from openedu.questions.fill import FillQuestion
-from openedu.questions.freematch import FreeMatchQuestion
 from openedu.questions.choice import ChoiceQuestion
+from openedu.questions.fill import FillQuestion
 from openedu.questions.fixed_match import FixedMatchQuestion
+from openedu.questions.freematch import FreeMatchQuestion
 from openedu.questions.new_match import NewMatchQuestion
 from openedu.questions.select import SelectQuestion
 from solvers.abstract_solver import AbstractSolver
@@ -79,8 +78,10 @@ class LLMSolver(AbstractSolver, ABC):
         return question.compose(res)
 
     def solve_match(self, question: FixedMatchQuestion):
-        res = self.get_answer(question.query()).split('\n')
-        return question.compose(res)
+        # res = self.get_answer(question.query()).split('\n')
+        raw = self.get_answer(question.query())
+        json_data = json.loads(raw)
+        return question.compose(json_data)
 
     def solve_freematch(self, question: FreeMatchQuestion):
         res = self.get_answer(question.query()).split('\n')
@@ -97,11 +98,5 @@ class LLMSolver(AbstractSolver, ABC):
 
     def solve_new_match(self, question: NewMatchQuestion):
         raw = self.get_answer(question.query())
-        res = []
-        for raw_row in raw.split('\n'):
-            row = []
-            for c in raw_row.split('|'):
-                cell = c.strip()
-                if cell: row.append(cell)
-            res.append(row)
-        return question.compose(res)
+        json_data = json.loads(raw)
+        return question.compose(json_data)

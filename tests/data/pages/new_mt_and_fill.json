@@ -207,24 +207,21 @@
         ["IX век", "id_YFHzdX8k"],
         ["XII век", "id_90htPO8x"]
       ],
-      "fields": [
+      "table": [
         [
           {
-            "is_fixed": true,
             "id": null,
             "value": [
               "Век"
             ]
           },
           {
-            "is_fixed": true,
             "id": null,
             "value": [
               "Историческое событие"
             ]
           },
           {
-            "is_fixed": true,
             "id": null,
             "value": [
               "Исторический деятель"
@@ -233,70 +230,58 @@
         ],
         [
           {
-            "is_fixed": true,
             "id": null,
             "value": [
               "XI век"
             ]
           },
           {
-            "is_fixed": false,
             "id": "id_iZTpCzKR",
             "value": null
           },
           {
-            "is_fixed": false,
             "id": "id_o52b6E0u",
             "value": null
           }
         ],
         [
           {
-            "is_fixed": false,
             "id": "id_nCrbWFJk",
             "value": null
           },
           {
-            "is_fixed": true,
             "id": null,
             "value": ["«Крестовый поход» против половцев"]
           },
           {
-            "is_fixed": true,
             "id": null,
             "value": ["Владимир Мономах"]
           }
         ],
         [
           {
-            "is_fixed": false,
             "id": "id_ZOsI9WCG",
             "value": null
           },
           {
-            "is_fixed": true,
             "id": null,
             "value": ["Первый договор Руси и Византии"]
           },
           {
-            "is_fixed": false,
             "id": "id_xAET7wBb",
             "value": null
           }
         ],
         [
           {
-            "is_fixed": true,
             "id": null,
             "value": ["XIII век"]
           },
           {
-            "is_fixed": false,
             "id": "id_VGZnD28z",
             "value": null
           },
           {
-            "is_fixed": true,
             "id": null,
             "value": ["Александр Невский"]
           }
@@ -315,17 +300,15 @@
         ["Строительство белокаменного Кремля в Москве", "id_nzb98C6m"],
         ["Пленение Василия II Темного ордынцами", "id_90htPO8x"]
       ],
-      "fields": [
+      "table": [
         [
           {
-            "is_fixed": true,
             "id": null,
             "value": [
               "Хронологический порядок"
             ]
           },
           {
-            "is_fixed": true,
             "id": null,
             "value": [
               "Историческое событие"
@@ -334,42 +317,36 @@
         ],
         [
           {
-            "is_fixed": true,
             "id": null,
             "value": [
               "1"
             ]
           },
           {
-            "is_fixed": false,
             "id": "id_iZTpCzKR",
             "value": null
           }
         ],
         [
           {
-            "is_fixed": true,
             "id": null,
             "value": [
               "2"
             ]
           },
           {
-            "is_fixed": false,
             "id": "id_o52b6E0u",
             "value": null
           }
         ],
         [
           {
-            "is_fixed": true,
             "id": null,
             "value": [
               "3"
             ]
           },
           {
-            "is_fixed": false,
             "id": "id_nCrbWFJk",
             "value": null
           }
@@ -388,17 +365,15 @@
         ["Битва на реке Калке", "id_nzb98C6m"],
         ["Куликовская битва", "id_90htPO8x"]
       ],
-      "fields": [
+      "table": [
         [
           {
-            "is_fixed": true,
             "id": null,
             "value": [
               "Хронологический порядок"
             ]
           },
           {
-            "is_fixed": true,
             "id": null,
             "value": [
               "Историческое событие"
@@ -407,42 +382,36 @@
         ],
         [
           {
-            "is_fixed": true,
             "id": null,
             "value": [
               "1"
             ]
           },
           {
-            "is_fixed": false,
             "id": "id_iZTpCzKR",
             "value": null
           }
         ],
         [
           {
-            "is_fixed": true,
             "id": null,
             "value": [
               "2"
             ]
           },
           {
-            "is_fixed": false,
             "id": "id_o52b6E0u",
             "value": null
           }
         ],
         [
           {
-            "is_fixed": true,
             "id": null,
             "value": [
               "3"
             ]
           },
           {
-            "is_fixed": false,
             "id": "id_nCrbWFJk",
             "value": null
           }
@@ -461,17 +430,15 @@
         ["Стояние на реке Угре", "id_nzb98C6m"],
         ["Присоединение Казанского ханства к России", "id_90htPO8x"]
       ],
-      "fields": [
+      "table": [
         [
           {
-            "is_fixed": true,
             "id": null,
             "value": [
               "Хронологический порядок"
             ]
           },
           {
-            "is_fixed": true,
             "id": null,
             "value": [
               "Историческое событие"
@@ -480,42 +447,36 @@
         ],
         [
           {
-            "is_fixed": true,
             "id": null,
             "value": [
               "1"
             ]
           },
           {
-            "is_fixed": false,
             "id": "id_iZTpCzKR",
             "value": null
           }
         ],
         [
           {
-            "is_fixed": true,
             "id": null,
             "value": [
               "2"
             ]
           },
           {
-            "is_fixed": false,
             "id": "id_o52b6E0u",
             "value": null
           }
         ],
         [
           {
-            "is_fixed": true,
             "id": null,
             "value": [
               "3"
             ]
           },
           {
-            "is_fixed": false,
             "id": "id_nCrbWFJk",
             "value": null
           }

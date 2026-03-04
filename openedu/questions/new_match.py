@@ -4,8 +4,7 @@ import re
 from bs4 import Tag
 from pydantic import BaseModel
 
-from openedu.questions.question import Question
-from solvers.utils import get_ans_id
+from openedu.questions.abstract_match import AbstractMatchQuestion, CellData
 
 
 def parse_custom_markdown(text):
@@ -16,48 +15,11 @@ def parse_custom_markdown(text):
     return match.group(1)
 
 
-class NewMatchField(BaseModel):
-    is_fixed: bool
-    value: list[str] | None
-    id: str | None
-
-
-class NewMatchQuestion(BaseModel, Question):
+class NewMatchQuestion(BaseModel, AbstractMatchQuestion):
     type: str = 'new-match'
     id: str
     text: str
     options: list[tuple[str, str]]
-    fields: list[list[NewMatchField]]
-
-    def format_table(self) -> str:
-        lines = []
-        for row in self.fields:
-            srow = "|" + '|'.join((c.value or ['   '])[0] for c in row) + "|"
-            lines.append(srow)
-        return '\n'.join(lines)
-
-    def query(self) -> str:
-        return f"""Реши задачу, необходимо заполнить таблицу, в ответе необходимо вывести уже заполенную таблицу.
-Обрати внимание, что разделитель между заголовком и телом таблицы отсутсвует, так и должно быть.
-Выводить нужно только выбранные данные, без комментариев, пояснений или форматирования. Используй только предложенные варианты, никак их не изменяя
-
-**Задание:**  
-{self.text}
-
-{self.format_table()}
-
-**Варианты ответов:**
-{'\n'.join(x[0] for x in self.options)}
-"""
-
-    def compose(self, answer: list[list[str | None]]) -> tuple[str, str | dict]:
-        answers = {}
-        for row_ans, row_table in zip(answer, self.fields):
-            for cell_ans, cell_table in zip(row_ans, row_table):
-                if not cell_table.is_fixed:
-                    cell_ans_id = get_ans_id(self.options, cell_ans)
-                    answers[cell_table.id] = [cell_ans_id]
-        return self.id, str({'answer': answers}).replace("'", '"')
 
     @staticmethod
     def parse(tag: Tag, prepend_lines: list[str] = None) -> "NewMatchQuestion":
@@ -65,7 +27,7 @@ class NewMatchQuestion(BaseModel, Question):
         text = json_data['content']['body']
         qid = tag.find('input')['id']
         options = [(x['title'], x['id']) for x in json_data['answers']]
-        fields = []
+        table = []
         answer_input = tag.select_one("input")
 
         answer_json_string = answer_input.get('value', "").replace("'", '"')
@@ -82,6 +44,6 @@ class NewMatchQuestion(BaseModel, Question):
                     final_value = None
                 else:
                     final_value = [parse_custom_markdown(v) for v in value]
-                row.append(NewMatchField(is_fixed=cell['isFixed'], value=final_value, id=cell.get('id')))
-            fields.append(row)
-        return NewMatchQuestion(id=qid, text=text, fields=fields, options=options, correct_answer=correct_answer)
+                row.append(CellData(value=final_value, id=cell.get('id')))
+            table.append(row)
+        return NewMatchQuestion(id=qid, text=text, table=table, options=options, correct_answer=correct_answer)
