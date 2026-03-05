@@ -59,16 +59,19 @@ def get_course_id(app: OpenEduProcessor) -> CourseID:
     return CourseID.parse(course_id)
 
 
-def solve(solver: AbstractSolver, describer: ImageDescriber, course: Course):
+def solve(solver: AbstractSolver, describer: ImageDescriber, course: Course, go_on=False):
     app = OpenEduAutoSolver(solver, describer)
     print(f"Будем решать курс {course.name}")
     if input("Нажимте Enter, чтобы начать, иначе выйдем "):
         return
-    try:
-        app.process_course(course.id)
-    except WrongAnswer as e:
-        print(f"Неправильный ответ на задачу {e.id}: {e.answer}")
-        exit(1)
+    while True:
+        try:
+            app.process_course(course.id)
+            break
+        except WrongAnswer as e:
+            print(f"Неправильный ответ на задачу {e.id}: {e.answer}")
+            if not go_on:
+                exit(1)
 
 
 def parse_only_presudosolve(solver: AbstractSolver, describer: ImageDescriber):

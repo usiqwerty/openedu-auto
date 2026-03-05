@@ -11,7 +11,7 @@ from tests.fakes import DummyDescriber
 from ui.cli_tools import get_course_id, solve, get_solution_filepath
 
 
-def solve_with_llm(empty_app: OpenEduAutoSolver):
+def solve_with_llm(empty_app: OpenEduAutoSolver, go_on=False):
     try:
         course_id = get_course_id(empty_app)
     except ValueError:
@@ -21,13 +21,13 @@ def solve_with_llm(empty_app: OpenEduAutoSolver):
     set_config("last-course", str(course_id))
 
     solver = ConsensusSolver([
-        GenericOpenAISolver(),
+        # GenericOpenAISolver(),
         GenericOpenAISolver(model='gpt-4.1-nano'),
-        GenericOpenAISolver(model='gemini-2.5-flash'),
-        GenericOpenAISolver(model='qwen3-235b-a22b-2507'),
+        GenericOpenAISolver(model='gemini-3.1-flash-lite-preview'),
+        GenericOpenAISolver(model='qwen3.5-35b-a3b'),
     ], negotiation="most-common")
     describer = QwenImageDescriber()
-    solve(solver, describer, course)
+    solve(solver, describer, course, go_on=go_on)
 
 
 def solve_with_file(empty_app: OpenEduAutoSolver):

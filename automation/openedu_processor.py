@@ -10,7 +10,6 @@ from openedu.ids import SequentialBlockID, BlockID
 from openedu.oed_parser import VerticalBlock
 from openedu.openedu import OpenEdu
 from openedu.questions.question import Question
-
 from solvers.abstract_solver import AbstractSolver
 
 
@@ -39,12 +38,12 @@ class OpenEduProcessor(ABC):
                 print(f"Chapter: {ch.name}")
                 for seq in ch.sequentials:
                     seq_id = SequentialBlockID.parse(seq)
-
+                    print("Sequential:", seq_id.block_id)
                     if not self.should_process(seq_id.block_id):
                         continue
 
                     for vertical in self.app.get_sequential_block(course_id, seq_id.block_id):
-                        print(vertical.title)
+                        print("Vertical:", vertical.title)
                         blk = self.app.get_vertical_block(vertical.id)
                         if not self.should_process(blk.id):
                             continue

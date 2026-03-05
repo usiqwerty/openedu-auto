@@ -32,7 +32,6 @@ class AbstractMatchQuestion(Question):
             for answer_col, table_col in zip(answer_row, table_row):
                 if table_col.value is not None:
                     continue
-                print(answer_col)
                 answers_ids = [get_ans_id_best(self.options, ans) for ans in answer_col]
                 _answer[table_col.id].extend(answers_ids)
 

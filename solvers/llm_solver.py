@@ -44,7 +44,8 @@ class LLMSolver(AbstractSolver, ABC):
     def make_gpt_request(self, query, *, sysprompt, _json) -> str:
         pass
 
-    def get_answer(self, query, *, sysprompt=None, json=False) -> str:
+    def get_answer(self, query, *, sysprompt=None, _json=False) -> str:
+        print("Getting LLM answer...")
         if query not in self.__cache:
             logging.debug("Question was not in cache")
 
@@ -52,7 +53,7 @@ class LLMSolver(AbstractSolver, ABC):
             delta = now - self.last_described
             if delta < self.interval_sec:
                 time.sleep(delta)
-            raw_result = self.make_gpt_request(query, sysprompt=sysprompt, _json=json).strip()
+            raw_result = self.make_gpt_request(query, sysprompt=sysprompt, _json=_json).strip()
             result = striplines(raw_result)
             self.cache_set(query, result)
             self.last_described = now
@@ -83,7 +84,6 @@ class LLMSolver(AbstractSolver, ABC):
         return question.compose(res)
 
     def solve_match(self, question: FixedMatchQuestion) -> tuple[str, str]:
-        # res = self.get_answer(question.query()).split('\n')
         raw = self.get_answer(question.query())
         json_data = json.loads(raw)
         return question.compose(json_data)
@@ -102,6 +102,6 @@ class LLMSolver(AbstractSolver, ABC):
         return question.compose(res)
 
     def solve_new_match(self, question: NewMatchQuestion) -> tuple[str, str]:
-        raw = self.get_answer(question.query(), sysprompt="Ответ должен содержать валидный JSON", json=True)
+        raw = self.get_answer(question.query(), sysprompt="Ответ должен содержать валидный JSON", _json=True)
         json_data = json.loads(raw)
         return question.compose(json_data)

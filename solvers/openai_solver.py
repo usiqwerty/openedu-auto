@@ -2,7 +2,7 @@ import json
 import logging
 import re
 
-from openai import OpenAI
+from openai import OpenAI, NotGiven, NOT_GIVEN
 
 import config
 from solvers.llm_solver import LLMSolver
@@ -32,7 +32,8 @@ class GenericOpenAISolver(LLMSolver):
                 model=self.model,
                 messages=messages,
                 stream=False,
-                reasoning_effort=None
+                reasoning_effort=None,
+                response_format={"type": "json_object"} if _json else NOT_GIVEN
             )
             if response.choices is None:
                 error = response.model_extra['error']

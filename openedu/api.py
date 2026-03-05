@@ -128,6 +128,7 @@ class OpenEduAPI:
             try:
                 current = r.json()['current_score']
                 maxscore = r.json()['total_possible']
+                print(f"{current}/{maxscore}")
             except KeyError as e:
                 logging.warning(e)
                 return 0, 0

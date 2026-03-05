@@ -71,7 +71,12 @@ class ConsensusSolver(AbstractSolver):
         logging.info(f"Set up ConsensusSolver: {self.solvers}")
 
     def __solve_with_all_solvers(self, question: Question, table_mode=False):
-        solutions = [solver.solve(question) for solver in self.solvers]
+        solutions = []
+        for solver in self.solvers:
+            try:
+                solutions.append(solver.solve(question))
+            except NoSolutionFoundError as e:
+                logging.error(e)
         # has_atomic = any(isinstance(s[1], str) for s in solutions)
         if self.negotiation == 'match':
             if all(s == solutions[0] for s in solutions):

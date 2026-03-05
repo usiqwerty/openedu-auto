@@ -39,7 +39,7 @@ def menu_iteration(app: OpenEduAutoSolver):
         print("Перезапустите программу")
     elif cmd == '6':
         solver = ConsensusSolver([
-            GenericOpenAISolver(),
+            # GenericOpenAISolver(),
             GenericOpenAISolver(model='gpt-5-nano'),
             GenericOpenAISolver(model='gemini-3.1-flash-lite-preview'),
             GenericOpenAISolver(model='qwen3.5-35b-a3b'),
@@ -53,7 +53,9 @@ def menu_iteration(app: OpenEduAutoSolver):
         solver = MistralSolver()
         describer = DummyDescriber()
         parse_only_presudosolve(solver, describer)
-
+    elif cmd == '-2':
+        solve_with_llm(app, go_on=True)
+        return True
 
 def choose_login_method():
     method = None

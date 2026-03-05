@@ -19,7 +19,8 @@ def get_ans_id(answers: list[tuple[str, str]], answer: str):
 
 
 def get_ans_id_best(answers: list[tuple[str, str]], answer: str):
-    assert isinstance(answer, str)
+    if not isinstance(answer, str):
+        raise NoSolutionFoundError(f"Bad answer: {answer} is not a string")
     idx = get_similar_index(answer, [ans for ans, aid in answers])
     if idx is None:
         raise NoSolutionFoundError(f"'{answer}' was not present in options {answers}")
