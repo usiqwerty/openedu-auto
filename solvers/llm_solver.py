@@ -67,7 +67,7 @@ class LLMSolver(AbstractSolver, ABC):
         with open(self.cache_path, 'w', encoding='utf-8') as f:
             json.dump(data, f)
 
-    def solve_choice(self, question: ChoiceQuestion):
+    def solve_choice(self, question: ChoiceQuestion) -> tuple[str, str | list[str]]:
         raw = self.get_answer(question.query()).split('\n')
         raw = list(filter(lambda x: x, raw))
         res: list[str] | str
@@ -77,26 +77,26 @@ class LLMSolver(AbstractSolver, ABC):
             res = raw
         return question.compose(res)
 
-    def solve_match(self, question: FixedMatchQuestion):
+    def solve_match(self, question: FixedMatchQuestion) -> tuple[str, str]:
         # res = self.get_answer(question.query()).split('\n')
         raw = self.get_answer(question.query())
         json_data = json.loads(raw)
         return question.compose(json_data)
 
-    def solve_freematch(self, question: FreeMatchQuestion):
+    def solve_freematch(self, question: FreeMatchQuestion) -> tuple[str, str]:
         res = self.get_answer(question.query()).split('\n')
         res = list(filter(lambda x: x, res))
         return question.compose(res)
 
-    def solve_select(self, question: SelectQuestion) -> tuple[str, str | list[str]]:
+    def solve_select(self, question: SelectQuestion) -> tuple[str, str]:
         res = self.get_answer(question.query())
         return question.compose(res)
 
-    def solve_fill(self, question: FillQuestion):
+    def solve_fill(self, question: FillQuestion) -> tuple[str, str]:
         res = self.get_answer(question.query())
         return question.compose(res)
 
-    def solve_new_match(self, question: NewMatchQuestion):
+    def solve_new_match(self, question: NewMatchQuestion) -> tuple[str, str]:
         raw = self.get_answer(question.query())
         json_data = json.loads(raw)
         return question.compose(json_data)

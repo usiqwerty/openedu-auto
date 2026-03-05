@@ -20,7 +20,7 @@ class ChoiceQuestion(BaseModel, Question):
                 f"В ответе напиши только ответ, без каких-либо дополнений и пояснений, разные ответы пиши в разных строках. Ты можешь выбирать только среди вариантов (в каждой строке отдельный вариант):\n" +
                 '\n'.join(f"{ans}" for ans in self.options))
 
-    def compose(self, answer: list[str] | str):
+    def compose(self, answer: list[str] | str) -> tuple[str, str | list[str]]:
         if isinstance(answer, str):
             return singular_choice(answer, self.ids, self.options)
         else:
@@ -29,7 +29,7 @@ class ChoiceQuestion(BaseModel, Question):
     @staticmethod
     def parse(questions: Tag, prepend_lines: list[str] = None) -> "ChoiceQuestion":
         lines = prepend_lines + []
-        for child in questions.select("div, p, pre"): #.children:
+        for child in questions.select("div, p, pre"):  # .children:
             if child.name in ["p", "pre"]:
                 lines.append(child.text.strip())
             elif child.name == "div":
@@ -43,7 +43,7 @@ class ChoiceQuestion(BaseModel, Question):
                 corrects = [label['for'] for label in ans_labels if "choicegroup_correct" in label.get('class', '')]
                 if ids:
                     ensure_ids_same(ids)
-                    correct_answers = [extract_choice_from_id(ans)[1]  for ans in corrects]
+                    correct_answers = [extract_choice_from_id(ans)[1] for ans in corrects]
                     if len(correct_answers) > 1:
                         correct_answer = correct_answers
                     elif len(correct_answers) == 1:
@@ -52,10 +52,11 @@ class ChoiceQuestion(BaseModel, Question):
                         correct_answer = None
                     quest_id, choice_id = extract_choice_from_id(ids[0])
 
-                    return ChoiceQuestion(id=quest_id, text='\n'.join(lines), options=qs, ids=ids, correct_answer=correct_answer)
+                    return ChoiceQuestion(id=quest_id, text='\n'.join(lines), options=qs, ids=ids,
+                                          correct_answer=correct_answer)
 
 
-def plural_choice(answer: list, ids: list[str], options: list[str]) -> tuple[str, str | list[str]]:
+def plural_choice(answer: list, ids: list[str], options: list[str]) -> tuple[str, list[str]]:
     options = [re.sub(r"\s+", ' ', opt) for opt in options]
     choices = []
     for ans in answer:
@@ -72,7 +73,7 @@ def plural_choice(answer: list, ids: list[str], options: list[str]) -> tuple[str
     return quest_id, choices
 
 
-def singular_choice(answer: str, ids: list[str], options: list[str]) -> tuple[str, str | list[str]]:
+def singular_choice(answer: str, ids: list[str], options: list[str]) -> tuple[str, str]:
     options = [re.sub(r"\s+", ' ', opt) for opt in options]
     if answer in options:
         index = options.index(answer)

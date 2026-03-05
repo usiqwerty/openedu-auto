@@ -39,7 +39,7 @@ class FreeMatchQuestion(BaseModel, Question):
 
 """
 
-    def compose(self, flat_answers: list[str]):
+    def compose(self, flat_answers: list[str]) -> tuple[str, str]:
         flat_answers = [re.sub(r"\s+", ' ', opt) for opt in flat_answers]
         col_num = 2
         answer = {}
@@ -54,7 +54,6 @@ class FreeMatchQuestion(BaseModel, Question):
                 answer[row_key] = [ans_id]
 
         return self.id, str({'answer': answer})
-
 
     @staticmethod
     def parse(problem: Tag, prepend_lines: list[str] = None, describer: ImageDescriber = None):
@@ -103,8 +102,8 @@ class FreeMatchQuestion(BaseModel, Question):
         else:
             correct_answer = None
         return FreeMatchQuestion(text='\n'.join(lines),
-                              id=q_id,
-                              column_headers=column_headers,
-                              field_columns=columns,
-                              option_columns=all_col_answers,
-                              correct_answer=correct_answer)
+                                 id=q_id,
+                                 column_headers=column_headers,
+                                 field_columns=columns,
+                                 option_columns=all_col_answers,
+                                 correct_answer=correct_answer)

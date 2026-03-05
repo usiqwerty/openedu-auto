@@ -17,7 +17,7 @@ class SelectQuestion(BaseModel, Question):
                 f"В ответе напиши только ответ, без каких-либо дополнений и поясненийх. Ты можешь выбирать только среди вариантов:\n" +
                 '\n'.join(f"{ans[0]}" for ans in self.options))
 
-    def compose(self, answer: str):
+    def compose(self, answer: str) -> tuple[str, str]:
         ans_id = None
         for opt, option_id in self.options:
             if fuzz.ratio(opt, answer.strip()) > 85:

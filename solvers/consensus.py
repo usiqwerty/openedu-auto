@@ -1,3 +1,4 @@
+import json
 import logging
 from collections import defaultdict
 from typing import Literal
@@ -34,19 +35,50 @@ def get_most_common_solution(solutions: list[tuple[str, list[str]]]) -> tuple[st
 
     return taskid, most_common_variants
 
+
+def merge_tables(solutions: list):
+    ans_keys = None
+
+    summed_table = defaultdict(lambda: defaultdict(int))
+    task_id = None
+    for tid, ans in solutions:
+        task_id = tid
+        ans_dict: dict = json.loads(ans)['answer']
+        # json error may occur here
+        if ans_keys is None:
+            ans_keys = sorted(ans_dict.keys())
+        elif len(ans_keys) != len(ans_dict):
+            raise NoSolutionFoundError("Consensus failed: solutions have different number of keys")
+
+        for key in ans_keys:
+            summed_table[key][json.dumps(ans_dict[key])] += 1
+
+    final = {}
+    for key in ans_keys:
+        answers_distribution = summed_table[key]
+        for cell_val, count in answers_distribution.items():
+            if count >= len(solutions) - 1:  # all except one
+                final[key] = json.loads(cell_val)
+
+    assert task_id is not None
+    return task_id, json.dumps({"answer": final}, sort_keys=True)
+
+
 class ConsensusSolver(AbstractSolver):
-    def __init__(self, solvers: list[AbstractSolver], negotiation: Literal["match","most-common"]="match"):
+    def __init__(self, solvers: list[AbstractSolver], negotiation: Literal["match", "most-common"] = "match"):
         self.solvers = solvers
         self.negotiation = negotiation
         logging.info(f"Set up ConsensusSolver: {self.solvers}")
 
-    def __solve_with_all_solvers(self, question: Question):
+    def __solve_with_all_solvers(self, question: Question, table_mode=False):
         solutions = [solver.solve(question) for solver in self.solvers]
         # has_atomic = any(isinstance(s[1], str) for s in solutions)
         if self.negotiation == 'match':
             if all(s == solutions[0] for s in solutions):
                 return solutions[0]
         elif self.negotiation == 'most-common':
+            if table_mode:
+                return merge_tables(solutions)
             sols_as_lists = []
             for id, ans in solutions:
                 if isinstance(ans, list):
@@ -83,4 +115,4 @@ class ConsensusSolver(AbstractSolver):
         return self.__solve_with_all_solvers(question)
 
     def solve_new_match(self, question: NewMatchQuestion) -> tuple[str, str | list[str]]:
-        return self.__solve_with_all_solvers(question)
+        return self.__solve_with_all_solvers(question, table_mode=True)

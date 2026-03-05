@@ -26,7 +26,7 @@ class AbstractMatchQuestion(Question):
     options: list[tuple[str, str]]
     table: list[list[CellData]]
 
-    def compose(self, answer: list[list[AnswerType]]) -> tuple[str, str | dict]:
+    def compose(self, answer: list[list[AnswerType]]) -> tuple[str, str]:
         _answer: dict[str, list[str]] = defaultdict(list)
         for answer_row, table_row in zip(answer, self.table):
             for answer_col, table_col in zip(answer_row, table_row):
