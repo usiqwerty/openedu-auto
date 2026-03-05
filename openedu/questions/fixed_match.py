@@ -39,9 +39,14 @@ class FixedMatchQuestion(BaseModel, AbstractMatchQuestion):
         #  would feel better without redundant backslashes
         answers = []
         lines = prepend_lines or []
-        lines += [problem.find('p').text]
+        for child in problem.select('p, table'):
+            if child.name == 'p':
+                if child.text.strip():
+                    lines.append(child.text.strip())
+            else:
+                break
 
-        table_div = problem.select_one("div.matching_table")
+        table_div = problem #.select_one("div.matching_table")
         table = table_div.find('table')
         headers = [th.text.strip() for th in table.find_all("th")]
 
@@ -54,7 +59,7 @@ class FixedMatchQuestion(BaseModel, AbstractMatchQuestion):
                 if "conf-answers-place" in td.get('class', ""):
                     field_id = td['id']
                 else:
-                    field_text = td.text
+                    field_text = td.text.strip()
                 row.append(CellData(id=field_id, value=field_text))
             if row:
                 _table.append(row)

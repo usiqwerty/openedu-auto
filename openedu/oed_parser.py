@@ -99,7 +99,17 @@ class OpenEduParser:
         # а здесь мы делаем очень смелое предположение, что если matching table есть в задаче,
         # то ничего другого там не встречается
         if mt:
-            q = self.parse_question(problem, default_prepend)
+            prepend = default_prepend.copy()
+            for question_tag in problem.select("div.wrapper-problem-response, .problem p, table"): #, div.matching_table
+                if question_tag in mt.descendants:
+                    continue
+                if question_tag.name == 'p':
+                    p_text = question_tag.text.strip()
+                    if p_text:
+                        prepend.append(p_text)
+                else:
+                    break
+            q = self.parse_question(mt, prepend, has_mt=True)
             questions.append(q)
         elif is_crossword:
             q = Crossword.parse(problem)
@@ -119,12 +129,12 @@ class OpenEduParser:
 
         return questions
 
-    def parse_question(self, question_tag: Tag, prepend_lines: list[str] = None) -> Question:
-        if question_tag.select_one('div.matching_table, div.adv-app') is not None:
-            if question_tag.select_one('.adv-app'):
+    def parse_question(self, question_tag: Tag, prepend_lines: list[str] = None, has_mt=False) -> Question:
+        if has_mt: #question_tag.select_one('div.matching_table, div.adv-app') is not None
+            if "adv-app" in question_tag.get('class', ""):
                 return NewMatchQuestion.parse(question_tag, prepend_lines)
-            elif question_tag.select_one('div.matching_table').select("td.conf-text"):
-                return  FixedMatchQuestion.parse(question_tag, prepend_lines)
+            elif "matching_table" in question_tag.get('class', "") and question_tag.select("td.conf-text"):
+                return FixedMatchQuestion.parse(question_tag, prepend_lines)
             else:
                 return FreeMatchQuestion.parse(question_tag, prepend_lines, self.describer)
         elif question_tag.find('select'):

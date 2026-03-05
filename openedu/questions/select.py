@@ -31,9 +31,9 @@ class SelectQuestion(BaseModel, Question):
     def parse(tag: Tag, prepend_lines: list[str] = None) -> "SelectQuestion":
         lines = prepend_lines + []
         answers = []
-        for child in tag.children:
-            if child.name == "p":
-                lines.append(child.text)
+        for child in tag.select('p, label'):
+            if child.text.strip():
+                lines.append(child.text.strip())
 
         sel = tag.select_one('select')
         q_id = sel['id']

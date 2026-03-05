@@ -38,7 +38,7 @@ class OpenEduAutoSolver(OpenEduProcessor):
         quest_id = extract_quest_id(input_id)
         new_block_id = f"block-v1:{course_id}+type@problem+block@{quest_id}"
         print(f"{answers=}")
-        if self.app.is_block_solved(new_block_id):
+        if not process_solved and self.app.is_block_solved(new_block_id):
             return
 
         got, total = self.app.submit_answers(course_id, new_block_id, answers)

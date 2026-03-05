@@ -23,12 +23,15 @@ class NewMatchQuestion(BaseModel, AbstractMatchQuestion):
 
     @staticmethod
     def parse(tag: Tag, prepend_lines: list[str] = None) -> "NewMatchQuestion":
-        json_data = json.loads(tag.select_one('.adv-app')['data-initial-data'].replace("'", '"'))
-        text = json_data['content']['body']
-        qid = tag.find('input')['id']
+        #tag.select_one('.adv-app')
+        json_data = json.loads(tag['data-initial-data'].replace("'", '"'))
+        lines = prepend_lines or []
+        text = '\n'.join(lines) + json_data['content']['body']
+        text = text.strip()
+        qid = tag.parent.find('input')['id']
         options = [(x['title'], x['id']) for x in json_data['answers']]
         table = []
-        answer_input = tag.select_one("input")
+        answer_input = tag.parent.select_one("input")
 
         answer_json_string = answer_input.get('value', "").replace("'", '"')
         if answer_json_string:

@@ -60,7 +60,7 @@ class FreeMatchQuestion(BaseModel, Question):
         lines = prepend_lines or []
         lines += [p.text for p in problem.select('.matching_table > p')]
 
-        table_div = problem.select_one("div.matching_table")
+        table_div = problem #.select_one("div.matching_table")
         table = table_div.find('table')
 
         column_headers = []
