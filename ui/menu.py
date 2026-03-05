@@ -40,9 +40,9 @@ def menu_iteration(app: OpenEduAutoSolver):
     elif cmd == '6':
         solver = ConsensusSolver([
             GenericOpenAISolver(),
-            GenericOpenAISolver(model='gpt-4.1-nano'),
-            GenericOpenAISolver(model='gemini-2.5-flash'),
-            GenericOpenAISolver(model='qwen3-235b-a22b-2507'),
+            GenericOpenAISolver(model='gpt-5-nano'),
+            GenericOpenAISolver(model='gemini-3.1-flash-lite-preview'),
+            GenericOpenAISolver(model='qwen3.5-35b-a3b'),
         ], negotiation="most-common")
         describer = DummyDescriber()
         app = OpenEduAutoSolver(solver, describer)

@@ -26,7 +26,8 @@ class GenericOpenAISolver(LLMSolver):
             messages=[
                 {"role": "user", "content": query},
             ],
-            stream=False
+            stream=False,
+            reasoning_effort=None
         )
         if response.choices is None:
             error = response.model_extra['error']

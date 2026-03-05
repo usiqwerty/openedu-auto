@@ -44,6 +44,7 @@ class NewMatchQuestion(BaseModel, AbstractMatchQuestion):
                     final_value = None
                 else:
                     final_value = [parse_custom_markdown(v) for v in value]
+                    assert isinstance(final_value[0], str)
                 row.append(CellData(value=final_value, id=cell.get('id')))
             table.append(row)
         return NewMatchQuestion(id=qid, text=text, table=table, options=options, correct_answer=correct_answer)

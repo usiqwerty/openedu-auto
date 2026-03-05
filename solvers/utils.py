@@ -19,6 +19,7 @@ def get_ans_id(answers: list[tuple[str, str]], answer: str):
 
 
 def get_ans_id_best(answers: list[tuple[str, str]], answer: str):
+    assert isinstance(answer, str)
     idx = get_similar_index(answer, [ans for ans, aid in answers])
     ans, aid = answers[idx]
     return aid

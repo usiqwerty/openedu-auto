@@ -32,13 +32,14 @@ class AbstractMatchQuestion(Question):
             for answer_col, table_col in zip(answer_row, table_row):
                 if table_col.value is not None:
                     continue
+                print(answer_col)
                 answers_ids = [get_ans_id_best(self.options, ans) for ans in answer_col]
                 _answer[table_col.id].extend(answers_ids)
 
         return self.id, json.dumps({"answer": _answer}, sort_keys=True)
 
     def query(self):
-        return f"""Необходимо заполнить таблицу.Ваша задача — распределить варианты ответов.
+        return f"""Необходимо заполнить таблицу. Ваша задача — распределить варианты ответов.
 ** Задание: **
 {self.text}
 
@@ -52,8 +53,11 @@ class AbstractMatchQuestion(Question):
 ** Требования к ответу: **
 0. Ответ обрабатывается автоматизированной системой, поэтому нужно чётко соответствовать требованиям 
 1. Выведите ответ в формате json
-2. Каждая ячейка - список строк (т.к. может быть несколько значений в ячейке)
-3. Каждая строка - список ячеек, то есть list[list[str]]
-4. Ответ (таблица) - список строк, то есть list[list[list[str]]] 
+2. Каждая ячейка - list[str] (т.к. может быть несколько значений в ячейке)
+3. Каждая строка - list[list[str]]
+4. Ответ (таблица) - list[list[list[str]]] 
 5. Не добавляйте пояснений, номеров или дополнительных символов, все значения должны выглядеть так же, как они были даны
+
+Пример ответа:
+[[['1'], ['текст']], [['2'], ['второй']]]
 """
