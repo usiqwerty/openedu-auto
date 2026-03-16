@@ -19,6 +19,7 @@ class GenericOpenAISolver(LLMSolver):
             logging.info(f"Model overriden: {model}")
             self.model = model
             self.cache_fn = re.sub(r"\W", "_", model) + self.cache_fn
+            self._cache = self.load_cache()
         self.client = OpenAI(api_key=config.config["openai-key"], base_url=config.config["openai-base-url"])
 
     def make_gpt_request(self, query, *, sysprompt=None, _json=False) -> str:

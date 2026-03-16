@@ -28,17 +28,17 @@ class LLMSolver(AbstractSolver, ABC):
     def cache_path(self):
         return os.path.join("userdata", self.cache_fn)
 
-    __cache: dict
+    _cache: dict
 
     def __init__(self):
-        self.__cache = self.load_cache()
+        self._cache = self.load_cache()
 
     def cache_get(self, key: str):
-        return self.__cache[key]
+        return self._cache[key]
 
     def cache_set(self, key: str, val):
-        self.__cache[key] = val
-        self.save_cache(self.__cache)
+        self._cache[key] = val
+        self.save_cache(self._cache)
 
     @abstractmethod
     def make_gpt_request(self, query, *, sysprompt, _json) -> str:
@@ -46,7 +46,7 @@ class LLMSolver(AbstractSolver, ABC):
 
     def get_answer(self, query, *, sysprompt=None, _json=False) -> str:
         print("Getting LLM answer...")
-        if query not in self.__cache:
+        if query not in self._cache:
             logging.debug("Question was not in cache")
 
             now = datetime.datetime.now().timestamp()
