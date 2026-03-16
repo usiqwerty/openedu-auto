@@ -10,6 +10,7 @@ from solvers.openai_solver import GenericOpenAISolver
 from tests.fakes import DummyDescriber
 from ui.actions import solve_with_llm, solve_with_file, save_answers
 from ui.cli_tools import parse_only_presudosolve
+from ui.solver_utils import pick_solver_from_config
 
 
 def menu_iteration(app: OpenEduAutoSolver):
@@ -38,12 +39,7 @@ def menu_iteration(app: OpenEduAutoSolver):
             os.remove(config.cache_fn)
         print("Перезапустите программу")
     elif cmd == '6':
-        solver = ConsensusSolver([
-            # GenericOpenAISolver(),
-            GenericOpenAISolver(model='gpt-5-nano'),
-            GenericOpenAISolver(model='gemini-3.1-flash-lite-preview'),
-            GenericOpenAISolver(model='qwen3.5-35b-a3b'),
-        ], negotiation="most-common")
+        solver = pick_solver_from_config()
         describer = DummyDescriber()
         app = OpenEduAutoSolver(solver, describer)
         url = input("Ссылка: ")
