@@ -77,6 +77,8 @@ class ConsensusSolver(AbstractSolver):
                 solutions.append(solver.solve(question))
             except NoSolutionFoundError as e:
                 logging.error(e)
+        if not solutions:
+            raise NoSolutionFoundError("None of solvers has found a solution")
         # has_atomic = any(isinstance(s[1], str) for s in solutions)
         if self.negotiation == 'match':
             if all(s == solutions[0] for s in solutions):
