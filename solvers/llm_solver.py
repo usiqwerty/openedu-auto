@@ -84,7 +84,7 @@ class LLMSolver(AbstractSolver, ABC):
         return question.compose(res)
 
     def solve_match(self, question: FixedMatchQuestion) -> tuple[str, str]:
-        raw = self.get_answer(question.query())
+        raw = self.get_answer(question.query(), _json=True)
         json_data = json.loads(raw)
         return question.compose(json_data)
 
