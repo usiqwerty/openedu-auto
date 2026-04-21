@@ -33,7 +33,7 @@ class GenericOpenAISolver(LLMSolver):
                 model=self.model,
                 messages=messages,
                 stream=False,
-                reasoning_effort=None,
+                reasoning_effort="low",
                 response_format={"type": "json_object"} if _json else NOT_GIVEN
             )
             if response.choices is None:
