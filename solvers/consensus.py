@@ -44,6 +44,9 @@ def merge_tables(solutions: list):
     for tid, ans in solutions:
         task_id = tid
         ans_dict: dict = json.loads(ans)['answer']
+        print("ans_dict", ans_dict)
+        if not ans_dict:
+            continue  # TODO: maybe we should do this in other place
         # json error may occur here
         if ans_keys is None:
             ans_keys = sorted(ans_dict.keys())
@@ -77,6 +80,7 @@ class ConsensusSolver(AbstractSolver):
                 solutions.append(solver.solve(question))
             except NoSolutionFoundError as e:
                 logging.error(e)
+        print("All solutions retrieved")
         if not solutions:
             raise NoSolutionFoundError("None of solvers has found a solution")
         # has_atomic = any(isinstance(s[1], str) for s in solutions)
