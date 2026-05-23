@@ -57,7 +57,7 @@ def merge_tables(solutions: list):
             summed_table[key][json.dumps(ans_dict[key])] += 1
 
     final = {}
-    for key in ans_keys:
+    for key in ans_keys or []:
         answers_distribution = summed_table[key]
         for cell_val, count in answers_distribution.items():
             if count >= len(solutions) - 1:  # all except one

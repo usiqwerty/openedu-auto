@@ -9,3 +9,8 @@ def test_basic_merge():
     c = 'aboba', json.dumps({'answer': {"a": "f", "c": "d"}})
     r = merge_tables([a, b, c])
     assert r == a
+
+def test_no_result():
+    a = 'aboba', json.dumps({'answer': {}})
+    r = merge_tables([a])
+    assert r == a
