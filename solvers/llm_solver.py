@@ -5,6 +5,8 @@ import os.path
 import time
 from abc import abstractmethod, ABC
 
+from pydantic import BaseModel
+
 from openedu.questions.choice import ChoiceQuestion
 from openedu.questions.fill import FillQuestion
 from openedu.questions.match.fixed_match import FixedMatchQuestion
@@ -44,7 +46,7 @@ class LLMSolver(AbstractSolver, ABC):
     def make_gpt_request(self, query, *, sysprompt, _json) -> str:
         pass
 
-    def get_answer(self, query, *, sysprompt=None, _json=False) -> str:
+    def get_answer(self, query, *, sysprompt=None, _json: type|None=None) -> str:
         print("Getting LLM answer...")
         if query not in self._cache:
             logging.debug("Question was not in cache")
@@ -53,8 +55,10 @@ class LLMSolver(AbstractSolver, ABC):
             delta = now - self.last_described
             if delta < self.interval_sec:
                 time.sleep(delta)
-            raw_result = self.make_gpt_request(query, sysprompt=sysprompt, _json=_json).strip()
-            result = striplines(raw_result)
+            raw_result = self.make_gpt_request(query, sysprompt=sysprompt, _json=_json)
+            result = raw_result
+            if not _json:
+                result = striplines(raw_result.strip())
             self.cache_set(query, result)
             self.last_described = now
         else:
@@ -84,8 +88,10 @@ class LLMSolver(AbstractSolver, ABC):
         return question.compose(res)
 
     def solve_match(self, question: FixedMatchQuestion) -> tuple[str, str]:
-        raw = self.get_answer(question.query(), _json=True)
-        json_data = json.loads(raw)
+        class TableType(BaseModel):
+            result: list[list[list[str]]]
+
+        json_data = self.get_answer(question.query(), _json=TableType)
         return question.compose(json_data)
 
     def solve_freematch(self, question: FreeMatchQuestion) -> tuple[str, str]:
