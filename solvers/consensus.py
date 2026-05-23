@@ -6,9 +6,9 @@ from typing import Literal
 from errors import NoSolutionFoundError
 from openedu.questions.choice import ChoiceQuestion
 from openedu.questions.fill import FillQuestion
-from openedu.questions.fixed_match import FixedMatchQuestion
-from openedu.questions.freematch import FreeMatchQuestion
-from openedu.questions.new_match import NewMatchQuestion
+from openedu.questions.match.fixed_match import FixedMatchQuestion
+from openedu.questions.match.freematch import FreeMatchQuestion
+from openedu.questions.match.new_match import NewMatchQuestion
 from openedu.questions.question import Question
 from openedu.questions.select import SelectQuestion
 from solvers.abstract_solver import AbstractSolver

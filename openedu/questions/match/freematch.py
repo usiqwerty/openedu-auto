@@ -5,15 +5,11 @@ from bs4 import Tag
 from pydantic import BaseModel
 
 from images.image_describer import ImageDescriber
-from openedu.questions.abstract_match import AbstractMatchQuestion, CellData
+from openedu.questions.match.abstract_match import AbstractMatchQuestion, CellData
 
 
 class FreeMatchQuestion(BaseModel, AbstractMatchQuestion):
     type: str = "freematch"
-    id: str
-    text: str
-    options: list[tuple[str, str]]
-    table: list[list[CellData]]
 
     @staticmethod
     def parse(problem: Tag, prepend_lines: list[str] = None, describer: ImageDescriber = None):

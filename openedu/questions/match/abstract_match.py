@@ -1,9 +1,10 @@
 import json
+from abc import ABC
 from collections import defaultdict
 from dataclasses import dataclass
 
 from openedu.questions.question import Question
-from solvers.utils import get_ans_id, get_ans_id_best
+from solvers.utils import get_ans_id_best
 
 AnswerType = list[str]
 
@@ -11,14 +12,14 @@ AnswerType = list[str]
 @dataclass
 class CellData:
     id: str | None = None
-    value: str | None = None
+    value: list[str] | None = None
 
 
 def format_table(table: list[list[CellData]]):
     return [[[cell.value or []] for cell in row] for row in table]
 
 
-class AbstractMatchQuestion(Question):
+class AbstractMatchQuestion(Question, ABC):
     type: str = "unified-match"
     text: str
     id: str

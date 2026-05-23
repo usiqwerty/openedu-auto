@@ -4,7 +4,7 @@ import re
 from bs4 import Tag
 from pydantic import BaseModel
 
-from openedu.questions.abstract_match import AbstractMatchQuestion, CellData
+from openedu.questions.match.abstract_match import AbstractMatchQuestion, CellData
 
 
 def parse_custom_markdown(text):
@@ -17,13 +17,10 @@ def parse_custom_markdown(text):
 
 class NewMatchQuestion(BaseModel, AbstractMatchQuestion):
     type: str = 'new-match'
-    id: str
-    text: str
-    options: list[tuple[str, str]]
 
     @staticmethod
     def parse(tag: Tag, prepend_lines: list[str] = None) -> "NewMatchQuestion":
-        #tag.select_one('.adv-app')
+        # tag.select_one('.adv-app')
         json_data = json.loads(tag['data-initial-data'].replace("'", '"'))
         lines = prepend_lines or []
         text = '\n'.join(lines) + json_data['content']['body']

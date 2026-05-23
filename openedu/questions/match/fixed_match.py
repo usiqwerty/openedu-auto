@@ -1,36 +1,13 @@
 import json
-from typing import Iterable
 
 from bs4 import Tag
 from pydantic import BaseModel
 
-from openedu.questions.abstract_match import AbstractMatchQuestion, CellData
-
-
-def format_table_row(field: tuple[str, list[str]]):
-    field_text, field_ids = field
-    return f"|{field_text}|{'|'.join([' ' for _ in field_ids])}|"
-
-
-def format_table(fields, headers):
-    return f"""|{'|'.join(headers)}|
-|{'|'.join(['---' for _ in headers])}|
-{'\n'.join(format_table_row(field) for field in fields)}
-"""
-
-
-def fields_by_columns(fields: list[tuple[str, list[str]]]) -> Iterable[tuple[str, str]]:
-    width = len(fields[0][1])
-    for col in range(width):
-        for field in fields:
-            yield field[0], field[1][col]
+from openedu.questions.match.abstract_match import AbstractMatchQuestion, CellData
 
 
 class FixedMatchQuestion(BaseModel, AbstractMatchQuestion):
     type: str = "fixed-match"
-    text: str
-    id: str
-    options: list[tuple[str, str]]
 
     @staticmethod
     def parse(problem: Tag, prepend_lines: list[str] = None):
@@ -46,7 +23,7 @@ class FixedMatchQuestion(BaseModel, AbstractMatchQuestion):
             else:
                 break
 
-        table_div = problem #.select_one("div.matching_table")
+        table_div = problem  # .select_one("div.matching_table")
         table = table_div.find('table')
         headers = [th.text.strip() for th in table.find_all("th")]
 
@@ -55,12 +32,12 @@ class FixedMatchQuestion(BaseModel, AbstractMatchQuestion):
             row = []
             for td in tr.find_all("td"):
                 field_id = None
-                field_text = None
+                field_value = None
                 if "conf-answers-place" in td.get('class', ""):
                     field_id = td['id']
                 else:
-                    field_text = td.text.strip()
-                row.append(CellData(id=field_id, value=field_text))
+                    field_value = [td.text.strip()]
+                row.append(CellData(id=field_id, value=field_value))
             if row:
                 _table.append(row)
 
@@ -80,7 +57,7 @@ class FixedMatchQuestion(BaseModel, AbstractMatchQuestion):
 
         answers.sort(key=lambda x: x[1])
 
-        headers = [[CellData(value=h) for h in headers]]
+        headers = [[CellData(value=[h]) for h in headers]]
         _table = headers + _table
         return FixedMatchQuestion(text='\n'.join(lines), id=q_id, options=answers,
                                   correct_answer=correct_answer, table=_table)

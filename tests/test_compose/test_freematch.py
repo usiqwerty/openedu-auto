@@ -3,8 +3,8 @@ import json
 import pytest
 
 from errors import NoSolutionFoundError
-from openedu.questions.abstract_match import CellData
-from openedu.questions.freematch import FreeMatchQuestion
+from openedu.questions.match.abstract_match import CellData
+from openedu.questions.match.freematch import FreeMatchQuestion
 
 d = {
     "table": [

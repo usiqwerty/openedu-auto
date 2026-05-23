@@ -1,16 +1,12 @@
 import logging
 import traceback
 
-from cache import CacheContext
 from errors import WrongAnswer, UnsupportedProblemType
-from images.image_describer import ImageDescriber
 from openedu.ids import VerticalBlockID
-from openedu.openedu import OpenEdu
-from openedu.questions.freematch import FreeMatchQuestion
+from openedu.questions.match.freematch import FreeMatchQuestion
 from openedu.questions.question import Question
 from openedu.utils import parse_page_url, extract_quest_id
 from automation.openedu_processor import OpenEduProcessor
-from solvers.abstract_solver import AbstractSolver
 
 
 class OpenEduAutoSolver(OpenEduProcessor):

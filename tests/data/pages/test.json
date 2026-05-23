@@ -179,27 +179,27 @@
     "id": "input_9882ae15e344b6f42b10_2_1",
     "table": [
       [
-        {"id": null, "value": "Мыслители"},
-        {"id": null, "value": "Произведения"}
+        {"id": null, "value": ["Мыслители"]},
+        {"id": null, "value": ["Произведения"]}
       ],
       [
-        {"id": null, "value": "К. Маркс"},
+        {"id": null, "value": ["К. Маркс"]},
         {"id": "a1", "value": null}
       ],
       [
-        {"id": null, "value": "Ф. Энгельс"},
+        {"id": null, "value": ["Ф. Энгельс"]},
         {"id": "a2", "value": null}
       ],
       [
-        {"id": null, "value": "О. Шпенглер"},
+        {"id": null, "value": ["О. Шпенглер"]},
         {"id": "a3", "value": null}
       ],
       [
-        {"id": null, "value": "А.Дж. Тойнби"},
+        {"id": null, "value": ["А.Дж. Тойнби"]},
         {"id": "a4", "value": null}
       ],
       [
-        {"id": null, "value": "Н.Я. Данилевский"},
+        {"id": null, "value": ["Н.Я. Данилевский"]},
         {"id": "a5", "value": null}
       ]
     ],

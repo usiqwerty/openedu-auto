@@ -50,43 +50,43 @@
     "type": "fixed-match",
     "table": [
       [
-        {"id": null, "value": "Показатель"},
-        {"id": null, "value": "Ядро"},
-        {"id": null, "value": "Мантия"},
-        {"id": null, "value": "Земная кора"}
+        {"id": null, "value": ["Показатель"]},
+        {"id": null, "value": ["Ядро"]},
+        {"id": null, "value": ["Мантия"]},
+        {"id": null, "value": ["Земная кора"]}
       ],
       [
-        {"id": null, "value": "Глубина залегания"},
+        {"id": null, "value": ["Глубина залегания"]},
         {"id": "a1", "value": null},
         {"id": "a2", "value": null},
         {"id": "a3", "value": null}
       ],
       [
-        {"id": null, "value": "Структура"},
+        {"id": null, "value": ["Структура"]},
         {"id": "a4", "value": null},
         {"id": "a5", "value": null},
         {"id": "a6", "value": null}
       ],
       [
-        {"id": null, "value": "Особенности"},
+        {"id": null, "value": ["Особенности"]},
         {"id": "a7", "value": null},
         {"id": "a8", "value": null},
         {"id": "a9", "value": null}
       ],
       [
-        {"id": null, "value": "Распространение упругих волн"},
+        {"id": null, "value": ["Распространение упругих волн"]},
         {"id": "a10", "value": null},
         {"id": "a11", "value": null},
         {"id": "a12", "value": null}
       ],
       [
-        {"id": null, "value": "Плотность"},
+        {"id": null, "value": ["Плотность"]},
         {"id": "a13", "value": null},
         {"id": "a14", "value": null},
         {"id": "a15", "value": null}
       ],
       [
-        {"id": null, "value": "Химический состав"},
+        {"id": null, "value": ["Химический состав"]},
         {"id": "a16", "value": null},
         {"id": "a17", "value": null},
         {"id": "a18", "value": null}
