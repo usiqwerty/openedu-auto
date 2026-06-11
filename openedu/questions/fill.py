@@ -12,7 +12,7 @@ class FillQuestion(BaseModel, Question):
     def query(self) -> str:
         return f"""{self.text}\nВ ответе напиши только ответ, без каких-либо дополнений, пояснений и прочих лишних обозначений."""
 
-    def compose(self, answer: str):
+    def compose(self, answer: str) -> tuple[str, str]:
         return self.id, answer
 
     @staticmethod
@@ -30,4 +30,3 @@ class FillQuestion(BaseModel, Question):
 
         question_text = '\n'.join(filter(lambda x: x, lines))
         return FillQuestion(id=q_id, text=question_text, correct_answer=correct_answer)
-

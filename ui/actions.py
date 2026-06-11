@@ -4,14 +4,13 @@ from automation.ans_saver import AnswersSaver
 from automation.autosolver import OpenEduAutoSolver
 from config import set_config
 from images.openrouter.qwen_describer import QwenImageDescriber
-from solvers.consensus import ConsensusSolver
 from solvers.localsolver import LocalSolver
-from solvers.openai_solver import GenericOpenAISolver
 from tests.fakes import DummyDescriber
 from ui.cli_tools import get_course_id, solve, get_solution_filepath
+from ui.solver_utils import pick_solver_from_config
 
 
-def solve_with_llm(empty_app: OpenEduAutoSolver):
+def solve_with_llm(empty_app: OpenEduAutoSolver, go_on=False):
     try:
         course_id = get_course_id(empty_app)
     except ValueError:
@@ -20,14 +19,10 @@ def solve_with_llm(empty_app: OpenEduAutoSolver):
     course = empty_app.app.get_course_info(course_id)
     set_config("last-course", str(course_id))
 
-    solver = ConsensusSolver([
-        GenericOpenAISolver(),
-        GenericOpenAISolver(model='gpt-4.1-nano'),
-        GenericOpenAISolver(model='gemini-2.5-flash'),
-        GenericOpenAISolver(model='qwen3-235b-a22b-2507'),
-    ], negotiation="most-common")
+    solver = pick_solver_from_config()
+
     describer = QwenImageDescriber()
-    solve(solver, describer, course)
+    solve(solver, describer, course, go_on=go_on)
 
 
 def solve_with_file(empty_app: OpenEduAutoSolver):

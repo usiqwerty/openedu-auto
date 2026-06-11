@@ -17,7 +17,7 @@ class SelectQuestion(BaseModel, Question):
                 f"В ответе напиши только ответ, без каких-либо дополнений и поясненийх. Ты можешь выбирать только среди вариантов:\n" +
                 '\n'.join(f"{ans[0]}" for ans in self.options))
 
-    def compose(self, answer: str):
+    def compose(self, answer: str) -> tuple[str, str]:
         ans_id = None
         for opt, option_id in self.options:
             if fuzz.ratio(opt, answer.strip()) > 85:
@@ -31,9 +31,9 @@ class SelectQuestion(BaseModel, Question):
     def parse(tag: Tag, prepend_lines: list[str] = None) -> "SelectQuestion":
         lines = prepend_lines + []
         answers = []
-        for child in tag.children:
-            if child.name == "p":
-                lines.append(child.text)
+        for child in tag.select('p, label'):
+            if child.text.strip():
+                lines.append(child.text.strip())
 
         sel = tag.select_one('select')
         q_id = sel['id']

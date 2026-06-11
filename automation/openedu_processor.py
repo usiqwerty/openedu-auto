@@ -10,7 +10,6 @@ from openedu.ids import SequentialBlockID, BlockID
 from openedu.oed_parser import VerticalBlock
 from openedu.openedu import OpenEdu
 from openedu.questions.question import Question
-
 from solvers.abstract_solver import AbstractSolver
 
 
@@ -39,12 +38,12 @@ class OpenEduProcessor(ABC):
                 print(f"Chapter: {ch.name}")
                 for seq in ch.sequentials:
                     seq_id = SequentialBlockID.parse(seq)
-
+                    print("Sequential:", seq_id.block_id)
                     if not self.should_process(seq_id.block_id):
                         continue
 
                     for vertical in self.app.get_sequential_block(course_id, seq_id.block_id):
-                        print(vertical.title)
+                        print("Vertical:", vertical.title)
                         blk = self.app.get_vertical_block(vertical.id)
                         if not self.should_process(blk.id):
                             continue
@@ -52,7 +51,7 @@ class OpenEduProcessor(ABC):
                     if self.mark_completion:
                         self.app.mark_block_as_completed(seq_id.block_id)
 
-    def process_vertical(self, blkid: str, block: VerticalBlock, course_id: str):
+    def process_vertical(self, blkid: str, block: VerticalBlock, course_id: str, *, process_solved=False):
         logging.debug(blkid)
         logging.debug(f"Block '{block.title}' (complete={block.complete}) of type '{block.type}'")
         html = self.app.get_vertical_page_html(blkid)
@@ -66,7 +65,7 @@ class OpenEduProcessor(ABC):
 
         try:
             for problem in self.app.get_problems_for_vertical(blkid):
-                self.process_problem(course_id, problem)
+                self.process_problem(course_id, problem, process_solved=process_solved)
         except UnsupportedProblemType as e:
             logging.error(f"Unsupported problem type: {e}")
             self.app.skip_forever(blkid)
@@ -77,5 +76,5 @@ class OpenEduProcessor(ABC):
             self.app.mark_block_as_completed(blkid)
 
     @abstractmethod
-    def process_problem(self, course_id: str, problem: list[Question]):
+    def process_problem(self, course_id: str, problem: list[Question], *, process_solved):
         pass

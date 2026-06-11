@@ -4,10 +4,13 @@ import config
 from auth_providers.urfu import login_urfu
 from automation.autosolver import OpenEduAutoSolver
 from errors import Unauthorized
+from solvers.consensus import ConsensusSolver
 from solvers.mistral_solver import MistralSolver
+from solvers.openai_solver import GenericOpenAISolver
 from tests.fakes import DummyDescriber
 from ui.actions import solve_with_llm, solve_with_file, save_answers
 from ui.cli_tools import parse_only_presudosolve
+from ui.solver_utils import pick_solver_from_config
 
 
 def menu_iteration(app: OpenEduAutoSolver):
@@ -36,7 +39,7 @@ def menu_iteration(app: OpenEduAutoSolver):
             os.remove(config.cache_fn)
         print("Перезапустите программу")
     elif cmd == '6':
-        solver = MistralSolver()
+        solver = pick_solver_from_config()
         describer = DummyDescriber()
         app = OpenEduAutoSolver(solver, describer)
         url = input("Ссылка: ")
@@ -46,7 +49,9 @@ def menu_iteration(app: OpenEduAutoSolver):
         solver = MistralSolver()
         describer = DummyDescriber()
         parse_only_presudosolve(solver, describer)
-
+    elif cmd == '-2':
+        solve_with_llm(app, go_on=True)
+        return True
 
 def choose_login_method():
     method = None
