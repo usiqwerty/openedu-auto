@@ -4,9 +4,7 @@ import config
 from auth_providers.urfu import login_urfu
 from automation.autosolver import OpenEduAutoSolver
 from errors import Unauthorized
-from solvers.consensus import ConsensusSolver
 from solvers.mistral_solver import MistralSolver
-from solvers.openai_solver import GenericOpenAISolver
 from tests.fakes import DummyDescriber
 from ui.actions import solve_with_llm, solve_with_file, save_answers
 from ui.cli_tools import parse_only_presudosolve

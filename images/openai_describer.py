@@ -34,7 +34,7 @@ class OpenAIImageDescriber(ImageDescriber, ABC):
         )
         if completion.choices is None:
             error = completion.model_extra['error']
-            logging.critical(f"Error while describing image")
+            logging.critical("Error while describing image")
             logging.critical(f"Code {error['code']}: {error['message']}")
             logging.critical(error['metadata'])
             exit(1)

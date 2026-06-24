@@ -66,9 +66,9 @@ class Crossword(BaseModel, Question):
             r = re.search(r"let\s*data\s*=\s*\{'student_data':\s*(\[[\w\W]+])[,\'\"\w:\s]+};", scr.text)
             if r is None:
                 continue
-            l = r.group(1).replace("'", '"')
+            json_string = r.group(1).replace("'", '"')
 
-            for it in json.loads(l):
+            for it in json.loads(json_string):
                 if it['orientation'] == "across":
                     orient = CrosswordItemOrientation.horizontal
                 elif it['orientation'] == "down":

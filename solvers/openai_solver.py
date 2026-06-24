@@ -36,7 +36,7 @@ class GenericOpenAISolver(LLMSolver):
         )
         if response.error:
             error = response.model_extra['error']
-            logging.critical(f"Error solving")
+            logging.critical("Error solving")
             logging.critical(f"Code {error['code']}: {error['message']}")
             logging.critical(error['metadata'])
             raise Exception

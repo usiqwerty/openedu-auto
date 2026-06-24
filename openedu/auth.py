@@ -1,11 +1,9 @@
 import json
 import logging
-import os.path
 import re
 import urllib.parse
 from http.cookiejar import Cookie
 
-import requests.utils
 from requests import Session
 from requests.cookies import RequestsCookieJar
 
