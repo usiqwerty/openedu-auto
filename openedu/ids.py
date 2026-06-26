@@ -1,13 +1,15 @@
 import re
-from typing import Literal
+from typing import Literal, Any
 
-from pydantic import BaseModel
+from pydantic import BaseModel, GetCoreSchemaHandler
+from pydantic_core import CoreSchema, core_schema
 
 
 class CourseID(BaseModel):
     org: str
     course_id: str
     run: str
+
     def __init__(self, org: str, course_id: str, run: str):
         super().__init__(org=org, course_id=course_id, run=run)
         self.org = org
@@ -32,12 +34,13 @@ class CourseID(BaseModel):
         org, course_id, run = re.search(r"(\w+)\+(\w+)\+(\w+)", rich_id).groups()
         return CourseID(org, course_id, run)
 
+
 class BlockID:
-    course_id: str
+    course_id: CourseID
     block_id: str
     type: Literal['sequential', 'vertical', 'videoxblock', 'html', 'problem']
 
-    def __init__(self, course_id: str, block_id: str, block_type: Literal['sequential', 'vertical']):
+    def __init__(self, course_id: CourseID, block_id: str, block_type: Literal['sequential', 'vertical']):
         self.course_id = course_id
         self.block_id = block_id
         self.type = block_type
@@ -52,12 +55,37 @@ class BlockID:
     def parse(rich_id: str):
         course_id, block_type, block_id = re.search(r"block-v1:([\w+_]+)\+type@([\w-]+)\+block@([\w\W]+)",
                                                     rich_id).groups()
+        course_id = CourseID.parse(course_id)
         if block_type == 'sequential':
             return SequentialBlockID(course_id, block_id, block_type)
         elif block_type == 'vertical':
             return VerticalBlockID(course_id, block_id, block_type)
         else:
             return BlockID(course_id, block_id, block_type)
+
+    def __eq__(self, other):
+        return str(self) == str(other)
+
+    def __hash__(self):
+        return hash(str(self))
+
+    @classmethod
+    def __get_pydantic_core_schema__(
+            cls, source_type: Any, handler: GetCoreSchemaHandler
+    ) -> CoreSchema:
+        from_str_schema = core_schema.chain_schema([
+            core_schema.str_schema(),
+            core_schema.no_info_after_validator_function(cls.parse, handler(str)),
+        ])
+
+        return core_schema.json_or_python_schema(
+            json_schema=from_str_schema,
+            python_schema=core_schema.union_schema([
+                from_str_schema,
+                core_schema.is_instance_schema(cls)
+            ]),
+            serialization=core_schema.plain_serializer_function_ser_schema(repr)
+        )
 
 
 class VerticalBlockID(BlockID):

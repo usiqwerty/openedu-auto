@@ -5,6 +5,7 @@ from pydantic import BaseModel
 
 from errors import UnsupportedProblemType
 from images.image_describer import ImageDescriber
+from openedu.ids import VerticalBlockID, BlockID
 from openedu.questions.choice import ChoiceQuestion
 from openedu.questions.crossword import Crossword
 from openedu.questions.fill import FillQuestion
@@ -17,7 +18,7 @@ from openedu.questions.unsupported import UnsupportedQuestion
 
 
 class VerticalBlock(BaseModel):
-    id: str
+    id: VerticalBlockID
     title: str
     complete: bool
     type: str
@@ -39,7 +40,7 @@ class OpenEduParser:
         for item in sequential_block['items']:
             title = item['page_title']
             blk_type = item['type']
-            block_id = item['id']
+            block_id = BlockID.parse(item['id'])
             graded = item['graded']
             try:  # why not get()
                 complete = item['complete']

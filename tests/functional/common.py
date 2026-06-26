@@ -10,11 +10,12 @@ import config
 from automation.autosolver import OpenEduAutoSolver
 from images.image_describer import ImageDescriber
 from openedu.api import OpenEduAPI
+from openedu.ids import CourseID
 from openedu.local_api_storage import DummyApiStorage
 from openedu.openedu import OpenEdu
 from tests.fakes import DummySolver, DummyDescriber
 
-test_course = "test_course"
+test_course = CourseID("org", "test_course", "run")
 
 with open('tests/data/full/course_meta.json', encoding='utf-8') as f:
     course_meta = json.load(f)
@@ -63,7 +64,7 @@ def register_api_endpoints():
     )
     responses.post(
         re.compile(
-            r"https://courses.openedu.ru/courses/course-v1:test_course/xblock/block-v1:test_course\+type@html\+block@[\W\w]+/handler/publish_completion", ),
+            r"https://courses.openedu.ru/courses/course-v1:org\+test_course\+run/xblock/block-v1:org\+test_course\+run\+type@html\+block@[\W\w]+/handler/publish_completion", ),
         json={"result": "ok"}
     )
 

@@ -22,7 +22,7 @@
     "additional_context_user_message": null,
     "user_fragment": null
   },
-  "course_id": "test_course",
+  "course_id": "org+test_course+run",
   "is_enrolled": true,
   "is_self_paced": false,
   "is_completion_displayed": true,
@@ -39,7 +39,7 @@
     {
       "tab_id": "courseware",
       "title": "Курс",
-      "url": "https://apps.openedu.ru/learning/course/course-v1:test_course/home"
+      "url": "https://apps.openedu.ru/learning/course/course-v1:org+test_course+run/home"
     }
   ],
   "title": "История России",

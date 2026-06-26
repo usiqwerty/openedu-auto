@@ -4,7 +4,7 @@
       "content": "",
       "page_title": "Правила обучения на курсе",
       "type": "other",
-      "id": "block-v1:test_course+type@vertical+block@987",
+      "id": "block-v1:org+test_course+run+type@vertical+block@987",
       "bookmarked": false,
       "path": "Правила обучения на курсе > Правила обучения на курсе > Правила обучения на курсе",
       "graded": false,
@@ -14,7 +14,7 @@
     }
   ],
   "element_id": "123",
-  "item_id": "block-v1:test_course+type@sequential+block@123",
+  "item_id": "block-v1:org+test_course+run+type@sequential+block@123",
   "is_time_limited": false,
   "is_proctored": false,
   "position": 1,

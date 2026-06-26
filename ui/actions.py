@@ -53,4 +53,4 @@ def save_answers(empty_app: OpenEduAutoSolver):
         return
 
     saver = AnswersSaver()
-    saver.pull_answers(str(course_id))
+    saver.pull_answers(course_id)

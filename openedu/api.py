@@ -8,7 +8,7 @@ import config
 from errors import Unauthorized, GenericOpenEduError
 from openedu.auth import OpenEduAuth
 from openedu.course import Course, Chapter
-from openedu.ids import CourseID
+from openedu.ids import CourseID, VerticalBlockID, BlockID
 from openedu.local_api_storage import LocalApiStorage
 
 referer_params = urllib.parse.urlencode({
@@ -44,7 +44,7 @@ class OpenEduAPI:
         self.refreshed = False
 
     @ensure_login
-    def get_sequential_block(self, course_id: str, block_id: str):
+    def get_sequential_block(self, course_id: CourseID, block_id: str):
         url = (f"https://courses.openedu.ru/api/courseware/sequence/"
                f"block-v1:{course_id}+type@sequential"
                f"+block@{block_id}")
@@ -71,7 +71,7 @@ class OpenEduAPI:
         return json_result
 
     @ensure_login
-    def publish_completion(self, course_id: str, html_block_id: str):
+    def publish_completion(self, course_id: CourseID, html_block_id: BlockID):
         url = (f"https://courses.openedu.ru/courses/course-v1:{course_id}"
                f"/xblock/{html_block_id}"
                f"/handler/publish_completion")
@@ -106,7 +106,7 @@ class OpenEduAPI:
         self.api_storage.mark_block_as_completed(html_block_id)
 
     @ensure_login
-    def problem_check(self, course_id: str, blk: str, answers: dict[str, str]):
+    def problem_check(self, course_id: CourseID, blk: BlockID, answers: dict[str, str]):
         logging.info(f"Checking answer: {answers}")
         url = f"https://courses.openedu.ru/courses/course-v1:{course_id}/xblock/{blk}/handler/xmodule_handler/problem_check"
 
@@ -171,10 +171,10 @@ class OpenEduAPI:
             chapter_name = blocks[chapter_id]['display_name']
             chapters.append(Chapter(name=chapter_name, sequentials=blocks[chapter_id]['children']))
 
-        return Course(id=str(course_id), name=course_name, chapters=chapters)
+        return Course(id=course_id, name=course_name, chapters=chapters)
 
     @ensure_login
-    def get_vertical_html(self, blk: str) -> str:
+    def get_vertical_html(self, blk: VerticalBlockID) -> str:
         logging.debug("Requesting xblock")
         url = f"https://courses.openedu.ru/xblock/{blk}"
         return self.get(url)

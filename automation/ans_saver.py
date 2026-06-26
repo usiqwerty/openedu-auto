@@ -4,6 +4,7 @@ import logging
 import os.path
 
 import config
+from openedu.ids import CourseID
 from openedu.questions.question import Question
 from automation.openedu_processor import OpenEduProcessor
 from tests.fakes import DummyDescriber
@@ -19,12 +20,12 @@ class AnswersSaver(OpenEduProcessor):
     def __init__(self):
         super().__init__(None, DummyDescriber())
 
-    def pull_answers(self, course_id: str):
+    def pull_answers(self, course_id: CourseID):
         self.answers = {}
         os.makedirs(solutions_dir, exist_ok=True)
         self.process_course(course_id)
 
-    def process_problem(self, course_id: str, problem: list[Question]):
+    def process_problem(self, course_id: CourseID, problem: list[Question]):
         solution_fn = os.path.join(solutions_dir, f"{course_id}.json")
 
         for question in problem:

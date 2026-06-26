@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 from cache import CacheContext
 from errors import UnsupportedProblemType, NoSolutionFoundError
 from images.image_describer import ImageDescriber
-from openedu.ids import SequentialBlockID, BlockID
+from openedu.ids import BlockID, CourseID, VerticalBlockID
 from openedu.oed_parser import VerticalBlock
 from openedu.openedu import OpenEdu
 from openedu.questions.question import Question
@@ -28,16 +28,15 @@ class OpenEduProcessor(ABC):
         self.describer = describer
         self.app = OpenEdu(self.describer)
 
-    def should_process(self, block_id: str):
+    def should_process(self, block_id: VerticalBlockID):
         return not (self.require_incomplete and self.app.is_block_solved(block_id))
 
-    def process_course(self, course_id: str):
+    def process_course(self, course_id: CourseID):
         with self.cache_context:
             course = self.app.get_course_info(course_id)
             for ch in course.chapters:
                 print(f"Chapter: {ch.name}")
-                for seq in ch.sequentials:
-                    seq_id = SequentialBlockID.parse(seq)
+                for seq_id in ch.sequentials:
                     print("Sequential:", seq_id.block_id)
                     if not self.should_process(seq_id.block_id):
                         continue
@@ -51,17 +50,17 @@ class OpenEduProcessor(ABC):
                     if self.mark_completion:
                         self.app.mark_block_as_completed(seq_id.block_id)
 
-    def process_vertical(self, blkid: str, block: VerticalBlock, course_id: str, *, process_solved=False):
+    def process_vertical(self, blkid: VerticalBlockID, block: VerticalBlock, course_id: CourseID, *, process_solved=False):
         logging.debug(blkid)
         logging.debug(f"Block '{block.title}' (complete={block.complete}) of type '{block.type}'")
         html = self.app.get_vertical_page_html(blkid)
         soup = BeautifulSoup(html, 'html.parser')
         for xblock_vert in soup.select("div.xblock div.vert"):
             block_id_str = xblock_vert['data-id']
+            block_id = BlockID.parse(block_id_str)
 
-            rich_block_id = BlockID.parse(block_id_str)
-            if rich_block_id.type in {"html", "xvideoblock"} and self.mark_completion:
-                self.app.publish_completion(course_id, block_id_str)
+            if block_id.type in {"html", "xvideoblock"} and self.mark_completion:
+                self.app.publish_completion(course_id, block_id)
 
         try:
             for problem in self.app.get_problems_for_vertical(blkid):
@@ -76,5 +75,5 @@ class OpenEduProcessor(ABC):
             self.app.mark_block_as_completed(blkid)
 
     @abstractmethod
-    def process_problem(self, course_id: str, problem: list[Question], *, process_solved):
+    def process_problem(self, course_id: CourseID, problem: list[Question], *, process_solved):
         pass

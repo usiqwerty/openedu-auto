@@ -4,14 +4,15 @@ from typing import Any
 
 import config
 from openedu.course import Course, Chapter
+from openedu.ids import BlockID, CourseID, VerticalBlockID
 from openedu.oed_parser import VerticalBlock
 
 
 class LocalApiStorage:
-    blocks: dict[str, VerticalBlock]
-    courses: dict[str, Course]
-    solved: set[str]
-    skipped: list[str]
+    blocks: dict[VerticalBlockID, VerticalBlock]
+    courses: dict[CourseID, Course]
+    solved: set[BlockID]
+    skipped: list[BlockID]
     cache: dict[str, Any]
 
     def __init__(self):
@@ -29,9 +30,10 @@ class LocalApiStorage:
             self.courses = {}
 
             for c_id, c in json_data.items():
+                course_id = CourseID.parse(c_id)
                 course = json.loads(c)
 
-                self.courses[c_id] = Course(id=course['id'], name=course['name'],
+                self.courses[course_id] = Course(id=course['id'], name=course['name'],
                                             chapters=[Chapter(**x) for x in course['chapters']])
         except FileNotFoundError:
             self.courses = {}
@@ -51,7 +53,7 @@ class LocalApiStorage:
         except FileNotFoundError:
             self.cache = {}
 
-    def mark_block_as_completed(self, block_id: str):
+    def mark_block_as_completed(self, block_id: BlockID):
         if not config.config.get('restrict-actions'):
             self.solved.add(block_id)
             logging.info(f"Added to solved: {block_id}")
@@ -77,7 +79,7 @@ class DummyApiStorage(LocalApiStorage):
         self.skipped = []
         self.cache = {}
 
-    def mark_block_as_completed(self, block_id: str):
+    def mark_block_as_completed(self, block_id: BlockID):
         if not config.config.get('restrict-actions'):
             self.solved.add(block_id)
             logging.info(f"Added to solved (dummy): {block_id}")

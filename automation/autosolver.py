@@ -2,7 +2,7 @@ import logging
 import traceback
 
 from errors import WrongAnswer, UnsupportedProblemType
-from openedu.ids import VerticalBlockID
+from openedu.ids import VerticalBlockID, BlockID, CourseID
 from openedu.questions.match.freematch import FreeMatchQuestion
 from openedu.questions.question import Question
 from openedu.utils import parse_page_url, extract_quest_id
@@ -13,7 +13,7 @@ class OpenEduAutoSolver(OpenEduProcessor):
     """OpenEduProcessor that solves problems"""
     require_incomplete = True
 
-    def process_problem(self, course_id: str, problem: list[Question], *, process_solved=False):
+    def process_problem(self, course_id: CourseID, problem: list[Question], *, process_solved=False):
         answers = {}
         input_id = None
         for question in problem:
@@ -32,7 +32,7 @@ class OpenEduAutoSolver(OpenEduProcessor):
         if input_id is None:
             return
         quest_id = extract_quest_id(input_id)
-        new_block_id = f"block-v1:{course_id}+type@problem+block@{quest_id}"
+        new_block_id = BlockID(course_id=course_id, block_id=quest_id, block_type="problem")
         print(f"{answers=}")
         if self.app.is_block_solved(new_block_id):
             return
