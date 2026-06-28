@@ -9,7 +9,7 @@ from src.openedu.oed_parser import VerticalBlock
 
 
 class LocalApiStorage:
-    blocks: dict[VerticalBlockID, VerticalBlock]
+    vertical_blocks: dict[VerticalBlockID, VerticalBlock]
     courses: dict[CourseID, Course]
     solved: set[BlockID]
     skipped: list[BlockID]
@@ -20,10 +20,12 @@ class LocalApiStorage:
 
     def load_from_disk(self):
         try:
+            # TODO: Why would we need to store vertical block data? We only need
+            #  it's solution status, right?
             with open(config.blocks_fn, encoding='utf-8') as f:
-                self.blocks = {k: VerticalBlock(**json.loads(v)) for k, v in json.load(f).items()}
+                self.vertical_blocks = {k: VerticalBlock(**json.loads(v)) for k, v in json.load(f).items()}
         except FileNotFoundError:
-            self.blocks = {}
+            self.vertical_blocks = {}
         try:
             with open(config.courses_fn, encoding='utf-8') as f:
                 json_data = json.load(f)
@@ -53,14 +55,14 @@ class LocalApiStorage:
         except FileNotFoundError:
             self.cache = {}
 
-    def mark_block_as_completed(self, block_id: ProblemBlockID | VerticalBlockID):
+    def mark_block_as_completed(self, block_id: BlockID):
         if not config.config.get('restrict-actions'):
             self.solved.add(block_id)
             logging.info(f"Added to solved: {block_id}")
 
     def save(self):
         with open(config.blocks_fn, 'w', encoding='utf-8') as f:
-            json.dump({k: v.json() for k, v in self.blocks.items()}, f)
+            json.dump({k: v.json() for k, v in self.vertical_blocks.items()}, f)
         with open(config.courses_fn, 'w', encoding='utf-8') as f:
             json.dump({k: v.json() for k, v in self.courses.items()}, f)
         with open(config.solved_fn, 'w', encoding='utf-8') as f:
@@ -73,7 +75,7 @@ class LocalApiStorage:
 
 class DummyApiStorage(LocalApiStorage):
     def load_from_disk(self):
-        self.blocks = {}
+        self.vertical_blocks = {}
         self.courses = {}
         self.solved = set()
         self.skipped = []

@@ -28,7 +28,7 @@ class OpenEduProcessor(ABC):
         self.describer = describer
         self.app = OpenEdu(self.describer)
 
-    def should_process(self, block_id: VerticalBlockID):
+    def should_process(self, block_id: BlockID) -> bool:
         return not (self.require_incomplete and self.app.is_block_solved(block_id))
 
     def process_course(self, course_id: CourseID):
@@ -38,17 +38,15 @@ class OpenEduProcessor(ABC):
                 print(f"Chapter: {ch.name}")
                 for seq_id in ch.sequentials:
                     print("Sequential:", seq_id.block_id)
-                    if not self.should_process(seq_id.block_id):
+                    if not self.should_process(seq_id):
                         continue
 
-                    for vertical in self.app.get_sequential_block(course_id, seq_id.block_id):
+                    for vertical in self.app.get_sequential_block(course_id, seq_id):
                         print("Vertical:", vertical.title)
-                        blk: VerticalBlock = self.app.get_vertical_block(vertical.id)  # type:ignore[assignment]
-                        if not self.should_process(blk.id):
-                            continue
-                        self.process_vertical(blk.id, vertical, course_id)
+                        if self.should_process(vertical.id):
+                            self.process_vertical(vertical.id, vertical, course_id)
                     if self.mark_completion:
-                        self.app.mark_block_as_completed(seq_id.block_id)
+                        self.app.mark_block_as_completed(seq_id)
 
     def process_vertical(self, blkid: VerticalBlockID, block: VerticalBlock, course_id: CourseID, *,
                          process_solved=False):
