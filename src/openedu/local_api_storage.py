@@ -62,13 +62,13 @@ class LocalApiStorage:
 
     def save(self):
         with open(config.blocks_fn, 'w', encoding='utf-8') as f:
-            json.dump({k: v.json() for k, v in self.vertical_blocks.items()}, f)
+            json.dump({str(k): v.json() for k, v in self.vertical_blocks.items()}, f)
         with open(config.courses_fn, 'w', encoding='utf-8') as f:
-            json.dump({k: v.json() for k, v in self.courses.items()}, f)
+            json.dump({str(k): v.json() for k, v in self.courses.items()}, f)
         with open(config.solved_fn, 'w', encoding='utf-8') as f:
-            json.dump(list(self.solved), f)
+            json.dump([str(blkid) for blkid in self.solved], f)
         with open(config.ignored_fn, 'w', encoding='utf-8') as f:
-            json.dump(self.skipped, f)
+            json.dump([str(blkid) for blkid in self.skipped], f)
         with open(config.cache_fn, 'w', encoding='utf-8') as f:
             json.dump(self.cache, f)
 

@@ -41,12 +41,12 @@ class CourseID(BaseModel):
 class BlockID:
     course_id: CourseID
     block_id: str
-    type: Literal['sequential', 'vertical', 'videoxblock', 'html', 'problem']
+    type: Literal['sequential', 'vertical', 'videoxblock', 'html', 'problem', 'library_content', 'discussion']
 
     def __init__(self,
                  course_id: CourseID,
                  block_id: str,
-                 block_type: Literal['sequential', 'vertical', 'videoxblock', 'html', 'problem']):
+                 block_type: Literal['sequential', 'vertical', 'videoxblock', 'html', 'problem', 'library_content', 'discussion']):
         self.course_id = course_id
         self.block_id = block_id
         self.type = block_type
@@ -64,7 +64,7 @@ class BlockID:
             raise ValueError(f"Invalid block id: {rich_id}")
         course_id, block_type, block_id = r.groups()
         course_id = CourseID.parse(course_id)
-        if block_type not in {'sequential', 'vertical', 'videoxblock', 'html', 'problem'}:
+        if block_type not in {'sequential', 'vertical', 'videoxblock', 'html', 'problem', 'library_content', 'discussion'}:
             raise ValueError(f"Unknown block type: {block_type}")
 
         if block_type == 'sequential':

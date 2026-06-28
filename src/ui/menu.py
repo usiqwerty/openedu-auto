@@ -1,14 +1,13 @@
 import os
 
+from errors import Unauthorized
 from src import config
 from src.auth_providers.urfu import login_urfu
 from src.automation.autosolver import OpenEduAutoSolver
-from errors import Unauthorized
-from src.solvers.mistral_solver import MistralSolver
-from tests.fakes import DummyDescriber
 from src.ui.actions import solve_with_llm, solve_with_file, save_answers
 from src.ui.cli_tools import parse_only_presudosolve
 from src.ui.solver_utils import pick_solver_from_config
+from tests.fakes import DummyDescriber, DummySolver
 
 
 def menu_iteration(app: OpenEduAutoSolver):
@@ -44,12 +43,13 @@ def menu_iteration(app: OpenEduAutoSolver):
         app.solve_by_url(url)
         return True
     elif cmd == '-1':
-        solver = MistralSolver()
+        solver = DummySolver()
         describer = DummyDescriber()
         parse_only_presudosolve(solver, describer)
     elif cmd == '-2':
         solve_with_llm(app, go_on=True)
         return True
+
 
 def choose_login_method():
     method = None
@@ -61,7 +61,7 @@ def choose_login_method():
         if m in {"1", "2"}:
             method = int(m)
 
-    return ["openedu", "urfu"][method-1]
+    return ["openedu", "urfu"][method - 1]
 
 
 def require_login(empty_app: OpenEduAutoSolver):

@@ -18,7 +18,7 @@ def require_config_field(name: str):
     raise ConfigError(f"Config field '{name}' was not found")
 
 
-userdata_dir = "../userdata"
+userdata_dir = "userdata"
 solutions_dir = os.path.join(userdata_dir, "solutions")
 config_fn = os.path.join(userdata_dir, "config.json")
 cache_fn = os.path.join(userdata_dir, "cache.json")
@@ -33,4 +33,4 @@ try:
     with open(config_fn, encoding='utf-8') as f:
         config = json.load(f)
 except FileNotFoundError:
-    config = {}
+    config: dict[str, str] = {}

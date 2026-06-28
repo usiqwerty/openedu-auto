@@ -36,7 +36,7 @@ def input_course_id():
 
 
 def get_course_id(app: OpenEduProcessor) -> CourseID:
-    last_course = config.config.get("last-course")
+    last_course = CourseID.parse(config.config.get("last-course"))
     if last_course is not None:
         try:
             course = app.app.get_course_info(last_course)
@@ -56,7 +56,7 @@ def get_course_id(app: OpenEduProcessor) -> CourseID:
         course_id = input_course_id()
 
     set_config("last-course", str(course_id))
-    return CourseID.parse(course_id)
+    return course_id
 
 
 def solve(solver: AbstractSolver, describer: ImageDescriber, course: Course, go_on=False):

@@ -10,7 +10,7 @@ from src.solvers.llm_solver import LLMSolver
 
 class GenericOpenAISolver(LLMSolver):
     client: OpenAI
-    model = config.config["openai-model"]
+    model: str
     cache_fn = "openai-cache.json"
 
     def __init__(self, model: str | None = None):
@@ -20,6 +20,8 @@ class GenericOpenAISolver(LLMSolver):
             self.model = model
             self.cache_fn = re.sub(r"\W", "_", model) + self.cache_fn
             self._cache = self.load_cache()
+        else:
+            self.model = config.config["openai-model"]
         self.client = OpenAI(api_key=config.config["openai-key"], base_url=config.config["openai-base-url"])
 
     def make_gpt_request(self, query, *, sysprompt=None, _json: type | None = None) -> str:
