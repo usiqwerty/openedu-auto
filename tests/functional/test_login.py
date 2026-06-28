@@ -5,7 +5,7 @@ import pytest
 import responses
 from requests import PreparedRequest
 
-import config
+from src import config
 
 config.userdata_dir = "test_userdata"
 config.solutions_dir = os.path.join(config.userdata_dir, "solutions")
@@ -20,7 +20,7 @@ os.makedirs(config.solutions_dir, exist_ok=True)
 
 # patch config before importing autosolver,
 # so it will use already modified directory
-from automation.autosolver import OpenEduAutoSolver
+from src.automation.autosolver import OpenEduAutoSolver
 from tests.functional.common import empty_auto_solver
 
 with open('tests/data/full/home.html', encoding='utf-8') as f:

@@ -3,8 +3,8 @@ import json
 import pytest
 
 from errors import NoSolutionFoundError
-from openedu.questions.match.abstract_match import CellData
-from openedu.questions.match.fixed_match import FixedMatchQuestion
+from src.openedu.questions.match.abstract_match import CellData
+from src.openedu.questions.match.fixed_match import FixedMatchQuestion
 
 
 def test_success():

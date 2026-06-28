@@ -1,6 +1,6 @@
 import json
 
-from solvers.consensus import merge_tables
+from src.solvers.consensus import merge_tables
 
 
 def test_basic_merge():

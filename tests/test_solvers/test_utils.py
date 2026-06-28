@@ -2,8 +2,8 @@ import json
 
 import pytest
 
-from solvers.utils import extract_choice_from_id, get_similar_index
-from openedu.questions.choice import ChoiceQuestion
+from src.solvers.utils import extract_choice_from_id, get_similar_index
+from src.openedu.questions.choice import ChoiceQuestion
 
 
 @pytest.mark.parametrize(["answer", "ids", "options", "expected"],

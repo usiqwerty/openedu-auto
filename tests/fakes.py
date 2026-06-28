@@ -1,15 +1,15 @@
 from requests import Response
 from requests.cookies import RequestsCookieJar
 
-from images.image_describer import ImageDescriber
-from openedu.questions.choice import ChoiceQuestion
-from openedu.questions.fill import FillQuestion
-from openedu.questions.match.abstract_match import AbstractMatchQuestion
-from openedu.questions.match.fixed_match import FixedMatchQuestion
-from openedu.questions.match.freematch import FreeMatchQuestion
-from openedu.questions.match.new_match import NewMatchQuestion
-from openedu.questions.select import SelectQuestion
-from solvers.abstract_solver import AbstractSolver
+from src.images.image_describer import ImageDescriber
+from src.openedu.questions.choice import ChoiceQuestion
+from src.openedu.questions.fill import FillQuestion
+from src.openedu.questions.match.abstract_match import AbstractMatchQuestion
+from src.openedu.questions.match.fixed_match import FixedMatchQuestion
+from src.openedu.questions.match.freematch import FreeMatchQuestion
+from src.openedu.questions.match.new_match import NewMatchQuestion
+from src.openedu.questions.select import SelectQuestion
+from src.solvers.abstract_solver import AbstractSolver
 
 
 class FakeSession:

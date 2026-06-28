@@ -5,7 +5,7 @@ import pytest
 from bs4 import BeautifulSoup
 
 from errors import FormatError
-from openedu.oed_parser import OpenEduParser, VerticalBlock
+from src.openedu.oed_parser import OpenEduParser, VerticalBlock
 from tests.fakes import DummyDescriber
 
 

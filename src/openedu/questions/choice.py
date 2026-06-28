@@ -1,0 +1,91 @@
+import re
+
+from bs4 import Tag
+
+from errors import NoSolutionFoundError
+from src.openedu.questions.question import Question
+from src.openedu.utils import ensure_ids_same
+from src.solvers.utils import get_similar_index, extract_choice_from_id
+
+
+class ChoiceQuestion(Question):
+    type: str = "choice"
+    text: str
+    options: list[str]
+    ids: list[str]
+
+    def query(self):
+        return (f"{self.text}\n"
+                f"В ответе напиши только ответ, без каких-либо дополнений и пояснений, разные ответы пиши в разных строках. Ты можешь выбирать только среди вариантов (в каждой строке отдельный вариант):\n" +
+                '\n'.join(f"{ans}" for ans in self.options))
+
+    def compose(self, answer: list[str] | str) -> tuple[str, str | list[str]]:
+        if isinstance(answer, str):
+            return singular_choice(answer, self.ids, self.options)
+        else:
+            return plural_choice(answer, self.ids, self.options)
+
+    @staticmethod
+    def parse(questions: Tag, prepend_lines: list[str] | None = None) -> "ChoiceQuestion":
+        lines = (prepend_lines or []) + []
+        for child in questions.select("div, p, pre"):  # .children:
+            if child.name in ["p", "pre"]:
+                lines.append(child.text.strip())
+            elif child.name == "div":
+                legend = child.find('legend')
+                if legend:
+                    lines.append(legend.text)
+                qs = [question.text.strip() for question in child.find_all('label')]
+                ids = [qid['id'] for qid in child.find_all('input')]
+
+                ans_labels = [label for label in child.select("label.field-label")]
+                corrects = [label['for'] for label in ans_labels if "choicegroup_correct" in label.get('class', '')]
+                if ids:
+                    ensure_ids_same(ids)
+                    correct_answers = [extract_choice_from_id(ans)[1] for ans in corrects]
+                    if len(correct_answers) > 1:
+                        correct_answer = correct_answers
+                    elif len(correct_answers) == 1:
+                        correct_answer = correct_answers[0]
+                    else:
+                        correct_answer = None
+                    quest_id, choice_id = extract_choice_from_id(ids[0])
+
+                    return ChoiceQuestion(id=quest_id, text='\n'.join(lines), options=qs, ids=ids,
+                                          correct_answer=correct_answer)
+        raise Exception("Parsing failed")
+
+def plural_choice(answer: list, ids: list[str], options: list[str]) -> tuple[str, list[str]]:
+    options = [re.sub(r"\s+", ' ', opt) for opt in options]
+    choices = []
+    for ans in answer:
+        try:
+            index = options.index(ans)
+        except ValueError:
+            index = get_similar_index(ans, options)
+            if index is None:
+                raise NoSolutionFoundError(f"'{ans}' was not a present option: {options}")
+        ans_input_id = ids[index]
+        quest_id, choice_id = extract_choice_from_id(ans_input_id)
+        choices.append(choice_id)
+    quest_id += "[]"
+    return quest_id, choices
+
+
+def singular_choice(answer: str, ids: list[str], options: list[str]) -> tuple[str, str]:
+    options = [re.sub(r"\s+", ' ', opt) for opt in options]
+    if answer in options:
+        index = options.index(answer)
+        ans_input_id = ids[index]
+        quest_id, choice_id = extract_choice_from_id(ans_input_id)
+
+        return quest_id, choice_id
+    else:
+        index = get_similar_index(answer, options)
+        if index is None:
+            raise NoSolutionFoundError(f"'{answer}' is not in options {options}")
+
+    ans_input_id = ids[index]
+    quest_id, choice_id = extract_choice_from_id(ans_input_id)
+
+    return quest_id, choice_id

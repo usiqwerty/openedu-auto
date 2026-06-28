@@ -1,9 +1,9 @@
 import logging
 
-from automation.autosolver import OpenEduAutoSolver
+from src.automation.autosolver import OpenEduAutoSolver
 from errors import Unauthorized, GenericOpenEduError, ReloginReceived
-from log import setup_logging
-from ui.menu import menu_iteration, require_login
+from src.log import setup_logging
+from src.ui.menu import menu_iteration, require_login
 
 version_string = "openedu-auto v1.1"
 setup_logging()

@@ -1,7 +1,7 @@
 import pytest
 
 from errors import NoSolutionFoundError
-from openedu.questions.choice import ChoiceQuestion
+from src.openedu.questions.choice import ChoiceQuestion
 
 
 def test_success_single():

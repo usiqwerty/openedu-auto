@@ -6,13 +6,13 @@ import shutil
 import pytest
 import responses
 
-import config
-from automation.autosolver import OpenEduAutoSolver
-from images.image_describer import ImageDescriber
-from openedu.api import OpenEduAPI
-from openedu.ids import CourseID
-from openedu.local_api_storage import DummyApiStorage
-from openedu.openedu import OpenEdu
+from src import config
+from src.automation.autosolver import OpenEduAutoSolver
+from src.images.image_describer import ImageDescriber
+from src.openedu.api import OpenEduAPI
+from src.openedu.ids import CourseID
+from src.openedu.local_api_storage import DummyApiStorage
+from src.openedu.openedu import OpenEdu
 from tests.fakes import DummySolver, DummyDescriber
 
 test_course = CourseID("org", "test_course", "run")

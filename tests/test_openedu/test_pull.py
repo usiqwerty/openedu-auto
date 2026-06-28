@@ -2,7 +2,7 @@ import json
 
 import pytest
 
-from openedu.oed_parser import OpenEduParser
+from src.openedu.oed_parser import OpenEduParser
 from tests.fakes import DummyDescriber
 
 
