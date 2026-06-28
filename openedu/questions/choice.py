@@ -9,7 +9,7 @@ from openedu.utils import ensure_ids_same
 from solvers.utils import get_similar_index, extract_choice_from_id
 
 
-class ChoiceQuestion(BaseModel, Question):
+class ChoiceQuestion(Question):
     type: str = "choice"
     text: str
     options: list[str]

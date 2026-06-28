@@ -6,7 +6,7 @@ from pydantic import BaseModel
 from openedu.questions.match.abstract_match import AbstractMatchQuestion, CellData
 
 
-class FixedMatchQuestion(BaseModel, AbstractMatchQuestion):
+class FixedMatchQuestion(AbstractMatchQuestion):
     type: str = "fixed-match"
 
     @staticmethod

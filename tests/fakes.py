@@ -4,6 +4,7 @@ from requests.cookies import RequestsCookieJar
 from images.image_describer import ImageDescriber
 from openedu.questions.choice import ChoiceQuestion
 from openedu.questions.fill import FillQuestion
+from openedu.questions.match.abstract_match import AbstractMatchQuestion
 from openedu.questions.match.fixed_match import FixedMatchQuestion
 from openedu.questions.match.freematch import FreeMatchQuestion
 from openedu.questions.match.new_match import NewMatchQuestion
@@ -55,6 +56,8 @@ class DummySolver(AbstractSolver):
     def solve_freematch(self, question: FreeMatchQuestion):
         return "input_id", '{"answer": {"a1": "b1, "a2": "b2"}}'
 
+    def solve_unified_match(self, question: AbstractMatchQuestion):
+        return "input_id", '{"answer": {"a1": "b1, "a2": "b2"}}'
 
 class DummyDescriber(ImageDescriber):
     def get_description(self, url: str) -> str:  # type:ignore[empty-body]

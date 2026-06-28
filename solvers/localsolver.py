@@ -7,9 +7,8 @@ import config
 from errors import HashMismatch, NoSolutionFoundError
 from openedu.questions.choice import ChoiceQuestion
 from openedu.questions.fill import FillQuestion
-from openedu.questions.match.freematch import FreeMatchQuestion
+from openedu.questions.match.abstract_match import AbstractMatchQuestion
 from openedu.questions.match.fixed_match import FixedMatchQuestion
-from openedu.questions.match.new_match import NewMatchQuestion
 from openedu.questions.question import Question
 from openedu.questions.select import SelectQuestion
 from solvers.abstract_solver import AbstractSolver
@@ -39,17 +38,11 @@ class LocalSolver(AbstractSolver):
     def solve_choice(self, question: ChoiceQuestion) -> tuple[str, str | list[str]]:
         raise Exception("You shouldn't call this directly on LocalSolver")
 
-    def solve_match(self, question: FixedMatchQuestion) -> tuple[str, str | list[str]]:
-        raise Exception("You shouldn't call this directly on LocalSolver")
-
-    def solve_freematch(self, question: FreeMatchQuestion) -> tuple[str, str | list[str]]:
+    def solve_unified_match(self, question: AbstractMatchQuestion) -> tuple[str, str | list[str]]:
         raise Exception("You shouldn't call this directly on LocalSolver")
 
     def solve_select(self, question: SelectQuestion) -> tuple[str, str | list[str]]:
         raise Exception("You shouldn't call this directly on LocalSolver")
 
     def solve_fill(self, question: FillQuestion) -> tuple[str, str | list[str]]:
-        raise Exception("You shouldn't call this directly on LocalSolver")
-
-    def solve_new_match(self, question: NewMatchQuestion) -> tuple[str, str | list[str]]:
         raise Exception("You shouldn't call this directly on LocalSolver")

@@ -24,7 +24,7 @@ class CrosswordItem(BaseModel):
     orientation: CrosswordItemOrientation
 
 
-class Crossword(BaseModel, Question):
+class Crossword(Question):
     type: str = "crossword"
     text: str = ""
     id: str

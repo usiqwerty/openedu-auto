@@ -10,9 +10,7 @@ from pydantic import BaseModel
 
 from openedu.questions.choice import ChoiceQuestion
 from openedu.questions.fill import FillQuestion
-from openedu.questions.match.fixed_match import FixedMatchQuestion
-from openedu.questions.match.freematch import FreeMatchQuestion
-from openedu.questions.match.new_match import NewMatchQuestion
+from openedu.questions.match.abstract_match import AbstractMatchQuestion
 from openedu.questions.select import SelectQuestion
 from solvers.abstract_solver import AbstractSolver
 
@@ -47,7 +45,7 @@ class LLMSolver(AbstractSolver, ABC):
     def make_gpt_request(self, query, *, sysprompt, _json) -> str:
         pass
 
-    def get_answer(self, query, *, sysprompt=None, _json: type|None=None) -> str:
+    def get_answer(self, query, *, sysprompt=None, _json: type | None = None) -> str:
         print("Getting LLM answer...")
         if query not in self._cache:
             logging.debug("Question was not in cache")
@@ -88,17 +86,12 @@ class LLMSolver(AbstractSolver, ABC):
             res = raw
         return question.compose(res)
 
-    def solve_match(self, question: FixedMatchQuestion) -> tuple[str, str]:
+    def solve_unified_match(self, question: AbstractMatchQuestion):
         class TableType(BaseModel):
             result: list[list[list[str]]]
 
         json_data: Any = self.get_answer(question.query(), _json=TableType)
         return question.compose(json_data)
-
-    def solve_freematch(self, question: FreeMatchQuestion) -> tuple[str, str]:
-        res = self.get_answer(question.query()).split('\n')
-        res = list(filter(lambda x: x, res))
-        return question.compose(res)
 
     def solve_select(self, question: SelectQuestion) -> tuple[str, str]:
         res = self.get_answer(question.query())
@@ -107,8 +100,3 @@ class LLMSolver(AbstractSolver, ABC):
     def solve_fill(self, question: FillQuestion) -> tuple[str, str]:
         res = self.get_answer(question.query())
         return question.compose(res)
-
-    def solve_new_match(self, question: NewMatchQuestion) -> tuple[str, str]:
-        raw = self.get_answer(question.query(), sysprompt="Ответ должен содержать валидный JSON", _json=list[list[list[str]]])
-        json_data = json.loads(raw)
-        return question.compose(json_data)

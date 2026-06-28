@@ -4,7 +4,7 @@ from pydantic import BaseModel
 from openedu.questions.question import Question
 
 
-class FillQuestion(BaseModel, Question):
+class FillQuestion(Question):
     type: str = "fill"
     id: str
     text: str

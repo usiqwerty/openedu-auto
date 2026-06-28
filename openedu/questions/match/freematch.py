@@ -8,7 +8,7 @@ from images.image_describer import ImageDescriber
 from openedu.questions.match.abstract_match import AbstractMatchQuestion, CellData
 
 
-class FreeMatchQuestion(BaseModel, AbstractMatchQuestion):
+class FreeMatchQuestion(AbstractMatchQuestion):
     type: str = "freematch"
 
     @staticmethod

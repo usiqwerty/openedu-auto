@@ -6,7 +6,7 @@ from errors import NoSolutionFoundError
 from openedu.questions.question import Question
 
 
-class SelectQuestion(BaseModel, Question):
+class SelectQuestion(Question):
     type: str = "select"
     text: str = "text here"
     id: str

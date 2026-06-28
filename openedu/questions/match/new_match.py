@@ -15,7 +15,7 @@ def parse_custom_markdown(text):
     return match.group(1)
 
 
-class NewMatchQuestion(BaseModel, AbstractMatchQuestion):
+class NewMatchQuestion(AbstractMatchQuestion):
     type: str = 'new-match'
 
     @staticmethod

@@ -2,9 +2,10 @@ from abc import abstractmethod, ABC
 from typing import Any
 
 from bs4 import Tag
+from pydantic import BaseModel
 
 
-class Question(ABC):
+class Question(BaseModel, ABC):
     type: str
     text: str
     id: str

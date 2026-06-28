@@ -5,7 +5,7 @@ from errors import UnsupportedProblemType
 from openedu.questions.question import Question
 
 
-class UnsupportedQuestion(BaseModel, Question):
+class UnsupportedQuestion(Question):
     type: str = 'unsupported'
     id: str
 
@@ -13,7 +13,7 @@ class UnsupportedQuestion(BaseModel, Question):
         raise UnsupportedProblemType
 
     def compose(self, answer) -> tuple[str, str | dict]:
-        return self.id, self.answer
+        raise TypeError("Can't solve unsupported question")
 
     @staticmethod
     def parse(tag: Tag, prepend_lines: list[str] | None = None) -> "Question":

@@ -4,8 +4,9 @@ from errors import NoSolutionFoundError
 from openedu.questions.choice import ChoiceQuestion
 from openedu.questions.crossword import Crossword
 from openedu.questions.fill import FillQuestion
-from openedu.questions.match.freematch import FreeMatchQuestion
+from openedu.questions.match.abstract_match import AbstractMatchQuestion
 from openedu.questions.match.fixed_match import FixedMatchQuestion
+from openedu.questions.match.freematch import FreeMatchQuestion
 from openedu.questions.match.new_match import NewMatchQuestion
 from openedu.questions.question import Question
 from openedu.questions.select import SelectQuestion
@@ -34,12 +35,17 @@ class AbstractSolver(ABC):
         pass
 
     @abstractmethod
-    def solve_match(self, question: FixedMatchQuestion) -> tuple[str, str | list[str]]:
+    def solve_unified_match(self, question: AbstractMatchQuestion) -> tuple[str, str | list[str]]:
         pass
 
-    @abstractmethod
+    def solve_match(self, question: FixedMatchQuestion) -> tuple[str, str | list[str]]:
+        return self.solve_unified_match(question)
+
     def solve_freematch(self, question: FreeMatchQuestion) -> tuple[str, str | list[str]]:
-        pass
+        return self.solve_unified_match(question)
+
+    def solve_new_match(self, question: NewMatchQuestion) -> tuple[str, str | list[str]]:
+        return self.solve_unified_match(question)
 
     @abstractmethod
     def solve_select(self, question: SelectQuestion) -> tuple[str, str | list[str]]:
@@ -47,10 +53,6 @@ class AbstractSolver(ABC):
 
     @abstractmethod
     def solve_fill(self, question: FillQuestion) -> tuple[str, str | list[str]]:
-        pass
-
-    @abstractmethod
-    def solve_new_match(self, question: NewMatchQuestion) -> tuple[str, str | list[str]]:
         pass
 
     def solve_crossword(self, question: Crossword):
