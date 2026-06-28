@@ -3,6 +3,7 @@ import re
 
 from bs4 import Tag
 
+from errors import UnsupportedProblemType
 from src.openedu.questions.match.abstract_match import AbstractMatchQuestion, CellData
 
 
@@ -22,6 +23,8 @@ class NewMatchQuestion(AbstractMatchQuestion):
         # tag.select_one('.adv-app')
         json_data = json.loads(tag['data-initial-data'].replace("'", '"'))
         lines = prepend_lines or []
+        if "content" not in json_data:
+            raise UnsupportedProblemType("Unusual new-match")
         text = '\n'.join(lines) + json_data['content']['body']
         text = text.strip()
         qid = tag.parent.find('input')['id']

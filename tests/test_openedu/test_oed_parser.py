@@ -39,6 +39,21 @@ def test_parse_vertical_block_html(testname: str):
     assert [[json.loads(q.json()) for q in prob] for prob in problems_got] == expected
 
 
+@pytest.mark.xfail
+def test_parse_vertical_block_html_newmatch_checkboxes(testname="newmatch_checkboxes"):
+    filename_input = f"tests/data/pages/{testname}.html"
+    filename_result = f"tests/data/pages/{testname}.json"
+    with open(filename_input, encoding='utf-8') as f:
+        html = f.read()
+
+    with open(filename_result, encoding='utf-8') as f:
+        expected = json.load(f)
+
+    parser = OpenEduParser(DummyDescriber())
+    problems_got = parser.parse_vertical_block_html(html)
+    assert [[json.loads(q.json()) for q in prob] for prob in problems_got] == expected
+
+
 @pytest.mark.parametrize("testname",
                          ["problem_choice_single", "problem_choice_multiple", "problem_match", "problem_fixed_match"])
 def test_parse_problem(testname):
