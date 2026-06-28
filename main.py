@@ -4,6 +4,7 @@ from src.automation.autosolver import OpenEduAutoSolver
 from errors import Unauthorized, GenericOpenEduError, ReloginReceived
 from src.log import setup_logging
 from src.ui.menu import menu_iteration, require_login
+from tests.fakes import DummySolver, DummyDescriber
 
 version_string = "openedu-auto v1.1"
 setup_logging()
@@ -12,7 +13,7 @@ logging.debug(version_string)
 
 def main():
     print(version_string)
-    app = OpenEduAutoSolver(None, None)
+    app = OpenEduAutoSolver(DummySolver(), DummyDescriber())
     try:
         require_login(app)
     except Unauthorized:

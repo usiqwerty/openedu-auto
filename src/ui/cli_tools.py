@@ -36,8 +36,9 @@ def input_course_id():
 
 
 def get_course_id(app: OpenEduProcessor) -> CourseID:
-    last_course = CourseID.parse(config.config.get("last-course"))
-    if last_course is not None:
+    last_course_str = config.config.get("last-course")
+    if last_course_str is not None:
+        last_course = CourseID.parse(last_course_str)
         try:
             course = app.app.get_course_info(last_course)
             print(f"Продолжаем решать курс {course.name}?")

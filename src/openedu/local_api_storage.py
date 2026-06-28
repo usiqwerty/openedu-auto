@@ -4,7 +4,7 @@ from typing import Any
 
 from src import config
 from src.openedu.course import Course, Chapter
-from src.openedu.ids import BlockID, CourseID, VerticalBlockID, ProblemBlockID
+from src.openedu.ids import BlockID, CourseID, VerticalBlockID
 from src.openedu.oed_parser import VerticalBlock
 
 

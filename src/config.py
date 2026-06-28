@@ -1,10 +1,27 @@
 import json
 import os
+from typing import TypedDict, Literal
 
 from errors import ConfigError
 
+Config = TypedDict(
+    "Config",
+    {
+        "last-course": str,
+        "openrouter-key": str,
+        "openai-key": str,
+        "openai-base-url": str,
+        "openai-model": str,
+        "consensus-models": list[str]
+    },
+    total=False
+)
 
-def set_config(key: str, val):
+ConfigKeys = Literal["last-course", "openrouter-key", "openai-key", "openai-base-url",
+"openai-model", "consensus-models"]
+
+
+def set_config(key: ConfigKeys, val):
     global config
     config[key] = val
 
@@ -12,7 +29,7 @@ def set_config(key: str, val):
         json.dump(config, f)
 
 
-def require_config_field(name: str):
+def require_config_field(name: ConfigKeys):
     if name in config:
         return config[name]
     raise ConfigError(f"Config field '{name}' was not found")
@@ -29,8 +46,9 @@ ignored_fn = os.path.join(userdata_dir, "ignored.json")
 cookies_fn = os.path.join(userdata_dir, "cookies.json")
 os.makedirs(solutions_dir, exist_ok=True)
 
+config: Config
 try:
     with open(config_fn, encoding='utf-8') as f:
         config = json.load(f)
 except FileNotFoundError:
-    config: dict[str, str] = {}
+    config = {}
