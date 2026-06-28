@@ -6,9 +6,7 @@ from typing import Literal
 from errors import NoSolutionFoundError
 from src.openedu.questions.choice import ChoiceQuestion
 from src.openedu.questions.fill import FillQuestion
-from src.openedu.questions.match.fixed_match import FixedMatchQuestion
-from src.openedu.questions.match.freematch import FreeMatchQuestion
-from src.openedu.questions.match.new_match import NewMatchQuestion
+from src.openedu.questions.match.abstract_match import AbstractMatchQuestion
 from src.openedu.questions.question import Question
 from src.openedu.questions.select import SelectQuestion
 from src.solvers.abstract_solver import AbstractSolver
@@ -113,17 +111,11 @@ class ConsensusSolver(AbstractSolver):
     def solve_choice(self, question: ChoiceQuestion) -> tuple[str, str | list[str]]:
         return self.__solve_with_all_solvers(question)
 
-    def solve_match(self, question: FixedMatchQuestion) -> tuple[str, str | list[str]]:
-        return self.__solve_with_all_solvers(question)
-
-    def solve_freematch(self, question: FreeMatchQuestion) -> tuple[str, str | list[str]]:
-        return self.__solve_with_all_solvers(question)
-
     def solve_select(self, question: SelectQuestion) -> tuple[str, str | list[str]]:
         return self.__solve_with_all_solvers(question)
 
     def solve_fill(self, question: FillQuestion) -> tuple[str, str | list[str]]:
         return self.__solve_with_all_solvers(question)
 
-    def solve_new_match(self, question: NewMatchQuestion) -> tuple[str, str | list[str]]:
+    def solve_unified_match(self, question: AbstractMatchQuestion) -> tuple[str, str | list[str]]:
         return self.__solve_with_all_solvers(question, table_mode=True)

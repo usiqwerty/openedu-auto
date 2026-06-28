@@ -7,7 +7,7 @@ from src import config
 from src.openedu.ids import CourseID
 from src.openedu.questions.question import Question
 from src.automation.openedu_processor import OpenEduProcessor
-from tests.fakes import DummyDescriber
+from tests.fakes import DummyDescriber, DummySolver
 
 solutions_dir = os.path.join(config.userdata_dir, 'solutions')
 
@@ -18,7 +18,7 @@ class AnswersSaver(OpenEduProcessor):
     answers: dict
 
     def __init__(self):
-        super().__init__(None, DummyDescriber())
+        super().__init__(DummySolver(), DummyDescriber())
 
     def pull_answers(self, course_id: CourseID):
         self.answers = {}

@@ -3,13 +3,12 @@ import sys
 from types import TracebackType
 
 
-def handle_exception(*args):
-    args: tuple[type[BaseException], BaseException, TracebackType|None]
-    if isinstance(args[1], KeyboardInterrupt):
-        sys.__excepthook__(*args)
+def handle_exception(exc_type: type[BaseException], exception: BaseException, tb: TracebackType | None):
+    if isinstance(exception, KeyboardInterrupt):
+        sys.__excepthook__(exc_type, exception, tb)
         logging.debug("Keyboard interrupt")
         return
-    logging.critical("Unhandled exception", exc_info=args)
+    logging.critical("Unhandled exception", exc_info=(exc_type, exception, tb))
 
 
 def setup_logging():

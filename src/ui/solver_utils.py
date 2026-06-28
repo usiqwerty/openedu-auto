@@ -1,9 +1,11 @@
 from src import config
+from src.solvers.abstract_solver import AbstractSolver
 from src.solvers.consensus import ConsensusSolver
 from src.solvers.openai_solver import GenericOpenAISolver
 
 
-def pick_solver_from_config():
+def pick_solver_from_config() -> AbstractSolver:
+    solver: AbstractSolver
     if config.config.get('consensus-models'):
         solver = ConsensusSolver([
             GenericOpenAISolver(model=consensus_model)
