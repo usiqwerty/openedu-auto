@@ -16,5 +16,5 @@ class UnsupportedQuestion(BaseModel, Question):
         return self.id, self.answer
 
     @staticmethod
-    def parse(tag: Tag, prepend_lines: list[str] = None) -> "Question":
+    def parse(tag: Tag, prepend_lines: list[str] | None = None) -> "Question":
         raise UnsupportedProblemType

@@ -12,8 +12,10 @@ class FreeMatchQuestion(BaseModel, AbstractMatchQuestion):
     type: str = "freematch"
 
     @staticmethod
-    def parse(problem: Tag, prepend_lines: list[str] = None, describer: ImageDescriber = None):
+    def parse(problem: Tag, prepend_lines: list[str] | None = None, describer: ImageDescriber | None = None):
         lines = prepend_lines or []
+        if describer is None:
+            raise TypeError("Image describer should be given to parse this question")
         lines += [p.text for p in problem.select('.matching_table > p')]
 
         table_div = problem  # .select_one("div.matching_table")

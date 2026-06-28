@@ -37,19 +37,19 @@ class LocalSolver(AbstractSolver):
         return question_id, ans
 
     def solve_choice(self, question: ChoiceQuestion) -> tuple[str, str | list[str]]:
-        ...
+        raise Exception("You shouldn't call this directly on LocalSolver")
 
     def solve_match(self, question: FixedMatchQuestion) -> tuple[str, str | list[str]]:
-        ...
+        raise Exception("You shouldn't call this directly on LocalSolver")
 
     def solve_freematch(self, question: FreeMatchQuestion) -> tuple[str, str | list[str]]:
-        ...
+        raise Exception("You shouldn't call this directly on LocalSolver")
 
     def solve_select(self, question: SelectQuestion) -> tuple[str, str | list[str]]:
-        ...
+        raise Exception("You shouldn't call this directly on LocalSolver")
 
     def solve_fill(self, question: FillQuestion) -> tuple[str, str | list[str]]:
-        ...
+        raise Exception("You shouldn't call this directly on LocalSolver")
 
     def solve_new_match(self, question: NewMatchQuestion) -> tuple[str, str | list[str]]:
-        ...
+        raise Exception("You shouldn't call this directly on LocalSolver")

@@ -28,8 +28,8 @@ class SelectQuestion(BaseModel, Question):
         return self.id, ans_id
 
     @staticmethod
-    def parse(tag: Tag, prepend_lines: list[str] = None) -> "SelectQuestion":
-        lines = prepend_lines + []
+    def parse(tag: Tag, prepend_lines: list[str] | None = None) -> "SelectQuestion":
+        lines = (prepend_lines or []) + []
         answers = []
         for child in tag.select('p, label'):
             if child.text.strip():

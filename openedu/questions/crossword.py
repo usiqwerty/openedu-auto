@@ -60,7 +60,7 @@ class Crossword(BaseModel, Question):
                                    ensure_ascii=False)
 
     @staticmethod
-    def parse(tag: Tag, prepend_lines: list[str] = None) -> "Question":
+    def parse(tag: Tag, prepend_lines: list[str] | None = None) -> "Question":
         questions = []
         for scr in tag.select("script"):
             r = re.search(r"let\s*data\s*=\s*\{'student_data':\s*(\[[\w\W]+])[,\'\"\w:\s]+};", scr.text)

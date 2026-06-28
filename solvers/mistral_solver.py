@@ -14,7 +14,7 @@ class MistralSolver(LLMSolver):
         super().__init__()
         logging.debug("Mistral solver set up")
 
-    def make_gpt_request(self, query) -> str:
+    def make_gpt_request(self, query, *, sysprompt, _json) -> str:
         logging.debug("Making Mistral request")
         chat_response = self.client.chat.complete(
             model=self.model,

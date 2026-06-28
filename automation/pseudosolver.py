@@ -8,7 +8,7 @@ class OpenEduPseudoSolver(OpenEduProcessor):
     require_incomplete = False
     mark_completion = False
 
-    def process_problem(self, course_id: CourseID, problem: list[Question]):
+    def process_problem(self, course_id: CourseID, problem: list[Question], *, process_solved):
         pass
 
     def solve_by_url(self, url: str):

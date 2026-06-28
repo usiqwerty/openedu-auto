@@ -4,6 +4,7 @@ import logging
 import os.path
 import time
 from abc import abstractmethod, ABC
+from typing import Any
 
 from pydantic import BaseModel
 
@@ -23,7 +24,7 @@ def striplines(raw_result: str) -> str:
 
 class LLMSolver(AbstractSolver, ABC):
     cache_fn: str
-    last_described = 0
+    last_described: float = 0
     interval_sec = 5
 
     @property
@@ -91,7 +92,7 @@ class LLMSolver(AbstractSolver, ABC):
         class TableType(BaseModel):
             result: list[list[list[str]]]
 
-        json_data = self.get_answer(question.query(), _json=TableType)
+        json_data: Any = self.get_answer(question.query(), _json=TableType)
         return question.compose(json_data)
 
     def solve_freematch(self, question: FreeMatchQuestion) -> tuple[str, str]:
@@ -108,6 +109,6 @@ class LLMSolver(AbstractSolver, ABC):
         return question.compose(res)
 
     def solve_new_match(self, question: NewMatchQuestion) -> tuple[str, str]:
-        raw = self.get_answer(question.query(), sysprompt="Ответ должен содержать валидный JSON", _json=True)
+        raw = self.get_answer(question.query(), sysprompt="Ответ должен содержать валидный JSON", _json=list[list[list[str]]])
         json_data = json.loads(raw)
         return question.compose(json_data)

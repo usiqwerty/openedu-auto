@@ -8,7 +8,7 @@ from config import userdata_dir
 
 
 class ImageDescriber(ABC):
-    last_described = 0
+    last_described: float = 0
     interval_sec = 5
 
     def describe(self, url: str) -> str:

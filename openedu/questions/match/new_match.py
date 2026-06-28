@@ -19,7 +19,7 @@ class NewMatchQuestion(BaseModel, AbstractMatchQuestion):
     type: str = 'new-match'
 
     @staticmethod
-    def parse(tag: Tag, prepend_lines: list[str] = None) -> "NewMatchQuestion":
+    def parse(tag: Tag, prepend_lines: list[str] | None = None) -> "NewMatchQuestion":
         # tag.select_one('.adv-app')
         json_data = json.loads(tag['data-initial-data'].replace("'", '"'))
         lines = prepend_lines or []

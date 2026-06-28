@@ -31,7 +31,10 @@ class CourseID(BaseModel):
 
     @staticmethod
     def parse(rich_id: str):
-        org, course_id, run = re.search(r"(\w+)\+(\w+)\+(\w+)", rich_id).groups()
+        r = re.search(r"(\w+)\+(\w+)\+(\w+)", rich_id)
+        if not r:
+            raise ValueError(f"Invalid course id: {rich_id}")
+        org, course_id, run = r.groups()
         return CourseID(org, course_id, run)
 
 
@@ -40,7 +43,10 @@ class BlockID:
     block_id: str
     type: Literal['sequential', 'vertical', 'videoxblock', 'html', 'problem']
 
-    def __init__(self, course_id: CourseID, block_id: str, block_type: Literal['sequential', 'vertical']):
+    def __init__(self,
+                 course_id: CourseID,
+                 block_id: str,
+                 block_type: Literal['sequential', 'vertical', 'videoxblock', 'html', 'problem']):
         self.course_id = course_id
         self.block_id = block_id
         self.type = block_type
@@ -53,13 +59,15 @@ class BlockID:
 
     @staticmethod
     def parse(rich_id: str):
-        course_id, block_type, block_id = re.search(r"block-v1:([\w+_]+)\+type@([\w-]+)\+block@([\w\W]+)",
-                                                    rich_id).groups()
+        r = re.search(r"block-v1:([\w+_]+)\+type@([\w-]+)\+block@([\w\W]+)", rich_id)
+        if not r:
+            raise ValueError(f"Invalid block id: {rich_id}")
+        course_id, block_type, block_id = r.groups()
         course_id = CourseID.parse(course_id)
         if block_type == 'sequential':
-            return SequentialBlockID(course_id, block_id, block_type)
+            return SequentialBlockID(course_id, block_id, block_type)  # type: ignore[arg-type]
         elif block_type == 'vertical':
-            return VerticalBlockID(course_id, block_id, block_type)
+            return VerticalBlockID(course_id, block_id, block_type)  # type: ignore[arg-type]
         else:
             return BlockID(course_id, block_id, block_type)
 
@@ -94,3 +102,7 @@ class VerticalBlockID(BlockID):
 
 class SequentialBlockID(BlockID):
     type = 'sequential'
+
+
+class ProblemBlockID(BlockID):
+    type = 'problem'

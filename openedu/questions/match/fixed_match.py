@@ -10,7 +10,7 @@ class FixedMatchQuestion(BaseModel, AbstractMatchQuestion):
     type: str = "fixed-match"
 
     @staticmethod
-    def parse(problem: Tag, prepend_lines: list[str] = None):
+    def parse(problem: Tag, prepend_lines: list[str] | None = None):
         # TODO: field and options may have escaped characters
         #  for now this is expected (and so in tests), but maybe LLMs
         #  would feel better without redundant backslashes

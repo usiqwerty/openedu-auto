@@ -34,6 +34,7 @@ class AbstractMatchQuestion(Question, ABC):
                 if table_col.value is not None:
                     continue
                 answers_ids = [get_ans_id_best(self.options, ans) for ans in answer_col]
+                assert isinstance(table_col.id, str)
                 _answer[table_col.id].extend(answers_ids)
 
         return self.id, json.dumps({"answer": _answer}, sort_keys=True)

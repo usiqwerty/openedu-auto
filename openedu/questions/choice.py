@@ -27,8 +27,8 @@ class ChoiceQuestion(BaseModel, Question):
             return plural_choice(answer, self.ids, self.options)
 
     @staticmethod
-    def parse(questions: Tag, prepend_lines: list[str] = None) -> "ChoiceQuestion":
-        lines = prepend_lines + []
+    def parse(questions: Tag, prepend_lines: list[str] | None = None) -> "ChoiceQuestion":
+        lines = (prepend_lines or []) + []
         for child in questions.select("div, p, pre"):  # .children:
             if child.name in ["p", "pre"]:
                 lines.append(child.text.strip())
@@ -54,7 +54,7 @@ class ChoiceQuestion(BaseModel, Question):
 
                     return ChoiceQuestion(id=quest_id, text='\n'.join(lines), options=qs, ids=ids,
                                           correct_answer=correct_answer)
-
+        raise Exception("Parsing failed")
 
 def plural_choice(answer: list, ids: list[str], options: list[str]) -> tuple[str, list[str]]:
     options = [re.sub(r"\s+", ' ', opt) for opt in options]

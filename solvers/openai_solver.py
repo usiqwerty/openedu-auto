@@ -2,6 +2,7 @@ import logging
 import re
 
 from openai import OpenAI, Omit
+from openai.types.responses import EasyInputMessageParam, ResponseInputItemParam
 
 import config
 from solvers.llm_solver import LLMSolver
@@ -22,7 +23,7 @@ class GenericOpenAISolver(LLMSolver):
         self.client = OpenAI(api_key=config.config["openai-key"], base_url=config.config["openai-base-url"])
 
     def make_gpt_request(self, query, *, sysprompt=None, _json: type | None = None) -> str:
-        messages = [
+        messages: list[ResponseInputItemParam] = [
             {"role": "user", "content": query},
         ]
         if sysprompt:
@@ -35,10 +36,13 @@ class GenericOpenAISolver(LLMSolver):
             reasoning={"effort": "low"},
         )
         if response.error:
-            error = response.model_extra['error']
             logging.critical("Error solving")
-            logging.critical(f"Code {error['code']}: {error['message']}")
-            logging.critical(error['metadata'])
+            if response.model_extra:
+                error = response.model_extra['error']
+                logging.critical(f"Code {error['code']}: {error['message']}")
+                logging.critical(error['metadata'])
+            else:
+                logging.critical("No `model_extra` was provided in LLM response.")
             raise Exception
         if not _json:
             return response.output_text

@@ -4,8 +4,8 @@ from requests.cookies import RequestsCookieJar
 from images.image_describer import ImageDescriber
 from openedu.questions.choice import ChoiceQuestion
 from openedu.questions.fill import FillQuestion
-from openedu.questions.match.freematch import FreeMatchQuestion
 from openedu.questions.match.fixed_match import FixedMatchQuestion
+from openedu.questions.match.freematch import FreeMatchQuestion
 from openedu.questions.match.new_match import NewMatchQuestion
 from openedu.questions.select import SelectQuestion
 from solvers.abstract_solver import AbstractSolver
@@ -36,13 +36,13 @@ class FakeSession:
 
 
 class DummySolver(AbstractSolver):
-    def solve_select(self, question: SelectQuestion) -> tuple[str, str | list[str]]:
+    def solve_select(self, question: SelectQuestion) -> tuple[str, str | list[str]]:  # type:ignore[empty-body]
         pass
 
-    def solve_fill(self, question: FillQuestion) -> tuple[str, str | list[str]]:
+    def solve_fill(self, question: FillQuestion) -> tuple[str, str | list[str]]:  # type:ignore[empty-body]
         pass
 
-    def solve_new_match(self, question: NewMatchQuestion) -> tuple[str, str | list[str]]:
+    def solve_new_match(self, question: NewMatchQuestion) -> tuple[str, str | list[str]]:  # type:ignore[empty-body]
         pass
 
     def solve_choice(self, question: ChoiceQuestion):
@@ -57,7 +57,7 @@ class DummySolver(AbstractSolver):
 
 
 class DummyDescriber(ImageDescriber):
-    def get_description(self, url: str) -> str:
+    def get_description(self, url: str) -> str:  # type:ignore[empty-body]
         pass
 
     def describe(self, url: str) -> str:

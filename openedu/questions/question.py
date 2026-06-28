@@ -16,10 +16,10 @@ class Question(ABC):
         """Generate prompt for LLM"""
 
     @abstractmethod
-    def compose(self, answer) -> tuple[str, str | dict]:
+    def compose(self, answer) -> tuple[str, str | list | dict]:
         """Compose respose payload"""
 
     @staticmethod
     @abstractmethod
-    def parse(tag: Tag, prepend_lines: list[str] = None) -> "Question":
+    def parse(tag: Tag, prepend_lines: list[str] | None = None) -> "Question":
         """Parse question from HTML"""

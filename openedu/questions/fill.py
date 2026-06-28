@@ -16,8 +16,8 @@ class FillQuestion(BaseModel, Question):
         return self.id, answer
 
     @staticmethod
-    def parse(tag: Tag, prepend_lines: list[str] = None) -> "FillQuestion":
-        lines = prepend_lines + []
+    def parse(tag: Tag, prepend_lines: list[str] | None = None) -> "FillQuestion":
+        lines = (prepend_lines or []) + []
         for p in tag.find_all("p"):
             lines.append(p.text.strip())
         label = tag.find('label')
@@ -29,4 +29,4 @@ class FillQuestion(BaseModel, Question):
         correct_answer = input_tag['value']
 
         question_text = '\n'.join(filter(lambda x: x, lines))
-        return FillQuestion(id=q_id, text=question_text, correct_answer=correct_answer)
+        return FillQuestion(id=q_id, text=question_text, correct_answer=correct_answer)  # type:ignore[call-arg]

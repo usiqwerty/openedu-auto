@@ -7,11 +7,12 @@ from openedu.questions.fill import FillQuestion
 from openedu.questions.match.freematch import FreeMatchQuestion
 from openedu.questions.match.fixed_match import FixedMatchQuestion
 from openedu.questions.match.new_match import NewMatchQuestion
+from openedu.questions.question import Question
 from openedu.questions.select import SelectQuestion
 
 
 class AbstractSolver(ABC):
-    def solve(self, question: ChoiceQuestion | FixedMatchQuestion | FreeMatchQuestion) -> tuple[str, str | list[str]]:
+    def solve(self, question: Question) -> tuple[str, str | list[str]]:
         if isinstance(question, ChoiceQuestion):
             return self.solve_choice(question)
         elif isinstance(question, FixedMatchQuestion):
@@ -26,6 +27,7 @@ class AbstractSolver(ABC):
             return self.solve_new_match(question)
         elif isinstance(question, Crossword):
             return self.solve_crossword(question)
+        raise NotImplementedError(f"Unsupported question type: {type(question)}")
 
     @abstractmethod
     def solve_choice(self, question: ChoiceQuestion) -> tuple[str, str | list[str]]:

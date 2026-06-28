@@ -19,7 +19,7 @@ class OpenRouterSolver(LLMSolver, ABC):
         super().__init__()
         logging.debug("OpenRouter solver set up")
 
-    def make_gpt_request(self, query) -> str:
+    def make_gpt_request(self, query, *, sysprompt, _json) -> str:
         completion = self.client.chat.completions.create(
             model=self.model,
             messages=[

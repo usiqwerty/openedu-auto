@@ -7,6 +7,8 @@ from errors import NoSolutionFoundError
 
 def extract_choice_from_id(choid_id: str):
     r = re.search(r"(input_[\w\d]+_\d+_\d+)_(choice_\d+)", choid_id)
+    if not r:
+        raise ValueError(f"Can't extract choice id: {choid_id}")
     return r.group(1), r.group(2)
 
 

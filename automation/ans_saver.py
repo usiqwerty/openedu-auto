@@ -25,7 +25,7 @@ class AnswersSaver(OpenEduProcessor):
         os.makedirs(solutions_dir, exist_ok=True)
         self.process_course(course_id)
 
-    def process_problem(self, course_id: CourseID, problem: list[Question]):
+    def process_problem(self, course_id: CourseID, problem: list[Question], *, process_solved):
         solution_fn = os.path.join(solutions_dir, f"{course_id}.json")
 
         for question in problem:

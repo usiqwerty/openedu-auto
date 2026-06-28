@@ -115,6 +115,8 @@ class OpenEduAuth:
     def post_login_data(self, username: str, password: str, login_page_html: str):
         """Post login data using a given auth page"""
         re_result = re.search(login_action_regex, login_page_html)
+        if not re_result:
+            raise ValueError("login_action_regex failed")
         url = re_result.group(1)
         res = urllib.parse.urlparse(url)
         base = f"{res.scheme}://{res.netloc}{res.path}"

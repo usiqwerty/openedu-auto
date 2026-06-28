@@ -8,7 +8,7 @@ import config
 from errors import Unauthorized, GenericOpenEduError
 from openedu.auth import OpenEduAuth
 from openedu.course import Course, Chapter
-from openedu.ids import CourseID, VerticalBlockID, BlockID
+from openedu.ids import CourseID, VerticalBlockID, BlockID, ProblemBlockID
 from openedu.local_api_storage import LocalApiStorage
 
 referer_params = urllib.parse.urlencode({
@@ -106,7 +106,7 @@ class OpenEduAPI:
         self.api_storage.mark_block_as_completed(html_block_id)
 
     @ensure_login
-    def problem_check(self, course_id: CourseID, blk: BlockID, answers: dict[str, str]):
+    def problem_check(self, course_id: CourseID, blk: ProblemBlockID, answers: dict[str, str]):
         logging.info(f"Checking answer: {answers}")
         url = f"https://courses.openedu.ru/courses/course-v1:{course_id}/xblock/{blk}/handler/xmodule_handler/problem_check"
 
@@ -164,6 +164,8 @@ class OpenEduAPI:
             if blk['type'] == 'course':
                 course_block = blk
                 break
+        if course_block is None:
+            raise ValueError("Invalid course data")
 
         course_name = course_block['display_name']
         chapters = []

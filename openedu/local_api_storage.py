@@ -4,7 +4,7 @@ from typing import Any
 
 import config
 from openedu.course import Course, Chapter
-from openedu.ids import BlockID, CourseID, VerticalBlockID
+from openedu.ids import BlockID, CourseID, VerticalBlockID, ProblemBlockID
 from openedu.oed_parser import VerticalBlock
 
 
@@ -34,7 +34,7 @@ class LocalApiStorage:
                 course = json.loads(c)
 
                 self.courses[course_id] = Course(id=course['id'], name=course['name'],
-                                            chapters=[Chapter(**x) for x in course['chapters']])
+                                                 chapters=[Chapter(**x) for x in course['chapters']])
         except FileNotFoundError:
             self.courses = {}
         try:
@@ -53,7 +53,7 @@ class LocalApiStorage:
         except FileNotFoundError:
             self.cache = {}
 
-    def mark_block_as_completed(self, block_id: BlockID):
+    def mark_block_as_completed(self, block_id: ProblemBlockID | VerticalBlockID):
         if not config.config.get('restrict-actions'):
             self.solved.add(block_id)
             logging.info(f"Added to solved: {block_id}")

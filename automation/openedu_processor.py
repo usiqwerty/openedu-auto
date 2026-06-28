@@ -43,14 +43,15 @@ class OpenEduProcessor(ABC):
 
                     for vertical in self.app.get_sequential_block(course_id, seq_id.block_id):
                         print("Vertical:", vertical.title)
-                        blk = self.app.get_vertical_block(vertical.id)
+                        blk: VerticalBlock = self.app.get_vertical_block(vertical.id)  # type:ignore[assignment]
                         if not self.should_process(blk.id):
                             continue
                         self.process_vertical(blk.id, vertical, course_id)
                     if self.mark_completion:
                         self.app.mark_block_as_completed(seq_id.block_id)
 
-    def process_vertical(self, blkid: VerticalBlockID, block: VerticalBlock, course_id: CourseID, *, process_solved=False):
+    def process_vertical(self, blkid: VerticalBlockID, block: VerticalBlock, course_id: CourseID, *,
+                         process_solved=False):
         logging.debug(blkid)
         logging.debug(f"Block '{block.title}' (complete={block.complete}) of type '{block.type}'")
         html = self.app.get_vertical_page_html(blkid)

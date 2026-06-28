@@ -26,7 +26,7 @@ class VerticalBlock(BaseModel):
 
 
 class OpenEduParser:
-    describer: ImageDescriber
+    describer: ImageDescriber | None
 
     def __init__(self, describer: ImageDescriber | None):
         self.describer = describer
@@ -66,23 +66,8 @@ class OpenEduParser:
 
         return total
 
-    def prepare_non_separated_questions(self, problem_: BeautifulSoup):
-        problem = problem_.select_one("div.problem").find("div")
-
-        texts = []
-        for child in problem.children:
-            if not isinstance(child, Tag):
-                continue
-
-            if child.name == 'div' and 'wrapper-problem-response' in child['class']:
-                for i, t in enumerate(texts):
-                    child.insert(i, t)
-                texts = []
-            else:
-                texts.append(child)
-
-    def parse_problem(self, problem: BeautifulSoup, problem_header: str = None) -> list[Question]:
-        questions = []
+    def parse_problem(self, problem: BeautifulSoup, problem_header: str | None = None) -> list[Question]:
+        questions: list[Question] = []
         mt = problem.select_one('div.matching_table, div.adv-app')
         is_crossword = problem.select_one("#crossword_container")
 
@@ -130,7 +115,7 @@ class OpenEduParser:
 
         return questions
 
-    def parse_question(self, question_tag: Tag, prepend_lines: list[str] = None, has_mt=False) -> Question:
+    def parse_question(self, question_tag: Tag, prepend_lines: list[str] | None = None, has_mt=False) -> Question:
         if has_mt: #question_tag.select_one('div.matching_table, div.adv-app') is not None
             if "adv-app" in question_tag.get('class', ""):
                 return NewMatchQuestion.parse(question_tag, prepend_lines)

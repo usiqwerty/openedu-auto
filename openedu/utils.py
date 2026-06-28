@@ -1,5 +1,5 @@
 import re
-import urllib
+import urllib.parse
 
 from errors import FormatError
 from openedu.ids import SequentialBlockID, VerticalBlockID
@@ -12,7 +12,10 @@ def parse_page_url(url: str):
     assert url_path[1] == 'learning'
     assert url_path[2] == 'course'
 
-    course_id = re.search(r"course-v1:([\w+_]+)", url_path[3]).group(1)
+    course_id_r = re.search(r"course-v1:([\w+_]+)", url_path[3])
+    if not course_id_r:
+        raise ValueError(f"No course id in given url part: {url_path}")
+    course_id = course_id_r.group(1)
     seq_block_id = SequentialBlockID.parse(url_path[4])
     vert_block_id = VerticalBlockID.parse(url_path[5])
     return course_id, seq_block_id, vert_block_id
@@ -34,4 +37,6 @@ def ensure_ids_same(ids, selector=lambda x: x):
 
 def extract_quest_id(qfield: str) -> str:
     r = re.search(r"input_([\w\d]+)_\d+_\d+", qfield)
+    if not r:
+        raise ValueError(f"Coudl not extract question id: {qfield}")
     return r.group(1)

@@ -10,6 +10,8 @@ def login_urfu(session: Session, username: str, password: str):
 
     # extract urfu social login button
     urfu_button_re_r = re.search(r'"loginUrl": "\\(/realms/openedu/broker/urfu/login[\w\W]+?)",', oed_login_r.text)
+    if not urfu_button_re_r:
+        raise ValueError("Could not extract UrFU login button")
     urfu_button_url = f"https://sso.openedu.ru{urfu_button_re_r.group(1)}"
     urfu_login_r = session.get(urfu_button_url)
 

@@ -23,7 +23,7 @@ def get_most_common_solution(solutions: list[tuple[str, list[str]]]) -> tuple[st
 
     taskid = solutions[0][0]
 
-    counts = defaultdict(int)
+    counts: dict[str, int] = defaultdict(int)
     for variant in ans_variatns:
         for opt in variant:
             counts[opt] += 1
@@ -39,7 +39,7 @@ def get_most_common_solution(solutions: list[tuple[str, list[str]]]) -> tuple[st
 def merge_tables(solutions: list):
     ans_keys = None
 
-    summed_table = defaultdict(lambda: defaultdict(int))
+    summed_table: dict[str, dict[str, int]] = defaultdict(lambda: defaultdict(int))
     task_id = None
     for tid, ans in solutions:
         task_id = tid
