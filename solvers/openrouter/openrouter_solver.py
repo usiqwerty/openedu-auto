@@ -36,6 +36,7 @@ class OpenRouterSolver(LLMSolver, ABC):
             logging.critical(f"Code {error['code']}: {error['message']}")
             logging.critical(error['metadata'])
             raise Exception
+        assert completion.choices[0].message.content
         return completion.choices[0].message.content
 
 

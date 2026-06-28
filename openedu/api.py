@@ -8,7 +8,7 @@ import config
 from errors import Unauthorized, GenericOpenEduError
 from openedu.auth import OpenEduAuth
 from openedu.course import Course, Chapter
-from openedu.ids import CourseID, VerticalBlockID, BlockID, ProblemBlockID
+from openedu.ids import CourseID, VerticalBlockID, BlockID, ProblemBlockID, SequentialBlockID
 from openedu.local_api_storage import LocalApiStorage
 
 referer_params = urllib.parse.urlencode({
@@ -44,10 +44,9 @@ class OpenEduAPI:
         self.refreshed = False
 
     @ensure_login
-    def get_sequential_block(self, course_id: CourseID, block_id: str):
+    def get_sequential_block(self, course_id: CourseID, block_id: SequentialBlockID):
         url = (f"https://courses.openedu.ru/api/courseware/sequence/"
-               f"block-v1:{course_id}+type@sequential"
-               f"+block@{block_id}")
+               f"{block_id}")
         hdrs = {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/113.0",
             "Referer": 'https://apps.openedu.ru/',

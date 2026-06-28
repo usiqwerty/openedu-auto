@@ -38,4 +38,5 @@ class OpenAIImageDescriber(ImageDescriber, ABC):
             logging.critical(f"Code {error['code']}: {error['message']}")
             logging.critical(error['metadata'])
             exit(1)
+        assert completion.choices[0].message.content
         return completion.choices[0].message.content

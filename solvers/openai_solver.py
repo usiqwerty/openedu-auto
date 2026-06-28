@@ -47,4 +47,6 @@ class GenericOpenAISolver(LLMSolver):
         if not _json:
             return response.output_text
         else:
+            # TODO: remove asserts from project
+            assert response.output_parsed
             return response.output_parsed.result

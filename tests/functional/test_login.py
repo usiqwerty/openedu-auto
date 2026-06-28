@@ -54,7 +54,7 @@ def respond_login_data(req: PreparedRequest):
 
 @pytest.mark.parametrize("correct", [True, False], ids=['correct password', 'incorrect password'])
 @responses.activate
-def test_login(empty_auto_solver, correct: bool):
+def test_login(empty_auto_solver: OpenEduAutoSolver, correct: bool):
     responses.get("https://openedu.ru/", body=home)
 
     responses.get("https://openedu.ru/auth/login/npoedsso/", status=302, headers={'location': login_redir_url})
@@ -71,7 +71,6 @@ def test_login(empty_auto_solver, correct: bool):
         headers={'location': "/"}
     )
     responses.get("https://openedu.ru/auth/status?url=/", json={"auth": int(correct)})
-    empty_auto_solver: OpenEduAutoSolver
 
     if correct:
         status = empty_auto_solver.app.login(test_username, test_password)

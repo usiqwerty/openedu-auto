@@ -49,8 +49,7 @@ class OpenEduAutoSolver(OpenEduProcessor):
         logging.debug(f"Starting at block {seq}")
 
         with self.cache_context:
-            for vert in self.app.get_sequential_block(course_id, seq.block_id):
-                cur_vert_id = VerticalBlockID.parse(vert.id).block_id
-                if cur_vert_id != ver.block_id:
+            for vert in self.app.get_sequential_block(course_id, seq):
+                if vert.id != ver.block_id:
                     continue
                 self.process_vertical(vert.id, vert, course_id, process_solved=True)

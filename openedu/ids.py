@@ -64,12 +64,15 @@ class BlockID:
             raise ValueError(f"Invalid block id: {rich_id}")
         course_id, block_type, block_id = r.groups()
         course_id = CourseID.parse(course_id)
+        if block_type not in {'sequential', 'vertical', 'videoxblock', 'html', 'problem'}:
+            raise ValueError(f"Unknown block type: {block_type}")
+
         if block_type == 'sequential':
             return SequentialBlockID(course_id, block_id, block_type)  # type: ignore[arg-type]
         elif block_type == 'vertical':
             return VerticalBlockID(course_id, block_id, block_type)  # type: ignore[arg-type]
         else:
-            return BlockID(course_id, block_id, block_type)
+            return BlockID(course_id, block_id, block_type)  # type: ignore[arg-type]
 
     def __eq__(self, other):
         return str(self) == str(other)

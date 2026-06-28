@@ -2,10 +2,10 @@ import re
 import urllib.parse
 
 from errors import FormatError
-from openedu.ids import SequentialBlockID, VerticalBlockID
+from openedu.ids import SequentialBlockID, VerticalBlockID, CourseID
 
 
-def parse_page_url(url: str):
+def parse_page_url(url: str)->tuple[CourseID, SequentialBlockID, VerticalBlockID]:
     parsed_url = urllib.parse.urlparse(url)
     url_path = parsed_url.path.split('/')
     assert url_path[0] == ''
@@ -15,7 +15,7 @@ def parse_page_url(url: str):
     course_id_r = re.search(r"course-v1:([\w+_]+)", url_path[3])
     if not course_id_r:
         raise ValueError(f"No course id in given url part: {url_path}")
-    course_id = course_id_r.group(1)
+    course_id = CourseID.parse(course_id_r.group(1))
     seq_block_id = SequentialBlockID.parse(url_path[4])
     vert_block_id = VerticalBlockID.parse(url_path[5])
     return course_id, seq_block_id, vert_block_id

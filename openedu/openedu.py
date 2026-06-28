@@ -2,7 +2,7 @@ import logging
 
 from images.image_describer import ImageDescriber
 from openedu.api import OpenEduAPI
-from openedu.ids import CourseID, BlockID, VerticalBlockID, ProblemBlockID
+from openedu.ids import CourseID, BlockID, VerticalBlockID, ProblemBlockID, SequentialBlockID
 from openedu.local_api_storage import LocalApiStorage
 from openedu.oed_parser import OpenEduParser, VerticalBlock
 from openedu.questions.question import Question
@@ -23,7 +23,7 @@ class OpenEdu:
     def has_login_data(self):
         return len(self._api.session.cookies) > 0
 
-    def get_sequential_block(self, course_id: CourseID, block_id: str):
+    def get_sequential_block(self, course_id: CourseID, block_id: SequentialBlockID):
         r = self._api.get_sequential_block(course_id, block_id)
         for blk in self.parser.parse_sequential_block_(r):
             if blk.id not in self.storage.blocks:
@@ -64,7 +64,7 @@ class OpenEdu:
     def get_vertical_block(self, block_id: VerticalBlockID) -> VerticalBlock | None:
         return self.storage.blocks.get(block_id)
 
-    def skip_forever(self, block_id):
+    def skip_forever(self, block_id: BlockID):
         self.storage.skipped.append(block_id)
         self.storage.save()
 
