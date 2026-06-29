@@ -6,7 +6,7 @@ from src.log import setup_logging
 from src.ui.menu import menu_iteration, require_login
 from tests.fakes import DummySolver, DummyDescriber
 
-version_string = "openedu-auto v1.1"
+version_string = "openedu-auto v1.2"
 setup_logging()
 logging.debug(version_string)
 
