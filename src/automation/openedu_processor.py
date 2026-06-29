@@ -58,7 +58,8 @@ class OpenEduProcessor(ABC):
             block_id_str = xblock_vert['data-id']
             block_id = BlockID.parse(block_id_str)
 
-            if block_id.type in {"html", "xvideoblock"} and self.mark_completion:
+            # гении консистентности
+            if block_id.type in {"html", "xvideoblock", "videoxblock"} and self.mark_completion:
                 self.app.publish_completion(course_id, block_id)
 
         try:

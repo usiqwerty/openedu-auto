@@ -52,9 +52,9 @@ def get_course_id(app: OpenEduProcessor) -> CourseID:
         if continue_course:
             course_id = last_course
         else:
-            course_id = input_course_id()
+            course_id = CourseID.parse(input_course_id())
     else:
-        course_id = input_course_id()
+        course_id = CourseID.parse(input_course_id())
 
     set_config("last-course", str(course_id))
     return course_id
@@ -83,7 +83,7 @@ def parse_only_presudosolve(solver: AbstractSolver, describer: ImageDescriber):
     app.process_course(course.id)
 
 
-def get_solution_filepath(course_id):
+def get_solution_filepath(course_id) -> str | None:
     solutions_dir = os.path.join("userdata", "solutions")
     files = os.listdir(solutions_dir)
     solution_path = None

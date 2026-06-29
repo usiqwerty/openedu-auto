@@ -64,7 +64,7 @@ def register_api_endpoints():
     )
     responses.post(
         re.compile(
-            r"https://courses.openedu.ru/courses/course-v1:org\+test_course\+run/xblock/block-v1:org\+test_course\+run\+type@html\+block@[\W\w]+/handler/publish_completion", ),
+            r"https://courses.openedu.ru/courses/course-v1:org\+test_course\+run/xblock/block-v1:org\+test_course\+run\+type@(:?html|videoxblock)\+block@[\W\w]+/handler/publish_completion", ),
         json={"result": "ok"}
     )
 
